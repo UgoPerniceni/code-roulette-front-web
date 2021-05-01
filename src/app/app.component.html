@@ -1,1 +1,32 @@
-<router-outlet></router-outlet>
+<mat-toolbar color="primary">
+  <mat-toolbar-row>
+    <button mat-icon-button (click)="sidenav.toggle()">
+      <mat-icon>menu</mat-icon>
+    </button>
+    <h1>Projet annuel</h1>
+    <span class="menu-spacer"></span>
+    <div>
+      <a mat-button routerLink="/"> Home </a>
+      <a mat-button routerLink="/login"> Login </a>
+      <a mat-button routerLink="/signup"> Signup </a>
+    </div>
+  </mat-toolbar-row>
+</mat-toolbar>
+
+<mat-sidenav-container>
+  <mat-sidenav #sidenav>
+    <mat-nav-list>
+
+      <a mat-list-item routerLink="/"> Home </a>
+      <a mat-list-item routerLink="/login"> Login </a>
+      <a mat-list-item routerLink="/signup"> Signup </a>
+      <a mat-list-item (click)="sidenav.toggle()">Close</a>
+
+    </mat-nav-list>
+  </mat-sidenav>
+  <mat-sidenav-content>
+    <div style="height: 88vh;">
+      <router-outlet></router-outlet>
+    </div>
+  </mat-sidenav-content>
+</mat-sidenav-container>
