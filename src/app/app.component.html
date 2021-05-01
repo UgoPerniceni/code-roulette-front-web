@@ -24,13 +24,16 @@
   <mat-drawer-container fxFlex autosize class="background">
     <mat-drawer #drawer>
       <div fxLayout="column">
-        <h3 class="center">Menu</h3>
+        <h3 class="center" style="text-align: center">Menu</h3>
+        <hr/>
+        <button mat-button routerLink="/home" routerLinkActive="selected no-border txt-bold" fxLayoutAlign="start" class="py-2 pr-5">
+          <mat-icon class="mr-2">home</mat-icon> Home</button>
+        <mat-divider></mat-divider>
         <button mat-button routerLink="/login" routerLinkActive="selected no-border txt-bold" fxLayoutAlign="start" class="py-2 pr-5">
           <mat-icon class="mr-2">filter_1</mat-icon> Login</button>
         <mat-divider></mat-divider>
         <button mat-button routerLink="/signup" routerLinkActive="selected no-border txt-bold" fxLayoutAlign="start" class="py-2 pr-5">
           <mat-icon class="mr-2">filter_2</mat-icon> Sign up</button>
-        <mat-divider></mat-divider>
       </div>
     </mat-drawer>
 

@@ -1,3 +1,2 @@
-.mat-toolbar-row, .mat-toolbar-single-row {
-  padding: 0;
-}
+hr { width: 100% }
+.mat-toolbar-row, .mat-toolbar-single-row { padding: 0;}

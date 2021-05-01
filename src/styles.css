@@ -3,11 +3,6 @@
 html, body { height: 100%; }
 body { margin: 0; font-family: Roboto, "Helvetica Neue", sans-serif; }
 
-.router-link-active {
-
-}
-.no-border {border-radius: 0;}
-
 .center {
   margin-left: auto;
   margin-right: auto;
@@ -17,6 +12,7 @@ body { margin: 0; font-family: Roboto, "Helvetica Neue", sans-serif; }
   margin-bottom: auto;
 }
 
+.router-link-active {}
+.no-border {border-radius: 0;}
 .txt-bold {font-weight: bold;}
-
 .selected {background-color: gainsboro;}
