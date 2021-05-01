@@ -1,32 +1,42 @@
-<mat-toolbar color="primary">
-  <mat-toolbar-row>
-    <button mat-icon-button (click)="sidenav.toggle()">
+<div fxLayout="column" fxFlexFill>
+  <mat-toolbar class="mat-elevation-z8 p-0" color="primary" fxLayout="row" fxLayoutAlign="start stretch" style="z-index: 2">
+
+    <button mat-button (click)="drawer.toggle()">
       <mat-icon>menu</mat-icon>
     </button>
-    <h1>Projet annuel</h1>
-    <span class="menu-spacer"></span>
-    <div>
-      <a mat-button routerLink="/"> Home </a>
-      <a mat-button routerLink="/login"> Login </a>
-      <a mat-button routerLink="/signup"> Signup </a>
+
+    <button mat-button routerLink="/home" routerLinkActive="router-link-active">
+      <mat-icon>home</mat-icon>
+    </button>
+
+    <div fxLayout="row" fxLayoutAlign="start center" fxLayoutGap="15px" class="pl-3">
+      <span>Projet annuel</span>
     </div>
-  </mat-toolbar-row>
-</mat-toolbar>
 
-<mat-sidenav-container>
-  <mat-sidenav #sidenav>
-    <mat-nav-list>
+    <span fxFlex></span>
 
-      <a mat-list-item routerLink="/"> Home </a>
-      <a mat-list-item routerLink="/login"> Login </a>
-      <a mat-list-item routerLink="/signup"> Signup </a>
-      <a mat-list-item (click)="sidenav.toggle()">Close</a>
+    <div fxLayout="row" fxShow="false" fxShow.gt-sm>
+      <button mat-button routerLink="/login" routerLinkActive="router-link-active no-border">Login</button>
+      <button mat-button routerLink="/signup" routerLinkActive="router-link-active no-border">Sign up</button>
+    </div>
+  </mat-toolbar>
 
-    </mat-nav-list>
-  </mat-sidenav>
-  <mat-sidenav-content>
-    <div style="height: 88vh;">
+  <mat-drawer-container fxFlex autosize class="background">
+    <mat-drawer #drawer>
+      <div fxLayout="column">
+        <h3 class="center">Menu</h3>
+        <button mat-button routerLink="/login" routerLinkActive="selected no-border txt-bold" fxLayoutAlign="start" class="py-2 pr-5">
+          <mat-icon class="mr-2">filter_1</mat-icon> Login</button>
+        <mat-divider></mat-divider>
+        <button mat-button routerLink="/signup" routerLinkActive="selected no-border txt-bold" fxLayoutAlign="start" class="py-2 pr-5">
+          <mat-icon class="mr-2">filter_2</mat-icon> Sign up</button>
+        <mat-divider></mat-divider>
+      </div>
+    </mat-drawer>
+
+    <!--Components-->
+    <div style="display: inline;">
       <router-outlet></router-outlet>
     </div>
-  </mat-sidenav-content>
-</mat-sidenav-container>
+  </mat-drawer-container>
+</div>

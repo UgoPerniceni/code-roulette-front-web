@@ -8,6 +8,7 @@ import { LoginComponent } from './component/login/login.component';
 import { HomeComponent } from './component/home/home.component';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { HttpClientModule } from '@angular/common/http';
+import { FlexLayoutModule } from '@angular/flex-layout';
 
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { MatToolbarModule } from '@angular/material/toolbar';
@@ -38,6 +39,7 @@ import { MatListModule } from '@angular/material/list';
     AppRoutingModule,
     BrowserAnimationsModule,
     HttpClientModule,
+    FlexLayoutModule,
 
     MatCardModule,
     FormsModule,
