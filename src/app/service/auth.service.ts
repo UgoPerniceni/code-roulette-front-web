@@ -14,7 +14,7 @@ export class AuthService {
   private url = 'http://localhost:8080/api/auth/';
 
   private currentSessionSubject: BehaviorSubject<Session>;
-  private currentSessionObservable: Observable<Session>;
+  private readonly currentSessionObservable: Observable<Session>;
 
   constructor(private http: HttpClient) {
     this.currentSessionSubject = new BehaviorSubject<Session>(
@@ -61,5 +61,10 @@ export class AuthService {
     }
     return false;
   }
+
+  get currentSession(): Observable<any> {
+    return this.currentSessionObservable;
+  }
+
 
 }

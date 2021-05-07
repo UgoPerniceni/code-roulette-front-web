@@ -1,0 +1,13 @@
+.row-height {
+  height: 90%;
+}
+
+.mat-form-field {
+  width: 100%;
+  padding-bottom: 5px;
+}
+
+mat-card {
+  margin: 2em auto;
+  text-align: center;
+}

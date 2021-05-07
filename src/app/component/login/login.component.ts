@@ -2,7 +2,6 @@ import { Component, OnInit } from '@angular/core';
 import {Router} from '@angular/router';
 import {AuthService} from '../../service/auth.service';
 import {FormBuilder, FormGroup, Validators} from '@angular/forms';
-import {first} from 'rxjs/operators';
 
 @Component({
   selector: 'app-login',
@@ -14,7 +13,6 @@ export class LoginComponent implements OnInit {
   form: FormGroup;
   public loginInvalid = false;
   public hidePassword = true;
-
 
   constructor(private router: Router, private formBuilder: FormBuilder, private authService: AuthService) {
     this.form = this.formBuilder.group({
