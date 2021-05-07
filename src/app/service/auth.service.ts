@@ -3,6 +3,8 @@ import {HttpClient, HttpResponse} from '@angular/common/http';
 import {BehaviorSubject, Observable} from 'rxjs';
 import {Session} from '../model/Session';
 import {User} from '../model/User';
+import {Login} from '../model/Login';
+import {map} from 'rxjs/operators';
 
 @Injectable({
   providedIn: 'root'
@@ -21,23 +23,23 @@ export class AuthService {
     this.currentSessionObservable = this.currentSessionSubject.asObservable();
   }
 
-/*  login(login: Login): any {
-    console.log(login);
-    console.log(this.url + 'login');
 
-    this.http.post<any>(this.url + 'login', login, {observe: 'response'})
-      .pipe(map(response => {
+  login(login: Login): any {
+    return this.http.post<any>(this.url + 'login', login, {observe: 'response'})
+      .pipe(map((response => {
         if (response.headers.get('authorization')) {
           const token: string = response.headers.get('authorization') as string;
           const session: Session = new Session(token);
 
           localStorage.setItem('currentSession', JSON.stringify(session));
           this.currentSessionSubject.next(session);
+
+          console.log('Add new token : ' + response.headers.get('authorization'));
         }
 
         return response;
-      }));
-  }*/
+      })));
+  }
 
   logout(): void{
     localStorage.removeItem('currentSession');

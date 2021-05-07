@@ -25,6 +25,7 @@ import { MatOptionModule } from '@angular/material/core';
 import { MatProgressSpinnerModule } from '@angular/material/progress-spinner';
 import { MatSidenavModule } from '@angular/material/sidenav';
 import { MatListModule } from '@angular/material/list';
+import {MatInputModule} from '@angular/material/input';
 
 
 @NgModule({
@@ -34,31 +35,32 @@ import { MatListModule } from '@angular/material/list';
     SignupComponent,
     HomeComponent
   ],
-  imports: [
-    BrowserModule,
-    AppRoutingModule,
-    BrowserAnimationsModule,
-    HttpClientModule,
-    FlexLayoutModule,
+    imports: [
+        BrowserModule,
+        AppRoutingModule,
+        BrowserAnimationsModule,
+        HttpClientModule,
+        FlexLayoutModule,
 
-    MatCardModule,
-    FormsModule,
-    ReactiveFormsModule,
-    MatToolbarModule,
-    MatCardModule,
-    MatMenuModule,
-    MatIconModule,
-    MatButtonModule,
-    MatTableModule,
-    MatDividerModule,
-    MatSlideToggleModule,
-    MatSelectModule,
-    MatOptionModule,
-    MatProgressSpinnerModule,
-    MatTabsModule,
-    MatSidenavModule,
-    MatListModule
-  ],
+        MatCardModule,
+        FormsModule,
+        ReactiveFormsModule,
+        MatToolbarModule,
+        MatCardModule,
+        MatMenuModule,
+        MatIconModule,
+        MatButtonModule,
+        MatTableModule,
+        MatDividerModule,
+        MatSlideToggleModule,
+        MatSelectModule,
+        MatOptionModule,
+        MatProgressSpinnerModule,
+        MatTabsModule,
+        MatSidenavModule,
+        MatListModule,
+        MatInputModule
+    ],
   providers: [],
   bootstrap: [AppComponent]
 })
