@@ -23,9 +23,18 @@ export class AuthService {
     this.currentSessionObservable = this.currentSessionSubject.asObservable();
   }
 
+  signUp(user: User): Observable<HttpResponse<User>>{
+    return this.http.post<User>(this.url + 'signup', user, {
+      observe: 'response',
+      headers: {'skip-interceptor': 'true'}
+    });
+  }
 
   login(login: Login): any {
-    return this.http.post<any>(this.url + 'login', login, {observe: 'response'})
+    return this.http.post<any>(this.url + 'login', login, {
+      observe: 'response',
+      headers: {'skip-interceptor': 'true'}
+    })
       .pipe(map((response => {
         if (response.headers.get('authorization')) {
           const token: string = response.headers.get('authorization') as string;
@@ -45,26 +54,23 @@ export class AuthService {
     localStorage.removeItem('currentSession');
   }
 
-  signUp(user: User): Observable<HttpResponse<User>>{
-    return this.http.post<User>(this.url + 'signup', user, {observe: 'response'});
-  }
-
-  checkIsConnected(): boolean {
+  isConnected(): boolean {
     const LSSession = localStorage.getItem('currentSession');
 
     if (LSSession) {
       const session = JSON.parse(LSSession);
       if (session){
-        // TODO + check with API
         return true;
       }
     }
     return false;
   }
 
+  getSessionToken(): any {
+    return localStorage.getItem('currentSession');
+  }
+
   get currentSession(): Observable<any> {
     return this.currentSessionObservable;
   }
-
-
 }

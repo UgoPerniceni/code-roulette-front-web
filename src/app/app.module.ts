@@ -26,6 +26,8 @@ import { MatProgressSpinnerModule } from '@angular/material/progress-spinner';
 import { MatSidenavModule } from '@angular/material/sidenav';
 import { MatListModule } from '@angular/material/list';
 import {MatInputModule} from '@angular/material/input';
+import { PlayComponent } from './component/play/play.component';
+import { EditorComponent } from './component/editor/editor.component';
 
 
 @NgModule({
@@ -33,7 +35,9 @@ import {MatInputModule} from '@angular/material/input';
     AppComponent,
     LoginComponent,
     SignupComponent,
-    HomeComponent
+    HomeComponent,
+    PlayComponent,
+    EditorComponent
   ],
     imports: [
         BrowserModule,
