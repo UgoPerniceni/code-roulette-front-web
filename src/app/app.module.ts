@@ -29,7 +29,8 @@ import {MatInputModule} from '@angular/material/input';
 import { PlayComponent } from './component/play/play.component';
 import { EditorComponent } from './component/editor/editor.component';
 import { AdminComponent } from './component/admin/admin.component';
-import {TokenInterceptor} from './interceptor/token.interceptor';
+import { TokenInterceptor } from './interceptor/token.interceptor';
+import { CodemirrorModule } from '@ctrl/ngx-codemirror';
 
 
 @NgModule({
@@ -48,6 +49,7 @@ import {TokenInterceptor} from './interceptor/token.interceptor';
         BrowserAnimationsModule,
         HttpClientModule,
         FlexLayoutModule,
+        CodemirrorModule,
 
         MatCardModule,
         FormsModule,

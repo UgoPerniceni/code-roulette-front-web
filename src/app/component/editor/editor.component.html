@@ -1,1 +1,35 @@
 <p>editor works!</p>
+
+<ngx-codemirror
+  [options]="options"
+  [ngModel]="defaults[mode]"
+  [disabled]="readOnly"
+  [autoFocus]="true"
+  (ngModelChange)="handleChange($event)"
+></ngx-codemirror>
+
+<br/>
+
+<form class="form-inline">
+  <select class="form-control mr-1 mb-1" name="state" [(ngModel)]="mode" (ngModelChange)="changeMode()">
+    <option value="markdown">Markdown</option>
+    <option value="text/x-csrc">C</option>
+    <option value="text/x-python">Python</option>
+    <option value="text/javascript">Javascript</option>
+    <option value="text/typescript">TypeScript</option>
+    <option value="text/x-java">Java</option>
+  </select>
+
+  <div class="btn-group-toggle mb-1 mr-1">
+    <label class="btn btn-light" [class.active]="readOnly">
+      <input type="checkbox" [(ngModel)]="readOnly" name="readOnly" autocomplete="off">
+      Toggle read-only mode (currently {{ readOnly ? 'on' : 'off' }})
+    </label>
+  </div>
+  <div class="btn-group-toggle mb-1 mr-1">
+    <button class="btn btn-light" (click)="clear()">Clear</button>
+  </div>
+
+</form>
+
+<button mat-raised-button color="primary">Compile</button>
