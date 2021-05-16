@@ -9,7 +9,7 @@ import { Observable } from 'rxjs';
 import {AuthService} from '../service/auth.service';
 
 @Injectable()
-export class TokenInterceptorInterceptor implements HttpInterceptor {
+export class TokenInterceptor implements HttpInterceptor {
 
   constructor(private authService: AuthService) {}
 
@@ -21,9 +21,15 @@ export class TokenInterceptorInterceptor implements HttpInterceptor {
     }
 
     if (this.authService.isConnected()) {
+      const token = this.authService.getSessionToken();
+
+      console.log('Intercept request, add token : ' + token);
+
       request = request.clone({
-        setHeaders: { authorization: `Bearer ${this.authService.getSessionToken()}` }
+        setHeaders: { Authorization: `Bearer ${token}` }
       });
+
+      console.log(request);
     }
 
     return next.handle(request);

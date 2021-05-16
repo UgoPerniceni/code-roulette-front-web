@@ -6,6 +6,8 @@ import {HomeComponent} from './component/home/home.component';
 import {IsConnectedGuard} from './guard/is-connected.guard';
 import {PlayComponent} from './component/play/play.component';
 import {EditorComponent} from './component/editor/editor.component';
+import {AdminComponent} from './component/admin/admin.component';
+import {IsAdminGuard} from './guard/is-admin.guard';
 
 const routes: Routes = [
   { path: '',   redirectTo: '/home', pathMatch: 'full' },
@@ -13,10 +15,12 @@ const routes: Routes = [
   { path: 'login', component: LoginComponent },
   { path: 'signup', component: SignupComponent },
 
-  { path: 'home', component: HomeComponent, canActivate: [IsConnectedGuard]},
+  { path: 'home', component: HomeComponent, canActivate: [IsConnectedGuard] },
 
-  { path: 'play', component: PlayComponent, canActivate: [IsConnectedGuard]},
-  { path: 'editor', component: EditorComponent, canActivate: [IsConnectedGuard]},
+  { path: 'play', component: PlayComponent, canActivate: [IsConnectedGuard] },
+  { path: 'editor', component: EditorComponent, canActivate: [IsConnectedGuard] },
+
+  { path: 'admin', component: AdminComponent, canActivate: [IsAdminGuard] },
 
   // { path: '**', redirectTo: 404}
 ];

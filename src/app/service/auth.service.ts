@@ -37,13 +37,15 @@ export class AuthService {
     })
       .pipe(map((response => {
         if (response.headers.get('authorization')) {
-          const token: string = response.headers.get('authorization') as string;
+          let token: string = response.headers.get('authorization') as string;
+          token = token.substring(7);
+
           const session: Session = new Session(token);
 
           localStorage.setItem('currentSession', JSON.stringify(session));
           this.currentSessionSubject.next(session);
 
-          console.log('Add new token : ' + response.headers.get('authorization'));
+          console.log('Add new token : ' + token);
         }
 
         return response;
@@ -66,8 +68,16 @@ export class AuthService {
     return false;
   }
 
-  getSessionToken(): any {
-    return localStorage.getItem('currentSession');
+  getSessionToken(): string {
+    const LSSession = localStorage.getItem('currentSession');
+
+    if (LSSession) {
+      const session = JSON.parse(LSSession);
+      if (session){
+        return session.token;
+      }
+    }
+    return '';
   }
 
   get currentSession(): Observable<any> {

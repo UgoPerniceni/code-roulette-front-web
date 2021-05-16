@@ -7,7 +7,7 @@ import { SignupComponent } from './component/signup/signup.component';
 import { LoginComponent } from './component/login/login.component';
 import { HomeComponent } from './component/home/home.component';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
-import { HttpClientModule } from '@angular/common/http';
+import {HTTP_INTERCEPTORS, HttpClientModule} from '@angular/common/http';
 import { FlexLayoutModule } from '@angular/flex-layout';
 
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
@@ -28,6 +28,8 @@ import { MatListModule } from '@angular/material/list';
 import {MatInputModule} from '@angular/material/input';
 import { PlayComponent } from './component/play/play.component';
 import { EditorComponent } from './component/editor/editor.component';
+import { AdminComponent } from './component/admin/admin.component';
+import {TokenInterceptor} from './interceptor/token.interceptor';
 
 
 @NgModule({
@@ -37,7 +39,8 @@ import { EditorComponent } from './component/editor/editor.component';
     SignupComponent,
     HomeComponent,
     PlayComponent,
-    EditorComponent
+    EditorComponent,
+    AdminComponent
   ],
     imports: [
         BrowserModule,
@@ -65,7 +68,11 @@ import { EditorComponent } from './component/editor/editor.component';
         MatListModule,
         MatInputModule
     ],
-  providers: [],
+  providers: [{
+    provide: HTTP_INTERCEPTORS,
+    useClass: TokenInterceptor,
+    multi: true
+  }],
   bootstrap: [AppComponent]
 })
 export class AppModule {}
