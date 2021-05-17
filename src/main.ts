@@ -9,6 +9,11 @@ import 'codemirror/mode/markdown/markdown';
 import 'codemirror/mode/python/python';
 import 'codemirror/mode/clike/clike';
 
+import 'codemirror/theme/eclipse.css';
+import 'codemirror/theme/darcula.css';
+import 'codemirror/theme/material.css';
+import 'codemirror/theme/monokai.css';
+
 if (environment.production) {
   enableProdMode();
 }

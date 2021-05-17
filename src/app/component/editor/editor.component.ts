@@ -1,5 +1,15 @@
 import { Component, OnInit } from '@angular/core';
 
+interface Language {
+  value: string;
+  viewValue: string;
+}
+
+interface Theme {
+  value: string;
+  viewValue: string;
+}
+
 const defaults = {
   markdown:
     '# Heading\n\nSome **bold** and _italic_ text\nBy [Scott Cooper](https://github.com/scttcper)',
@@ -18,23 +28,51 @@ const defaults = {
 
 export class EditorComponent implements OnInit {
 
-  readOnly = false;
   mode: keyof typeof defaults = 'markdown';
+  theme = 'default';
+
+  readOnly = false;
+
   options = {
     lineNumbers: true,
     mode: this.mode,
+    theme: this.theme
   };
+
   defaults = defaults;
+
+  languages: Language[] = [
+    {value: 'markdown', viewValue: 'Markdown'},
+    {value: 'text/x-csrc', viewValue: 'C'},
+    {value: 'text/x-python', viewValue: 'Python'},
+    {value: 'text/javascript', viewValue: 'Javascript'},
+    {value: 'text/typescript', viewValue: 'TypeScript'},
+    {value: 'text/x-java', viewValue: 'Java'}
+  ];
+
+  themes: Theme[] = [
+    {value: 'default', viewValue: 'Default'},
+    {value: 'darcula', viewValue: 'Darcula'},
+    {value: 'eclipse', viewValue: 'Eclipse'},
+    {value: 'material', viewValue: 'Material'},
+    {value: 'monokai', viewValue: 'Monokai'},
+  ];
 
   constructor() { }
 
-  ngOnInit(): void {
-  }
+  ngOnInit(): void {}
 
   changeMode(): void {
     this.options = {
       ...this.options,
       mode: this.mode,
+    };
+  }
+
+  changeTheme(): void {
+    this.options = {
+      ...this.options,
+      theme: this.theme,
     };
   }
 

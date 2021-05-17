@@ -25,7 +25,9 @@ import { MatOptionModule } from '@angular/material/core';
 import { MatProgressSpinnerModule } from '@angular/material/progress-spinner';
 import { MatSidenavModule } from '@angular/material/sidenav';
 import { MatListModule } from '@angular/material/list';
-import {MatInputModule} from '@angular/material/input';
+import { MatInputModule } from '@angular/material/input';
+import { MatCheckboxModule } from '@angular/material/checkbox';
+
 import { PlayComponent } from './component/play/play.component';
 import { EditorComponent } from './component/editor/editor.component';
 import { AdminComponent } from './component/admin/admin.component';
@@ -68,7 +70,8 @@ import { CodemirrorModule } from '@ctrl/ngx-codemirror';
         MatTabsModule,
         MatSidenavModule,
         MatListModule,
-        MatInputModule
+        MatInputModule,
+        MatCheckboxModule
     ],
   providers: [{
     provide: HTTP_INTERCEPTORS,
