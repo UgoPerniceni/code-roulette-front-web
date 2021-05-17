@@ -20,6 +20,10 @@
       <button mat-button routerLink="/signup" routerLinkActive="router-link-active no-border">Sign up</button>
     </div>
 
+    <button *ngIf="isConnected" mat-button [matMenuTriggerFor]="menuLanguages" aria-label="Example icon-button with a menu">
+      {{ this.currentLang | uppercase}}
+    </button>
+
     <button *ngIf="isConnected" mat-button [matMenuTriggerFor]="menu" aria-label="Example icon-button with a menu">
       <mat-icon>account_circle</mat-icon>
     </button>
@@ -37,6 +41,21 @@
       <button mat-menu-item (click)="logout()">
         <mat-icon>exit_to_app</mat-icon>
         <span>Disconnect</span>
+      </button>
+    </mat-menu>
+
+    <mat-menu #menuLanguages="matMenu">
+      <button mat-menu-item (click)="switchLang('en')">
+        <mat-icon>settings</mat-icon>
+        <span>EN</span>
+      </button>
+      <button mat-menu-item (click)="switchLang('es')">
+        <mat-icon>settings</mat-icon>
+        <span>ES</span>
+      </button>
+      <button mat-menu-item (click)="switchLang('fr')">
+        <mat-icon>settings</mat-icon>
+        <span>FR</span>
       </button>
     </mat-menu>
 

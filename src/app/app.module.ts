@@ -7,7 +7,7 @@ import { SignupComponent } from './component/signup/signup.component';
 import { LoginComponent } from './component/login/login.component';
 import { HomeComponent } from './component/home/home.component';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
-import {HTTP_INTERCEPTORS, HttpClientModule} from '@angular/common/http';
+import {HTTP_INTERCEPTORS, HttpClient, HttpClientModule} from '@angular/common/http';
 import { FlexLayoutModule } from '@angular/flex-layout';
 
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
@@ -33,6 +33,9 @@ import { EditorComponent } from './component/editor/editor.component';
 import { AdminComponent } from './component/admin/admin.component';
 import { TokenInterceptor } from './interceptor/token.interceptor';
 import { CodemirrorModule } from '@ctrl/ngx-codemirror';
+
+import {TranslateLoader, TranslateModule} from '@ngx-translate/core';
+import {TranslateHttpLoader} from '@ngx-translate/http-loader';
 
 
 @NgModule({
@@ -71,7 +74,15 @@ import { CodemirrorModule } from '@ctrl/ngx-codemirror';
         MatSidenavModule,
         MatListModule,
         MatInputModule,
-        MatCheckboxModule
+        MatCheckboxModule,
+
+        TranslateModule.forRoot({
+          loader: {
+            provide: TranslateLoader,
+            useFactory: HttpLoaderFactory,
+            deps: [HttpClient]
+          }
+        }),
     ],
   providers: [{
     provide: HTTP_INTERCEPTORS,
@@ -81,3 +92,8 @@ import { CodemirrorModule } from '@ctrl/ngx-codemirror';
   bootstrap: [AppComponent]
 })
 export class AppModule {}
+
+// required for AOT compilation
+export function HttpLoaderFactory(http: HttpClient): any {
+  return new TranslateHttpLoader(http);
+}
