@@ -29,6 +29,13 @@
 </ngx-codemirror>
 
 <br/>
+<br/>
+
+<p>{{result}}</p>
+
+<br/>
+<br/>
+<br/>
 
 <label class="btn btn-light" [class.active]="readOnly">
   <mat-checkbox class="example-margin" [(ngModel)]="readOnly">Toggle read-only mode (currently {{ readOnly ? 'on' : 'off' }})</mat-checkbox>
@@ -38,4 +45,4 @@
 
 <button mat-raised-button color="warn" (click)="clear()">Clear</button>
 
-<button mat-raised-button color="primary">Compile</button>
+<button mat-raised-button color="primary" (click)="compile()">Compile</button>

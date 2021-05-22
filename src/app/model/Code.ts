@@ -1,0 +1,9 @@
+export class Code {
+  input: string;
+  output: string;
+
+  constructor(input: string, output: string) {
+    this.input = input;
+    this.output = output;
+  }
+}
