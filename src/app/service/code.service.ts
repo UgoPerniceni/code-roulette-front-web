@@ -2,13 +2,14 @@ import { Injectable } from '@angular/core';
 import {Observable} from 'rxjs';
 import {HttpClient} from '@angular/common/http';
 import {Code} from '../model/Code';
+import {environment} from '../../environments/environment';
 
 @Injectable({
   providedIn: 'root'
 })
 export class CodeService {
 
-  private url = 'http://localhost:8080/api/code/';
+  private url = environment.apiUrl + 'code/';
 
   constructor(private http: HttpClient) { }
 

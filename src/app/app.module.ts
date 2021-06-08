@@ -27,6 +27,8 @@ import { MatSidenavModule } from '@angular/material/sidenav';
 import { MatListModule } from '@angular/material/list';
 import { MatInputModule } from '@angular/material/input';
 import { MatCheckboxModule } from '@angular/material/checkbox';
+import { MatPaginatorModule } from '@angular/material/paginator';
+import { MatSortModule } from '@angular/material/sort';
 
 import { PlayComponent } from './component/play/play.component';
 import { EditorComponent } from './component/editor/editor.component';
@@ -36,6 +38,7 @@ import { CodemirrorModule } from '@ctrl/ngx-codemirror';
 
 import {TranslateLoader, TranslateModule} from '@ngx-translate/core';
 import {TranslateHttpLoader} from '@ngx-translate/http-loader';
+import { ExerciseComponent } from './component/play/exercise/exercise.component';
 
 
 @NgModule({
@@ -46,44 +49,47 @@ import {TranslateHttpLoader} from '@ngx-translate/http-loader';
     HomeComponent,
     PlayComponent,
     EditorComponent,
-    AdminComponent
+    AdminComponent,
+    ExerciseComponent
   ],
-    imports: [
-        BrowserModule,
-        AppRoutingModule,
-        BrowserAnimationsModule,
-        HttpClientModule,
-        FlexLayoutModule,
-        CodemirrorModule,
+  imports: [
+    BrowserModule,
+    AppRoutingModule,
+    BrowserAnimationsModule,
+    HttpClientModule,
+    FlexLayoutModule,
+    CodemirrorModule,
 
-        MatCardModule,
-        FormsModule,
-        ReactiveFormsModule,
-        MatToolbarModule,
-        MatCardModule,
-        MatMenuModule,
-        MatIconModule,
-        MatButtonModule,
-        MatTableModule,
-        MatDividerModule,
-        MatSlideToggleModule,
-        MatSelectModule,
-        MatOptionModule,
-        MatProgressSpinnerModule,
-        MatTabsModule,
-        MatSidenavModule,
-        MatListModule,
-        MatInputModule,
-        MatCheckboxModule,
+    MatCardModule,
+    FormsModule,
+    ReactiveFormsModule,
+    MatToolbarModule,
+    MatCardModule,
+    MatMenuModule,
+    MatIconModule,
+    MatButtonModule,
+    MatTableModule,
+    MatDividerModule,
+    MatSlideToggleModule,
+    MatSelectModule,
+    MatOptionModule,
+    MatProgressSpinnerModule,
+    MatTabsModule,
+    MatSidenavModule,
+    MatListModule,
+    MatInputModule,
+    MatCheckboxModule,
+    MatPaginatorModule,
+    MatSortModule,
 
-        TranslateModule.forRoot({
-          loader: {
-            provide: TranslateLoader,
-            useFactory: HttpLoaderFactory,
-            deps: [HttpClient]
-          }
-        }),
-    ],
+    TranslateModule.forRoot({
+      loader: {
+        provide: TranslateLoader,
+        useFactory: HttpLoaderFactory,
+        deps: [HttpClient]
+      }
+    }),
+  ],
   providers: [{
     provide: HTTP_INTERCEPTORS,
     useClass: TokenInterceptor,

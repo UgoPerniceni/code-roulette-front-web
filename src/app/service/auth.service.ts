@@ -5,13 +5,14 @@ import {Session} from '../model/Session';
 import {User} from '../model/User';
 import {Login} from '../model/Login';
 import {map} from 'rxjs/operators';
+import {environment} from '../../environments/environment';
 
 @Injectable({
   providedIn: 'root'
 })
 export class AuthService {
 
-  private url = 'http://localhost:8080/api/auth/';
+  private url = environment.apiUrl + 'auth/';
 
   private currentSessionSubject: BehaviorSubject<Session>;
   private readonly currentSessionObservable: Observable<Session>;

@@ -1,4 +1,4 @@
-<div fxLayout="row" >
+<!--<div fxLayout="row" >
   <div fxFlex="50" style="background-color: tomato">
     <p> // CODE</p>
   </div>
@@ -8,5 +8,75 @@
     <p>h</p>
     <p>h</p>
     <p>h</p>
-  </div>
+  </div>-->
+
+<!--  <mat-form-field appearance="fill">
+    <mat-label>Select a language</mat-label>
+    <mat-select>
+      <mat-option>
+        Java
+      </mat-option>
+      <mat-option>
+        Python
+      </mat-option>
+    </mat-select>
+  </mat-form-field>-->
+
+
+<mat-form-field appearance="fill">
+  <mat-label>Select a language</mat-label>
+  <mat-select [(value)]="languageSelected" (change)="changeLanguage()">
+    <mat-option *ngFor="let language of languages" [value]="language">
+      {{language}}
+    </mat-option>
+  </mat-select>
+</mat-form-field>
+
+
+<h3>Type of exercise selected : {{languageSelected}}</h3>
+
+
+<div class="mat-elevation-z8">
+  <table mat-table [dataSource]="dataSource" matSort class="mat-elevation-z8">
+
+    <ng-container matColumnDef="id">
+      <th mat-header-cell *matHeaderCellDef mat-sort-header> # </th>
+      <td mat-cell *matCellDef="let exercise"> {{exercise.id}} </td>
+    </ng-container>
+
+    <ng-container matColumnDef="title">
+      <th mat-header-cell *matHeaderCellDef mat-sort-header> Title </th>
+      <td mat-cell *matCellDef="let exercise"> {{exercise.title}} </td>
+    </ng-container>
+
+    <ng-container matColumnDef="code">
+      <th mat-header-cell *matHeaderCellDef mat-sort-header> Code </th>
+      <td mat-cell *matCellDef="let exercise"> {{exercise.code}} </td>
+    </ng-container>
+
+    <ng-container matColumnDef="created_at">
+      <th mat-header-cell *matHeaderCellDef mat-sort-header> Created at</th>
+      <td mat-cell *matCellDef="let exercise"> {{exercise.createdAt}} </td>
+    </ng-container>
+
+    <ng-container matColumnDef="updated_at">
+      <th mat-header-cell *matHeaderCellDef mat-sort-header> Updated at</th>
+      <td mat-cell *matCellDef="let exercise"> {{exercise.updatedAt}} </td>
+    </ng-container>
+
+    <!-- Action Column -->
+    <ng-container matColumnDef="action">
+      <th mat-header-cell *matHeaderCellDef> Action </th>
+      <td mat-cell *matCellDef="let element">
+        <button mat-raised-button color="primary"><mat-icon class="mr-2">play_arrow</mat-icon></button>
+      </td>
+    </ng-container>
+
+    <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+    <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
+  </table>
+
+  <mat-paginator [pageSizeOptions]="[5, 10, 20]" showFirstLastButtons></mat-paginator>
 </div>
+
+<!--</div>-->
