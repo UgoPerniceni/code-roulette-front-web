@@ -18,6 +18,8 @@ export class CodeService {
   }
 
   compile(input: string): any{
+    console.log('input' +  input);
+
     return this.http.post<any>(this.url + 'compile', input);
   }
 }

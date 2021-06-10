@@ -2,7 +2,49 @@
 
 <div *ngIf="exercise">
   <h2>{{exercise.title | uppercase}}</h2>
-  <div><span>id: </span>{{exercise.id}}</div>
+  <div>
+    <p>id: {{exercise.id}}</p>
+    <p>language: {{exercise.language}}</p>
+    <p>language CM: {{languageCM}}</p>
+  </div>
+
+  <mat-form-field appearance="fill">
+    <mat-label>Select a theme</mat-label>
+    <mat-select [(ngModel)]="theme" (ngModelChange)="changeTheme()">
+      <mat-option *ngFor="let theme of themes" [value]="theme.value">
+        {{theme.viewValue}}
+      </mat-option>
+    </mat-select>
+  </mat-form-field>
+
+  <ngx-codemirror
+    [options]="options"
+    [ngModel]="content"
+    [disabled]="readOnly"
+    [autoFocus]="true"
+    (ngModelChange)="handleChange($event)">
+  </ngx-codemirror>
+
+
+  <br/>
+  <br/>
+
+  <p>{{result}}</p>
+
+  <br/>
+  <br/>
+  <br/>
+
+  <label class="btn btn-light" [class.active]="readOnly">
+    <mat-checkbox class="example-margin" [(ngModel)]="readOnly">Toggle read-only mode (currently {{ readOnly ? 'on' : 'off' }})</mat-checkbox>
+  </label>
+
+  <br/>
+
+  <button mat-raised-button color="warn" (click)="clear()">Clear</button>
+
+  <button mat-raised-button color="primary" (click)="compile()">Compile</button>
+
 </div>
 
 <div *ngIf="!exercise">

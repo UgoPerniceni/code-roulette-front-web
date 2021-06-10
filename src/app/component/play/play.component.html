@@ -65,7 +65,9 @@
     <ng-container matColumnDef="action">
       <th mat-header-cell *matHeaderCellDef> Action </th>
       <td mat-cell *matCellDef="let exercise">
-        <button mat-raised-button color="primary"><mat-icon class="mr-2" [routerLink]="['/play/', exercise.id]">play_arrow</mat-icon></button>
+        <button mat-raised-button color="primary" [routerLink]="['/play/', exercise.id]">
+          <mat-icon class="mr-2">play_arrow</mat-icon>
+        </button>
       </td>
     </ng-container>
 
