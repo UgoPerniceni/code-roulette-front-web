@@ -1,6 +1,7 @@
 import {Language} from '../enum/Language';
 
 export class Exercise {
+
   id: string;
   title: string;
   code: string;

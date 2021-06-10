@@ -16,4 +16,8 @@ export class ExerciseService {
   getExercises(): Observable<Exercise[]>{
     return this.http.get<Exercise[]>(this.url);
   }
+
+  getExercise(id: string): Observable<Exercise>{
+    return this.http.get<Exercise>(this.url + id);
+  }
 }

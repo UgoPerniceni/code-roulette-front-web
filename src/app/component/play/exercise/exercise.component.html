@@ -1,0 +1,11 @@
+<h1>Exercise</h1>
+
+<div *ngIf="exercise">
+  <h2>{{exercise.title | uppercase}}</h2>
+  <div><span>id: </span>{{exercise.id}}</div>
+</div>
+
+<div *ngIf="!exercise">
+  <h2>Exercise not found</h2>
+</div>
+

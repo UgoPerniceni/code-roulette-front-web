@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import {Exercise} from '../../../model/Exercise';
 import {ExerciseService} from '../../../service/exercise.service';
+import {ActivatedRoute} from '@angular/router';
 
 @Component({
   selector: 'app-exercise',
@@ -9,8 +10,19 @@ import {ExerciseService} from '../../../service/exercise.service';
 })
 export class ExerciseComponent implements OnInit {
 
-  constructor(private exerciseService: ExerciseService) {}
+  exercise: Exercise | undefined;
 
-  ngOnInit(): void {}
+  constructor(private route: ActivatedRoute, private exerciseService: ExerciseService) {}
+
+  ngOnInit(): void {
+    this.getExercise();
+  }
+
+  getExercise(): void {
+    const id = String(this.route.snapshot.paramMap.get('id'));
+    this.exerciseService.getExercise(id).subscribe(exercise => {
+      this.exercise = exercise;
+    });
+  }
 
 }
