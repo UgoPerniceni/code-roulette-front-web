@@ -12,20 +12,18 @@ import {MatSort} from '@angular/material/sort';
 })
 export class PlayComponent implements OnInit, AfterViewInit {
 
-  languageSelected = 'None';
-  languages: string[] = ['Java', 'Python'];
-
-  // dataSource: Exercise[] = [];
+  languages: string[] = ['All', 'Java', 'Python'];
 
   dataSource = new MatTableDataSource<Exercise>();
+  displayedColumns: string[] = ['id', 'title', 'code', 'language', 'created_at', 'updated_at', 'action'];
 
-  displayedColumns: string[] = ['id', 'title', 'code', 'created_at', 'updated_at', 'action'];
+  search: any;
+  selection: any;
 
   @ViewChild(MatPaginator) paginator!: MatPaginator;
   @ViewChild(MatSort) sort!: MatSort;
 
-  constructor(private exerciseService: ExerciseService) {
-  }
+  constructor(private exerciseService: ExerciseService) {}
 
   ngOnInit(): void {
     this.exerciseService.getExercises().subscribe(data => {
@@ -39,5 +37,24 @@ export class PlayComponent implements OnInit, AfterViewInit {
     this.dataSource.sort = this.sort;
   }
 
-  changeLanguage(): void {}
+  applyFilter(filterValue: any): void {
+    if (this.selection){
+      if (this.selection === 'All') {
+        this.dataSource.filter = '';
+        if (this.search) {
+          this.dataSource.filter = this.search.trim().toLowerCase();
+        }
+      } else {
+        // deactivate search or multiple conditions search
+        this.dataSource.filter = this.selection.trim().toLowerCase() || this.search.trim().toLowerCase();
+      }
+    }
+    else {
+      this.dataSource.filter = this.search.trim().toLowerCase();
+    }
+    if (this.dataSource.paginator) {
+      this.dataSource.paginator.firstPage();
+    }
+  }
+
 }
