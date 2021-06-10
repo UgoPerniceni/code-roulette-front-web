@@ -40,6 +40,7 @@ export class ExerciseComponent implements OnInit {
   };
   readOnly = false;
 
+  loading = false;
   content = '';
   result = '';
 
@@ -96,10 +97,14 @@ export class ExerciseComponent implements OnInit {
   compile(): void {
     console.log('content' + this.content);
 
+    this.loading = true;
+
     this.codeService.compile(this.content).subscribe((data: any) => {
       console.log(data);
 
       this.result = data.output;
+
+      this.loading = false;
     });
   }
 }
