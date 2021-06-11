@@ -14,6 +14,13 @@ import 'codemirror/theme/darcula.css';
 import 'codemirror/theme/material.css';
 import 'codemirror/theme/monokai.css';
 
+import 'codemirror/addon/lint/lint';
+
+import 'codemirror/addon/hint/show-hint';
+
+import 'codemirror/addon/edit/closebrackets';
+import 'codemirror/addon/edit/matchbrackets';
+
 if (environment.production) {
   enableProdMode();
 }

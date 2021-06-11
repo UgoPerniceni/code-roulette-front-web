@@ -8,6 +8,9 @@
     <p>language CM: {{languageCM}}</p>
   </div>
 
+
+  <mat-card>
+
   <mat-form-field appearance="fill">
     <mat-label>Select a theme</mat-label>
     <mat-select [(ngModel)]="theme" (ngModelChange)="changeTheme()">
@@ -47,10 +50,11 @@
   <br/>
 
   <button mat-raised-button color="warn" (click)="clear()">Clear</button>
-
   <button mat-raised-button color="primary" (click)="compile()">Compile</button>
 
+  </mat-card>
 </div>
+
 
 <div *ngIf="!exercise">
   <h2>Exercise not found</h2>

@@ -33,10 +33,12 @@ export class ExerciseComponent implements OnInit {
     theme: this.theme,
     mode: this.languageCM,
 
+    lineNumbers: true,
+    lineWrapping: true,
     autoCloseBrackets: true,
     matchBrackets: true,
-    lineNumbers: true,
-    lint: true
+    lint: true,
+    extraKeys: {'Ctrl-Space': 'autocomplete'}
   };
   readOnly = false;
 
@@ -103,7 +105,6 @@ export class ExerciseComponent implements OnInit {
       console.log(data);
 
       this.result = data.output;
-
       this.loading = false;
     });
   }
