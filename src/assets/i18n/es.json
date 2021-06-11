@@ -1,5 +1,8 @@
 {
   "HOME": {
-    "WORKS": "El componente home funciona"
+    "WORKS": "El componente home funciona",
+    "NEW_GAME": "Nuevo juego",
+    "RANK": "Rango",
+    "LOBBY": "Vestíbulo"
   }
 }

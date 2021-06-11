@@ -9,6 +9,8 @@ import {EditorComponent} from './component/editor/editor.component';
 import {AdminComponent} from './component/admin/admin.component';
 import {IsAdminGuard} from './guard/is-admin.guard';
 import {ExerciseComponent} from './component/play/exercise/exercise.component';
+import {ProfileComponent} from './component/profile/profile.component';
+import {NotFoundComponent} from './component/not-found/not-found.component';
 
 const routes: Routes = [
   { path: '',   redirectTo: '/home', pathMatch: 'full' },
@@ -23,9 +25,11 @@ const routes: Routes = [
 
   { path: 'editor', component: EditorComponent, canActivate: [IsConnectedGuard] },
 
+  { path: 'profile', component: ProfileComponent, canActivate: [IsConnectedGuard] },
   { path: 'admin', component: AdminComponent, canActivate: [IsAdminGuard] },
 
-  // { path: '**', redirectTo: 404}
+  { path: 'not-found', component: NotFoundComponent, canActivate: [IsConnectedGuard] },
+  { path: '**', redirectTo: '/not-found'}
 ];
 
 

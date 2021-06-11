@@ -1,5 +1,8 @@
 {
   "HOME": {
-    "WORKS": "Component home works !"
+    "WORKS": "Component home works !",
+    "NEW_GAME": "New game",
+    "RANK": "Rank",
+    "LOBBY": "Lobby"
   }
 }

@@ -39,6 +39,8 @@ import { CodemirrorModule } from '@ctrl/ngx-codemirror';
 import {TranslateLoader, TranslateModule} from '@ngx-translate/core';
 import {TranslateHttpLoader} from '@ngx-translate/http-loader';
 import { ExerciseComponent } from './component/play/exercise/exercise.component';
+import { ProfileComponent } from './component/profile/profile.component';
+import { NotFoundComponent } from './component/not-found/not-found.component';
 
 
 @NgModule({
@@ -50,7 +52,9 @@ import { ExerciseComponent } from './component/play/exercise/exercise.component'
     PlayComponent,
     EditorComponent,
     AdminComponent,
-    ExerciseComponent
+    ExerciseComponent,
+    ProfileComponent,
+    NotFoundComponent
   ],
   imports: [
     BrowserModule,
