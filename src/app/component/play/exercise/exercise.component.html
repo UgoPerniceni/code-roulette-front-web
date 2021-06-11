@@ -25,16 +25,19 @@
     (ngModelChange)="handleChange($event)">
   </ngx-codemirror>
 
-
-  <br/>
   <br/>
 
-  <mat-spinner *ngIf="this.loading === true"></mat-spinner>
+  <mat-card class="simple-card-inverse">
+    <span>Compilation :</span>
+    <hr>
+    <div *ngIf="this.loading === true" fxLayout="row" fxLayoutAlign="center center">
+      <mat-spinner class="m-10"></mat-spinner>
+    </div>
+    <div *ngIf="this.loading !== true">
+      <p>{{result}}</p>
+    </div>
+  </mat-card>
 
-  <p>{{result}}</p>
-
-  <br/>
-  <br/>
   <br/>
 
   <label class="btn btn-light" [class.active]="readOnly">

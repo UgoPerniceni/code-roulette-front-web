@@ -14,6 +14,19 @@ export class AdminComponent implements OnInit {
   constructor(private userService: UserService) {}
 
   ngOnInit(): void {
+    this.refreshDataSource();
+  }
+
+  deleteUser(userId: string): void {
+    this.userService.deleteUser(userId).subscribe(data => {
+      console.log(data);
+      if (data.status === 204) {
+        this.dataSource = this.dataSource.filter(item => item.id !== userId);
+      }
+    });
+  }
+
+  refreshDataSource(): void {
     this.userService.getUsers().subscribe(data => {
       console.log(data);
       this.dataSource = data;

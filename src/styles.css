@@ -16,3 +16,10 @@ body { margin: 0; font-family: Roboto, "Helvetica Neue", sans-serif; }
 .no-border {border-radius: 0;}
 .txt-bold {font-weight: bold;}
 .selected {background-color: gainsboro;}
+
+.m-10 {
+  margin: 10px;
+}
+.mat-progress-spinner circle, .mat-spinner circle {
+  stroke: whitesmoke;
+}
