@@ -1,8 +1,8 @@
+import { Exercise } from './../../../model/Exercise';
 import { Component, OnInit } from '@angular/core';
-import {Exercise} from '../../../model/Exercise';
-import {ExerciseService} from '../../../service/exercise.service';
-import {ActivatedRoute} from '@angular/router';
-import {CodeService} from '../../../service/code.service';
+import { ExerciseService } from '../../../service/exercise.service';
+import { ActivatedRoute } from '@angular/router';
+import { CodeService } from '../../../service/code.service';
 
 interface Theme {
   value: string;
@@ -22,11 +22,11 @@ export class ExerciseComponent implements OnInit {
   theme = 'default';
 
   themes: Theme[] = [
-    {value: 'default', viewValue: 'Default'},
-    {value: 'darcula', viewValue: 'Darcula'},
-    {value: 'eclipse', viewValue: 'Eclipse'},
-    {value: 'material', viewValue: 'Material'},
-    {value: 'monokai', viewValue: 'Monokai'},
+    { value: 'default', viewValue: 'Default' },
+    { value: 'darcula', viewValue: 'Darcula' },
+    { value: 'eclipse', viewValue: 'Eclipse' },
+    { value: 'material', viewValue: 'Material' },
+    { value: 'monokai', viewValue: 'Monokai' },
   ];
 
   options = {
@@ -38,7 +38,7 @@ export class ExerciseComponent implements OnInit {
     autoCloseBrackets: true,
     matchBrackets: true,
     lint: true,
-    extraKeys: {'Ctrl-Space': 'autocomplete'}
+    extraKeys: { 'Ctrl-Space': 'autocomplete' }
   };
   readOnly = false;
 
@@ -46,7 +46,7 @@ export class ExerciseComponent implements OnInit {
   content = '';
   result = '';
 
-  constructor(private route: ActivatedRoute, private exerciseService: ExerciseService, private codeService: CodeService) {}
+  constructor(private route: ActivatedRoute, private exerciseService: ExerciseService, private codeService: CodeService) { }
 
   ngOnInit(): void {
     this.getExercise();
@@ -58,7 +58,9 @@ export class ExerciseComponent implements OnInit {
       this.exercise = exercise;
       this.languageCM = this.getLanguageCM(exercise.language.toString());
       this.changeLanguageCM();
+      this.content = exercise.code;
     });
+
   }
 
   private getLanguageCM(language: string): string {
