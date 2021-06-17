@@ -3,6 +3,7 @@ import {Observable} from 'rxjs';
 import {HttpClient} from '@angular/common/http';
 import {Code} from '../model/Code';
 import {environment} from '../../environments/environment';
+import {Exercise} from '../model/Exercise';
 
 @Injectable({
   providedIn: 'root'
@@ -17,9 +18,9 @@ export class CodeService {
     return this.http.get<Code[]>(this.url);
   }
 
-  compile(input: string): any{
-    console.log('input' +  input);
+  compile(exercise: Exercise): any{
+    console.log('input' +  exercise);
 
-    return this.http.post<any>(this.url + 'compile', input);
+    return this.http.post<any>(this.url + 'compileAndSave', exercise);
   }
 }

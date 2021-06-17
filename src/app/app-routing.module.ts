@@ -11,6 +11,7 @@ import {IsAdminGuard} from './guard/is-admin.guard';
 import {ExerciseComponent} from './component/play/exercise/exercise.component';
 import {ProfileComponent} from './component/profile/profile.component';
 import {NotFoundComponent} from './component/not-found/not-found.component';
+import {RankComponent} from './component/rank/rank.component';
 
 const routes: Routes = [
   { path: '',   redirectTo: '/home', pathMatch: 'full' },
@@ -24,6 +25,8 @@ const routes: Routes = [
   { path: 'play/:id', component: ExerciseComponent, canActivate: [IsConnectedGuard] },
 
   { path: 'editor', component: EditorComponent, canActivate: [IsConnectedGuard] },
+
+  { path: 'rank', component: RankComponent, canActivate: [IsConnectedGuard] },
 
   { path: 'profile', component: ProfileComponent, canActivate: [IsConnectedGuard] },
   { path: 'admin', component: AdminComponent, canActivate: [IsAdminGuard] },

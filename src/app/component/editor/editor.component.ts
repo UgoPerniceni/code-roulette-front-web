@@ -62,12 +62,6 @@ export class EditorComponent implements OnInit {
 
   compile(): void {
     const input: string = this.defaults[this.mode];
-
-    this.codeService.compile(input).subscribe((data: any) => {
-      console.log(data);
-
-      this.result = data.output;
-    });
   }
 
   changeMode(): void {

@@ -41,6 +41,7 @@ import {TranslateHttpLoader} from '@ngx-translate/http-loader';
 import { ExerciseComponent } from './component/play/exercise/exercise.component';
 import { ProfileComponent } from './component/profile/profile.component';
 import { NotFoundComponent } from './component/not-found/not-found.component';
+import { RankComponent } from './component/rank/rank.component';
 
 
 @NgModule({
@@ -54,7 +55,8 @@ import { NotFoundComponent } from './component/not-found/not-found.component';
     AdminComponent,
     ExerciseComponent,
     ProfileComponent,
-    NotFoundComponent
+    NotFoundComponent,
+    RankComponent
   ],
   imports: [
     BrowserModule,

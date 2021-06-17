@@ -54,7 +54,13 @@ export class ExerciseComponent implements OnInit {
 
   getExercise(): void {
     const id = String(this.route.snapshot.paramMap.get('id'));
+
     this.exerciseService.getExercise(id).subscribe(exercise => {
+
+      console.log("-----------------------");
+      console.log(exercise);
+      console.log("-----------------------");
+
       this.exercise = exercise;
       this.languageCM = this.getLanguageCM(exercise.language.toString());
       this.changeLanguageCM();
@@ -103,11 +109,15 @@ export class ExerciseComponent implements OnInit {
 
     this.loading = true;
 
-    this.codeService.compile(this.content).subscribe((data: any) => {
-      console.log(data);
+    if (this.exercise) {
+      this.exercise.code = this.content;
 
-      this.result = data.output;
-      this.loading = false;
-    });
+      this.codeService.compile(this.exercise).subscribe((data: any) => {
+        console.log(data);
+
+        this.result = data.output;
+        this.loading = false;
+      });
+    }
   }
 }
