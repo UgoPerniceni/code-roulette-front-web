@@ -3,6 +3,8 @@ import { Component, OnInit } from '@angular/core';
 import { ExerciseService } from '../../../service/exercise.service';
 import { ActivatedRoute } from '@angular/router';
 import { CodeService } from '../../../service/code.service';
+import {CodeResult} from '../../../model/CodeResult';
+import {Compilation} from '../../../model/Compilation';
 
 interface Theme {
   value: string;
@@ -57,9 +59,9 @@ export class ExerciseComponent implements OnInit {
 
     this.exerciseService.getExercise(id).subscribe(exercise => {
 
-      console.log("-----------------------");
+      console.log('-----------------------');
       console.log(exercise);
-      console.log("-----------------------");
+      console.log('-----------------------');
 
       this.exercise = exercise;
       this.languageCM = this.getLanguageCM(exercise.language.toString());
@@ -112,7 +114,7 @@ export class ExerciseComponent implements OnInit {
     if (this.exercise) {
       this.exercise.code = this.content;
 
-      this.codeService.compile(this.exercise).subscribe((data: any) => {
+      this.codeService.compile(this.exercise).subscribe((data: Compilation) => {
         console.log(data);
 
         this.result = data.output;

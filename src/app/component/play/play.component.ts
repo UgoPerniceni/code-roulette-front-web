@@ -15,7 +15,7 @@ export class PlayComponent implements OnInit, AfterViewInit {
   languages: string[] = ['All', 'Java', 'Python'];
 
   dataSource = new MatTableDataSource<Exercise>();
-  displayedColumns: string[] = ['id', 'title', 'code', 'language', 'created_at', 'updated_at', 'action'];
+  displayedColumns: string[] = ['id', 'title', 'description', 'language', 'best_score', 'created_at', 'action'];
 
   search: any;
   selection: any;
