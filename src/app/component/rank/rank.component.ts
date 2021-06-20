@@ -4,6 +4,7 @@ import {User} from '../../model/User';
 import {MatSort} from '@angular/material/sort';
 import {MatTableDataSource} from '@angular/material/table';
 import {Exercise} from '../../model/Exercise';
+import {MatPaginator} from '@angular/material/paginator';
 
 @Component({
   selector: 'app-rank',
@@ -13,8 +14,9 @@ import {Exercise} from '../../model/Exercise';
 export class RankComponent implements OnInit, AfterViewInit {
 
   dataSource = new MatTableDataSource<User>();
-  displayedColumns: string[] = ['elo', 'email', 'userName'];
+  displayedColumns: string[] = ['index', 'elo', 'email', 'userName'];
 
+  @ViewChild(MatPaginator) paginator!: MatPaginator;
   @ViewChild(MatSort) sort!: MatSort;
 
   constructor(private userService: UserService) { }
