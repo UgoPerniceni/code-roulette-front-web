@@ -4,6 +4,10 @@ import {MatPaginator} from '@angular/material/paginator';
 import {Exercise} from '../../model/Exercise';
 import {ExerciseService} from '../../service/exercise.service';
 import {MatSort} from '@angular/material/sort';
+import {QueueService} from '../../service/queue.service';
+import {Queue} from '../../model/Queue';
+import {AuthService} from '../../service/auth.service';
+import {User} from '../../model/User';
 
 @Component({
   selector: 'app-play',
@@ -20,10 +24,12 @@ export class PlayComponent implements OnInit, AfterViewInit {
   search: any;
   selection: any;
 
+  isLookingForGame = false;
+
   @ViewChild(MatPaginator) paginator!: MatPaginator;
   @ViewChild(MatSort) sort!: MatSort;
 
-  constructor(private exerciseService: ExerciseService) {}
+  constructor(private exerciseService: ExerciseService, private queueService: QueueService, private authService: AuthService) {}
 
   ngOnInit(): void {
     this.exerciseService.getExercises().subscribe(data => {
@@ -54,6 +60,32 @@ export class PlayComponent implements OnInit, AfterViewInit {
     }
     if (this.dataSource.paginator) {
       this.dataSource.paginator.firstPage();
+    }
+  }
+
+  onSlideChange(event: Event): void {
+    this.isLookingForGame = !this.isLookingForGame;
+
+    if (this.isLookingForGame) {
+      this.queueService.joinQueue().subscribe((data: User[]) => {
+        console.log(data);
+
+        if (data.length > 0){
+          alert('Matched');
+
+          console.log('Matched ' + data[0].userName + ' vs ' +  data[1].userName);
+
+          this.isLookingForGame = false;
+
+          // TODO create game
+        } else {
+          alert('Enter in Queue');
+        }
+      });
+    } else {
+      this.queueService.leaveQueue().subscribe(data => {
+        console.log(data);
+      });
     }
   }
 
