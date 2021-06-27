@@ -14,7 +14,7 @@ export class QueueService {
 
   constructor(private http: HttpClient) {}
 
-  getLobbies(): Observable<Queue[]>{
+  getQueues(): Observable<Queue[]>{
     return this.http.get<Queue[]>(this.url);
   }
 

@@ -29,6 +29,7 @@ import { MatInputModule } from '@angular/material/input';
 import { MatCheckboxModule } from '@angular/material/checkbox';
 import { MatPaginatorModule } from '@angular/material/paginator';
 import { MatSortModule } from '@angular/material/sort';
+import { MatDialogModule } from '@angular/material/dialog';
 
 import { PlayComponent } from './component/play/play.component';
 import { EditorComponent } from './component/editor/editor.component';
@@ -42,6 +43,9 @@ import { ExerciseComponent } from './component/play/exercise/exercise.component'
 import { ProfileComponent } from './component/profile/profile.component';
 import { NotFoundComponent } from './component/not-found/not-found.component';
 import { RankComponent } from './component/rank/rank.component';
+import { LobbyComponent } from './component/lobby/lobby.component';
+import { LobbyDialogComponent } from './component/lobby/lobby-dialog-create/lobby-dialog.component';
+import { LobbyDialogJoinComponent } from './component/lobby/lobby-dialog-join/lobby-dialog-join.component';
 
 
 @NgModule({
@@ -56,7 +60,10 @@ import { RankComponent } from './component/rank/rank.component';
     ExerciseComponent,
     ProfileComponent,
     NotFoundComponent,
-    RankComponent
+    RankComponent,
+    LobbyComponent,
+    LobbyDialogComponent,
+    LobbyDialogJoinComponent
   ],
   imports: [
     BrowserModule,
@@ -87,6 +94,7 @@ import { RankComponent } from './component/rank/rank.component';
     MatCheckboxModule,
     MatPaginatorModule,
     MatSortModule,
+    MatDialogModule,
 
     TranslateModule.forRoot({
       loader: {

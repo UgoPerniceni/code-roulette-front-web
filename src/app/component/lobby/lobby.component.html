@@ -1,0 +1,14 @@
+<p>lobby works!</p>
+
+<p>Connected as {{user?.email}}</p>
+
+<div *ngIf="lobby">
+  <p>Current lobby : {{lobby?.title}}</p>
+  <p>Users in lobby : {{lobby?.users}}</p>
+  <p>lobby's key : {{lobby?.id}}</p>
+  <button mat-raised-button color="warn" (click)="leaveLobby()">Leave lobby</button>
+</div>
+<div *ngIf="!lobby">
+  <button mat-raised-button color="" (click)="openCreateLobbyDialog()">Create lobby</button>
+  <button mat-raised-button color="" (click)="openJoinLobbyDialog()">Join lobby with key</button>
+</div>

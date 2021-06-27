@@ -11,8 +11,9 @@ export class User {
   elo: number;
   elo_problems: number;
   queue: Queue;
+  lobbyId: string;
 
-  constructor(id: string, firstName: string, lastName: string, email: string, userName: string, password: string, birthDate: Date, elo: number, elo_problems: number, queue: Queue) {
+  constructor(id: string, firstName: string, lastName: string, email: string, userName: string, password: string, birthDate: Date, elo: number, elo_problems: number, queue: Queue, lobbyId: string) {
     this.id = id;
     this.firstName = firstName;
     this.lastName = lastName;
@@ -23,5 +24,6 @@ export class User {
     this.elo = elo;
     this.elo_problems = elo_problems;
     this.queue = queue;
+    this.lobbyId = lobbyId;
   }
 }
