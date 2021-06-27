@@ -8,76 +8,47 @@ import {QueueService} from '../../service/queue.service';
 import {Queue} from '../../model/Queue';
 import {AuthService} from '../../service/auth.service';
 import {User} from '../../model/User';
+import {Lobby} from '../../model/Lobby';
+import {UserService} from '../../service/user.service';
+import {GameService} from '../../service/game.service';
+import {Game} from '../../model/Game';
 
 @Component({
   selector: 'app-play',
   templateUrl: './play.component.html',
   styleUrls: ['./play.component.css']
 })
-export class PlayComponent implements OnInit, AfterViewInit {
-
-  languages: string[] = ['All', 'Java', 'Python'];
-
-  dataSource = new MatTableDataSource<Exercise>();
-  displayedColumns: string[] = ['id', 'title', 'description', 'language', 'best_score', 'created_at', 'action'];
-
-  search: any;
-  selection: any;
+export class PlayComponent implements OnInit {
 
   isLookingForGame = false;
 
-  @ViewChild(MatPaginator) paginator!: MatPaginator;
-  @ViewChild(MatSort) sort!: MatSort;
-
-  constructor(private exerciseService: ExerciseService, private queueService: QueueService, private authService: AuthService) {}
+  constructor(private exerciseService: ExerciseService, private queueService: QueueService, private userService: UserService, private gameService: GameService) {}
 
   ngOnInit(): void {
-    this.exerciseService.getExercises().subscribe(data => {
-      console.log(data);
-      this.dataSource.data = data;
-    });
-  }
-
-  ngAfterViewInit(): void {
-    this.dataSource.paginator = this.paginator;
-    this.dataSource.sort = this.sort;
-  }
-
-  applyFilter(filterValue: any): void {
-    if (this.selection){
-      if (this.selection === 'All') {
-        this.dataSource.filter = '';
-        if (this.search) {
-          this.dataSource.filter = this.search.trim().toLowerCase();
-        }
-      } else {
-        // deactivate search or multiple conditions search
-        this.dataSource.filter = this.selection.trim().toLowerCase() || this.search.trim().toLowerCase();
+    this.userService.getCurrentUser().subscribe((user: User) => {
+      console.log(user);
+      if (user.queue){
+        this.isLookingForGame = true;
       }
-    }
-    else {
-      this.dataSource.filter = this.search.trim().toLowerCase();
-    }
-    if (this.dataSource.paginator) {
-      this.dataSource.paginator.firstPage();
-    }
+    });
   }
 
   onSlideChange(event: Event): void {
     this.isLookingForGame = !this.isLookingForGame;
 
     if (this.isLookingForGame) {
-      this.queueService.joinQueue().subscribe((data: User[]) => {
-        console.log(data);
+      this.queueService.joinQueue().subscribe((users: User[]) => {
+        console.log(users);
 
-        if (data.length > 0){
-          alert('Matched');
+        if (users.length > 0){
+          console.log('Matched ' + users[0].userName + ' vs ' +  users[1].userName);
 
-          console.log('Matched ' + data[0].userName + ' vs ' +  data[1].userName);
-
+          this.createGame(users);
           this.isLookingForGame = false;
 
-          // TODO create game
+          alert('Matched ! Game created');
+
+          // TODO Socket + Create game
         } else {
           alert('Enter in Queue');
         }
@@ -87,6 +58,22 @@ export class PlayComponent implements OnInit, AfterViewInit {
         console.log(data);
       });
     }
+  }
+
+  createGame(users: User[]): void {
+    this.exerciseService.getExercises().subscribe((exercices) => {
+      console.log(exercices);
+      const exercises = exercices;
+
+      if (exercises.length > 0) {
+        const randomExercise = exercises[Math.floor(Math.random() * exercises.length)];
+        console.log(randomExercise);
+
+        this.gameService.createGame(new Game(randomExercise, users)).subscribe((game) => {
+          console.log(game);
+        });
+      }
+    });
   }
 
 }

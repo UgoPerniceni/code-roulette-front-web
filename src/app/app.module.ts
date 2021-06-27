@@ -39,13 +39,16 @@ import { CodemirrorModule } from '@ctrl/ngx-codemirror';
 
 import {TranslateLoader, TranslateModule} from '@ngx-translate/core';
 import {TranslateHttpLoader} from '@ngx-translate/http-loader';
-import { ExerciseComponent } from './component/play/exercise/exercise.component';
+import { ExerciseComponent } from './component/play/exercises/exercise/exercise.component';
 import { ProfileComponent } from './component/profile/profile.component';
 import { NotFoundComponent } from './component/not-found/not-found.component';
 import { RankComponent } from './component/rank/rank.component';
 import { LobbyComponent } from './component/lobby/lobby.component';
 import { LobbyDialogComponent } from './component/lobby/lobby-dialog-create/lobby-dialog.component';
 import { LobbyDialogJoinComponent } from './component/lobby/lobby-dialog-join/lobby-dialog-join.component';
+import { GameComponent } from './component/play/games/game/game.component';
+import { ExercisesComponent } from './component/play/exercises/exercises.component';
+import { GamesComponent } from './component/play/games/games.component';
 
 
 @NgModule({
@@ -63,7 +66,10 @@ import { LobbyDialogJoinComponent } from './component/lobby/lobby-dialog-join/lo
     RankComponent,
     LobbyComponent,
     LobbyDialogComponent,
-    LobbyDialogJoinComponent
+    LobbyDialogJoinComponent,
+    GameComponent,
+    ExercisesComponent,
+    GamesComponent
   ],
   imports: [
     BrowserModule,

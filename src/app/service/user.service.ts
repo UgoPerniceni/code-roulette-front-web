@@ -10,7 +10,7 @@ import {AuthService} from './auth.service';
 })
 export class UserService {
 
-  private url = environment.apiUrl + 'users/';
+  private url = environment.apiUrl + 'user/';
 
   constructor(private http: HttpClient, private authService: AuthService) {}
 

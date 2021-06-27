@@ -1,0 +1,68 @@
+<h1>Problems</h1>
+<div>
+  <mat-form-field appearance="fill">
+    <mat-label>Select a language</mat-label>
+    <mat-select [(value)]="selection" placeholder="Language">
+      <mat-option *ngFor="let language of languages" [value]="language" (click)="applyFilter(language)">
+        {{language}}
+      </mat-option>
+    </mat-select>
+  </mat-form-field>
+</div>
+
+<div>
+  <mat-form-field>
+    <input matInput [(ngModel)]="search" (keyup)="applyFilter($event)" placeholder="Search">
+    <mat-icon matSuffix>search</mat-icon>
+  </mat-form-field>
+</div>
+
+<div class="mat-elevation-z8">
+  <table mat-table [dataSource]="dataSource" matSort class="mat-elevation-z8">
+
+    <ng-container matColumnDef="id">
+      <th mat-header-cell *matHeaderCellDef mat-sort-header> # </th>
+      <td mat-cell *matCellDef="let exercise"> {{exercise.id}} </td>
+    </ng-container>
+
+    <ng-container matColumnDef="title">
+      <th mat-header-cell *matHeaderCellDef mat-sort-header> Title </th>
+      <td mat-cell *matCellDef="let exercise"> {{exercise.title}} </td>
+    </ng-container>
+
+    <ng-container matColumnDef="description">
+      <th mat-header-cell *matHeaderCellDef mat-sort-header> Description </th>
+      <td mat-cell *matCellDef="let exercise"> {{exercise.description}} </td>
+    </ng-container>
+
+    <ng-container matColumnDef="language">
+      <th mat-header-cell *matHeaderCellDef mat-sort-header> Language </th>
+      <td mat-cell *matCellDef="let exercise"> {{exercise.language}} </td>
+    </ng-container>
+
+    <ng-container matColumnDef="best_score">
+      <th mat-header-cell *matHeaderCellDef mat-sort-header> Best score </th>
+      <td mat-cell *matCellDef="let exercise"> {{exercise.best_score}} </td>
+    </ng-container>
+
+    <ng-container matColumnDef="created_at">
+      <th mat-header-cell *matHeaderCellDef mat-sort-header> Created at</th>
+      <td mat-cell *matCellDef="let exercise"> {{exercise.createdAt}} </td>
+    </ng-container>
+
+    <!-- Action Column -->
+    <ng-container matColumnDef="action">
+      <th mat-header-cell *matHeaderCellDef> Action </th>
+      <td mat-cell *matCellDef="let exercise">
+        <button mat-raised-button color="primary" [routerLink]="['/play/exercise/', exercise.id]">
+          <mat-icon class="mr-2">play_arrow</mat-icon>
+        </button>
+      </td>
+    </ng-container>
+
+    <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+    <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
+  </table>
+
+  <mat-paginator [pageSizeOptions]="[5, 10, 20]" showFirstLastButtons></mat-paginator>
+</div>

@@ -1,10 +1,10 @@
-import { Exercise } from './../../../model/Exercise';
+import { Exercise } from '../../../../model/Exercise';
 import { Component, OnInit } from '@angular/core';
-import { ExerciseService } from '../../../service/exercise.service';
+import { ExerciseService } from '../../../../service/exercise.service';
 import { ActivatedRoute } from '@angular/router';
-import { CodeService } from '../../../service/code.service';
-import {CodeResult} from '../../../model/CodeResult';
-import {Compilation} from '../../../model/Compilation';
+import { CodeService } from '../../../../service/code.service';
+import {CodeResult} from '../../../../model/CodeResult';
+import {Compilation} from '../../../../model/Compilation';
 
 interface Theme {
   value: string;

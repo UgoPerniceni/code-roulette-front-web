@@ -4,7 +4,10 @@
 
 <div *ngIf="lobby">
   <p>Current lobby : {{lobby?.title}}</p>
-  <p>Users in lobby : {{lobby?.users}}</p>
+  <p>Users in lobby :</p>
+  <ul>
+    <li *ngFor="let user of lobby.users">{{ user.userName }}</li>
+  </ul>
   <p>lobby's key : {{lobby?.id}}</p>
   <button mat-raised-button color="warn" (click)="leaveLobby()">Leave lobby</button>
 </div>
