@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import {Game} from '../../../../model/Game';
 import {ActivatedRoute} from '@angular/router';
 import {GameService} from '../../../../service/game.service';
+import {FormBuilder, FormGroup, Validators} from '@angular/forms';
 
 @Component({
   selector: 'app-game',
@@ -11,8 +12,13 @@ import {GameService} from '../../../../service/game.service';
 export class GameComponent implements OnInit {
 
   game: Game;
+  chatForm: FormGroup;
 
-  constructor(private route: ActivatedRoute, private gameService: GameService) { }
+  constructor(private route: ActivatedRoute, private gameService: GameService, private formBuilder: FormBuilder) {
+    this.chatForm = this.formBuilder.group({
+      message: ['', [Validators.required]],
+    });
+  }
 
   ngOnInit(): void {
     this.getGame();
@@ -29,6 +35,9 @@ export class GameComponent implements OnInit {
 
       this.game = game;
     });
+  }
+
+  onSubmit(): void{
 
   }
 
