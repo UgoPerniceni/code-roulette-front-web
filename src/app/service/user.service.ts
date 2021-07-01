@@ -11,11 +11,16 @@ import {AuthService} from './auth.service';
 export class UserService {
 
   private url = environment.apiUrl + 'user/';
+  private socketUrl = environment.apiUrl + 'socket/';
 
   constructor(private http: HttpClient, private authService: AuthService) {}
 
   getUsers(): Observable<User[]>{
     return this.http.get<User[]>(this.url);
+  }
+
+  countUsersInQueue(): Observable<number> {
+    return this.http.get<number>(this.url + 'usersInQueue/');
   }
 
   getCurrentUser(): Observable<User> {
@@ -34,5 +39,4 @@ export class UserService {
   leaveQueue(): Observable<HttpResponse<HttpResponse<User>>>{
     return this.http.delete<HttpResponse<User>>(this.url + 'leaveQueue', {observe: 'response'});
   }
-
 }

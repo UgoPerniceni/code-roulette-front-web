@@ -8,6 +8,7 @@
 
       <br/>
       <p>Search for a new game</p>
+      <p>Users in queue : {{usersInQueue}}</p>
       <mat-slide-toggle [(ngModel)]="isLookingForGame" color="warn" (input)="onSlideChange($event)"></mat-slide-toggle>
       <p *ngIf="isLookingForGame">
         Looking for a game... <mat-spinner color="warn" diameter="25"></mat-spinner>

@@ -1,18 +1,23 @@
-import {Component, OnInit} from '@angular/core';
+import {Component, OnDestroy, OnInit} from '@angular/core';
 import {ExerciseService} from '../../service/exercise.service';
 import {User} from '../../model/User';
 import {UserService} from '../../service/user.service';
 import {GameService} from '../../service/game.service';
 import {Game} from '../../model/Game';
+import {GameSocketAPI} from '../../socket/gameSocketAPI';
+import {PlaySocketAPI} from '../../socket/playSocketAPI';
 
 @Component({
   selector: 'app-play',
   templateUrl: './play.component.html',
   styleUrls: ['./play.component.css']
 })
-export class PlayComponent implements OnInit {
+export class PlayComponent implements OnInit, OnDestroy {
+
+  webSocketAPI: PlaySocketAPI;
 
   isLookingForGame = false;
+  usersInQueue = 0;
 
   constructor(private exerciseService: ExerciseService, private userService: UserService, private gameService: GameService) {}
 
@@ -23,6 +28,17 @@ export class PlayComponent implements OnInit {
         this.isLookingForGame = true;
       }
     });
+
+    this.userService.countUsersInQueue().subscribe((numberOfUsersInQueue: number) => {
+      this.usersInQueue = numberOfUsersInQueue;
+
+      this.webSocketAPI = new PlaySocketAPI(this);
+      this.webSocketAPI._connect();
+    });
+  }
+
+  ngOnDestroy(): void {
+    this.webSocketAPI._disconnect();
   }
 
   onSlideChange(event: Event): void {
@@ -32,6 +48,8 @@ export class PlayComponent implements OnInit {
       this.userService.joinQueue().subscribe((users: User[]) => {
         console.log(users);
 
+        this.webSocketAPI.sendQueueUpdate();
+
         if (users.length > 0){
           console.log('Matched ' + users[0].userName + ' vs ' +  users[1].userName);
 
@@ -40,13 +58,13 @@ export class PlayComponent implements OnInit {
 
           alert('Matched ! Game created');
 
-          // TODO Socket
         } else {
           alert('Enter in Queue');
         }
       });
     } else {
       this.userService.leaveQueue().subscribe(data => {
+        this.webSocketAPI.sendQueueUpdate();
         console.log(data);
       });
     }
@@ -63,8 +81,15 @@ export class PlayComponent implements OnInit {
 
         this.gameService.createGame(new Game(randomExercise, users, null)).subscribe((game) => {
           console.log(game);
+          this.webSocketAPI.sendQueueUpdate();
         });
       }
+    });
+  }
+
+  refreshQueueCounter(): void {
+    this.userService.countUsersInQueue().subscribe((numberOfUsersInQueue: number) => {
+      this.usersInQueue = numberOfUsersInQueue;
     });
   }
 

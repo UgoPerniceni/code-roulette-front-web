@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import {Router} from '@angular/router';
+import {ActivatedRoute, Router} from '@angular/router';
 import {AuthService} from '../../service/auth.service';
 import {FormBuilder, FormGroup, Validators} from '@angular/forms';
 
@@ -14,10 +14,15 @@ export class LoginComponent implements OnInit {
   public loginInvalid = false;
   public hidePassword = true;
 
-  constructor(private router: Router, private formBuilder: FormBuilder, private authService: AuthService) {
+  constructor(private router: Router, private route: ActivatedRoute, private formBuilder: FormBuilder, private authService: AuthService) {
     this.form = this.formBuilder.group({
       email: ['', [Validators.required, Validators.email]],
       password: ['', Validators.required]
+    });
+
+    this.route.queryParams.subscribe( params => {
+      console.log(params);
+      this.form.controls.email.setValue(params.email);
     });
   }
 

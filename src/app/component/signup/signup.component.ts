@@ -49,12 +49,12 @@ export class SignupComponent implements OnInit {
   onSubmit(): any {
     if (this.signUpForm.valid){
       console.log(this.signUpForm.value);
+      const email = this.signUpForm.controls.email.value;
       this.authService.signUp(this.signUpForm.value).subscribe(
         (data: any) => {
           console.log(data);
           if (data && data.status === 201){
-            this.router.navigateByUrl('/login').then();
-            // pré-remplir l'adresse email
+            this.router.navigate(['/login'], {queryParams: {email}}).then();
             console.log('Successfully Sign up.');
           }
         }, (Error: any) => {

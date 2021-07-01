@@ -17,12 +17,11 @@ export class GameSocketAPI {
     console.log('Initialize WebSocket Connection');
     const ws = new SockJS(this.webSocketEndPoint);
     this.stompClient = Stomp.over(ws);
-    const that = this;
-    that.stompClient.connect({}, frame => {
-      that.stompClient.subscribe(that.socket, sdkEvent => {
-        that.onMessageReceived(sdkEvent);
+    this.stompClient.connect({}, frame => {
+      this.stompClient.subscribe(this.socket, sdkEvent => {
+        this.onMessageReceived(sdkEvent);
       });
-      that.stompClient.reconnect_delay = 2000;
+      this.stompClient.reconnect_delay = 2000;
     }, this.errorCallBack);
   }
 
