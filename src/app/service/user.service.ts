@@ -27,4 +27,12 @@ export class UserService {
     return this.http.delete<User>(this.url + id, {observe: 'response'});
   }
 
+  joinQueue(): Observable<User[]> {
+    return this.http.post<any>(this.url + 'joinQueue', {});
+  }
+
+  leaveQueue(): Observable<HttpResponse<HttpResponse<User>>>{
+    return this.http.delete<HttpResponse<User>>(this.url + 'leaveQueue', {observe: 'response'});
+  }
+
 }

@@ -1,5 +1,3 @@
-import {Queue} from './Queue';
-
 export class User {
   id: string;
   firstName: string;
@@ -9,11 +7,11 @@ export class User {
   password: string;
   birthDate: Date;
   elo: number;
-  elo_problems: number;
-  queue: Queue;
+  eloProblems: number;
+  isInQueue: boolean;
   lobbyId: string;
 
-  constructor(id: string, firstName: string, lastName: string, email: string, userName: string, password: string, birthDate: Date, elo: number, elo_problems: number, queue: Queue, lobbyId: string) {
+  constructor(id: string, firstName: string, lastName: string, email: string, userName: string, password: string, birthDate: Date, elo: number, eloProblems: number, isInQueue: boolean, lobbyId: string) {
     this.id = id;
     this.firstName = firstName;
     this.lastName = lastName;
@@ -22,8 +20,8 @@ export class User {
     this.password = password;
     this.birthDate = birthDate;
     this.elo = elo;
-    this.elo_problems = elo_problems;
-    this.queue = queue;
+    this.eloProblems = eloProblems;
+    this.isInQueue = isInQueue;
     this.lobbyId = lobbyId;
   }
 }

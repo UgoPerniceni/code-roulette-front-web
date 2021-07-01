@@ -1,14 +1,6 @@
-import {AfterViewInit, Component, OnInit, ViewChild} from '@angular/core';
-import {MatTableDataSource} from '@angular/material/table';
-import {MatPaginator} from '@angular/material/paginator';
-import {Exercise} from '../../model/Exercise';
+import {Component, OnInit} from '@angular/core';
 import {ExerciseService} from '../../service/exercise.service';
-import {MatSort} from '@angular/material/sort';
-import {QueueService} from '../../service/queue.service';
-import {Queue} from '../../model/Queue';
-import {AuthService} from '../../service/auth.service';
 import {User} from '../../model/User';
-import {Lobby} from '../../model/Lobby';
 import {UserService} from '../../service/user.service';
 import {GameService} from '../../service/game.service';
 import {Game} from '../../model/Game';
@@ -22,12 +14,12 @@ export class PlayComponent implements OnInit {
 
   isLookingForGame = false;
 
-  constructor(private exerciseService: ExerciseService, private queueService: QueueService, private userService: UserService, private gameService: GameService) {}
+  constructor(private exerciseService: ExerciseService, private userService: UserService, private gameService: GameService) {}
 
   ngOnInit(): void {
     this.userService.getCurrentUser().subscribe((user: User) => {
       console.log(user);
-      if (user.queue){
+      if (user.isInQueue){
         this.isLookingForGame = true;
       }
     });
@@ -37,7 +29,7 @@ export class PlayComponent implements OnInit {
     this.isLookingForGame = !this.isLookingForGame;
 
     if (this.isLookingForGame) {
-      this.queueService.joinQueue().subscribe((users: User[]) => {
+      this.userService.joinQueue().subscribe((users: User[]) => {
         console.log(users);
 
         if (users.length > 0){
@@ -48,13 +40,13 @@ export class PlayComponent implements OnInit {
 
           alert('Matched ! Game created');
 
-          // TODO Socket + Create game
+          // TODO Socket
         } else {
           alert('Enter in Queue');
         }
       });
     } else {
-      this.queueService.leaveQueue().subscribe(data => {
+      this.userService.leaveQueue().subscribe(data => {
         console.log(data);
       });
     }

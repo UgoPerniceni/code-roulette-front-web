@@ -4,8 +4,6 @@ import {Exercise} from '../../../model/Exercise';
 import {MatPaginator} from '@angular/material/paginator';
 import {MatSort} from '@angular/material/sort';
 import {ExerciseService} from '../../../service/exercise.service';
-import {QueueService} from '../../../service/queue.service';
-import {UserService} from '../../../service/user.service';
 import {GameService} from '../../../service/game.service';
 
 @Component({
