@@ -3,11 +3,9 @@ import {Game} from '../../../../model/Game';
 import {ActivatedRoute} from '@angular/router';
 import {GameService} from '../../../../service/game.service';
 import {FormBuilder, FormGroup, Validators} from '@angular/forms';
-import { WebSocketAPI } from '../../../../util/webSocketAPI';
+import { GameSocketAPI } from '../../../../socket/gameSocketAPI';
 import {Message} from '../../../../model/Message';
-import {User} from '../../../../model/User';
 import {UserService} from '../../../../service/user.service';
-import {AuthService} from '../../../../service/auth.service';
 import {Chat} from '../../../../model/Chat';
 
 @Component({
@@ -18,19 +16,20 @@ import {Chat} from '../../../../model/Chat';
 export class GameComponent implements OnInit, OnDestroy {
 
   game: Game;
-  webSocketAPI: WebSocketAPI;
+  webSocketAPI: GameSocketAPI;
   chatForm: FormGroup;
 
   chat: Chat;
 
-  constructor(private route: ActivatedRoute, private gameService: GameService, private formBuilder: FormBuilder, private userService: UserService, private authService: AuthService) {
+  // tslint:disable-next-line:max-line-length
+  constructor(private route: ActivatedRoute, private gameService: GameService, private formBuilder: FormBuilder, private userService: UserService) {
     this.chatForm = this.formBuilder.group({
       message: ['', [Validators.required]],
     });
   }
 
   ngOnInit(): void {
-    this.webSocketAPI = new WebSocketAPI(this);
+    this.webSocketAPI = new GameSocketAPI(this);
     this.webSocketAPI._connect();
 
     this.getGame();
@@ -63,7 +62,7 @@ export class GameComponent implements OnInit, OnDestroy {
         console.log('form\'s message');
         console.log(message);
 
-        this.webSocketAPI._send(this.game.chat.id, textMessage, user.id);
+        this.webSocketAPI.sendMessage(this.game.chat.id, textMessage, user.id);
 
         this.chatForm.reset();
       });

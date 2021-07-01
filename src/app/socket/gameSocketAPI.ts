@@ -3,7 +3,7 @@ import * as SockJS from 'sockjs-client';
 import {GameComponent} from '../component/play/games/game/game.component';
 import {Message} from '../model/Message';
 
-export class WebSocketAPI {
+export class GameSocketAPI {
   webSocketEndPoint = 'http://localhost:8080/ws';
   socket = '/socket/chat';
   stompClient: any;
@@ -18,11 +18,11 @@ export class WebSocketAPI {
     const ws = new SockJS(this.webSocketEndPoint);
     this.stompClient = Stomp.over(ws);
     const that = this;
-    that.stompClient.connect({}, function (frame) {
-      that.stompClient.subscribe(that.socket, function (sdkEvent) {
+    that.stompClient.connect({}, frame => {
+      that.stompClient.subscribe(that.socket, sdkEvent => {
         that.onMessageReceived(sdkEvent);
       });
-      // that.stompClient.reconnect_delay = 2000;
+      that.stompClient.reconnect_delay = 2000;
     }, this.errorCallBack);
   }
 
@@ -41,7 +41,7 @@ export class WebSocketAPI {
     }, 5000);
   }
 
-  _send(chatId: string, message: string, userId: string): void {
+  sendMessage(chatId: string, message: string, userId: string): void {
     console.log('Sending message to API...');
 
     const body = {
@@ -50,12 +50,12 @@ export class WebSocketAPI {
       userId
     };
 
-    this.stompClient.send('/app/hello', {}, JSON.stringify(body));
+    this.stompClient.send('/api/socket/sendMessage', {}, JSON.stringify(body));
   }
 
   onMessageReceived(response): void {
     const message: Message = JSON.parse(response.body);
-    console.log('Message received from Server : ' + message.formatMessageToChat);
+    console.log('Message received from Server : ' + message.user.userName + ' : ' + message.text);
     this.gameComponent.receiveMessage(message);
     // this.gameComponent.receiveMessage(JSON.stringify(message.body));
   }
