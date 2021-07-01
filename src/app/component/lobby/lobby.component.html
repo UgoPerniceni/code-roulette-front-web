@@ -1,17 +1,31 @@
 <p>lobby works!</p>
 
-<p>Connected as {{user?.email}}</p>
+<p>Connected as {{ user?.email }}</p>
 
 <div *ngIf="lobby">
-  <p>Current lobby : {{lobby?.title}}</p>
+  <p>Current lobby : {{ lobby?.title }}</p>
   <p>Users in lobby :</p>
   <ul>
     <li *ngFor="let user of lobby.users">{{ user.userName }}</li>
   </ul>
-  <p>lobby's key : {{lobby?.id}}</p>
-  <button mat-raised-button color="warn" (click)="leaveLobby()">Leave lobby</button>
+  <p>lobby's key : {{ lobby?.id }}</p>
+  <button mat-raised-button color="warn" (click)="leaveLobby()">
+    Leave lobby
+  </button>
+  <button
+    mat-raised-button
+    color="warn"
+    (click)="chooseGame()"
+    [disabled]="buttonDisabled"
+  >
+    Choose a game
+  </button>
 </div>
 <div *ngIf="!lobby">
-  <button mat-raised-button color="" (click)="openCreateLobbyDialog()">Create lobby</button>
-  <button mat-raised-button color="" (click)="openJoinLobbyDialog()">Join lobby with key</button>
+  <button mat-raised-button color="" (click)="openCreateLobbyDialog()">
+    Create lobby
+  </button>
+  <button mat-raised-button color="" (click)="openJoinLobbyDialog()">
+    Join lobby with key
+  </button>
 </div>

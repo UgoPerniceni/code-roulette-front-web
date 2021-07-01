@@ -1,11 +1,14 @@
+import { GameComponent } from './../play/games/game/game.component';
+import { ExercisesComponent } from './../play/exercises/exercises.component';
+import { RankComponent } from './../rank/rank.component';
 import { Component, OnInit } from '@angular/core';
-import {UserService} from '../../service/user.service';
-import {User} from '../../model/User';
-import {MatDialog, MatDialogConfig} from '@angular/material/dialog';
-import {LobbyDialogComponent} from './lobby-dialog-create/lobby-dialog.component';
-import {LobbyService} from '../../service/lobby.service';
-import {Lobby} from '../../model/Lobby';
-import {LobbyDialogJoinComponent} from './lobby-dialog-join/lobby-dialog-join.component';
+import { UserService } from '../../service/user.service';
+import { User } from '../../model/User';
+import { MatDialog, MatDialogConfig } from '@angular/material/dialog';
+import { LobbyDialogComponent } from './lobby-dialog-create/lobby-dialog.component';
+import { LobbyService } from '../../service/lobby.service';
+import { Lobby } from '../../model/Lobby';
+import { LobbyDialogJoinComponent } from './lobby-dialog-join/lobby-dialog-join.component';
 
 @Component({
   selector: 'app-lobby',
@@ -16,10 +19,9 @@ export class LobbyComponent implements OnInit {
 
   user!: User;
   lobby!: Lobby;
-  lobbies: Lobby[];
+  buttonDisabled: boolean;
 
   constructor(private userService: UserService, private lobbyService: LobbyService, private dialog: MatDialog) {
-    this.lobbies = [];
   }
 
   ngOnInit(): void {
@@ -31,13 +33,9 @@ export class LobbyComponent implements OnInit {
         this.lobbyService.getLobby(this.user.lobbyId).subscribe((lobby: Lobby) => {
           console.log(lobby);
           this.lobby = lobby;
+          this.buttonDisabled = this.lobby.users.length < 2;
         });
       }
-    });
-
-    this.lobbyService.getLobbies().subscribe((lobbies: Lobby[]) => {
-      console.log(lobbies);
-      this.lobbies = lobbies;
     });
   }
 
@@ -45,11 +43,22 @@ export class LobbyComponent implements OnInit {
     if (this.lobby) {
       this.lobbyService.leaveLobby(this.lobby.id).subscribe((data) => {
         console.log(data);
+        this.buttonDisabled = this.lobby.users.length < 2;
         if (data.status === 204) {
           alert('Lobby left.');
         }
       });
     }
+  }
+
+  chooseGame(): void {
+    const dialogConfig = new MatDialogConfig();
+    dialogConfig.width = "80 %";
+    this.dialog.open(ExercisesComponent, dialogConfig);
+    console.log(this.lobby.users.length);
+  }
+  checkButton() {
+    return this.lobby.users.length > 1;
   }
 
   openCreateLobbyDialog(): void {
@@ -76,6 +85,7 @@ export class LobbyComponent implements OnInit {
               this.user = user;
               this.lobbyService.getLobby(this.user.lobbyId).subscribe((lobby) => {
                 this.lobby = lobby;
+                this.buttonDisabled = this.lobby.users.length < 2;
               });
             });
           }
@@ -104,6 +114,7 @@ export class LobbyComponent implements OnInit {
           this.lobbyService.joinLobby(data.lobbyId).subscribe((user: User) => {
             console.log('lobby joined : ', user);
             this.user = user;
+            this.buttonDisabled = this.lobby.users.length < 2;
           });
         }
       }
