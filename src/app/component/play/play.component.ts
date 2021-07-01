@@ -69,7 +69,7 @@ export class PlayComponent implements OnInit {
         const randomExercise = exercises[Math.floor(Math.random() * exercises.length)];
         console.log(randomExercise);
 
-        this.gameService.createGame(new Game(randomExercise, users)).subscribe((game) => {
+        this.gameService.createGame(new Game(randomExercise, users, null)).subscribe((game) => {
           console.log(game);
         });
       }
