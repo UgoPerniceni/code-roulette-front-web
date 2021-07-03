@@ -1,4 +1,4 @@
-import {Component, OnDestroy, OnInit} from '@angular/core';
+import {AfterViewChecked, Component, OnDestroy, OnInit} from '@angular/core';
 import {Game} from '../../../../model/Game';
 import {ActivatedRoute} from '@angular/router';
 import {GameService} from '../../../../service/game.service';
@@ -9,17 +9,12 @@ import {UserService} from '../../../../service/user.service';
 import {Chat} from '../../../../model/Chat';
 import {Compilation} from '../../../../model/Compilation';
 import {CodeService} from '../../../../service/code.service';
+import {interval} from 'rxjs';
+import {take} from 'rxjs/operators';
 
 interface Theme {
   value: string;
   viewValue: string;
-}
-
-export interface Tile {
-  color: string;
-  cols: number;
-  rows: number;
-  text: string;
 }
 
 @Component({
@@ -27,7 +22,7 @@ export interface Tile {
   templateUrl: './game.component.html',
   styleUrls: ['./game.component.css']
 })
-export class GameComponent implements OnInit, OnDestroy {
+export class GameComponent implements OnInit, OnDestroy, AfterViewChecked {
 
   game: Game;
   webSocketAPI: GameSocketAPI;
@@ -63,14 +58,12 @@ export class GameComponent implements OnInit, OnDestroy {
   content = '';
   result = '';
 
-  tiles: Tile[] = [
-    {text: 'One', cols: 1, rows: 1, color: 'lightblue'},
-    {text: 'Two', cols: 3, rows: 2, color: 'lightgreen'},
-    {text: 'Three', cols: 1, rows: 1, color: 'lightpink'},
-    {text: 'Four', cols: 4, rows: 1, color: '#DDBDF1'}
-/*    {text: 'Three', cols: 2, rows: 1, color: 'lightpink'},
-    {text: 'Four', cols: 3, rows: 1, color: '#DDBDF1'},*/
-  ];
+  time = 16; // 15s
+  timerInterval = interval(1000); // 1s
+  countDown;
+
+  timerValue = 1;
+  timerSubscription;
 
   constructor(private route: ActivatedRoute, private gameService: GameService, private formBuilder: FormBuilder,
               private userService: UserService, private codeService: CodeService) {
@@ -84,10 +77,15 @@ export class GameComponent implements OnInit, OnDestroy {
     this.webSocketAPI._connect();
 
     this.getGame();
+
+    this.initializeTimer();
   }
+
+  ngAfterViewChecked(): void {}
 
   ngOnDestroy(): void {
     this.webSocketAPI._disconnect();
+    this.timerSubscription.unsubscribe();
   }
 
   getGame(): void {
@@ -181,4 +179,19 @@ export class GameComponent implements OnInit, OnDestroy {
     this.chat.messages.push(message);
   }
 
+  initializeTimer(): void {
+    this.countDown = this.timerInterval.pipe(take(this.time));
+
+    this.timerSubscription = this.countDown.subscribe(val => {
+      console.log('decrease time');
+
+      this.timerValue = (this.time - val);
+
+      if (this.timerValue === 1) {
+        alert('Time is up !');
+
+        this.timerValue = 1;
+      }
+    });
+  }
 }

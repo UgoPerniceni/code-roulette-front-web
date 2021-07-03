@@ -1,6 +1,7 @@
 <div *ngIf="game">
   <mat-toolbar style="background-color: #f0f0f5">
     <span>Exercise : {{game.exercise.title}} -> {{game.exercise.id}}</span>
+
   </mat-toolbar>
 
   <br/>
@@ -65,14 +66,28 @@
 
     <div fxFlex="70">
 
-      <mat-form-field appearance="fill">
-        <mat-label>Select a theme</mat-label>
-        <mat-select [(ngModel)]="theme" (ngModelChange)="changeTheme()">
-          <mat-option *ngFor="let theme of themes" [value]="theme.value">
-            {{theme.viewValue}}
-          </mat-option>
-        </mat-select>
-      </mat-form-field>
+
+      <div fxLayout="row">
+
+        <div fxFlex="50" fxLayoutAlign="start center">
+          <mat-form-field appearance="fill">
+            <mat-label>Select a theme</mat-label>
+            <mat-select [(ngModel)]="theme" (ngModelChange)="changeTheme()">
+              <mat-option *ngFor="let theme of themes" [value]="theme.value">
+                {{theme.viewValue}}
+              </mat-option>
+            </mat-select>
+          </mat-form-field>
+        </div>
+
+        <div fxFlex="50" fxLayoutAlign="end center">
+          <mat-icon>timer</mat-icon>
+
+          <div style="margin: 10px">
+            <span>Timer : {{timerValue - 1}}s</span>
+          </div>
+        </div>
+      </div>
 
       <ngx-codemirror
         [options]="options"
