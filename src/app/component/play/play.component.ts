@@ -6,6 +6,7 @@ import {GameService} from '../../service/game.service';
 import {Game} from '../../model/Game';
 import {GameSocketAPI} from '../../socket/gameSocketAPI';
 import {PlaySocketAPI} from '../../socket/playSocketAPI';
+import {UserInGame} from '../../model/UserInGame';
 
 @Component({
   selector: 'app-play',
@@ -53,9 +54,14 @@ export class PlayComponent implements OnInit, OnDestroy {
         if (users.length > 0){
           console.log('Matched ' + users[0].userName + ' vs ' +  users[1].userName);
 
-          this.createGame(users);
-          this.isLookingForGame = false;
+          const usersInGame: UserInGame[] = [];
 
+          usersInGame.push(new UserInGame('', users[0]));
+          usersInGame.push(new UserInGame('', users[1]));
+
+          this.createGame(usersInGame);
+
+          this.isLookingForGame = false;
           alert('Matched ! Game created');
 
         } else {
@@ -70,7 +76,7 @@ export class PlayComponent implements OnInit, OnDestroy {
     }
   }
 
-  createGame(users: User[]): void {
+  createGame(usersInGame: UserInGame[]): void {
     this.exerciseService.getExercises().subscribe((exercices) => {
       console.log(exercices);
       const exercises = exercices;
@@ -79,7 +85,7 @@ export class PlayComponent implements OnInit, OnDestroy {
         const randomExercise = exercises[Math.floor(Math.random() * exercises.length)];
         console.log(randomExercise);
 
-        this.gameService.createGame(new Game(randomExercise, users, null)).subscribe((game) => {
+        this.gameService.createGame(new Game(randomExercise, usersInGame, null, false)).subscribe((game) => {
           console.log(game);
           this.webSocketAPI.sendQueueUpdate();
         });

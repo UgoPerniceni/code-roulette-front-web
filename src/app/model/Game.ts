@@ -1,19 +1,21 @@
 import {Exercise} from './Exercise';
-import {User} from './User';
 import {Chat} from './Chat';
+import {UserInGame} from './UserInGame';
 
 export class Game {
   id: string;
   exercise: Exercise;
   chat: Chat;
+  isGameOver: boolean;
 
-  users: User[];
+  usersInGame: UserInGame[];
 
-  constructor(exercise: Exercise, users: User[], chat: Chat) {
+  constructor(exercise: Exercise, usersInGame: UserInGame[], chat: Chat, isGameOver: boolean) {
     this.exercise = exercise;
-    this.users = users;
+    this.usersInGame = usersInGame;
     if (chat) {
       this.chat = chat;
     }
+    this.isGameOver = isGameOver;
   }
 }

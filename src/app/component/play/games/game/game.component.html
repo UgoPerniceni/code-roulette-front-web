@@ -3,7 +3,7 @@
   <p>Game id : {{game.id}}</p>
   <p>Users in game :</p>
   <ul>
-    <li *ngFor="let user of game.users">{{ user.userName }}</li>
+    <li *ngFor="let userInGame of game.usersInGame">{{ userInGame.user.userName }}</li>
   </ul>
 
 

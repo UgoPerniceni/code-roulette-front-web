@@ -11,7 +11,6 @@ import {AuthService} from './auth.service';
 export class UserService {
 
   private url = environment.apiUrl + 'user/';
-  private socketUrl = environment.apiUrl + 'socket/';
 
   constructor(private http: HttpClient, private authService: AuthService) {}
 
