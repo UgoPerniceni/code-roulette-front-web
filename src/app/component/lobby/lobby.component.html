@@ -10,6 +10,7 @@
   </ul>
   <p>lobby's key : {{lobby?.id}}</p>
   <button mat-raised-button color="warn" (click)="leaveLobby()">Leave lobby</button>
+  <button mat-raised-button color="primary" (click)="createGame()">Create game with lobby</button>
 </div>
 <div *ngIf="!lobby">
   <button mat-raised-button color="" (click)="openCreateLobbyDialog()">Create lobby</button>

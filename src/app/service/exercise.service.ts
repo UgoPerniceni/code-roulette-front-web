@@ -20,4 +20,9 @@ export class ExerciseService {
   getExercise(id: string): Observable<Exercise>{
     return this.http.get<Exercise>(this.url + id);
   }
+
+  getRandomExercise(): Observable<Exercise> {
+    return this.http.get<Exercise>(this.url + 'random');
+  }
+
 }

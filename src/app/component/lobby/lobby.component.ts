@@ -6,6 +6,12 @@ import {LobbyDialogComponent} from './lobby-dialog-create/lobby-dialog.component
 import {LobbyService} from '../../service/lobby.service';
 import {Lobby} from '../../model/Lobby';
 import {LobbyDialogJoinComponent} from './lobby-dialog-join/lobby-dialog-join.component';
+import {UserInGame} from '../../model/UserInGame';
+import {Game} from '../../model/Game';
+import {ExerciseService} from '../../service/exercise.service';
+import {Exercise} from '../../model/Exercise';
+import {GameService} from '../../service/game.service';
+import {Utilities} from '../../utils/Utilities';
 
 @Component({
   selector: 'app-lobby',
@@ -18,7 +24,7 @@ export class LobbyComponent implements OnInit {
   lobby!: Lobby;
   lobbies: Lobby[];
 
-  constructor(private userService: UserService, private lobbyService: LobbyService, private dialog: MatDialog) {
+  constructor(private userService: UserService, private lobbyService: LobbyService, private exerciseService: ExerciseService, private gameService: GameService, private dialog: MatDialog) {
     this.lobbies = [];
   }
 
@@ -49,6 +55,24 @@ export class LobbyComponent implements OnInit {
           alert('Lobby left.');
         }
       });
+    }
+  }
+
+  createGame(): void {
+    if (this.lobby) {
+      if (this.lobby.users.length >= 2) {
+        this.exerciseService.getRandomExercise().subscribe((exercise: Exercise) => {
+          console.log(exercise);
+
+          const usersInGame: UserInGame[] = Utilities.usersToUsersInGame(this.lobby.users);
+
+          this.gameService.createGame(new Game(exercise, usersInGame, null, false)).subscribe((game) => {
+            console.log(game);
+          });
+        });
+      } else {
+        alert('You must have 2 players or more !');
+      }
     }
   }
 

@@ -7,6 +7,7 @@ import {Game} from '../../model/Game';
 import {GameSocketAPI} from '../../socket/gameSocketAPI';
 import {PlaySocketAPI} from '../../socket/playSocketAPI';
 import {UserInGame} from '../../model/UserInGame';
+import {Utilities} from '../../utils/Utilities';
 
 @Component({
   selector: 'app-play',
@@ -54,10 +55,7 @@ export class PlayComponent implements OnInit, OnDestroy {
         if (users.length > 0){
           console.log('Matched ' + users[0].userName + ' vs ' +  users[1].userName);
 
-          const usersInGame: UserInGame[] = [];
-
-          usersInGame.push(new UserInGame('', users[0]));
-          usersInGame.push(new UserInGame('', users[1]));
+          const usersInGame: UserInGame[] = Utilities.usersToUsersInGame(users);
 
           this.createGame(usersInGame);
 
@@ -77,19 +75,13 @@ export class PlayComponent implements OnInit, OnDestroy {
   }
 
   createGame(usersInGame: UserInGame[]): void {
-    this.exerciseService.getExercises().subscribe((exercices) => {
-      console.log(exercices);
-      const exercises = exercices;
+    this.exerciseService.getRandomExercise().subscribe((exercice) => {
+      console.log(exercice);
 
-      if (exercises.length > 0) {
-        const randomExercise = exercises[Math.floor(Math.random() * exercises.length)];
-        console.log(randomExercise);
-
-        this.gameService.createGame(new Game(randomExercise, usersInGame, null, false)).subscribe((game) => {
-          console.log(game);
-          this.webSocketAPI.sendQueueUpdate();
-        });
-      }
+      this.gameService.createGame(new Game(exercice, usersInGame, null, false)).subscribe((game) => {
+        console.log(game);
+        this.webSocketAPI.sendQueueUpdate();
+      });
     });
   }
 
