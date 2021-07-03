@@ -1,3 +1,4 @@
+import { StartGameDialogComponent } from './start-game-dialog/start-game-dialog.component';
 import { GameComponent } from './../play/games/game/game.component';
 import { ExercisesComponent } from './../play/exercises/exercises.component';
 import { RankComponent } from './../rank/rank.component';
@@ -53,8 +54,9 @@ export class LobbyComponent implements OnInit {
 
   chooseGame(): void {
     const dialogConfig = new MatDialogConfig();
-    dialogConfig.width = "80 %";
-    this.dialog.open(ExercisesComponent, dialogConfig);
+    dialogConfig.height = "200px";
+    dialogConfig.width = "20%";
+    this.dialog.open(StartGameDialogComponent, dialogConfig);
     console.log(this.lobby.users.length);
   }
   checkButton() {

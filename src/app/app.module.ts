@@ -49,6 +49,8 @@ import { LobbyDialogJoinComponent } from './component/lobby/lobby-dialog-join/lo
 import { GameComponent } from './component/play/games/game/game.component';
 import { ExercisesComponent } from './component/play/exercises/exercises.component';
 import { GamesComponent } from './component/play/games/games.component';
+import { StartGameDialogComponent } from './component/lobby/start-game-dialog/start-game-dialog.component';
+import { GameSaloonComponent } from './component/play/game-saloon/game-saloon.component';
 
 
 @NgModule({
@@ -69,7 +71,9 @@ import { GamesComponent } from './component/play/games/games.component';
     LobbyDialogJoinComponent,
     GameComponent,
     ExercisesComponent,
-    GamesComponent
+    GamesComponent,
+    StartGameDialogComponent,
+    GameSaloonComponent
   ],
   imports: [
     BrowserModule,
