@@ -30,6 +30,8 @@ import { MatCheckboxModule } from '@angular/material/checkbox';
 import { MatPaginatorModule } from '@angular/material/paginator';
 import { MatSortModule } from '@angular/material/sort';
 import { MatDialogModule } from '@angular/material/dialog';
+import { MatGridListModule } from '@angular/material/grid-list';
+
 
 import { PlayComponent } from './component/play/play.component';
 import { EditorComponent } from './component/editor/editor.component';
@@ -101,6 +103,7 @@ import { GamesComponent } from './component/play/games/games.component';
     MatPaginatorModule,
     MatSortModule,
     MatDialogModule,
+    MatGridListModule,
 
     TranslateModule.forRoot({
       loader: {

@@ -1,0 +1,15 @@
+@import '~codemirror';
+
+.simple-card-inverse {
+  background-color: #292b2c;
+  color: #ffffff;
+}
+
+.chat-users-text {
+  font-size: small;
+}
+
+.chat-users {
+  display:inline;
+  font-style: italic;
+}
