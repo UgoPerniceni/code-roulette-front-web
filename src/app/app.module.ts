@@ -32,8 +32,8 @@ import { MatSortModule } from '@angular/material/sort';
 import { MatDialogModule } from '@angular/material/dialog';
 import { MatGridListModule } from '@angular/material/grid-list';
 import { MatSnackBarModule } from '@angular/material/snack-bar';
-
-
+import { MatTooltipModule } from '@angular/material/tooltip';
+import { ClipboardModule } from '@angular/cdk/clipboard';
 
 import { PlayComponent } from './component/play/play.component';
 import { EditorComponent } from './component/editor/editor.component';
@@ -107,6 +107,8 @@ import { GamesComponent } from './component/play/games/games.component';
     MatDialogModule,
     MatGridListModule,
     MatSnackBarModule,
+    MatTooltipModule,
+    ClipboardModule,
 
     TranslateModule.forRoot({
       loader: {

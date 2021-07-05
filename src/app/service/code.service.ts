@@ -4,6 +4,7 @@ import {HttpClient} from '@angular/common/http';
 import {Code} from '../model/Code';
 import {environment} from '../../environments/environment';
 import {Exercise} from '../model/Exercise';
+import {Game} from '../model/Game';
 
 @Injectable({
   providedIn: 'root'
@@ -21,6 +22,12 @@ export class CodeService {
   compile(exercise: Exercise): any{
     console.log('input' +  exercise);
 
-    return this.http.post<any>(this.url + 'compileAndSave', exercise);
+    return this.http.post<any>(this.url + 'compileAndSaveExercise', exercise);
+  }
+
+  compileGame(game: Game): any{
+    console.log('input' +  game);
+
+    return this.http.post<any>(this.url + 'compileAndSave', game);
   }
 }

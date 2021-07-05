@@ -12,6 +12,7 @@ import {ExerciseService} from '../../service/exercise.service';
 import {Exercise} from '../../model/Exercise';
 import {GameService} from '../../service/game.service';
 import {Utilities} from '../../utils/Utilities';
+import {MatSnackBar} from '@angular/material/snack-bar';
 
 @Component({
   selector: 'app-lobby',
@@ -20,11 +21,11 @@ import {Utilities} from '../../utils/Utilities';
 })
 export class LobbyComponent implements OnInit {
 
-  user!: User;
-  lobby!: Lobby;
+  user: User;
+  lobby: Lobby;
   lobbies: Lobby[];
 
-  constructor(private userService: UserService, private lobbyService: LobbyService, private exerciseService: ExerciseService, private gameService: GameService, private dialog: MatDialog) {
+  constructor(private userService: UserService, private lobbyService: LobbyService, private exerciseService: ExerciseService, private gameService: GameService, private dialog: MatDialog,  private snackBar: MatSnackBar) {
     this.lobbies = [];
   }
 
@@ -66,12 +67,12 @@ export class LobbyComponent implements OnInit {
 
           const usersInGame: UserInGame[] = Utilities.usersToUsersInGame(this.lobby.users);
 
-          this.gameService.createGame(new Game(exercise, usersInGame, null, false)).subscribe((game) => {
+          this.gameService.createGame(new Game(exercise, usersInGame, null, false, [])).subscribe((game) => {
             console.log(game);
           });
         });
       } else {
-        alert('You must have 2 players or more !');
+        this.openSnackBar('You must have 2 players or more !');
       }
     }
   }
@@ -132,5 +133,13 @@ export class LobbyComponent implements OnInit {
         }
       }
     );
+  }
+
+  keyCopied(): void {
+    this.openSnackBar('Key copied to clipboard !');
+  }
+
+  openSnackBar(message: string): void {
+    this.snackBar.open(message, 'Close');
   }
 }

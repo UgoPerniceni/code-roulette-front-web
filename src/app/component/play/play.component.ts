@@ -8,6 +8,7 @@ import {GameSocketAPI} from '../../socket/gameSocketAPI';
 import {PlaySocketAPI} from '../../socket/playSocketAPI';
 import {UserInGame} from '../../model/UserInGame';
 import {Utilities} from '../../utils/Utilities';
+import {MatSnackBar} from '@angular/material/snack-bar';
 
 @Component({
   selector: 'app-play',
@@ -21,7 +22,7 @@ export class PlayComponent implements OnInit, OnDestroy {
   isLookingForGame = false;
   usersInQueue = 0;
 
-  constructor(private exerciseService: ExerciseService, private userService: UserService, private gameService: GameService) {}
+  constructor(private exerciseService: ExerciseService, private userService: UserService, private gameService: GameService, private snackBar: MatSnackBar) {}
 
   ngOnInit(): void {
     this.userService.getCurrentUser().subscribe((user: User) => {
@@ -64,16 +65,16 @@ export class PlayComponent implements OnInit, OnDestroy {
           this.createGame(usersInGame);
 
           this.isLookingForGame = false;
-          alert('Matched ! Game created');
+          this.openSnackBar('Matched ! Game created');
 
         } else {
-          alert('Enter in Queue');
+          this.openSnackBar('Enter in Queue');
         }
       });
     } else {
       this.userService.leaveQueue().subscribe(data => {
         this.webSocketAPI.sendQueueUpdate();
-        console.log(data);
+        this.openSnackBar('Left queue');
       });
     }
   }
@@ -82,7 +83,7 @@ export class PlayComponent implements OnInit, OnDestroy {
     this.exerciseService.getRandomExercise().subscribe((exercice) => {
       console.log(exercice);
 
-      this.gameService.createGame(new Game(exercice, usersInGame, null, false)).subscribe((game) => {
+      this.gameService.createGame(new Game(exercice, usersInGame, null, false, [])).subscribe((game) => {
         console.log(game);
         this.webSocketAPI.sendQueueUpdate();
       });
@@ -93,6 +94,10 @@ export class PlayComponent implements OnInit, OnDestroy {
     this.userService.countUsersInQueue().subscribe((numberOfUsersInQueue: number) => {
       this.usersInQueue = numberOfUsersInQueue;
     });
+  }
+
+  openSnackBar(message: string): void {
+    this.snackBar.open(message, 'Close');
   }
 
 }

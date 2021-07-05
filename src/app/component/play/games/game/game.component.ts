@@ -154,11 +154,13 @@ export class GameComponent implements OnInit, OnDestroy, AfterViewChecked {
     if (this.game.exercise) {
       this.game.exercise.code = this.content;
 
-      this.codeService.compile(this.game.exercise).subscribe((data: Compilation) => {
-        console.log(data);
+      this.codeService.compileGame(this.game).subscribe((compilation: Compilation) => {
+        console.log(compilation);
 
-        this.result = data.output;
+        this.result = compilation.output;
         this.loading = false;
+
+        this.game.compilations.push(compilation);
       });
     }
   }

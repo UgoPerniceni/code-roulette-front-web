@@ -11,6 +11,8 @@ export class AdminComponent implements OnInit {
   dataSource: User[] = [];
   displayedColumns: string[] = ['id', 'firstName', 'lastName', 'email', 'userName', 'birthDate', 'actions'];
 
+  currentUser: User;
+
   constructor(private userService: UserService) {}
 
   ngOnInit(): void {
@@ -27,9 +29,13 @@ export class AdminComponent implements OnInit {
   }
 
   refreshDataSource(): void {
-    this.userService.getUsers().subscribe(data => {
-      console.log(data);
-      this.dataSource = data;
+    this.userService.getUsers().subscribe(users => {
+      console.log(users);
+      this.dataSource = users;
+
+      this.userService.getCurrentUser().subscribe((userConnected) => {
+        this.currentUser = userConnected;
+      });
     });
   }
 

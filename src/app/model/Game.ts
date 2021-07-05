@@ -1,6 +1,7 @@
 import {Exercise} from './Exercise';
 import {Chat} from './Chat';
 import {UserInGame} from './UserInGame';
+import {Compilation} from './Compilation';
 
 export class Game {
   id: string;
@@ -9,13 +10,21 @@ export class Game {
   isGameOver: boolean;
 
   usersInGame: UserInGame[];
+  compilations: Compilation[] = [];
 
-  constructor(exercise: Exercise, usersInGame: UserInGame[], chat: Chat, isGameOver: boolean) {
+  constructor(exercise: Exercise, usersInGame: UserInGame[], chat: Chat, isGameOver: boolean, compilations: Compilation[]) {
     this.exercise = exercise;
     this.usersInGame = usersInGame;
+    this.isGameOver = isGameOver;
+
     if (chat) {
       this.chat = chat;
     }
-    this.isGameOver = isGameOver;
+
+    if (compilations !== undefined) {
+      this.compilations = compilations;
+    } else {
+      this.compilations = [];
+    }
   }
 }
