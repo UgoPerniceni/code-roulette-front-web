@@ -20,6 +20,18 @@ body { margin: 0; font-family: Roboto, "Helvetica Neue", sans-serif; }
 .m-10 {
   margin: 10px;
 }
+
+.mb-10 {
+  margin-bottom: 10px;
+}
 .mat-progress-spinner circle, .mat-spinner circle {
   stroke: whitesmoke;
+}
+
+.height-100 {
+  height: 100%;
+}
+
+.width-100 {
+  width: 100%;
 }

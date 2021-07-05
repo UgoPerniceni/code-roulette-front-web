@@ -11,6 +11,7 @@ import {Compilation} from '../../../../model/Compilation';
 import {CodeService} from '../../../../service/code.service';
 import {interval} from 'rxjs';
 import {take} from 'rxjs/operators';
+import {MatSnackBar} from '@angular/material/snack-bar';
 
 interface Theme {
   value: string;
@@ -65,8 +66,11 @@ export class GameComponent implements OnInit, OnDestroy, AfterViewChecked {
   timerValue = 1;
   timerSubscription;
 
+  isPlaying = 'None';
+  simpleCardStyle = 'blue';
+
   constructor(private route: ActivatedRoute, private gameService: GameService, private formBuilder: FormBuilder,
-              private userService: UserService, private codeService: CodeService) {
+              private userService: UserService, private codeService: CodeService, private snackBar: MatSnackBar) {
     this.chatForm = this.formBuilder.group({
       message: ['', [Validators.required]],
     });
@@ -79,6 +83,7 @@ export class GameComponent implements OnInit, OnDestroy, AfterViewChecked {
     this.getGame();
 
     this.initializeTimer();
+    this.changeSimpleCardStyleToDanger();
   }
 
   ngAfterViewChecked(): void {}
@@ -188,10 +193,18 @@ export class GameComponent implements OnInit, OnDestroy, AfterViewChecked {
       this.timerValue = (this.time - val);
 
       if (this.timerValue === 1) {
-        alert('Time is up !');
+        this.openSnackBar('Time is up !', 'Close');
 
         this.timerValue = 1;
       }
     });
+  }
+
+  changeSimpleCardStyleToDanger(): void {
+    this.simpleCardStyle = 'background-color: #ff0000;font-weight: bold;color: white';
+  }
+
+  openSnackBar(message: string, action: string): void {
+    this.snackBar.open(message, action);
   }
 }

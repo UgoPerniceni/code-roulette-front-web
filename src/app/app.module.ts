@@ -31,6 +31,8 @@ import { MatPaginatorModule } from '@angular/material/paginator';
 import { MatSortModule } from '@angular/material/sort';
 import { MatDialogModule } from '@angular/material/dialog';
 import { MatGridListModule } from '@angular/material/grid-list';
+import { MatSnackBarModule } from '@angular/material/snack-bar';
+
 
 
 import { PlayComponent } from './component/play/play.component';
@@ -104,6 +106,7 @@ import { GamesComponent } from './component/play/games/games.component';
     MatSortModule,
     MatDialogModule,
     MatGridListModule,
+    MatSnackBarModule,
 
     TranslateModule.forRoot({
       loader: {

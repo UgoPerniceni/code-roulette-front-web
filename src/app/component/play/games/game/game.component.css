@@ -13,3 +13,19 @@
   display:inline;
   font-style: italic;
 }
+
+:host ::ng-deep .CodeMirror {
+  height: 400px;
+}
+
+.information {
+  font-size: large;
+  margin: 5px;
+}
+.game-information {
+  font-style: italic;
+}
+
+.player-information {
+  font-weight: bold;
+}

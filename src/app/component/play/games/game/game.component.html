@@ -1,8 +1,16 @@
 <div *ngIf="game">
-  <mat-toolbar style="background-color: #f0f0f5">
-    <span>Exercise : {{game.exercise.title}} -> {{game.exercise.id}}</span>
 
-  </mat-toolbar>
+  <div fxLayout="row" class="information">
+
+    <div fxFlex="50" fxLayoutAlign="start center" class="game-information">
+      <span>Exercise : {{game.exercise.title}} -> {{game.exercise.id}}</span>
+    </div>
+
+    <div fxFlex="50" fxLayoutAlign="end center" class="player-information">
+      <span> {{isPlaying}} is playing</span>
+    </div>
+
+  </div>
 
   <br/>
 
@@ -66,10 +74,18 @@
 
     <div fxFlex="70">
 
-
       <div fxLayout="row">
+        <div fxFlex="33" fxLayoutAlign="start start">
+          <mat-card>
+            <mat-icon>timer</mat-icon> <span> Timer : {{timerValue - 1}}s</span>
+          </mat-card>
+        </div>
 
-        <div fxFlex="50" fxLayoutAlign="start center">
+        <div fxFlex="33" fxLayoutAlign="center start">
+          <mat-card style="{{simpleCardStyle}}">Not your turn !</mat-card>
+        </div>
+
+        <div fxFlex="33" fxLayoutAlign="end start">
           <mat-form-field appearance="fill">
             <mat-label>Select a theme</mat-label>
             <mat-select [(ngModel)]="theme" (ngModelChange)="changeTheme()">
@@ -78,14 +94,6 @@
               </mat-option>
             </mat-select>
           </mat-form-field>
-        </div>
-
-        <div fxFlex="50" fxLayoutAlign="end center">
-          <mat-icon>timer</mat-icon>
-
-          <div style="margin: 10px">
-            <span>Timer : {{timerValue - 1}}s</span>
-          </div>
         </div>
       </div>
 
@@ -97,13 +105,30 @@
         (ngModelChange)="handleChange($event)">
       </ngx-codemirror>
 
-      <label class="btn btn-light" [class.active]="readOnly">
-        <mat-checkbox class="example-margin" [(ngModel)]="readOnly">Toggle read-only mode (currently {{ readOnly ? 'on' : 'off' }})</mat-checkbox>
-      </label>
+      <br/>
 
-      <br />
+      <div fxLayout="row">
 
-      <button mat-raised-button color="primary" (click)="compile()">Compile</button>
+        <div fxFlex="33" fxLayoutAlign="start center">
+          <button mat-raised-button color="primary" (click)="compile()">Compile</button>
+        </div>
+
+        <div fxFlex="33" fxLayoutAlign="center center">
+          <button mat-button [matMenuTriggerFor]="menu">Show history</button>
+          <mat-menu #menu="matMenu">
+            <button mat-menu-item>Compilation 1...</button>
+            <button mat-menu-item>Compilation 2...</button>
+          </mat-menu>
+        </div>
+
+        <div fxFlex="33" fxLayoutAlign="end center">
+          <label class="btn btn-light" [class.active]="readOnly">
+            <mat-checkbox class="example-margin" [disabled]="true" [(ngModel)]="readOnly">Read-only (currently {{ readOnly ? 'on' : 'off' }})</mat-checkbox>
+          </label>
+        </div>
+
+      </div>
+
     </div>
   </div>
 
@@ -113,10 +138,24 @@
     <span>Compilation</span>
     <hr>
     <div *ngIf="this.loading === true" fxLayout="row" fxLayoutAlign="center center">
-      <mat-spinner class="m-10"></mat-spinner>
+      <div class="white-spinner">
+        <mat-spinner class="m-10" color=""></mat-spinner>
+      </div>
     </div>
     <div *ngIf="this.loading !== true">
       <p>{{result}}</p>
     </div>
   </mat-card>
+</div>
+
+<div *ngIf="!game" class="height-100">
+
+  <div fxLayout="column" fxLayoutAlign="center center" class="height-100">
+    <h1>Loading...</h1>
+
+    <div class="game-information">
+      <mat-spinner color="accent" [diameter]="150"></mat-spinner>
+    </div>
+  </div>
+
 </div>

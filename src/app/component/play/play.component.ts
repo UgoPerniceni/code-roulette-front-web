@@ -44,6 +44,10 @@ export class PlayComponent implements OnInit, OnDestroy {
   }
 
   onSlideChange(event: Event): void {
+    this.changeQueueStatus();
+  }
+
+  changeQueueStatus(): void{
     this.isLookingForGame = !this.isLookingForGame;
 
     if (this.isLookingForGame) {
