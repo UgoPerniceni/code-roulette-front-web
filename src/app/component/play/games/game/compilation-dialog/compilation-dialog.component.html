@@ -1,0 +1,54 @@
+<div fxLayout="row">
+  <div fxFlex="33" fxLayoutAlign="start center">
+    <h2 mat-dialog-title>Compilation id : {{compilation.id}}</h2>
+  </div>
+
+  <div fxFlex="33" fxLayoutAlign="center center">
+    <h2 mat-dialog-title style="font-weight: bold">Score : {{compilation.score}}</h2>
+  </div>
+
+  <div fxFlex="33" fxLayoutAlign="end center">
+    <h2>Compilation status :
+      <span [ngClass]="compilation.status === 'SUCCESS' ? 'green': 'red'">{{compilation.status}}</span>
+    </h2>
+  </div>
+</div>
+<div mat-dialog-content>
+  <hr>
+  <br/>
+
+  <mat-accordion>
+    <mat-expansion-panel [expanded]="panelOpenState"
+                         (opened)="panelOpenState = true"
+                         (closed)="panelOpenState = false">
+      <mat-expansion-panel-header>
+        <mat-panel-title>
+          See the code sent
+        </mat-panel-title>
+        <mat-panel-description>
+          Currently I am {{ panelOpenState ? 'open' : 'closed' }}
+        </mat-panel-description>
+      </mat-expansion-panel-header>
+      <hr>
+      <p>{{compilation.input}}</p>
+    </mat-expansion-panel>
+  </mat-accordion>
+
+  <br/>
+  <mat-card class="simple-card-inverse">
+    <span>Result</span>
+    <hr>
+    <div fxLayout="row" fxLayoutAlign="center center"> <!--*ngIf="this.loading === true" fxLayout="row" fxLayoutAlign="center center">-->
+<!--      <div class="white-spinner">
+        <mat-spinner class="m-10" color=""></mat-spinner>
+      </div>-->
+    </div>
+    <div> <!--*ngIf="this.loading !== true">-->
+      <p>{{compilation.output}}</p>
+    </div>
+  </mat-card>
+
+  <br/>
+  <p>Date of compilation : {{ formatDate(compilation.compiledAt) }}</p>
+</div>
+

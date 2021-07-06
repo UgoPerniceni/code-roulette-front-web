@@ -12,6 +12,9 @@ import {CodeService} from '../../../../service/code.service';
 import {interval} from 'rxjs';
 import {take} from 'rxjs/operators';
 import {MatSnackBar} from '@angular/material/snack-bar';
+import {MatDialog, MatDialogConfig} from '@angular/material/dialog';
+import {CompilationDialogComponent} from './compilation-dialog/compilation-dialog.component';
+import {User} from '../../../../model/User';
 
 interface Theme {
   value: string;
@@ -69,8 +72,13 @@ export class GameComponent implements OnInit, OnDestroy, AfterViewChecked {
   isPlaying = 'None';
   simpleCardStyle = 'blue';
 
+  currentUser: User;
+
+  compileDisabled = false;
+
   constructor(private route: ActivatedRoute, private gameService: GameService, private formBuilder: FormBuilder,
-              private userService: UserService, private codeService: CodeService, private snackBar: MatSnackBar) {
+              private userService: UserService, private codeService: CodeService, private snackBar: MatSnackBar,
+              private dialog: MatDialog) {
     this.chatForm = this.formBuilder.group({
       message: ['', [Validators.required]],
     });
@@ -84,6 +92,10 @@ export class GameComponent implements OnInit, OnDestroy, AfterViewChecked {
 
     this.initializeTimer();
     this.changeSimpleCardStyleToDanger();
+
+    this.userService.getCurrentUser().subscribe((data) => {
+      this.currentUser = data;
+    });
   }
 
   ngAfterViewChecked(): void {}
@@ -153,14 +165,17 @@ export class GameComponent implements OnInit, OnDestroy, AfterViewChecked {
 
     if (this.game.exercise) {
       this.game.exercise.code = this.content;
+      this.compileDisabled = true;
 
       this.codeService.compileGame(this.game).subscribe((compilation: Compilation) => {
         console.log(compilation);
 
         this.result = compilation.output;
         this.loading = false;
+        this.compileDisabled = false;
 
         this.game.compilations.push(compilation);
+        this.openCompilationDialog(compilation);
       });
     }
   }
@@ -208,5 +223,40 @@ export class GameComponent implements OnInit, OnDestroy, AfterViewChecked {
 
   openSnackBar(message: string, action: string): void {
     this.snackBar.open(message, action);
+  }
+
+  formatDate(data: any): string {
+    let dateStr = '';
+
+    if (data) {
+      let milliSeconds = data[6];
+      milliSeconds = String(milliSeconds).slice(0, 3);
+      dateStr = `${data[0]}-${data[1]}-${data[2]} ${data[3]}:${data[4]}:${data[5]}:${milliSeconds}`;
+    }
+
+    return dateStr;
+  }
+
+  openCompilationDialog(compilation: Compilation): void {
+    const dialogConfig = new MatDialogConfig();
+
+    dialogConfig.disableClose = true;
+    dialogConfig.autoFocus = true;
+
+    dialogConfig.data = compilation;
+
+    this.dialog.open(CompilationDialogComponent, dialogConfig);
+  }
+
+  getCompilationsOfUser(): number {
+    let i = 0;
+
+    this.game.compilations.forEach((compilation) => {
+      if (compilation.user.id === this.currentUser.id) {
+        i++;
+      }
+    });
+
+    return i;
   }
 }

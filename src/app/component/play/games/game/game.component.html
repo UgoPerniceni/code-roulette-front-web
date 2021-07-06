@@ -14,7 +14,7 @@
 
   <br/>
 
-  <div class="container" fxLayout="row" fxLayoutGap="10px">
+  <div class="" fxLayout="row" fxLayoutGap="10px">
 
     <div fxFlex="30">
       <div fxLayout="column" fxLayoutGap="10px">
@@ -29,7 +29,7 @@
           <mat-card>
             <mat-card-header>Chat</mat-card-header>
             <hr>
-            <mat-card-content [style.overflow]="'auto'" [style.height.px]="'200'">
+            <mat-card-content [style.overflow]="'auto'" [style.height.px]="'280'">
               <ul>
                 <li *ngFor="let message of this.chat.messages">{{message.user.userName}} : {{message.text}}</li>
               </ul>
@@ -110,15 +110,26 @@
       <div fxLayout="row">
 
         <div fxFlex="33" fxLayoutAlign="start center">
-          <button mat-raised-button color="primary" (click)="compile()">Compile</button>
+          <button mat-raised-button color="primary" [disabled]="compileDisabled" (click)="compile()">Compile</button>
         </div>
 
         <div fxFlex="33" fxLayoutAlign="center center">
-          <button mat-button [matMenuTriggerFor]="menuCompilations">Show history</button>
-          <mat-menu #menuCompilations="matMenu">
-            <button mat-menu-item *ngFor="let compilation of game.compilations">
-              {{ compilation.compiledAt}} - {{compilation.user.userName }}
+          <div *ngIf="getCompilationsOfUser() === 0 ">
+            <button mat-button [matMenuTriggerFor]="menuCompilations" matBadge="{{getCompilationsOfUser()}}" matBadgePosition="after" matBadgeColor="accent" [disabled]="true">Show history</button>
+          </div>
+
+          <div *ngIf="getCompilationsOfUser() !== 0">
+            <button mat-button [matMenuTriggerFor]="menuCompilations" matBadge="{{getCompilationsOfUser()}}" matBadgePosition="after" matBadgeColor="accent">
+              Show history
             </button>
+          </div>
+
+          <mat-menu #menuCompilations="matMenu">
+            <span *ngFor="let compilation of game.compilations">
+              <button mat-menu-item  (click)="openCompilationDialog(compilation)" *ngIf="compilation.user.id === this.currentUser.id">
+                [{{formatDate(compilation.compiledAt)}} - {{compilation.user.userName }}] --> {{compilation.score}}
+              </button>
+            </span>
           </mat-menu>
         </div>
 
@@ -134,19 +145,6 @@
   </div>
 
   <br/>
-
-  <mat-card class="simple-card-inverse">
-    <span>Compilation</span>
-    <hr>
-    <div *ngIf="this.loading === true" fxLayout="row" fxLayoutAlign="center center">
-      <div class="white-spinner">
-        <mat-spinner class="m-10" color=""></mat-spinner>
-      </div>
-    </div>
-    <div *ngIf="this.loading !== true">
-      <p>{{result}}</p>
-    </div>
-  </mat-card>
 </div>
 
 <div *ngIf="!game" class="height-100">

@@ -33,6 +33,9 @@ import { MatDialogModule } from '@angular/material/dialog';
 import { MatGridListModule } from '@angular/material/grid-list';
 import { MatSnackBarModule } from '@angular/material/snack-bar';
 import { MatTooltipModule } from '@angular/material/tooltip';
+import { MatBadgeModule } from '@angular/material/badge';
+import { MatExpansionModule } from '@angular/material/expansion';
+
 import { ClipboardModule } from '@angular/cdk/clipboard';
 
 import { PlayComponent } from './component/play/play.component';
@@ -53,6 +56,7 @@ import { LobbyDialogJoinComponent } from './component/lobby/lobby-dialog-join/lo
 import { GameComponent } from './component/play/games/game/game.component';
 import { ExercisesComponent } from './component/play/exercises/exercises.component';
 import { GamesComponent } from './component/play/games/games.component';
+import { CompilationDialogComponent } from './component/play/games/game/compilation-dialog/compilation-dialog.component';
 
 
 @NgModule({
@@ -73,7 +77,8 @@ import { GamesComponent } from './component/play/games/games.component';
     LobbyDialogJoinComponent,
     GameComponent,
     ExercisesComponent,
-    GamesComponent
+    GamesComponent,
+    CompilationDialogComponent
   ],
   imports: [
     BrowserModule,
@@ -108,6 +113,8 @@ import { GamesComponent } from './component/play/games/games.component';
     MatGridListModule,
     MatSnackBarModule,
     MatTooltipModule,
+    MatBadgeModule,
+    MatExpansionModule,
     ClipboardModule,
 
     TranslateModule.forRoot({

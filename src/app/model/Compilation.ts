@@ -6,6 +6,8 @@ export class Compilation {
   input: string;
   output: string;
   status: string;
+  score: string;
+
   exercise: Exercise;
 
   user: User;
@@ -14,11 +16,12 @@ export class Compilation {
   updatedAt: Date;
   createdAt: Date;
 
-  constructor(id: string, input: string, output: string, status: string, exercise: Exercise, user: User, compiledAt: Date, updatedAt: Date, createdAt: Date) {
+  constructor(id: string, input: string, output: string, status: string, exercise: Exercise, user: User, score: string, compiledAt: Date, updatedAt: Date, createdAt: Date) {
     this.id = id;
     this.input = input;
     this.output = output;
     this.status = status;
+    this.score = score;
     this.exercise = exercise;
     this.user = user;
     this.compiledAt = compiledAt;
