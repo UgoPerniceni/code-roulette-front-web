@@ -1,6 +1,6 @@
 <div fxLayout="row">
   <div fxFlex="33" fxLayoutAlign="start center">
-    <h2 mat-dialog-title>Compilation id : {{compilation.id}}</h2>
+    <h2 mat-dialog-title>id : {{compilation.id}}</h2>
   </div>
 
   <div fxFlex="33" fxLayoutAlign="center center">
@@ -29,8 +29,14 @@
           Currently I am {{ panelOpenState ? 'open' : 'closed' }}
         </mat-panel-description>
       </mat-expansion-panel-header>
-      <hr>
-      <p>{{compilation.input}}</p>
+
+      <ngx-codemirror
+        [options]="options"
+        [ngModel]="compilation.input"
+        [disabled]="true"
+        [autoFocus]="true">
+      </ngx-codemirror>
+
     </mat-expansion-panel>
   </mat-accordion>
 
@@ -44,7 +50,7 @@
       </div>-->
     </div>
     <div> <!--*ngIf="this.loading !== true">-->
-      <p>{{compilation.output}}</p>
+      <p style="white-space: pre-line">{{compilation.output}}</p>
     </div>
   </mat-card>
 

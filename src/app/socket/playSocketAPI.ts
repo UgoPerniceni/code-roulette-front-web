@@ -1,9 +1,10 @@
 import * as Stomp from 'stompjs';
 import * as SockJS from 'sockjs-client';
 import {PlayComponent} from '../component/play/play.component';
+import {environment} from '../../environments/environment';
 
 export class PlaySocketAPI {
-  webSocketEndPoint = 'http://localhost:8080/ws';
+  webSocketEndPoint = environment.socketUrl;
   socket = '/socket/updateQueueCounter';
   stompClient: any;
   playComponent: PlayComponent;

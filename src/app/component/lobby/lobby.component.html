@@ -1,23 +1,52 @@
-<p>lobby works!</p>
 
-<p>Connected as {{user?.email}}</p>
+<div *ngIf="user">
+  <div fxLayout="row">
+    <div fxFlex="50" fxLayoutAlign="center center">
+      <p>P1</p>
+    </div>
+    <div fxFlex="50" fxLayoutAlign="center center">
+      <p>P2</p>
+    </div>
+  </div>
 
-<div *ngIf="lobby">
-  <p>Current lobby : {{lobby?.title}}</p>
-  <p>Users in lobby :</p>
-  <ul>
-    <li *ngFor="let user of lobby.users">{{ user.userName }}</li>
-  </ul>
-  <p>
-    lobby's key : {{lobby?.id}}
-    <button mat-button [cdkCopyToClipboard]="lobby.id">
-      <mat-icon matTooltip="Copy the key to clipboard" (click)="keyCopied()">file_copy</mat-icon>
-    </button>
-  </p>
-  <button mat-raised-button color="warn" (click)="leaveLobby()">Leave lobby</button>
-  <button mat-raised-button color="primary" (click)="createGame()">Create game with lobby</button>
+  <mat-card style="height: 100%">
+    <mat-card-header>Lobby</mat-card-header>
+
+    <mat-card-content>
+      <hr class="mb-10">
+      <div *ngIf="lobby">
+        <p>Current lobby : {{lobby?.title}}</p>
+        <p>Users in lobby :</p>
+        <ul>
+          <li *ngFor="let user of lobby.users">{{ user.userName }}</li>
+        </ul>
+        <p>
+          lobby's key : {{lobby?.id}}
+          <button mat-button [cdkCopyToClipboard]="lobby.id">
+            <mat-icon matTooltip="Copy the key to clipboard" (click)="keyCopied()">file_copy</mat-icon>
+          </button>
+        </p>
+        <button mat-raised-button color="warn" (click)="leaveLobby()">Leave lobby</button>
+        <button mat-raised-button color="primary" (click)="createGame()">Create game with lobby</button>
+      </div>
+
+      <div *ngIf="!lobby">
+        <button mat-raised-button color="" (click)="openCreateLobbyDialog()">Create lobby</button>
+        <button mat-raised-button color="" (click)="openJoinLobbyDialog()">Join lobby with key</button>
+      </div>
+    </mat-card-content>
+  </mat-card>
+
 </div>
-<div *ngIf="!lobby">
-  <button mat-raised-button color="" (click)="openCreateLobbyDialog()">Create lobby</button>
-  <button mat-raised-button color="" (click)="openJoinLobbyDialog()">Join lobby with key</button>
+
+<div *ngIf="!user" class="height-100">
+
+  <div fxLayout="column" fxLayoutAlign="center center" class="height-100">
+    <h1>Loading...</h1>
+
+    <div class="game-information">
+      <mat-spinner color="accent" [diameter]="150"></mat-spinner>
+    </div>
+  </div>
+
 </div>

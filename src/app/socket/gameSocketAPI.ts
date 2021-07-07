@@ -2,9 +2,10 @@ import * as Stomp from 'stompjs';
 import * as SockJS from 'sockjs-client';
 import {GameComponent} from '../component/play/games/game/game.component';
 import {Message} from '../model/Message';
+import {environment} from '../../environments/environment';
 
 export class GameSocketAPI {
-  webSocketEndPoint = 'http://localhost:8080/ws';
+  webSocketEndPoint = environment.socketUrl;
   socket = '/socket/chat';
   stompClient: any;
   gameComponent: GameComponent;
