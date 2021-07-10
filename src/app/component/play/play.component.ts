@@ -83,7 +83,7 @@ export class PlayComponent implements OnInit, OnDestroy {
     this.exerciseService.getRandomExercise().subscribe((exercice) => {
       console.log(exercice);
 
-      this.gameService.createGame(new Game(exercice, usersInGame, null, false, [])).subscribe((game) => {
+      this.gameService.createGame(new Game(exercice, usersInGame, null, false,  '', 25, [])).subscribe((game) => {
         console.log(game);
         this.webSocketAPI.sendQueueUpdate();
       });

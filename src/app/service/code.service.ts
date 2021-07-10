@@ -25,9 +25,9 @@ export class CodeService {
     return this.http.post<any>(this.url + 'compileAndSaveExercise', exercise);
   }
 
-  compileGame(game: Game): any{
+  compileGame(game: Game, timer: number): any{
     console.log('input' +  game);
 
-    return this.http.post<any>(this.url + 'compileAndSave', game);
+    return this.http.post<any>(this.url + 'compileAndSave/' + timer, game);
   }
 }

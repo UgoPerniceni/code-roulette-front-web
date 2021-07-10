@@ -8,14 +8,18 @@ export class Game {
   exercise: Exercise;
   chat: Chat;
   gameOver: boolean;
+  code: string;
+  timer: number;
 
   usersInGame: UserInGame[];
   compilations: Compilation[] = [];
 
-  constructor(exercise: Exercise, usersInGame: UserInGame[], chat: Chat, gameOver: boolean, compilations: Compilation[]) {
+  constructor(exercise: Exercise, usersInGame: UserInGame[], chat: Chat, gameOver: boolean, code: string, timer: number, compilations: Compilation[]) {
     this.exercise = exercise;
     this.usersInGame = usersInGame;
     this.gameOver = gameOver;
+    this.code = code;
+    this.timer = timer;
 
     if (chat) {
       this.chat = chat;

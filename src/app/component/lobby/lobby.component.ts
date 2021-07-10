@@ -67,7 +67,7 @@ export class LobbyComponent implements OnInit {
 
           const usersInGame: UserInGame[] = Utilities.usersToUsersInGame(this.lobby.users);
 
-          this.gameService.createGame(new Game(exercise, usersInGame, null, false, [])).subscribe((game) => {
+          this.gameService.createGame(new Game(exercise, usersInGame, null, false , '', 25, [])).subscribe((game) => {
             console.log(game);
           });
         });

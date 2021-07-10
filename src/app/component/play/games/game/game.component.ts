@@ -82,6 +82,8 @@ export class GameComponent implements OnInit, OnDestroy, AfterViewChecked {
   compileDisabled = false;
   compileLoading = false;
 
+  winner: UserInGame;
+
   constructor(private route: ActivatedRoute, private gameService: GameService, private formBuilder: FormBuilder,
               private userService: UserService, private codeService: CodeService, private snackBar: MatSnackBar,
               private dialog: MatDialog) {
@@ -123,15 +125,22 @@ export class GameComponent implements OnInit, OnDestroy, AfterViewChecked {
 
       this.game = game;
       this.chat = this.game.chat;
+      this.time = this.game.timer;
 
       this.languageCM = this.getLanguageCM(this.game.exercise.language.toString());
       this.changeLanguageCM();
-      this.content = this.game.exercise.code;
+
+      if (this.game.code === '') {
+        this.content = this.game.exercise.code;
+      } else {
+        this.content = this.game.code;
+      }
 
       if (this.gameWebSocketAPI == null) {
         this.gameWebSocketAPI = new GameSocketAPI(this, this.game.id);
         this.gameWebSocketAPI._connect();
       }
+
       this.updateGameState();
     });
   }
@@ -177,10 +186,16 @@ export class GameComponent implements OnInit, OnDestroy, AfterViewChecked {
     this.loading = true;
 
     if (this.game.exercise) {
-      this.game.exercise.code = this.content;
       this.compileLoading = true;
 
-      this.codeService.compileGame(this.game).subscribe((compilation: Compilation) => {
+      const timer = this.timerValue;
+
+      if (this.timerSubscription) {
+        this.timerSubscription.unsubscribe();
+      }
+      this.game.code = this.content;
+
+      this.codeService.compileGame(this.game, timer).subscribe((compilation: Compilation) => {
         console.log(compilation);
 
         this.result = compilation.output;
@@ -196,10 +211,6 @@ export class GameComponent implements OnInit, OnDestroy, AfterViewChecked {
         // Change turn
         this.gameService.endTurn(this.game).subscribe((game) => {
           this.game = game;
-
-          if (game.gameOver) {
-            this.readOnly = true;
-          }
 
           this.gameWebSocketAPI.sendGameUpdate(this.game.id);
         });
@@ -315,6 +326,15 @@ export class GameComponent implements OnInit, OnDestroy, AfterViewChecked {
   }
 
   updateGameState(): void {
+    this.updateScore();
+
+    if (this.game.gameOver) {
+      this.readOnly = true;
+      this.winner = this.getWinner();
+
+      return;
+    }
+
     if (this.userConnectedIsPlaying()) {
       this.isPlaying = true;
       this.compileDisabled = false;
@@ -324,7 +344,9 @@ export class GameComponent implements OnInit, OnDestroy, AfterViewChecked {
       this.isPlaying = false;
       this.compileDisabled = true;
     }
+  }
 
-    this.updateScore();
+  getWinner(): UserInGame {
+    return this.game.usersInGame.find(userIg => userIg.won === true);
   }
 }
