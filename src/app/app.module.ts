@@ -7,7 +7,7 @@ import { SignupComponent } from './component/signup/signup.component';
 import { LoginComponent } from './component/login/login.component';
 import { HomeComponent } from './component/home/home.component';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
-import {HTTP_INTERCEPTORS, HttpClient, HttpClientModule} from '@angular/common/http';
+import { HTTP_INTERCEPTORS, HttpClient, HttpClientModule } from '@angular/common/http';
 import { FlexLayoutModule } from '@angular/flex-layout';
 
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
@@ -44,8 +44,8 @@ import { AdminComponent } from './component/admin/admin.component';
 import { TokenInterceptor } from './interceptor/token.interceptor';
 import { CodemirrorModule } from '@ctrl/ngx-codemirror';
 
-import {TranslateLoader, TranslateModule} from '@ngx-translate/core';
-import {TranslateHttpLoader} from '@ngx-translate/http-loader';
+import { TranslateLoader, TranslateModule } from '@ngx-translate/core';
+import { TranslateHttpLoader } from '@ngx-translate/http-loader';
 import { ExerciseComponent } from './component/play/exercises/exercise/exercise.component';
 import { ProfileComponent } from './component/profile/profile.component';
 import { NotFoundComponent } from './component/not-found/not-found.component';
@@ -57,7 +57,9 @@ import { GameComponent } from './component/play/games/game/game.component';
 import { ExercisesComponent } from './component/play/exercises/exercises.component';
 import { GamesComponent } from './component/play/games/games.component';
 import { CompilationDialogComponent } from './component/play/games/game/compilation-dialog/compilation-dialog.component';
-
+import { MatDatepickerModule } from '@angular/material/datepicker';
+import { MatNativeDateModule } from '@angular/material/core';
+import { ChartsModule } from 'ng2-charts';
 
 @NgModule({
   declarations: [
@@ -87,6 +89,8 @@ import { CompilationDialogComponent } from './component/play/games/game/compilat
     HttpClientModule,
     FlexLayoutModule,
     CodemirrorModule,
+    MatDatepickerModule,
+    MatNativeDateModule,
 
     MatCardModule,
     FormsModule,
@@ -116,6 +120,7 @@ import { CompilationDialogComponent } from './component/play/games/game/compilat
     MatBadgeModule,
     MatExpansionModule,
     ClipboardModule,
+    ChartsModule,
 
     TranslateModule.forRoot({
       loader: {
@@ -125,6 +130,10 @@ import { CompilationDialogComponent } from './component/play/games/game/compilat
       }
     }),
   ],
+  exports: [
+    MatDatepickerModule,
+    MatNativeDateModule
+  ],
   providers: [{
     provide: HTTP_INTERCEPTORS,
     useClass: TokenInterceptor,
@@ -132,7 +141,7 @@ import { CompilationDialogComponent } from './component/play/games/game/compilat
   }],
   bootstrap: [AppComponent]
 })
-export class AppModule {}
+export class AppModule { }
 
 // required for AOT compilation
 export function HttpLoaderFactory(http: HttpClient): any {

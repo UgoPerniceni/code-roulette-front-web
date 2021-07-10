@@ -1,9 +1,9 @@
 import { Injectable } from '@angular/core';
-import {User} from '../model/User';
-import {Observable} from 'rxjs';
-import {HttpClient, HttpResponse} from '@angular/common/http';
-import {environment} from '../../environments/environment';
-import {AuthService} from './auth.service';
+import { User } from '../model/User';
+import { Observable } from 'rxjs';
+import { HttpClient, HttpResponse } from '@angular/common/http';
+import { environment } from '../../environments/environment';
+import { AuthService } from './auth.service';
 
 @Injectable({
   providedIn: 'root'
@@ -12,9 +12,9 @@ export class UserService {
 
   private url = environment.apiUrl + 'user/';
 
-  constructor(private http: HttpClient, private authService: AuthService) {}
+  constructor(private http: HttpClient, private authService: AuthService) { }
 
-  getUsers(): Observable<User[]>{
+  getUsers(): Observable<User[]> {
     return this.http.get<User[]>(this.url);
   }
 
@@ -27,15 +27,18 @@ export class UserService {
     return this.http.get<User>(this.url + 'token/' + token);
   }
 
-  deleteUser(id: string): Observable<HttpResponse<User>>{
-    return this.http.delete<User>(this.url + id, {observe: 'response'});
+  deleteUser(id: string): Observable<HttpResponse<User>> {
+    return this.http.delete<User>(this.url + id, { observe: 'response' });
   }
 
   joinQueue(): Observable<User[]> {
     return this.http.post<any>(this.url + 'joinQueue', {});
   }
 
-  leaveQueue(): Observable<HttpResponse<HttpResponse<User>>>{
-    return this.http.delete<HttpResponse<User>>(this.url + 'leaveQueue', {observe: 'response'});
+  leaveQueue(): Observable<HttpResponse<HttpResponse<User>>> {
+    return this.http.delete<HttpResponse<User>>(this.url + 'leaveQueue', { observe: 'response' });
+  }
+  updateUser(user: User): Observable<User> {
+    return this.http.post<any>(this.url + 'updateUser/', user, {});
   }
 }
