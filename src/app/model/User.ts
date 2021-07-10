@@ -10,8 +10,14 @@ export class User {
   eloProblems: number;
   isInQueue: boolean;
   lobbyId: string;
+  gamesPlayed: number;
+  gamesWon: number;
+  correctCompilation: number;
 
-  constructor(id: string, firstName: string, lastName: string, email: string, userName: string, password: string, birthDate: Date, elo: number, eloProblems: number, isInQueue: boolean, lobbyId: string) {
+  constructor(id: string, firstName: string, lastName: string, email: string, userName: string, password: string, birthDate: Date, elo: number, eloProblems: number, isInQueue: boolean, lobbyId: string,
+    gamesPlayed: number,
+    gamesWon: number,
+    correctcompilation: number) {
     this.id = id;
     this.firstName = firstName;
     this.lastName = lastName;
@@ -23,5 +29,8 @@ export class User {
     this.eloProblems = eloProblems;
     this.isInQueue = isInQueue;
     this.lobbyId = lobbyId;
+    this.gamesPlayed = gamesPlayed;
+    this.gamesWon = gamesWon;
+    this.correctCompilation = correctcompilation;
   }
 }

@@ -1,1 +1,184 @@
-<p>profile works!</p>
+<div fxLayout="row" class="profile">
+  <div fxLayout="column" fxFlex="20" fxLayoutAlign="start center">
+    <div>
+      <img
+        id="profileImage"
+        src="https://pcsquad.ca/images/website.jpg"
+        alt="Avatar"
+      />
+    </div>
+    <div>
+      <form [formGroup]="formGroup">
+        <mat-accordion class="example-headers-align">
+          <mat-expansion-panel
+            [expanded]="step === 0"
+            (opened)="setStep(0)"
+            hideToggle
+          >
+            <mat-expansion-panel-header>
+              <mat-panel-title> Personal data </mat-panel-title>
+            </mat-expansion-panel-header>
+            <mat-panel-description class="titleDescription">
+              To edit a data, just type on it
+            </mat-panel-description>
+
+            <mat-form-field appearance="fill">
+              <mat-label>First name</mat-label>
+              <input matInput formControlName="firstName" />
+            </mat-form-field>
+            <br />
+            <mat-form-field appearance="fill">
+              <mat-label>Last name</mat-label>
+              <input matInput formControlName="lastName" />
+            </mat-form-field>
+            <br />
+            <mat-form-field appearance="fill">
+              <mat-label>Email</mat-label>
+              <input matInput formControlName="email" />
+            </mat-form-field>
+            <br />
+            <mat-form-field appearance="fill">
+              <mat-label>Username</mat-label>
+              <input matInput formControlName="userName" />
+            </mat-form-field>
+            <br />
+            <mat-form-field appearance="fill">
+              <mat-label
+                >{{ user.birthDate }}
+                <mat-icon class="dateIcon">date_range</mat-icon></mat-label
+              >
+              <input
+                matInput
+                [matDatepicker]="picker"
+                (focus)="picker.open()"
+                readonly
+              />
+            </mat-form-field>
+            <mat-datepicker #picker></mat-datepicker>
+
+            <!-- #docregion action-bar -->
+            <mat-action-row>
+              <button mat-button color="primary" (click)="nextStep()">
+                Next
+              </button>
+            </mat-action-row>
+            <!-- #enddocregion action-bar -->
+          </mat-expansion-panel>
+
+          <mat-expansion-panel
+            [expanded]="step === 1"
+            (opened)="setStep(1)"
+            hideToggle
+          >
+            <mat-expansion-panel-header>
+              <mat-panel-title> Security </mat-panel-title>
+              <mat-panel-description>
+                Type to change your password
+              </mat-panel-description>
+            </mat-expansion-panel-header>
+            <br />
+            <mat-form-field appearance="fill">
+              <mat-label>old password</mat-label>
+              <input [type]="hide ? 'password' : 'text'" matInput />
+              <button
+                mat-icon-button
+                matSuffix
+                (click)="hide = !hide"
+                [attr.aria-label]="'Hide password'"
+                [attr.aria-pressed]="hide"
+              >
+                <mat-icon>{{
+                  hide ? "visibility_off" : "visibility"
+                }}</mat-icon>
+              </button>
+            </mat-form-field>
+            <br />
+            <mat-form-field appearance="fill">
+              <mat-label>New password</mat-label>
+              <input [type]="hide ? 'password' : 'text'" matInput />
+              <button
+                mat-icon-button
+                matSuffix
+                (click)="hide = !hide"
+                [attr.aria-label]="'Hide password'"
+                [attr.aria-pressed]="hide"
+              >
+                <mat-icon>{{
+                  hide ? "visibility_off" : "visibility"
+                }}</mat-icon>
+              </button>
+            </mat-form-field>
+            <br />
+            <mat-form-field appearance="fill">
+              <mat-label>Retype new password</mat-label>
+              <input [type]="hide ? 'password' : 'text'" matInput />
+              <button
+                mat-icon-button
+                matSuffix
+                (click)="hide = !hide"
+                [attr.aria-label]="'Hide password'"
+                [attr.aria-pressed]="hide"
+              >
+                <mat-icon>{{
+                  hide ? "visibility_off" : "visibility"
+                }}</mat-icon>
+              </button>
+            </mat-form-field>
+
+            <mat-action-row>
+              <button mat-button color="warn" (click)="prevStep()">
+                Previous
+              </button>
+              <button
+                type="submit"
+                mat-button
+                color="primary"
+                (click)="onSubmit()"
+              >
+                End
+              </button>
+            </mat-action-row>
+          </mat-expansion-panel>
+        </mat-accordion>
+      </form>
+    </div>
+  </div>
+  <div fxFlex="80" fxLayoutAlign="center center" class="leftSideProfile">
+    <div class="leftsideContainer">
+      <div class="tableContainer">
+        <table>
+          <thead>
+            <tr>
+              <th>Elo</th>
+              <th>Rank</th>
+              <th>Games played</th>
+              <th>Games won</th>
+              <th>Correct compilations</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td>{{ user.elo }}</td>
+              <td>{{ user.elo }}</td>
+              <td>{{ user.gamesPlayed }}</td>
+              <td>{{ user.gamesWon }}</td>
+              <td>{{ user.correctCompilation }}</td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+      <div style="display: block">
+        <canvas
+          baseChart
+          [data]="pieChartData"
+          [labels]="pieChartLabels"
+          [chartType]="pieChartType"
+          [options]="pieChartOptions"
+          [colors]="pieChartColors"
+          [legend]="pieChartLegend"
+        >
+        </canvas>
+      </div>
+    </div>
+  </div>
+</div>

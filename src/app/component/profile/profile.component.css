@@ -1,0 +1,59 @@
+#profileImage {
+  width: 80%;
+  height: 80%;
+  display: block;
+  margin-left: auto;
+  margin-right: auto;
+  border-radius: 50%;
+  margin-bottom: 10%;
+}
+
+.titleDescription {
+  margin-bottom: 5%;
+}
+.dateIcon {
+  margin-left: 50%;
+}
+.leftSideContainer {
+  background-color: blue;
+}
+.tableContainer {
+  margin-bottom: 30%;
+}
+table {
+  border-collapse: collapse;
+  margin: 25px 0;
+  font-size: 0.9em;
+  font-family: sans-serif;
+  min-width: 400px;
+  box-shadow: 0 0 20px rgba(0, 0, 0, 0.15);
+  text-align: center;
+}
+table thead tr {
+  background-color: #009879;
+  color: #ffffff;
+  text-align: left;
+}
+table th,
+table td {
+  border-left: 1px solid #009879;
+  border-right: 1px solid #009879;
+  text-align: center;
+  padding: 12px 30px;
+}
+
+table tbody tr {
+  border-bottom: 1px solid #dddddd;
+}
+
+table tbody tr:nth-of-type(even) {
+  background-color: #f3f3f3;
+}
+
+table tbody tr:last-of-type {
+  border-bottom: 2px solid #009879;
+}
+table tbody tr.active-row {
+  font-weight: bold;
+  color: #009879;
+}
