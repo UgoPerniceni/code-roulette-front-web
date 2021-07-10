@@ -1,19 +1,17 @@
 import * as Stomp from 'stompjs';
 import * as SockJS from 'sockjs-client';
-import {environment} from '../../environments/environment';
 import {GameComponent} from '../component/play/games/game/game.component';
+import {Message} from '../model/Message';
+import {environment} from '../../environments/environment';
 
-export class GameSocketAPI {
+export class ChatSocketAPI {
   webSocketEndPoint = environment.socketUrl;
-  socket = '/socket/game/update/';
+  socket = '/socket/chat';
   stompClient: any;
   gameComponent: GameComponent;
 
-  constructor(gameComponent: GameComponent, gameId: string){
+  constructor(gameComponent: GameComponent){
     this.gameComponent = gameComponent;
-    this.socket = this.socket + gameId;
-
-    console.log(this.socket);
   }
 
   _connect(): void {
@@ -22,7 +20,7 @@ export class GameSocketAPI {
     this.stompClient = Stomp.over(ws);
     this.stompClient.connect({}, frame => {
       this.stompClient.subscribe(this.socket, sdkEvent => {
-        this.gameComponent.refreshGame();
+        this.onMessageReceived(sdkEvent);
       });
       this.stompClient.reconnect_delay = 2000;
     }, this.errorCallBack);
@@ -43,9 +41,21 @@ export class GameSocketAPI {
     }, 5000);
   }
 
-  sendGameUpdate(gameId: string): void {
-    console.log('Sending updateGame to API...');
-    console.log('/api/socket/endTurn/' + gameId);
-    this.stompClient.send('/api/socket/endTurn/' + gameId, {}, {});
+  sendMessage(chatId: string, message: string, userId: string): void {
+    console.log('Sending message to API...');
+
+    const body = {
+      chatId,
+      message,
+      userId
+    };
+
+    this.stompClient.send('/api/socket/sendMessage', {}, JSON.stringify(body));
+  }
+
+  onMessageReceived(response): void {
+    const message: Message = JSON.parse(response.body);
+    console.log('Message received from Server : ' + message.user.userName + ' : ' + message.text);
+    this.gameComponent.receiveMessage(message);
   }
 }

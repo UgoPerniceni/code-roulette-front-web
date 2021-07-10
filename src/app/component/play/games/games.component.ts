@@ -15,6 +15,7 @@ export class GamesComponent implements OnInit {
   dataSource = new MatTableDataSource<Game>();
   displayedColumns: string[] = ['id', 'action'];
 
+  games: Game[];
   @ViewChild(MatPaginator) paginator!: MatPaginator;
 
   constructor(private gameService: GameService, private userService: UserService) { }
@@ -25,6 +26,7 @@ export class GamesComponent implements OnInit {
       if (user) {
         this.gameService.getGamesByUserId(user.id).subscribe((data) => {
           console.log(data);
+          this.games = data;
           this.dataSource.data = data;
         });
       }

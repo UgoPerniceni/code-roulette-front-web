@@ -3,7 +3,7 @@ import {Game} from '../../../../model/Game';
 import {ActivatedRoute} from '@angular/router';
 import {GameService} from '../../../../service/game.service';
 import {FormBuilder, FormGroup, Validators} from '@angular/forms';
-import { GameSocketAPI } from '../../../../socket/gameSocketAPI';
+import { ChatSocketAPI } from '../../../../socket/chatSocketAPI';
 import {Message} from '../../../../model/Message';
 import {UserService} from '../../../../service/user.service';
 import {Chat} from '../../../../model/Chat';
@@ -15,6 +15,8 @@ import {MatSnackBar} from '@angular/material/snack-bar';
 import {MatDialog, MatDialogConfig} from '@angular/material/dialog';
 import {CompilationDialogComponent} from './compilation-dialog/compilation-dialog.component';
 import {User} from '../../../../model/User';
+import {UserInGame} from '../../../../model/UserInGame';
+import {GameSocketAPI} from '../../../../socket/gameSocketAPI';
 
 interface Theme {
   value: string;
@@ -29,7 +31,9 @@ interface Theme {
 export class GameComponent implements OnInit, OnDestroy, AfterViewChecked {
 
   game: Game;
-  webSocketAPI: GameSocketAPI;
+  chatWebSocketAPI: ChatSocketAPI;
+  gameWebSocketAPI: GameSocketAPI;
+
   chatForm: FormGroup;
 
   chat: Chat;
@@ -62,19 +66,21 @@ export class GameComponent implements OnInit, OnDestroy, AfterViewChecked {
   content = '';
   result = '';
 
-  time = 16; // 15s
+  time = 21; // 20s
   timerInterval = interval(1000); // 1s
   countDown;
 
   timerValue = 1;
   timerSubscription;
 
-  isPlaying = 'None';
-  simpleCardStyle = 'blue';
+  userConnected: User;
+  usernamePlaying: string;
 
-  currentUser: User;
+  isPlaying = false;
 
+  score = 0;
   compileDisabled = false;
+  compileLoading = false;
 
   constructor(private route: ActivatedRoute, private gameService: GameService, private formBuilder: FormBuilder,
               private userService: UserService, private codeService: CodeService, private snackBar: MatSnackBar,
@@ -85,24 +91,25 @@ export class GameComponent implements OnInit, OnDestroy, AfterViewChecked {
   }
 
   ngOnInit(): void {
-    this.webSocketAPI = new GameSocketAPI(this);
-    this.webSocketAPI._connect();
-
-    this.getGame();
-
-    this.initializeTimer();
-    this.changeSimpleCardStyleToDanger();
+    this.chatWebSocketAPI = new ChatSocketAPI(this);
+    this.chatWebSocketAPI._connect();
 
     this.userService.getCurrentUser().subscribe((data) => {
-      this.currentUser = data;
+      this.userConnected = data;
+
+      this.getGame();
     });
   }
 
   ngAfterViewChecked(): void {}
 
   ngOnDestroy(): void {
-    this.webSocketAPI._disconnect();
-    this.timerSubscription.unsubscribe();
+    this.chatWebSocketAPI._disconnect();
+    this.gameWebSocketAPI._disconnect();
+
+    if (this.timerSubscription) {
+      this.timerSubscription.unsubscribe();
+    }
   }
 
   getGame(): void {
@@ -120,6 +127,12 @@ export class GameComponent implements OnInit, OnDestroy, AfterViewChecked {
       this.languageCM = this.getLanguageCM(this.game.exercise.language.toString());
       this.changeLanguageCM();
       this.content = this.game.exercise.code;
+
+      if (this.gameWebSocketAPI == null) {
+        this.gameWebSocketAPI = new GameSocketAPI(this, this.game.id);
+        this.gameWebSocketAPI._connect();
+      }
+      this.updateGameState();
     });
   }
 
@@ -165,17 +178,31 @@ export class GameComponent implements OnInit, OnDestroy, AfterViewChecked {
 
     if (this.game.exercise) {
       this.game.exercise.code = this.content;
-      this.compileDisabled = true;
+      this.compileLoading = true;
 
       this.codeService.compileGame(this.game).subscribe((compilation: Compilation) => {
         console.log(compilation);
 
         this.result = compilation.output;
         this.loading = false;
-        this.compileDisabled = false;
+        this.compileLoading = false;
 
         this.game.compilations.push(compilation);
         this.openCompilationDialog(compilation);
+
+        this.game.usersInGame
+          .find(userIg => userIg.user.id === this.userConnected.id).score = this.score;
+
+        // Change turn
+        this.gameService.endTurn(this.game).subscribe((game) => {
+          this.game = game;
+
+          if (game.gameOver) {
+            this.readOnly = true;
+          }
+
+          this.gameWebSocketAPI.sendGameUpdate(this.game.id);
+        });
       });
     }
   }
@@ -190,7 +217,7 @@ export class GameComponent implements OnInit, OnDestroy, AfterViewChecked {
         console.log('form\'s message');
         console.log(message);
 
-        this.webSocketAPI.sendMessage(this.game.chat.id, textMessage, user.id);
+        this.chatWebSocketAPI.sendMessage(this.game.chat.id, textMessage, user.id);
 
         this.chatForm.reset();
       });
@@ -217,10 +244,6 @@ export class GameComponent implements OnInit, OnDestroy, AfterViewChecked {
     });
   }
 
-  changeSimpleCardStyleToDanger(): void {
-    this.simpleCardStyle = 'background-color: #ff0000;font-weight: bold;color: white';
-  }
-
   openSnackBar(message: string, action: string): void {
     this.snackBar.open(message, action);
   }
@@ -245,18 +268,63 @@ export class GameComponent implements OnInit, OnDestroy, AfterViewChecked {
 
     dialogConfig.data = compilation;
 
-    this.dialog.open(CompilationDialogComponent, dialogConfig);
+    const dialogRef = this.dialog.open(CompilationDialogComponent, dialogConfig);
+
+    dialogRef.afterClosed().subscribe(
+      _ => {
+        this.updateScore();
+
+
+      }
+    );
   }
 
   getCompilationsOfUser(): number {
     let i = 0;
 
     this.game.compilations.forEach((compilation) => {
-      if (compilation.user.id === this.currentUser.id) {
+      if (compilation.user.id === this.userConnected.id) {
         i++;
       }
     });
 
     return i;
+  }
+
+  userConnectedIsPlaying(): boolean {
+    const userInGameConnected: UserInGame = this.game.usersInGame.find(userInGame => userInGame.user.id === this.userConnected.id);
+
+    this.usernamePlaying = this.game.usersInGame.find(userInGame => userInGame.current).user.userName;
+
+    return userInGameConnected.current;
+  }
+
+  updateScore(): void {
+    let scoreTotal = 0;
+    this.game.compilations.forEach(compilation => {
+      if (compilation.user.id === this.userConnected.id) {
+        scoreTotal = scoreTotal + Number(compilation.score);
+      }
+    });
+
+    this.score = scoreTotal;
+  }
+
+  refreshGame(): void {
+    this.getGame();
+  }
+
+  updateGameState(): void {
+    if (this.userConnectedIsPlaying()) {
+      this.isPlaying = true;
+      this.compileDisabled = false;
+
+      this.initializeTimer();
+    } else {
+      this.isPlaying = false;
+      this.compileDisabled = true;
+    }
+
+    this.updateScore();
   }
 }

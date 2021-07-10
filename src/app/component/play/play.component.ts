@@ -4,7 +4,7 @@ import {User} from '../../model/User';
 import {UserService} from '../../service/user.service';
 import {GameService} from '../../service/game.service';
 import {Game} from '../../model/Game';
-import {GameSocketAPI} from '../../socket/gameSocketAPI';
+import {ChatSocketAPI} from '../../socket/chatSocketAPI';
 import {PlaySocketAPI} from '../../socket/playSocketAPI';
 import {UserInGame} from '../../model/UserInGame';
 import {Utilities} from '../../utils/Utilities';

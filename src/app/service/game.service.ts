@@ -29,4 +29,8 @@ export class GameService {
   createGame(game: Game): Observable<Game> {
     return this.http.post<Game>(this.url + 'create/', game);
   }
+
+  endTurn(game: Game): Observable<Game> {
+    return this.http.post<Game>(this.url + 'endTurn/', game);
+  }
 }

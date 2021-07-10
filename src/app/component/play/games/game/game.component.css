@@ -18,6 +18,10 @@
   height: 500px;
 }
 
+.loader {
+  height: 500px;
+}
+
 .information {
   font-size: large;
   margin: 5px;
@@ -28,4 +32,22 @@
 
 .player-information {
   font-weight: bold;
+}
+
+.simple-card-is-playing {
+  background-color: #34eb49;
+  font-weight: bold;
+  color: white
+}
+
+.simple-card-is-not-playing {
+  background-color: #ff0000;
+  font-weight: bold;
+  color: white;
+}
+
+.simple-card-game-is-over {
+  background-color: #f4511e;
+  font-weight: bold;
+  color: white;
 }
