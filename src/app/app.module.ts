@@ -60,6 +60,7 @@ import { CompilationDialogComponent } from './component/play/games/game/compilat
 import { MatDatepickerModule } from '@angular/material/datepicker';
 import { MatNativeDateModule } from '@angular/material/core';
 import { ChartsModule } from 'ng2-charts';
+import { SnackBarGameComponent } from './component/snack-bar-game/snack-bar-game.component';
 
 @NgModule({
   declarations: [
@@ -80,7 +81,8 @@ import { ChartsModule } from 'ng2-charts';
     GameComponent,
     ExercisesComponent,
     GamesComponent,
-    CompilationDialogComponent
+    CompilationDialogComponent,
+    SnackBarGameComponent
   ],
   imports: [
     BrowserModule,

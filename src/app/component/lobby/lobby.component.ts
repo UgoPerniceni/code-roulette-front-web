@@ -12,7 +12,8 @@ import {ExerciseService} from '../../service/exercise.service';
 import {Exercise} from '../../model/Exercise';
 import {GameService} from '../../service/game.service';
 import {Utilities} from '../../utils/Utilities';
-import {MatSnackBar} from '@angular/material/snack-bar';
+import {MatSnackBar, MatSnackBarConfig} from '@angular/material/snack-bar';
+import {SnackBarGameComponent} from '../snack-bar-game/snack-bar-game.component';
 
 @Component({
   selector: 'app-lobby',
@@ -24,6 +25,8 @@ export class LobbyComponent implements OnInit {
   user: User;
   lobby: Lobby;
   lobbies: Lobby[];
+
+  configSnackBar: MatSnackBarConfig = {};
 
   constructor(private userService: UserService, private lobbyService: LobbyService, private exerciseService: ExerciseService, private gameService: GameService, private dialog: MatDialog,  private snackBar: MatSnackBar) {
     this.lobbies = [];
@@ -68,7 +71,7 @@ export class LobbyComponent implements OnInit {
           const usersInGame: UserInGame[] = Utilities.usersToUsersInGame(this.lobby.users);
 
           this.gameService.createGame(new Game(exercise, usersInGame, null, false , '', 25, [])).subscribe((game) => {
-            console.log(game);
+            this.openSnackBarGame('Game created !', game.id);
           });
         });
       } else {
@@ -141,5 +144,12 @@ export class LobbyComponent implements OnInit {
 
   openSnackBar(message: string): void {
     this.snackBar.open(message, 'Close');
+  }
+
+  openSnackBarGame(message: string, gameId: string): void {
+    this.snackBar.openFromComponent(SnackBarGameComponent, {
+      data: {message, gameId},
+      ...this.configSnackBar
+    });
   }
 }

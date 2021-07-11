@@ -8,7 +8,8 @@ import {ChatSocketAPI} from '../../socket/chatSocketAPI';
 import {PlaySocketAPI} from '../../socket/playSocketAPI';
 import {UserInGame} from '../../model/UserInGame';
 import {Utilities} from '../../utils/Utilities';
-import {MatSnackBar} from '@angular/material/snack-bar';
+import {MatSnackBar, MatSnackBarConfig} from '@angular/material/snack-bar';
+import {SnackBarGameComponent} from '../snack-bar-game/snack-bar-game.component';
 
 @Component({
   selector: 'app-play',
@@ -21,6 +22,8 @@ export class PlayComponent implements OnInit, OnDestroy {
 
   isLookingForGame = false;
   usersInQueue = 0;
+
+  configSnackBar: MatSnackBarConfig = {};
 
   constructor(private exerciseService: ExerciseService, private userService: UserService, private gameService: GameService, private snackBar: MatSnackBar) {}
 
@@ -62,11 +65,18 @@ export class PlayComponent implements OnInit, OnDestroy {
 
           const usersInGame: UserInGame[] = Utilities.usersToUsersInGame(users);
 
-          this.createGame(usersInGame);
+          this.exerciseService.getRandomExercise().subscribe((exercise) => {
+            console.log(exercise);
 
-          this.isLookingForGame = false;
-          this.openSnackBar('Matched ! Game created');
+            this.gameService.createGame(new Game(exercise, usersInGame, null, false,  '', 25, [])).subscribe((game) => {
+              console.log(game);
+              this.isLookingForGame = false;
 
+              this.openSnackBarGame('Game created !', game.id);
+
+              this.webSocketAPI.sendQueueUpdate();
+            });
+          });
         } else {
           this.openSnackBar('Enter in Queue');
         }
@@ -79,17 +89,6 @@ export class PlayComponent implements OnInit, OnDestroy {
     }
   }
 
-  createGame(usersInGame: UserInGame[]): void {
-    this.exerciseService.getRandomExercise().subscribe((exercice) => {
-      console.log(exercice);
-
-      this.gameService.createGame(new Game(exercice, usersInGame, null, false,  '', 25, [])).subscribe((game) => {
-        console.log(game);
-        this.webSocketAPI.sendQueueUpdate();
-      });
-    });
-  }
-
   refreshQueueCounter(): void {
     this.userService.countUsersInQueue().subscribe((numberOfUsersInQueue: number) => {
       this.usersInQueue = numberOfUsersInQueue;
@@ -98,6 +97,13 @@ export class PlayComponent implements OnInit, OnDestroy {
 
   openSnackBar(message: string): void {
     this.snackBar.open(message, 'Close');
+  }
+
+  openSnackBarGame(message: string, gameId: string): void {
+    this.snackBar.openFromComponent(SnackBarGameComponent, {
+      data: {message, gameId},
+      ...this.configSnackBar
+    });
   }
 
 }
