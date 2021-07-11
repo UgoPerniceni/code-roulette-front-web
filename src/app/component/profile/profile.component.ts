@@ -1,12 +1,10 @@
-import { ChartOptions, ChartType } from 'chart.js';
-import { FormGroup, FormBuilder, Validators } from '@angular/forms';
-import { User } from './../../model/User';
-import { Component, OnInit, AfterViewInit } from '@angular/core';
-import { UserService } from '../../service/user.service';
-import { AuthService } from '../../service/auth.service';
-import { Router } from '@angular/router';
-import { Label } from 'ng2-charts';
-
+import {ChartOptions, ChartType} from 'chart.js';
+import {FormBuilder, FormGroup, Validators} from '@angular/forms';
+import {User} from '../../model/User';
+import {AfterViewInit, Component, OnInit} from '@angular/core';
+import {UserService} from '../../service/user.service';
+import {Router} from '@angular/router';
+import {Label} from 'ng2-charts';
 
 
 export function MustMatch(controlName: string, matchingControlName: string): any {
@@ -22,30 +20,19 @@ export function MustMatch(controlName: string, matchingControlName: string): any
     }
   };
 }
-export interface TableHeaders {
-  elo: number;
-  rank: number;
-  gamesPlayed: number;
-  gamesWon: number;
-  correctCompilations: number;
-}
-
 
 @Component({
   selector: 'app-profile',
   templateUrl: './profile.component.html',
   styleUrls: ['./profile.component.css']
 })
-export class ProfileComponent implements OnInit {
+export class ProfileComponent implements OnInit, AfterViewInit {
 
   step = 0;
   hide = true;
-  user: User
+  user: User;
   formGroup: FormGroup;
-  isUserUpdated = false;
-  displayedColumns: string[] = ['position', 'name', 'weight', 'symbol'];
   dataSource;
-  sum = 0;
 
   public pieChartOptions: ChartOptions = {
     responsive: true,
@@ -56,12 +43,11 @@ export class ProfileComponent implements OnInit {
       datalabels: {
         formatter: (value, ctx) => {
           let sum = 0;
-          let dataArr: any[] = ctx.chart.data.datasets[0].data;
+          const dataArr: any[] = ctx.chart.data.datasets[0].data;
           dataArr.map((data: number) => {
             sum += data;
           });
-          let percentage = (value * 100 / sum).toFixed(2) + "%";
-          return percentage;
+          return (value * 100 / sum).toFixed(2) + '%';
         },
         color: '#fff',
       }
@@ -74,31 +60,17 @@ export class ProfileComponent implements OnInit {
   public pieChartLegend: true;
   public pieChartColors;
 
+  constructor(private router: Router, private userService: UserService, private formBuild: FormBuilder) {}
 
-  constructor(private router: Router, private userService: UserService, private formBuild: FormBuilder, private authService: AuthService) {
-
-    this.formGroup = this.formBuild.group({
-      firstName: [''],
-      lastName: [''],
-      email: ['', [Validators.email]],
-      userName: [''],
-      password: ['', Validators.minLength(6)],
-      confirmPassword: ['', Validators.minLength(6)],
-      birthDate: [''],
-    }, {
-      validator: MustMatch('password', 'confirmPassword')
-    });
-  }
-
-  setStep(index: number) {
+  setStep(index: number): void {
     this.step = index;
   }
 
-  nextStep() {
+  nextStep(): void {
     this.step++;
   }
 
-  prevStep() {
+  prevStep(): void {
     this.step--;
   }
 
@@ -106,18 +78,33 @@ export class ProfileComponent implements OnInit {
     this.userService.getCurrentUser().subscribe((user: User) => {
       this.user = user;
       console.log(this.user);
-      const ELEMENT_DATA: TableHeaders[] = [
-        { elo: user.elo, rank: 1, gamesPlayed: 2, gamesWon: 10, correctCompilations: 1 },];
-      this.dataSource = ELEMENT_DATA;
+
+      this.formGroup = this.formBuild.group({
+        firstName: [user.firstName],
+        lastName: [user.lastName],
+        email: [user.email, [Validators.email]],
+        userName: [user.userName],
+        password: ['', Validators.minLength(6)],
+        confirmPassword: ['', Validators.minLength(6)],
+        birthDate: [user.birthDate],
+      }, {
+        validator: MustMatch('password', 'confirmPassword')
+      });
+
+      this.dataSource = [
+        {elo: user.elo, rank: 1, gamesPlayed: 2, gamesWon: 10, correctCompilations: 1}, ];
     });
 
   }
   onSubmit(): any {
-    if (this.isUserUpdated && this.formGroup.valid) {
-      const updatedUser = this.getUpdatedUser();
+    if (this.formGroup.valueChanges && this.formGroup.valid) {
+      const updatedUser: User = this.formGroup.value;
+      updatedUser.id = this.user.id;
+
+      console.log(updatedUser);
+
       this.userService.updateUser(updatedUser).subscribe(
-        (data: any) => {
-          window.location.reload();
+        (_: any) => {
           this.nextStep();
         }, (Error: any) => {
           // Handler
@@ -125,51 +112,15 @@ export class ProfileComponent implements OnInit {
       );
     }
   }
+
   ngAfterViewInit(): void {
-    this.formGroup.controls.firstName.setValue(this.user.firstName);
-    this.formGroup.controls.lastName.setValue(this.user.lastName);
-    this.formGroup.controls.email.setValue(this.user.email);
-    this.formGroup.controls.birthDate.setValue(this.user.birthDate);
-    this.formGroup.controls.userName.setValue(this.user.userName);
-
-    this.pieChartData = [this.user.gamesPlayed - this.user.gamesWon, this.user.gamesWon];
-    this.pieChartLabels = ['Games lost  ', 'Games won  '];
-    this.pieChartColors = [{
-      backgroundColor: ['rgba(200,0,0,0.3)', '#009879']
-    },];
-    this.onChanges();
+    if (this.user) {
+      this.pieChartData = [this.user.gamesPlayed - this.user.gamesWon, this.user.gamesWon];
+      this.pieChartLabels = ['Games lost  ', 'Games won  '];
+      this.pieChartColors = [{
+        backgroundColor: ['rgba(200,0,0,0.3)', '#009879']
+      }, ];
+    }
   }
-
-  getUpdatedUser(): User {
-    const updatedUser = this.user;
-
-    updatedUser.email = this.formGroup.controls.email.value != this.user.email
-      ? this.formGroup.controls.email.value
-      : this.user.email;
-
-    updatedUser.userName = this.formGroup.controls.userName.value != this.user.userName
-      ? this.formGroup.controls.userName.value
-      : this.user.userName;
-
-    updatedUser.firstName = this.formGroup.controls.firstName.value != this.user.firstName
-      ? this.formGroup.controls.firstName.value
-      : this.user.firstName;
-
-    updatedUser.lastName = this.formGroup.controls.lastName.value != this.user.lastName
-      ? this.formGroup.controls.lastName.value
-      : this.user.lastName;
-    updatedUser.birthDate = this.formGroup.controls.birthDate.value != this.user.birthDate
-      ? this.formGroup.controls.birthDate.value
-      : this.user.birthDate;
-    //Handle password by checking if the old is correct
-    return updatedUser;
-  }
-  onChanges(): void {
-    this.formGroup.valueChanges.subscribe(val => {
-      this.isUserUpdated = true;
-    });
-  }
-
-
 
 }

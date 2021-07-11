@@ -1,4 +1,4 @@
-<div fxLayout="row" class="profile">
+<div fxLayout="row" class="profile" *ngIf="user">
   <div fxLayout="column" fxFlex="20" fxLayoutAlign="start center">
     <div>
       <img
@@ -13,8 +13,7 @@
           <mat-expansion-panel
             [expanded]="step === 0"
             (opened)="setStep(0)"
-            hideToggle
-          >
+            hideToggle>
             <mat-expansion-panel-header>
               <mat-panel-title> Personal data </mat-panel-title>
             </mat-expansion-panel-header>
@@ -43,16 +42,14 @@
             </mat-form-field>
             <br />
             <mat-form-field appearance="fill">
-              <mat-label
-                >{{ user.birthDate }}
-                <mat-icon class="dateIcon">date_range</mat-icon></mat-label
-              >
+              <mat-label>{{ user.birthDate }}
+                <mat-icon class="dateIcon">date_range</mat-icon>
+              </mat-label>
               <input
                 matInput
                 [matDatepicker]="picker"
                 (focus)="picker.open()"
-                readonly
-              />
+                readonly />
             </mat-form-field>
             <mat-datepicker #picker></mat-datepicker>
 
@@ -73,27 +70,26 @@
             <mat-expansion-panel-header>
               <mat-panel-title> Security </mat-panel-title>
               <mat-panel-description>
-                Type to change your password
+                Confirm your password
               </mat-panel-description>
             </mat-expansion-panel-header>
             <br />
             <mat-form-field appearance="fill">
-              <mat-label>old password</mat-label>
+              <mat-label>Password</mat-label>
               <input [type]="hide ? 'password' : 'text'" matInput />
               <button
                 mat-icon-button
                 matSuffix
                 (click)="hide = !hide"
                 [attr.aria-label]="'Hide password'"
-                [attr.aria-pressed]="hide"
-              >
+                [attr.aria-pressed]="hide">
                 <mat-icon>{{
                   hide ? "visibility_off" : "visibility"
                 }}</mat-icon>
               </button>
             </mat-form-field>
             <br />
-            <mat-form-field appearance="fill">
+<!--            <mat-form-field appearance="fill">
               <mat-label>New password</mat-label>
               <input [type]="hide ? 'password' : 'text'" matInput />
               <button
@@ -123,7 +119,7 @@
                   hide ? "visibility_off" : "visibility"
                 }}</mat-icon>
               </button>
-            </mat-form-field>
+            </mat-form-field>-->
 
             <mat-action-row>
               <button mat-button color="warn" (click)="prevStep()">
@@ -175,10 +171,21 @@
           [chartType]="pieChartType"
           [options]="pieChartOptions"
           [colors]="pieChartColors"
-          [legend]="pieChartLegend"
-        >
+          [legend]="pieChartLegend">
         </canvas>
       </div>
     </div>
   </div>
+</div>
+
+<div *ngIf="!user" class="height-100">
+
+  <div fxLayout="column" fxLayoutAlign="center center" class="height-100">
+    <h1>Loading...</h1>
+
+    <div class="game-information">
+      <mat-spinner color="accent" [diameter]="150"></mat-spinner>
+    </div>
+  </div>
+
 </div>
