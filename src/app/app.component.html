@@ -24,6 +24,10 @@
       {{ this.currentLang | uppercase}}
     </button>
 
+    <button *ngIf="isConnected" mat-button [matMenuTriggerFor]="menuNotifications" aria-label="Example icon-button with a menu">
+      <mat-icon matBadge="1" matBadgeColor="warn">notifications</mat-icon>
+    </button>
+
     <button *ngIf="isConnected" mat-button [matMenuTriggerFor]="menu" aria-label="Example icon-button with a menu">
       <mat-icon>account_circle</mat-icon>
     </button>
@@ -59,6 +63,12 @@
       </button>
     </mat-menu>
 
+    <mat-menu #menuNotifications="matMenu">
+      <button mat-menu-item>
+        <span><mat-icon>videogame_asset</mat-icon> Game created !</span>
+      </button>
+    </mat-menu>
+
   </mat-toolbar>
 
   <mat-drawer-container fxFlex autosize class="background">
@@ -67,8 +77,6 @@
         <h3 class="center" style="text-align: center">Menu</h3>
 
         <hr/>
-
-        <!--        <mat-divider></mat-divider>-->
 
         <button mat-button routerLink="/home" routerLinkActive="selected no-border txt-bold" fxLayoutAlign="start" class="py-2 pr-5">
           <mat-icon class="mr-2">home</mat-icon> Home</button>
