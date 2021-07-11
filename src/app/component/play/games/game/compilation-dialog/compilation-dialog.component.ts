@@ -3,7 +3,6 @@ import {FormBuilder, FormGroup} from '@angular/forms';
 import {MAT_DIALOG_DATA, MatDialogRef} from '@angular/material/dialog';
 import {Compilation} from '../../../../../model/Compilation';
 import {Utilities} from '../../../../../utils/Utilities';
-import {Exercise} from '../../../../../model/Exercise';
 
 interface Theme {
   value: string;
@@ -43,15 +42,18 @@ export class CompilationDialogComponent implements OnInit {
   };
 
   compilation: Compilation;
+  code: string;
+
   panelOpenState = true;
 
   constructor(private formBuilder: FormBuilder, private dialogRef: MatDialogRef<CompilationDialogComponent>,
-              @Inject(MAT_DIALOG_DATA) data: Compilation) {
+              @Inject(MAT_DIALOG_DATA) data: any) {
     dialogRef.backdropClick().subscribe(() => {
       dialogRef.close();
     });
 
-    this.compilation = data;
+    this.code = data.code;
+    this.compilation = data.compilation;
   }
 
   ngOnInit(): void {

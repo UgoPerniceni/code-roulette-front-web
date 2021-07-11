@@ -203,7 +203,7 @@ export class GameComponent implements OnInit, OnDestroy, AfterViewChecked {
         this.compileLoading = false;
 
         this.game.compilations.push(compilation);
-        this.openCompilationDialog(compilation);
+        this.openCompilationDialog(compilation, this.game.code);
 
         this.game.usersInGame
           .find(userIg => userIg.user.id === this.userConnected.id).score = this.score;
@@ -248,6 +248,7 @@ export class GameComponent implements OnInit, OnDestroy, AfterViewChecked {
       this.timerValue = (this.time - val);
 
       if (this.timerValue === 1) {
+        this.compile();
         this.openSnackBar('Time is up !', 'Close');
 
         this.timerValue = 1;
@@ -271,21 +272,19 @@ export class GameComponent implements OnInit, OnDestroy, AfterViewChecked {
     return dateStr;
   }
 
-  openCompilationDialog(compilation: Compilation): void {
+  openCompilationDialog(compilation: Compilation, code: string): void {
     const dialogConfig = new MatDialogConfig();
 
     dialogConfig.disableClose = true;
     dialogConfig.autoFocus = true;
 
-    dialogConfig.data = compilation;
+    dialogConfig.data = {compilation, code};
 
     const dialogRef = this.dialog.open(CompilationDialogComponent, dialogConfig);
 
     dialogRef.afterClosed().subscribe(
       _ => {
         this.updateScore();
-
-
       }
     );
   }

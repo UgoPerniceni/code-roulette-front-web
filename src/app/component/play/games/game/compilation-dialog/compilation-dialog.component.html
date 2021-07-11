@@ -17,7 +17,7 @@
   <hr>
   <br/>
 
-  <mat-accordion>
+  <mat-accordion *ngIf="this.code !== null">
     <mat-expansion-panel [expanded]="panelOpenState"
                          (opened)="panelOpenState = true"
                          (closed)="panelOpenState = false">
@@ -32,7 +32,7 @@
 
       <ngx-codemirror
         [options]="options"
-        [ngModel]="compilation.input"
+        [ngModel]="code"
         [disabled]="true"
         [autoFocus]="true">
       </ngx-codemirror>

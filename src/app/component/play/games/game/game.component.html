@@ -127,7 +127,7 @@
       <div fxLayout="row">
 
         <div fxFlex="33" fxLayoutAlign="start center">
-          <button mat-raised-button color="primary" [disabled]="compileDisabled || !isPlaying || this.game.gameOver" (click)="compile()">Compile</button>
+          <button mat-raised-button color="accent" [disabled]="compileDisabled || !isPlaying || this.game.gameOver" (click)="compile()">Compile</button>
         </div>
 
         <div fxFlex="33" fxLayoutAlign="center center">
@@ -147,7 +147,7 @@
 
           <mat-menu #menuCompilations="matMenu">
             <span *ngFor="let compilation of game.compilations">
-              <button mat-menu-item  (click)="openCompilationDialog(compilation)" *ngIf="compilation.user.id === this.userConnected.id">
+              <button mat-menu-item  (click)="openCompilationDialog(compilation, null)" *ngIf="compilation.user.id === this.userConnected.id">
                 [{{formatDate(compilation.compiledAt)}} - {{compilation.user.userName }}] --> {{compilation.score}}
               </button>
             </span>
