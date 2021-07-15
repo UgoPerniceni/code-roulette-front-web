@@ -14,6 +14,7 @@ import {GameService} from '../../service/game.service';
 import {Utilities} from '../../utils/Utilities';
 import {MatSnackBar, MatSnackBarConfig} from '@angular/material/snack-bar';
 import {SnackBarGameComponent} from '../snack-bar-game/snack-bar-game.component';
+import {LobbySocketAPI} from '../../socket/lobbySocketAPI';
 
 @Component({
   selector: 'app-lobby',
@@ -26,6 +27,8 @@ export class LobbyComponent implements OnInit {
   lobby: Lobby;
   lobbies: Lobby[];
 
+  lobbyWebSocketAPI: LobbySocketAPI;
+
   configSnackBar: MatSnackBarConfig = {};
 
   constructor(private userService: UserService, private lobbyService: LobbyService, private exerciseService: ExerciseService, private gameService: GameService, private dialog: MatDialog,  private snackBar: MatSnackBar) {
@@ -36,6 +39,8 @@ export class LobbyComponent implements OnInit {
     this.userService.getCurrentUser().subscribe((user: User) => {
       console.log(user);
       this.user = user;
+
+      // if in lobby subsibe if not unsubsriobe
 
       if (this.user.lobbyId) {
         this.lobbyService.getLobby(this.user.lobbyId).subscribe((lobby: Lobby) => {
@@ -151,5 +156,14 @@ export class LobbyComponent implements OnInit {
       data: {message, gameId},
       ...this.configSnackBar
     });
+  }
+
+  refreshLobby(): void {
+    if (this.user.lobbyId) {
+      this.lobbyService.getLobby(this.user.lobbyId).subscribe((lobby: Lobby) => {
+        console.log(lobby);
+        this.lobby = lobby;
+      });
+    }
   }
 }
