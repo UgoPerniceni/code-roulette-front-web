@@ -3,7 +3,6 @@ import {UserService} from '../../service/user.service';
 import {User} from '../../model/User';
 import {MatSort} from '@angular/material/sort';
 import {MatTableDataSource} from '@angular/material/table';
-import {Exercise} from '../../model/Exercise';
 import {MatPaginator} from '@angular/material/paginator';
 
 @Component({
@@ -14,7 +13,7 @@ import {MatPaginator} from '@angular/material/paginator';
 export class RankComponent implements OnInit, AfterViewInit {
 
   dataSource = new MatTableDataSource<User>();
-  displayedColumns: string[] = ['index', 'elo', 'email', 'userName'];
+  displayedColumns: string[] = ['index', 'elo', 'email', 'userName', 'gamesWon', 'gamesPlayed', 'winRate'];
 
   @ViewChild(MatPaginator) paginator!: MatPaginator;
   @ViewChild(MatSort) sort!: MatSort;
@@ -34,6 +33,14 @@ export class RankComponent implements OnInit, AfterViewInit {
       console.log(data);
       this.dataSource.data = data;
     });
+  }
+
+  winRate(user: User): string {
+    if (user.gamesPlayed === 0){
+      return '0';
+    }
+
+    return ((user.gamesWon / user.gamesPlayed) * 100).toFixed(1);
   }
 
 }
