@@ -1,22 +1,22 @@
-import {AfterViewChecked, Component, OnDestroy, OnInit} from '@angular/core';
-import {Game} from '../../../../model/Game';
-import {ActivatedRoute} from '@angular/router';
-import {GameService} from '../../../../service/game.service';
-import {FormBuilder, FormGroup, Validators} from '@angular/forms';
+import { AfterViewChecked, Component, OnDestroy, OnInit } from '@angular/core';
+import { Game } from '../../../../model/Game';
+import { ActivatedRoute } from '@angular/router';
+import { GameService } from '../../../../service/game.service';
+import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { ChatSocketAPI } from '../../../../socket/chatSocketAPI';
-import {Message} from '../../../../model/Message';
-import {UserService} from '../../../../service/user.service';
-import {Chat} from '../../../../model/Chat';
-import {Compilation} from '../../../../model/Compilation';
-import {CodeService} from '../../../../service/code.service';
-import {interval} from 'rxjs';
-import {take} from 'rxjs/operators';
-import {MatSnackBar} from '@angular/material/snack-bar';
-import {MatDialog, MatDialogConfig} from '@angular/material/dialog';
-import {CompilationDialogComponent} from './compilation-dialog/compilation-dialog.component';
-import {User} from '../../../../model/User';
-import {UserInGame} from '../../../../model/UserInGame';
-import {GameSocketAPI} from '../../../../socket/gameSocketAPI';
+import { Message } from '../../../../model/Message';
+import { UserService } from '../../../../service/user.service';
+import { Chat } from '../../../../model/Chat';
+import { Compilation } from '../../../../model/Compilation';
+import { CodeService } from '../../../../service/code.service';
+import { interval } from 'rxjs';
+import { take } from 'rxjs/operators';
+import { MatSnackBar } from '@angular/material/snack-bar';
+import { MatDialog, MatDialogConfig } from '@angular/material/dialog';
+import { CompilationDialogComponent } from './compilation-dialog/compilation-dialog.component';
+import { User } from '../../../../model/User';
+import { UserInGame } from '../../../../model/UserInGame';
+import { GameSocketAPI } from '../../../../socket/gameSocketAPI';
 
 interface Theme {
   value: string;
@@ -85,8 +85,8 @@ export class GameComponent implements OnInit, OnDestroy, AfterViewChecked {
   winner: UserInGame;
 
   constructor(private route: ActivatedRoute, private gameService: GameService, private formBuilder: FormBuilder,
-              private userService: UserService, private codeService: CodeService, private snackBar: MatSnackBar,
-              private dialog: MatDialog) {
+    private userService: UserService, private codeService: CodeService, private snackBar: MatSnackBar,
+    private dialog: MatDialog) {
     this.chatForm = this.formBuilder.group({
       message: ['', [Validators.required]],
     });
@@ -103,7 +103,7 @@ export class GameComponent implements OnInit, OnDestroy, AfterViewChecked {
     });
   }
 
-  ngAfterViewChecked(): void {}
+  ngAfterViewChecked(): void { }
 
   ngOnDestroy(): void {
     this.chatWebSocketAPI._disconnect();
@@ -193,7 +193,7 @@ export class GameComponent implements OnInit, OnDestroy, AfterViewChecked {
       if (this.timerSubscription) {
         this.timerSubscription.unsubscribe();
       }
-      this.game.code = this.content;
+      this.game.exercise.code = this.content;
 
       this.codeService.compileGame(this.game, timer).subscribe((compilation: Compilation) => {
         console.log(compilation);
@@ -219,7 +219,7 @@ export class GameComponent implements OnInit, OnDestroy, AfterViewChecked {
   }
 
   // Socket
-  sendMessage(): void{
+  sendMessage(): void {
     if (this.chatForm.valid && this.game.chat != null) {
       const textMessage = this.chatForm.get('message').value;
 
@@ -278,7 +278,7 @@ export class GameComponent implements OnInit, OnDestroy, AfterViewChecked {
     dialogConfig.disableClose = true;
     dialogConfig.autoFocus = true;
 
-    dialogConfig.data = {compilation, code};
+    dialogConfig.data = { compilation, code };
 
     const dialogRef = this.dialog.open(CompilationDialogComponent, dialogConfig);
 
