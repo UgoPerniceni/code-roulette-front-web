@@ -4,7 +4,7 @@ import {Exercise} from '../../../model/Exercise';
 import {MatPaginator} from '@angular/material/paginator';
 import {MatSort} from '@angular/material/sort';
 import {ExerciseService} from '../../../service/exercise.service';
-import {GameService} from '../../../service/game.service';
+import {Utilities} from '../../../utils/Utilities';
 
 @Component({
   selector: 'app-exercises',
@@ -16,7 +16,7 @@ export class ExercisesComponent implements OnInit, AfterViewInit {
   languages: string[] = ['All', 'Java', 'Python'];
 
   dataSource = new MatTableDataSource<Exercise>();
-  displayedColumns: string[] = ['id', 'title', 'description', 'language', 'best_score', 'created_at', 'action'];
+  displayedColumns: string[] = ['id', 'title', 'description', 'language', 'created_at', 'action'];
 
   search: any;
   selection: any;
@@ -24,7 +24,7 @@ export class ExercisesComponent implements OnInit, AfterViewInit {
   @ViewChild(MatPaginator) paginator!: MatPaginator;
   @ViewChild(MatSort) sort!: MatSort;
 
-  constructor(private exerciseService: ExerciseService, private gameService: GameService) {}
+  constructor(private exerciseService: ExerciseService) {}
 
   ngOnInit(): void {
     this.exerciseService.getExercises().subscribe(data => {
@@ -56,5 +56,9 @@ export class ExercisesComponent implements OnInit, AfterViewInit {
     if (this.dataSource.paginator) {
       this.dataSource.paginator.firstPage();
     }
+  }
+
+  formatDate(date: Date): string {
+    return Utilities.formatDate(date);
   }
 }
