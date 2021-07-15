@@ -10,9 +10,12 @@ export class LobbySocketAPI {
   stompClient: any;
   lobbyComponent: LobbyComponent;
 
+  lobbyId: string;
+
   constructor(lobbyComponent: LobbyComponent, lobbyId: string){
     this.lobbyComponent = lobbyComponent;
     this.socket = this.socket + lobbyId;
+    this.lobbyId = lobbyId;
 
     console.log(this.socket);
   }
@@ -22,6 +25,8 @@ export class LobbySocketAPI {
     const ws = new SockJS(this.webSocketEndPoint);
     this.stompClient = Stomp.over(ws);
     this.stompClient.connect({}, () => {
+      this.sendLobbyUpdate();
+
       this.stompClient.subscribe(this.socket, () => {
         this.lobbyComponent.refreshLobby();
       });
@@ -36,6 +41,10 @@ export class LobbySocketAPI {
     console.log('Disconnected');
   }
 
+  _isConnected(): boolean {
+    return this.stompClient !== null;
+  }
+
   // on error, schedule a reconnection attempt
   errorCallBack(error): void {
     console.log('errorCallBack -> ' + error);
@@ -44,9 +53,9 @@ export class LobbySocketAPI {
     }, 5000);
   }
 
-  sendLobbyUpdate(lobbyId: string): void {
+  sendLobbyUpdate(): void {
     console.log('Sending updateLobby to API...');
-    console.log('/api/socket/updateLobby/' + lobbyId);
-    this.stompClient.send('/api/socket/endTurn/' + lobbyId, {}, {});
+    console.log('/api/socket/updateLobby/' + this.lobbyId);
+    this.stompClient.send('/api/socket/updateLobby/' + this.lobbyId, {}, {});
   }
 }

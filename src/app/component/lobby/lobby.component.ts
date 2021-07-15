@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import {Component, OnDestroy, OnInit} from '@angular/core';
 import {UserService} from '../../service/user.service';
 import {User} from '../../model/User';
 import {MatDialog, MatDialogConfig} from '@angular/material/dialog';
@@ -21,39 +21,37 @@ import {LobbySocketAPI} from '../../socket/lobbySocketAPI';
   templateUrl: './lobby.component.html',
   styleUrls: ['./lobby.component.css']
 })
-export class LobbyComponent implements OnInit {
+export class LobbyComponent implements OnInit, OnDestroy {
 
   user: User;
   lobby: Lobby;
-  lobbies: Lobby[];
 
   lobbyWebSocketAPI: LobbySocketAPI;
 
   configSnackBar: MatSnackBarConfig = {};
 
-  constructor(private userService: UserService, private lobbyService: LobbyService, private exerciseService: ExerciseService, private gameService: GameService, private dialog: MatDialog,  private snackBar: MatSnackBar) {
-    this.lobbies = [];
-  }
+  constructor(private userService: UserService, private lobbyService: LobbyService, private exerciseService: ExerciseService,
+              private gameService: GameService, private dialog: MatDialog,  private snackBar: MatSnackBar) {}
 
   ngOnInit(): void {
     this.userService.getCurrentUser().subscribe((user: User) => {
       console.log(user);
       this.user = user;
 
-      // if in lobby subsibe if not unsubsriobe
-
       if (this.user.lobbyId) {
         this.lobbyService.getLobby(this.user.lobbyId).subscribe((lobby: Lobby) => {
           console.log(lobby);
           this.lobby = lobby;
+
+          this.lobbyWebSocketAPI = new LobbySocketAPI(this, this.lobby.id);
+          this.lobbyWebSocketAPI._connect();
         });
       }
     });
+  }
 
-    this.lobbyService.getLobbies().subscribe((lobbies: Lobby[]) => {
-      console.log(lobbies);
-      this.lobbies = lobbies;
-    });
+  ngOnDestroy(): void {
+    this.lobbyWebSocketAPI._disconnect();
   }
 
   leaveLobby(): void {
@@ -61,7 +59,9 @@ export class LobbyComponent implements OnInit {
       this.lobbyService.leaveLobby(this.lobby.id).subscribe((data) => {
         console.log(data);
         if (data.status === 204) {
-          alert('Lobby left.');
+          this.lobbyWebSocketAPI.sendLobbyUpdate();
+
+          this.openSnackBar('Lobby left');
         }
       });
     }
@@ -124,7 +124,6 @@ export class LobbyComponent implements OnInit {
     dialogConfig.autoFocus = true;
 
     dialogConfig.data = {
-      id: 2,
       title: 'Join a lobby'
     };
 
@@ -137,6 +136,14 @@ export class LobbyComponent implements OnInit {
           this.lobbyService.joinLobby(data.lobbyId).subscribe((user: User) => {
             console.log('lobby joined : ', user);
             this.user = user;
+
+            this.lobbyService.getLobby(data.lobbyId).subscribe((lobby: Lobby) => {
+              console.log(lobby);
+              this.lobby = lobby;
+
+              this.lobbyWebSocketAPI = new LobbySocketAPI(this, lobby.id);
+              this.lobbyWebSocketAPI._connect();
+            });
           });
         }
       }
@@ -159,10 +166,14 @@ export class LobbyComponent implements OnInit {
   }
 
   refreshLobby(): void {
-    if (this.user.lobbyId) {
-      this.lobbyService.getLobby(this.user.lobbyId).subscribe((lobby: Lobby) => {
+    if (this.lobby) {
+      this.lobbyService.getLobby(this.lobby.id).subscribe((lobby: Lobby) => {
         console.log(lobby);
-        this.lobby = lobby;
+        if (lobby.users.find(user => user.id === this.user.id)) {
+          this.lobby = lobby;
+        } else {
+          this.lobby = undefined;
+        }
       });
     }
   }
