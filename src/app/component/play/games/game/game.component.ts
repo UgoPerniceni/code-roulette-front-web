@@ -193,7 +193,7 @@ export class GameComponent implements OnInit, OnDestroy, AfterViewChecked {
       if (this.timerSubscription) {
         this.timerSubscription.unsubscribe();
       }
-      this.game.exercise.code = this.content;
+      this.game.exercise.code = this.content; // le code affiché est game.code et le code compilé par le user est le game.exercise.code
 
       this.codeService.compileGame(this.game, timer).subscribe((compilation: Compilation) => {
         console.log(compilation);
