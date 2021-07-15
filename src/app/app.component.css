@@ -1,3 +1,13 @@
 hr { width: 100% }
 .mat-toolbar-row, .mat-toolbar-single-row { padding: 0;}
 
+.mat-menu-emoji {
+  font-size: 25px;
+  float:left;
+}
+
+.mat-menu-text {
+  font-size: 15px;
+  float:right;
+}
+
