@@ -1,4 +1,4 @@
-import {Component, OnInit, ViewChild} from '@angular/core';
+import {AfterViewInit, Component, OnInit, ViewChild} from '@angular/core';
 import {MatTableDataSource} from '@angular/material/table';
 import {Game} from '../../../model/Game';
 import {MatPaginator} from '@angular/material/paginator';
@@ -11,12 +11,12 @@ import {UserService} from '../../../service/user.service';
   templateUrl: './games.component.html',
   styleUrls: ['./games.component.css']
 })
-export class GamesComponent implements OnInit {
+export class GamesComponent implements OnInit, AfterViewInit {
   dataSource = new MatTableDataSource<Game>();
-  displayedColumns: string[] = ['id', 'action'];
+  displayedColumns: string[] = ['id', 'userPlaying', 'status', 'action'];
 
   games: Game[];
-  @ViewChild(MatPaginator) paginator!: MatPaginator;
+  @ViewChild(MatPaginator) paginator: MatPaginator;
 
   constructor(private gameService: GameService, private userService: UserService) { }
 
@@ -31,6 +31,15 @@ export class GamesComponent implements OnInit {
         });
       }
     });
+  }
+
+  ngAfterViewInit(): void {
+    this.dataSource.paginator = this.paginator;
+  }
+
+  getUserPlaying(game: Game): string {
+    return game.usersInGame
+      .find(userIg => userIg.current === true).user.userName;
   }
 
 }
