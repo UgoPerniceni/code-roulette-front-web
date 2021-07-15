@@ -1,32 +1,37 @@
 <div fxLayout="row">
   <div fxFlex="33" fxLayoutAlign="start center">
-    <h2 mat-dialog-title>id : {{compilation.id}}</h2>
+    <h2 mat-dialog-title>id : {{ compilation.id }}</h2>
   </div>
 
   <div fxFlex="33" fxLayoutAlign="center center">
-    <h2 mat-dialog-title style="font-weight: bold">Score : {{compilation.score}}</h2>
+    <h2 mat-dialog-title style="font-weight: bold">
+      Score : {{ compilation.score }}
+    </h2>
   </div>
 
   <div fxFlex="33" fxLayoutAlign="end center">
-    <h2>Compilation status :
-      <span [ngClass]="compilation.status === 'SUCCESS' ? 'green': 'red'">{{compilation.status}}</span>
+    <h2>
+      Compilation status :
+      <span [ngClass]="compilation.status === 'SUCCESS' ? 'green' : 'red'">{{
+        compilation.status
+      }}</span>
     </h2>
   </div>
 </div>
 <div mat-dialog-content>
-  <hr>
-  <br/>
+  <hr />
+  <br />
 
   <mat-accordion *ngIf="this.code !== null">
-    <mat-expansion-panel [expanded]="panelOpenState"
-                         (opened)="panelOpenState = true"
-                         (closed)="panelOpenState = false">
+    <mat-expansion-panel
+      [expanded]="panelOpenState"
+      (opened)="panelOpenState = true"
+      (closed)="panelOpenState = false"
+    >
       <mat-expansion-panel-header>
-        <mat-panel-title>
-          See the code sent
-        </mat-panel-title>
+        <mat-panel-title> See the code sent </mat-panel-title>
         <mat-panel-description>
-          Currently I am {{ panelOpenState ? 'open' : 'closed' }}
+          Currently I am {{ panelOpenState ? "open" : "closed" }}
         </mat-panel-description>
       </mat-expansion-panel-header>
 
@@ -34,27 +39,28 @@
         [options]="options"
         [ngModel]="code"
         [disabled]="true"
-        [autoFocus]="true">
+        [autoFocus]="true"
+      >
       </ngx-codemirror>
-
     </mat-expansion-panel>
   </mat-accordion>
 
-  <br/>
+  <br />
   <mat-card class="simple-card-inverse">
     <span>Result</span>
-    <hr>
-    <div fxLayout="row" fxLayoutAlign="center center"> <!--*ngIf="this.loading === true" fxLayout="row" fxLayoutAlign="center center">-->
-<!--      <div class="white-spinner">
+    <hr />
+    <div fxLayout="row" fxLayoutAlign="center center">
+      <!--*ngIf="this.loading === true" fxLayout="row" fxLayoutAlign="center center">-->
+      <!--      <div class="white-spinner">
         <mat-spinner class="m-10" color=""></mat-spinner>
       </div>-->
     </div>
-    <div> <!--*ngIf="this.loading !== true">-->
-      <p style="white-space: pre-line">{{compilation.output}}</p>
+    <div>
+      <!--*ngIf="this.loading !== true">-->
+      <p style="white-space: pre-line">{{ compilation.output }}</p>
     </div>
   </mat-card>
 
-  <br/>
+  <br />
   <p>Date of compilation : {{ formatDate(compilation.compiledAt) }}</p>
 </div>
-

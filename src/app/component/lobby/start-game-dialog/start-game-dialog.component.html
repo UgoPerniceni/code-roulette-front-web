@@ -1,0 +1,22 @@
+<div>
+  <mat-form-field appearance="fill">
+    <mat-label>Select a language</mat-label>
+    <mat-select [(value)]="selection" placeholder="Language">
+      <mat-option *ngFor="let language of languages" [value]="language">
+        {{ language }}
+      </mat-option>
+    </mat-select>
+  </mat-form-field>
+</div>
+<div>
+  <p>A code will be chosen randomly</p>
+</div>
+<div>
+  <button
+    mat-raised-button
+    color="warn"
+    [routerLink]="['/play/game-saloon/', exercise.id]"
+  >
+    Start playing
+  </button>
+</div>

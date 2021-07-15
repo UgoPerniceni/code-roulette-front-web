@@ -1,4 +1,4 @@
-@import '~codemirror';
+@import "~codemirror";
 
 .simple-card-inverse {
   background-color: #292b2c;
@@ -10,12 +10,12 @@
 }
 
 .chat-users {
-  display:inline;
+  display: inline;
   font-style: italic;
 }
 
 :host ::ng-deep .CodeMirror {
-  height: 500px;
+  height: 1000px;
 }
 
 .loader {
