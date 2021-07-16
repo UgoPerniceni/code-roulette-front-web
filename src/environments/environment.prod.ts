@@ -1,6 +1,6 @@
 export const environment = {
   production: true,
 
-  apiUrl: 'http://15.188.194.63:8080/api/',
-  socketUrl: 'http://15.188.194.63:8080/ws'
+  apiUrl: 'http://34.253.194.75:80/api/',
+  socketUrl: 'http://34.253.194.75:80/ws'
 };
