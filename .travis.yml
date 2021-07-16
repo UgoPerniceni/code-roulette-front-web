@@ -5,7 +5,7 @@ dist: trusty
 sudo: required
 branches:
   only:
-    - master
+    - feat/travis-ci
 before_script:
   - npm install -g @angular/cli
 script:
