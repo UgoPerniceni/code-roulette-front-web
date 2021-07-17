@@ -27,3 +27,6 @@ jobs:
           REMOTE_USER: ${{ secrets.REMOTE_USER }}
           TARGET: ${{ secrets.REMOTE_TARGET }}
           EXCLUDE: "/dist/, /node_modules/"
+
+        with:
+          command: http-server angular/projet-annuel-front-web/
