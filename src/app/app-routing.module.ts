@@ -27,8 +27,8 @@ const routes: Routes = [
 
   { path: 'play', component: PlayComponent, canActivate: [IsConnectedGuard] },
 
-  { path: 'play/exercises', component: ExercisesComponent, canActivate: [IsConnectedGuard] },
-  { path: 'play/exercise/:id', component: ExerciseComponent, canActivate: [IsConnectedGuard] },
+  { path: 'exercises', component: ExercisesComponent, canActivate: [IsAdminGuard] },
+  { path: 'exercise/:id', component: ExerciseComponent, canActivate: [IsAdminGuard] },
 
   { path: 'play/games', component: GamesComponent, canActivate: [IsConnectedGuard] },
   { path: 'play/game/:id', component: GameComponent, canActivate: [IsConnectedGuard] },

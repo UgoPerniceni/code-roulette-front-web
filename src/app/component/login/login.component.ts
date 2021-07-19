@@ -2,6 +2,8 @@ import { Component, OnInit } from '@angular/core';
 import {ActivatedRoute, Router} from '@angular/router';
 import {AuthService} from '../../service/auth.service';
 import {FormBuilder, FormGroup, Validators} from '@angular/forms';
+import {HttpErrorResponse} from '@angular/common/http';
+import {MatSnackBar} from '@angular/material/snack-bar';
 
 @Component({
   selector: 'app-login',
@@ -14,7 +16,9 @@ export class LoginComponent implements OnInit {
   public loginInvalid = false;
   public hidePassword = true;
 
-  constructor(private router: Router, private route: ActivatedRoute, private formBuilder: FormBuilder, private authService: AuthService) {
+  public credentialsInvalid = false;
+
+  constructor(private router: Router, private route: ActivatedRoute, private formBuilder: FormBuilder, private authService: AuthService, private snackBar: MatSnackBar) {
     this.form = this.formBuilder.group({
       email: ['', [Validators.required, Validators.email]],
       password: ['', Validators.required]
@@ -38,8 +42,13 @@ export class LoginComponent implements OnInit {
             this.router.navigateByUrl('/').then();
             console.log('Successfully logged.');
           }
-        }, (Error: any) => {
-          // Handler
+        }, (error: HttpErrorResponse) => {
+          if (error.status === 404) {
+            this.snackBar.open('Credentials incorrect !', 'OK');
+            this.form.reset();
+          } else {
+            this.snackBar.open('Server error ' + error.status, 'OK');
+          }
         }
       );
     }
