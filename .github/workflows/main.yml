@@ -27,5 +27,16 @@ jobs:
           REMOTE_USER: ${{ secrets.REMOTE_USER }}
           TARGET: "/home/ec2-user/"
           EXCLUDE: "/dist/, /node_modules/"
+  copy:
+    runs-on: ubuntu-latest
+    needs: build
+    steps:
+      - uses: actions/checkout@v2
       - name: Copy dist to html
-        run: /home/ec2-user/script/copy.sh
+        uses: garygrossgarten/github-action-ssh@release
+        with:
+          command: |
+            cp -r /home/ec2-user/projet-annuel-front-web/ /var/www/html/
+          host: ${{ secrets.REMOTE_HOST }}
+          username: ${{ secrets.REMOTE_USER }}
+          privateKey: ${{ secrets.SERVER_SSH_KEY}}
