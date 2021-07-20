@@ -33,6 +33,3 @@ jobs:
           command: |
             sudo rm -r /var/www/html/*
             sudo cp -r /home/ec2-user/projet-annuel-front-web/ /var/www/html/
-          host: ${{ secrets.REMOTE_HOST }}
-          username: ${{ secrets.REMOTE_USER }}
-          privateKey: ${{ secrets.SERVER_SSH_KEY}}
