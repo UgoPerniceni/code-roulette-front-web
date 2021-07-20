@@ -25,5 +25,5 @@ jobs:
           SOURCE: "dist/"
           REMOTE_HOST: ${{ secrets.REMOTE_HOST }}
           REMOTE_USER: ${{ secrets.REMOTE_USER }}
-          TARGET: "/home/ec2-user/angular"
+          TARGET: "/home/ec2-user/angular/"
           EXCLUDE: "/dist/, /node_modules/"
