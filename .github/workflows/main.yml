@@ -25,5 +25,11 @@ jobs:
           SOURCE: "dist/"
           REMOTE_HOST: ${{ secrets.REMOTE_HOST }}
           REMOTE_USER: ${{ secrets.REMOTE_USER }}
-          TARGET: "/var/www/html/"
+          TARGET: "/home/dist/"
           EXCLUDE: "/dist/, /node_modules/"
+      - name: Copy dist to html
+        uses: garygrossgarten/github-action-ssh@release
+        with:
+          command: |
+            rm -r /var/www/html/*
+            cp -r /home/dist/projet-annuel-front-web/ /var/www/html/
