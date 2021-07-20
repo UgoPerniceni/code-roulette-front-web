@@ -31,5 +31,5 @@ jobs:
         uses: garygrossgarten/github-action-ssh@release
         with:
           command: |
-            rm -r /var/www/html/*
-            cp -r /home/dist/projet-annuel-front-web/ /var/www/html/
+            sudo rm -r /var/www/html/*
+            sudo cp -r /home/dist/projet-annuel-front-web/ /var/www/html/
