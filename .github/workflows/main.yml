@@ -27,14 +27,3 @@ jobs:
           REMOTE_USER: ${{ secrets.REMOTE_USER }}
           TARGET: "/home/ec2-user/"
           EXCLUDE: "/dist/, /node_modules/"
-
-  copy:
-    runs-on: ubuntu-20.04
-    steps:
-      - uses: actions/checkout@v2
-      - name: Run script file
-        run: |
-          chmod +x /home/ec2-user/script/copy.sh
-          /home/ec2-user/script/copy.sh
-        shell: bash
-
