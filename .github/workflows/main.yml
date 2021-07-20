@@ -25,11 +25,11 @@ jobs:
           SOURCE: "dist/"
           REMOTE_HOST: ${{ secrets.REMOTE_HOST }}
           REMOTE_USER: ${{ secrets.REMOTE_USER }}
-          TARGET: "/home/ec2-user/dist/"
+          TARGET: "/home/ec2-user/"
           EXCLUDE: "/dist/, /node_modules/"
       - name: Copy dist to html
         uses: garygrossgarten/github-action-ssh@release
         with:
           command: |
             sudo rm -r /var/www/html/*
-            sudo cp -r /home/ec2-user/dist/projet-annuel-front-web/ /var/www/html/
+            sudo cp -r /home/ec2-user/projet-annuel-front-web/ /var/www/html/
