@@ -1,0 +1,55 @@
+<mat-toolbar>
+    <mat-toolbar-row class="justify-content-between">
+      <button mat-icon-button (click)="toggleSidebar()">
+        <mat-icon>menu</mat-icon>
+      </button>
+      <div class="row mr-2 ml-auto">
+        <ul class="row m-0 align-items-center">
+          <li>
+            <button
+              mat-button
+              [matMenuTriggerFor]="menu"
+              class="user mt-2 d-flex align-items-center"
+            >
+              <img src="./assets/user.jpg" alt="" class="user-image mr-1 p-2" />
+  
+              User Name
+              <mat-icon class="user-image-icon ml-1"
+                >keyboard_arrow_down</mat-icon
+              >
+            </button>
+            <mat-menu #menu="matMenu">
+              <button mat-menu-item routerLink="/profile">
+                <mat-icon>settings</mat-icon>
+                <span>Profile</span>
+              </button>
+              <button mat-menu-item routerLink="/admin">
+                <mat-icon>lock</mat-icon>
+                <span>Admin</span>
+              </button>
+              <button mat-menu-item >
+                <mat-icon>exit_to_app</mat-icon>
+                Logout
+              </button>
+            </mat-menu>
+            
+    <mat-menu #menuLanguages="matMenu">
+      <button mat-menu-item (click)="switchLang('en')">
+        <span class="mat-menu-emoji">🇬🇧</span>
+        <span class="mat-menu-text">EN</span>
+      </button>
+      <button mat-menu-item (click)="switchLang('es')">
+        <span class="mat-menu-emoji">🇪🇸</span>
+        <span class="mat-menu-text">ES</span>
+      </button>
+      <button mat-menu-item (click)="switchLang('fr')">
+        <span class="mat-menu-emoji">🇫🇷</span>
+        <span class="mat-menu-text">FR</span>
+      </button>
+    </mat-menu>
+          </li>
+        </ul>
+      </div>
+    </mat-toolbar-row>
+  </mat-toolbar>
+  
