@@ -1,54 +1,47 @@
+<div class="container-fluid page">
+  <div class="d-flex page__box p-3 mt-2">Lobby</div>
+  <div class="page__content shadow p-3 position-relative">
+    <div *ngIf="user">
+      <mat-card style="height: 100%">
+        <mat-card-content>
+          <hr class="mb-10" />
+          <div *ngIf="lobby">
+            <p>Current lobby : {{ lobby?.title }}</p>
+            <p>Users in lobby :</p>
+            <ul>
+              <li *ngFor="let user of lobby.users">{{ user.userName }}</li>
+            </ul>
+            <p>
+              lobby's key : {{ lobby?.id }}
+              <button mat-button [cdkCopyToClipboard]="lobby.id">
+                <mat-icon
+                  matTooltip="Copy the key to clipboard"
+                  (click)="keyCopied()"
+                  >file_copy</mat-icon
+                >
+              </button>
+            </p>
 
-<div *ngIf="user">
-  <div fxLayout="row">
-    <div fxFlex="50" fxLayoutAlign="center center">
-      <p>P1</p>
+            <button mat-raised-button (click)="leaveLobby()">
+              Leave lobby
+            </button>
+
+            <button mat-raised-button (click)="createGame()">
+              Create game with lobby
+            </button>
+          </div>
+
+          <div *ngIf="!lobby">
+            <button mat-raised-button (click)="openCreateLobbyDialog()" style="text-align: center;">
+              Create lobby
+            </button>
+            <button mat-raised-button color="" (click)="openJoinLobbyDialog()" style="text-align: center;">
+              Join lobby with key
+            </button>
+          </div>
+        </mat-card-content>
+      </mat-card>
     </div>
-    <div fxFlex="50" fxLayoutAlign="center center">
-      <p>P2</p>
-    </div>
-  </div>
-
-  <mat-card style="height: 100%">
-    <mat-card-header>Lobby</mat-card-header>
-
-    <mat-card-content>
-      <hr class="mb-10">
-      <div *ngIf="lobby">
-        <p>Current lobby : {{lobby?.title}}</p>
-        <p>Users in lobby :</p>
-        <ul>
-          <li *ngFor="let user of lobby.users">{{ user.userName }}</li>
-        </ul>
-        <p>
-          {{ 'LOBBY.KEY' | translate }} : {{lobby?.id}}
-          <button mat-button [cdkCopyToClipboard]="lobby.id">
-            <mat-icon matTooltip="Copy the key to clipboard" (click)="keyCopied()">file_copy</mat-icon>
-          </button>
-        </p>
-        <p>
-          Game's parameters :
-
-          <br/><br/>
-
-          <mat-form-field appearance="fill">
-            <mat-label>Numbers of turn</mat-label>
-            <mat-select [(value)]="gameTurn" required>
-              <mat-option value="3">3 turns</mat-option>
-              <mat-option value="5">5 turns</mat-option>
-              <mat-option value="7">7 turns</mat-option>
-            </mat-select>
-          </mat-form-field>
-
-          <mat-form-field appearance="fill">
-            <mat-label>Time</mat-label>
-            <mat-select [(value)]="gameTime" required>
-              <mat-option value="15">15 seconds</mat-option>
-              <mat-option value="25">25 seconds</mat-option>
-              <mat-option value="35">35 seconds</mat-option>
-              <mat-option value="45">45 seconds</mat-option>
-            </mat-select>
-          </mat-form-field>
 
         </p>
         <button mat-raised-button color="warn" (click)="leaveLobby()">Leave lobby</button>
