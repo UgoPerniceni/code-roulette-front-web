@@ -4,5 +4,9 @@
     "NEW_GAME": "Nuevo juego",
     "RANK": "Rango",
     "LOBBY": "Vestíbulo"
+  },
+
+  "LOBBY": {
+    "KEY": "Clave de grupo"
   }
 }
