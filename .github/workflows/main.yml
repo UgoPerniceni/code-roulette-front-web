@@ -29,5 +29,4 @@ jobs:
           TARGET: "/home/ec2-user/dist-angular/"
           EXCLUDE: "/dist/, /node_modules/"
 
-      - name: Copy dist to apache
-        run: /home/ec2-user/scripts/copy.sh
+          run: /home/ec2-user/scripts/copy.sh
