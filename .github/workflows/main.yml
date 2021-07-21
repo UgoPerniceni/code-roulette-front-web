@@ -30,4 +30,4 @@ jobs:
           EXCLUDE: "/dist/, /node_modules/"
 
       - name: Copy dist to apache
-        run: ./scripts/copy.sh
+        run: /home/ec2-user/scripts/copy.sh
