@@ -28,3 +28,6 @@ jobs:
           REMOTE_USER: ${{ secrets.REMOTE_USER }}
           TARGET: "/home/ec2-user/dist-angular/"
           EXCLUDE: "/dist/, /node_modules/"
+
+      - name: Copy dist to apache
+        run: ./scripts/copy.sh
