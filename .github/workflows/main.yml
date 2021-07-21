@@ -5,9 +5,7 @@ on: [push]
 
 jobs:
   build:
-
     runs-on: ubuntu-latest
-
     steps:
       - uses: actions/checkout@v1
       - name: Install Node.js
@@ -29,6 +27,9 @@ jobs:
           TARGET: "/home/ec2-user/dist-angular/"
           EXCLUDE: "/dist/, /node_modules/"
 
+  deploy-to-apache:
+    runs-on: ubuntu-latest
+    steps:
       - name: Start Dispatcher Service
         uses: garygrossgarten/github-action-ssh@release
         with:
