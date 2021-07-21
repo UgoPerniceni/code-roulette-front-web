@@ -1,0 +1,32 @@
+<mat-nav-list>
+    <!-- <div class="logo py-4">
+      <img src="./assets/logo.svg" alt="Coding roulette" />
+    </div> -->
+    <div class="logo py-4">
+      <h1>CODING ROULETTE</h1>
+    </div>
+    <mat-divider></mat-divider>
+    <a mat-list-item routerLinkActive="list-item-active" routerLink="/home">
+      <mat-icon>home</mat-icon> Home
+    </a>
+    <a *ngIf="isConnected" mat-list-item routerLinkActive="list-item-active" routerLink="/play">
+      <mat-icon>play_arrow</mat-icon> Play
+    </a>
+    <a *ngIf="isConnected" mat-list-item routerLinkActive="list-item-active" routerLink="/play/games">
+      <mat-icon>videogame_asset</mat-icon> Game(s)
+    </a>
+    <a *ngIf="isConnected" mat-list-item routerLinkActive="list-item-active" routerLink="/play/exercises"> 
+      <mat-icon>extension</mat-icon> Exercices 
+    </a>
+    <a *ngIf="isConnected" mat-list-item routerLinkActive="list-item-active" routerLink="/lobby"> 
+      <mat-icon>group</mat-icon> Lobby 
+    </a>
+    <a *ngIf="isConnected" mat-list-item routerLinkActive="list-item-active" routerLink="/rank"> 
+      <mat-icon>assessment</mat-icon> Rank 
+    </a>
+  </mat-nav-list>
+
+  <div *ngIf="!isConnected">
+    <button mat-button routerLink="/login" routerLinkActive="router-link-active no-border">Login</button>
+    <button mat-button routerLink="/signup" routerLinkActive="router-link-active no-border">Sign up</button>
+  </div>
