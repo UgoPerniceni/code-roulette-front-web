@@ -1,17 +1,15 @@
-import { SaveNewcodeSuccessComponent } from './save-newcode-success/save-newcode-success.component';
-import { ExerciseService } from 'src/app/service/exercise.service';
-import { CompilationFailedDialogComponent } from './compilation-failed-dialog/compilation-failed-dialog.component';
+import { Component, OnInit } from '@angular/core';
+import { FormArray, FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { MatDialog } from '@angular/material/dialog';
+import { ActivatedRoute } from '@angular/router';
 import { element } from 'protractor';
-import { FormGroup, FormBuilder, Validators, NgForm, FormArray } from '@angular/forms';
+import { ExerciseService } from 'src/app/service/exercise.service';
+
+import { CodeService } from '../../../../service/code.service';
 import { Language } from './../../../../enum/Language';
 import { NewCode } from './../../../../model/NewCode';
-import { Exercise } from '../../../../model/Exercise';
-import { Component, OnInit } from '@angular/core';
-import { ActivatedRoute } from '@angular/router';
-import { CodeService } from '../../../../service/code.service';
-import { CodeResult } from '../../../../model/CodeResult';
-import { Compilation } from '../../../../model/Compilation';
+import { CompilationFailedDialogComponent } from './compilation-failed-dialog/compilation-failed-dialog.component';
+import { SaveNewcodeSuccessComponent } from './save-newcode-success/save-newcode-success.component';
 
 interface Theme {
   value: string;
@@ -28,6 +26,7 @@ export class ExerciseComponent implements OnInit {
   languages: string[] = ['Java', 'Python'];
   formGroup: FormGroup;
   isSubmitBtnDisabled: boolean = true;
+  iscompileBtnDisabled: boolean = true;
 
   newCode: NewCode;
   selection: any;
@@ -46,7 +45,8 @@ export class ExerciseComponent implements OnInit {
   options = {
     theme: this.theme,
     mode: this.languageCM,
-
+    indentWithTabs: true,
+    smartIndent: true,
     lineNumbers: true,
     lineWrapping: true,
     autoCloseBrackets: true,
@@ -59,6 +59,7 @@ export class ExerciseComponent implements OnInit {
   loading = false;
   content = '';
   result = '';
+  testContent = '';
 
   public testForm: FormGroup;
   public testList: FormArray;
@@ -144,6 +145,10 @@ export class ExerciseComponent implements OnInit {
     this.content = $event as unknown as string;
   }
 
+  handleTestChange($event: Event): void {
+    this.testContent = $event as unknown as string;
+  }
+
   clear(): void {
     this.content = '';
   }
@@ -167,13 +172,14 @@ export class ExerciseComponent implements OnInit {
     this.codeService.compileNewCode(this.newCode).subscribe((data: NewCode) => {
       console.log(data);
       this.result = data.compilationOutput;
-      if (data.status != "SUCCESS") {
+
+
+      this.loading = false;
+      if (data.status == "SUCCESS") {
+        this.isSubmitBtnDisabled = false;
+      } else {
         this.openDialog(new CompilationFailedDialogComponent());
         this.isSubmitBtnDisabled = true;
-      } else {
-        this.isSubmitBtnDisabled = false;
-        this.result = data.compilationOutput;
-        this.loading = false;
       }
     });
   }

@@ -25,9 +25,17 @@
             matInput
             formControlName="title"
             placeholder="Ex. MySuperTitle"
+            required
+            minlength="2"
+            pattern="[a-zA-Z]*"
           />
         </mat-form-field>
-
+        <mat-error *ngIf="formGroup.controls['title'].hasError('minlength')">
+          Please enter at least a 3 character title
+        </mat-error>
+        <mat-error *ngIf="formGroup.controls['title'].hasError('pattern')">
+          Title must only contain characters
+        </mat-error>
         <mat-form-field class="full-width" appearance="fill">
           <mat-label>Describe what the code should do</mat-label>
           <textarea
@@ -73,11 +81,15 @@
                 <div class="clearfix" [formGroupName]="i">
                   <h4>Test {{ i + 1 }}</h4>
                   <div>
-                    <textarea
-                      type="text"
-                      class="form-control"
+                    <ngx-codemirror
+                      [options]="options"
+                      [ngModel]=""
+                      [disabled]="readOnly"
+                      [autoFocus]="true"
                       formControlName="testArea"
-                    ></textarea>
+                      (ngModelChange)="handleTestChange($event)"
+                    >
+                    </ngx-codemirror>
                   </div>
                   <div>
                     <button
@@ -116,7 +128,12 @@
       </mat-card>
       <br />
 
-      <button mat-raised-button color="primary" (click)="compile()">
+      <button
+        mat-raised-button
+        color="primary"
+        [disabled]="iscompileBtnDisabled"
+        (click)="compile()"
+      >
         Compile
       </button>
       <button
