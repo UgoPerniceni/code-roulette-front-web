@@ -6,8 +6,10 @@
       <div class="row mr-2 ml-auto">
         <ul class="row m-0 align-items-center">
           <li>
+            <button *ngIf="isConnected" mat-button [matMenuTriggerFor]="menuLanguages" aria-label="Example icon-button with a menu">
+              {{ this.currentLang | uppercase}}
+            </button>
             <button mat-button [matMenuTriggerFor]="menu" class="user mt-2 d-flex align-items-center">
-              <!-- <img src="./assets/user.jpg" alt="" class="user-image mr-1 p-2" /> -->
               Settings
               <mat-icon class="user-image-icon ml-1"
                 >keyboard_arrow_down</mat-icon
