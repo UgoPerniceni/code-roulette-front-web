@@ -22,6 +22,7 @@ export class PlayComponent implements OnInit, OnDestroy {
 
   isLookingForGame = false;
   usersInQueue = 0;
+  currentUserId: string;
 
   configSnackBar: MatSnackBarConfig = {};
 
@@ -30,6 +31,8 @@ export class PlayComponent implements OnInit, OnDestroy {
   ngOnInit(): void {
     this.userService.getCurrentUser().subscribe((user: User) => {
       console.log(user);
+      this.currentUserId = user.id;
+
       if (user.inQueue){
         this.isLookingForGame = true;
       }
@@ -73,13 +76,13 @@ export class PlayComponent implements OnInit, OnDestroy {
           this.exerciseService.getRandomExercise().subscribe((exercise) => {
             console.log(exercise);
 
-            this.gameService.createGame(new Game(exercise, usersInGame, null, false,  '', 25, 3,[])).subscribe((game) => {
+            this.gameService.createGame(new Game(exercise, usersInGame, null, false,  '', 25, 3, [])).subscribe((game) => {
               console.log(game);
+
               this.isLookingForGame = false;
 
-              this.openSnackBarGame('Game created !', game.id);
-
               this.webSocketAPI.sendQueueUpdate();
+              this.webSocketAPI.sendGameCreated(game.id);
             });
           });
         } else {
@@ -95,8 +98,36 @@ export class PlayComponent implements OnInit, OnDestroy {
   }
 
   refreshQueueCounter(): void {
-    this.userService.countUsersInQueue().subscribe((numberOfUsersInQueue: number) => {
-      this.usersInQueue = numberOfUsersInQueue;
+    let usersInQueue = 0;
+
+    this.userService.getUsers().subscribe((users) => {
+      users.forEach((user) => {
+        if (user.inQueue) {
+          usersInQueue++;
+        }
+
+        if (user.id === this.currentUserId) {
+          if (this.isLookingForGame !== user.inQueue) {
+            this.isLookingForGame = user.inQueue;
+          }
+        }
+      });
+
+      this.usersInQueue = usersInQueue;
+    });
+  }
+
+  checkGameCreated(gameId: string): void {
+    console.log("CHECK")
+    console.log(gameId);
+    this.gameService.getGameDtoById(gameId).subscribe((game) => {
+      console.log("CHECK 2")
+      console.log(game)
+      game.usersInGame.forEach(usersIg => {
+        if (usersIg.user.id === this.currentUserId) {
+          this.openSnackBarGame('Game created !', game.id);
+        }
+      });
     });
   }
 

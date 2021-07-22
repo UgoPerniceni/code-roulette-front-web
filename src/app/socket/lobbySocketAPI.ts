@@ -35,9 +35,6 @@ export class LobbySocketAPI {
           this.lobbyComponent.refreshLobby();
         } else {
           const path = '/play/game/' + response.body;
-
-          console.log(path);
-
           this.lobbyComponent.redirectToGameCreated(path);
         }
       });
