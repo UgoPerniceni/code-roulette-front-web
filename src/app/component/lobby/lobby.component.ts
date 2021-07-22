@@ -15,6 +15,7 @@ import {Utilities} from '../../utils/Utilities';
 import {MatSnackBar, MatSnackBarConfig} from '@angular/material/snack-bar';
 import {SnackBarGameComponent} from '../snack-bar-game/snack-bar-game.component';
 import {LobbySocketAPI} from '../../socket/lobbySocketAPI';
+import {Router} from '@angular/router';
 
 @Component({
   selector: 'app-lobby',
@@ -33,7 +34,7 @@ export class LobbyComponent implements OnInit, OnDestroy {
 
   configSnackBar: MatSnackBarConfig = {};
 
-  constructor(private userService: UserService, private lobbyService: LobbyService, private exerciseService: ExerciseService,
+  constructor(private router: Router, private userService: UserService, private lobbyService: LobbyService, private exerciseService: ExerciseService,
               private gameService: GameService, private dialog: MatDialog,  private snackBar: MatSnackBar) {}
 
   ngOnInit(): void {
@@ -84,7 +85,9 @@ export class LobbyComponent implements OnInit, OnDestroy {
           const turns: number = +this.gameTurn;
 
           this.gameService.createGame(new Game(exercise, usersInGame, null, false , '', timer, turns, [])).subscribe((game) => {
-            this.openSnackBarGame('Game created !', game.id);
+            this.lobbyWebSocketAPI.sendGameCreated(game.id);
+
+            // this.openSnackBarGame('Game created !', game.id);
           });
         });
       } else {
@@ -151,6 +154,8 @@ export class LobbyComponent implements OnInit, OnDestroy {
 
               this.lobbyWebSocketAPI = new LobbySocketAPI(this, lobby.id);
               this.lobbyWebSocketAPI._connect();
+
+              this.lobbyWebSocketAPI.sendLobbyUpdate();
             });
           });
         }
@@ -184,5 +189,10 @@ export class LobbyComponent implements OnInit, OnDestroy {
         }
       });
     }
+  }
+
+  redirectToGameCreated(path: string): void {
+    console.log(path);
+    this.router.navigateByUrl(path).then();
   }
 }
