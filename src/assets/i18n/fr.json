@@ -1,6 +1,6 @@
 {
   "HOME": {
-    "WORKS": "Le composant home fonctionne !",
+    "WORKS": "ACCUEIL",
     "NEW_GAME": "Nouvelle partie",
     "RANK": "Classement",
     "LOBBY": "Groupe"
@@ -9,4 +9,10 @@
   "LOBBY": {
     "KEY": "Clé du groupe"
   }
+  // "HOME": {
+  //   "WORKS": "ACCUEIL",
+  //   "NEW_GAME": "Nouvelle partie",
+  //   "RANK": "Classement",
+  //   "LOBBY": "Groupe"
+  // }
 }
