@@ -63,6 +63,8 @@ export class LobbyComponent implements OnInit, OnDestroy {
         console.log(data);
         if (data.status === 204) {
           this.lobbyWebSocketAPI.sendLobbyUpdate();
+          this.user.lobbyId = null;
+          this.lobby = null;
 
           this.openSnackBar('Lobby left');
         }
