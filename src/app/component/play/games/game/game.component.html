@@ -1,229 +1,242 @@
-<div *ngIf="game" class="height-100">
-  <div fxLayout="row" class="information">
-    <div fxFlex="50" fxLayoutAlign="start center" class="game-information">
-      <span
-        >Exercise : {{ game.exercise.title }} -> {{ game.exercise.id }}</span
-      >
-    </div>
-
-    <div fxFlex="50" fxLayoutAlign="end center" class="player-information">
-      <span *ngIf="!this.game.gameOver"> {{ usernamePlaying }} is playing</span>
-      <span *ngIf="this.game.gameOver && this.winner">
-        Game is over, {{ winner.user.userName }} won !</span
-      >
-    </div>
+<div class="container-fluid page">
+  <div class="d-flex page__box p-3 mt-2">
+    EXERCISE : {{ game.exercise.title }} -> {{ game.exercise.id }}
   </div>
-
-  <br />
-
-  <div class="" fxLayout="row" fxLayoutGap="10px">
-    <div fxFlex="30">
-      <div fxLayout="column" fxLayoutGap="10px">
-        <div fxFlex="50" style="text-align: center">
-          <h3>Description</h3>
-          <hr />
-          <p>{{ game.exercise.description }}</p>
-        </div>
-
-        <div fxFlex="50">
-          <mat-card>
-            <mat-card-header>Chat</mat-card-header>
-            <hr />
-            <mat-card-content
-              [style.overflow]="'auto'"
-              [style.height.px]="'280'"
-            >
-              <ul>
-                <li *ngFor="let message of this.chat.messages">
-                  {{ message.user.userName }} : {{ message.text }}
-                </li>
-              </ul>
-            </mat-card-content>
-
-            <form [formGroup]="chatForm" (ngSubmit)="sendMessage()">
-              <div>
-                <mat-form-field class="full-width-input" fxFill>
-                  <mat-label>Message</mat-label>
-                  <textarea
-                    matInput
-                    #message
-                    maxlength="256"
-                    formControlName="message"
-                    placeholder="Ex. Hello..."
-                    required
-                  >
-                  </textarea>
-                  <mat-hint align="start">
-                    <strong>Don't disclose personal info</strong>
-                  </mat-hint>
-                  <mat-hint align="end"
-                    >{{ message.value.length }} / 256</mat-hint
-                  >
-                  <mat-error> Please provide a valid text </mat-error>
-                </mat-form-field>
-              </div>
-
-              <br />
-
-              <div fxLayout="row">
-                <div fxFlex="50" fxLayoutAlign="start center">
-                  <a mat-raised-button color="primary" (click)="sendMessage()"
-                    >Send</a
-                  >
-                </div>
-                <div fxFlex="50" fxLayoutAlign="end center">
-                  <div class="chat-users-text">
-                    <i>In chat :</i>
-                    <div
-                      class="chat-users"
-                      *ngFor="let userInGame of game.usersInGame; let i = index"
-                    >
-                      {{ userInGame.user.userName
-                      }}<span *ngIf="i != game.usersInGame.length - 1">,</span>
-                    </div>
-                  </div>
-                </div>
-              </div>
-            </form>
-          </mat-card>
-        </div>
-      </div>
-    </div>
-
-    <div fxFlex="70">
-      <div fxLayout="row">
-        <div fxFlex="33" fxLayoutAlign="start start">
-          <mat-card>
-            <mat-icon>timer</mat-icon>
-            <span> Timer : {{ timerValue - 1 }}s</span>
-          </mat-card>
-        </div>
-
-        <div fxFlex="33" fxLayoutAlign="center start">
-          <mat-card
-            *ngIf="isPlaying && !this.game.gameOver"
-            class="simple-card-is-playing"
-            >It is your turn !</mat-card
+  <div class="page__content shadow p-3 position-relative">
+    <div *ngIf="game" class="height-100">
+      <div fxLayout="row" class="information">
+        <div fxFlex="50" fxLayoutAlign="end center" class="player-information">
+          <span *ngIf="!this.game.gameOver">
+            {{ usernamePlaying }} is playing</span
           >
-          <mat-card
-            *ngIf="!isPlaying && !this.game.gameOver"
-            class="simple-card-is-not-playing"
-            >Not your turn !</mat-card
+          <span *ngIf="this.game.gameOver && this.winner">
+            Game is over, {{ winner.user.userName }} won !</span
           >
-
-          <mat-card *ngIf="this.game.gameOver" class="simple-card-game-is-over"
-            >Game is over !</mat-card
-          >
-        </div>
-
-        <div fxFlex="33" fxLayoutAlign="end start">
-          <mat-form-field appearance="fill">
-            <mat-label>Select a theme</mat-label>
-            <mat-select [(ngModel)]="theme" (ngModelChange)="changeTheme()">
-              <mat-option *ngFor="let theme of themes" [value]="theme.value">
-                {{ theme.viewValue }}
-              </mat-option>
-            </mat-select>
-          </mat-form-field>
-        </div>
-      </div>
-
-      <ngx-codemirror
-        [options]="options"
-        [ngModel]="content"
-        [disabled]="readOnly"
-        [autoFocus]="true"
-        (ngModelChange)="handleChange($event)"
-        *ngIf="!compileLoading"
-      >
-      </ngx-codemirror>
-
-      <div *ngIf="compileLoading" class="height-100">
-        <div fxLayout="column" fxLayoutAlign="center center" class="height-100">
-          <h1>Loading...</h1>
-
-          <div class="game-information">
-            <mat-spinner color="accent" [diameter]="150"></mat-spinner>
-          </div>
         </div>
       </div>
 
       <br />
 
-      <div fxLayout="row">
-        <div fxFlex="33" fxLayoutAlign="start center">
-          <button
-            mat-raised-button
-            color="accent"
-            [disabled]="compileDisabled || !isPlaying || this.game.gameOver"
-            (click)="compile()"
-          >
-            Compile
-          </button>
+      <div class="" fxLayout="row" fxLayoutGap="10px">
+        <div fxFlex="30">
+          <div fxLayout="column" fxLayoutGap="10px">
+            <div fxFlex="50" style="text-align: center">
+              <h3>Description</h3>
+              <hr />
+              <p>{{ game.exercise.description }}</p>
+            </div>
+
+            <div fxFlex="50">
+              <mat-card>
+                <mat-card-header>Chat</mat-card-header>
+                <hr />
+                <mat-card-content
+                  [style.overflow]="'auto'"
+                  [style.height.px]="'280'"
+                >
+                  <ul>
+                    <li *ngFor="let message of this.chat.messages">
+                      {{ message.user.userName }} : {{ message.text }}
+                    </li>
+                  </ul>
+                </mat-card-content>
+
+                <form [formGroup]="chatForm" (ngSubmit)="sendMessage()">
+                  <div>
+                    <mat-form-field class="full-width-input" fxFill>
+                      <mat-label>Message</mat-label>
+                      <textarea
+                        matInput
+                        #message
+                        maxlength="256"
+                        formControlName="message"
+                        placeholder="Ex. Hello..."
+                        required
+                      >
+                      </textarea>
+                      <mat-hint align="start">
+                        <strong>Don't disclose personal info</strong>
+                      </mat-hint>
+                      <mat-hint align="end"
+                        >{{ message.value.length }} / 256</mat-hint
+                      >
+                      <mat-error> Please provide a valid text </mat-error>
+                    </mat-form-field>
+                  </div>
+
+                  <br />
+
+                  <div fxLayout="row">
+                    <div fxFlex="50" fxLayoutAlign="start center">
+                      <a
+                        mat-raised-button
+                        (click)="sendMessage()"
+                        >Send</a
+                      >
+                    </div>
+                    <div fxFlex="50" fxLayoutAlign="end center">
+                      <div class="chat-users-text">
+                        <i>In chat :</i>
+                        <div
+                          class="chat-users"
+                          *ngFor="
+                            let userInGame of game.usersInGame;
+                            let i = index
+                          "
+                        >
+                          {{ userInGame.user.userName
+                          }}<span *ngIf="i != game.usersInGame.length - 1"
+                            >,</span
+                          >
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                </form>
+              </mat-card>
+            </div>
+          </div>
         </div>
 
-        <div fxFlex="33" fxLayoutAlign="center center">
-          <p style="font-weight: bold">Score : {{ score }}</p>
-        </div>
+        <div fxFlex="70">
+          <div fxLayout="row">
+            <div fxFlex="33" fxLayoutAlign="start start">
+              <mat-card>
+                <mat-icon>timer</mat-icon>
+                <span> Timer : {{ timerValue - 1 }}s</span>
+              </mat-card>
+            </div>
 
-        <div fxFlex="33" fxLayoutAlign="end center">
-          <div *ngIf="getCompilationsOfUser() === 0">
-            <button
-              mat-button
-              [matMenuTriggerFor]="menuCompilations"
-              matBadge="{{ getCompilationsOfUser() }}"
-              matBadgePosition="after"
-              matBadgeColor="accent"
-              [disabled]="true"
-            >
-              Show history
-            </button>
-          </div>
-
-          <div *ngIf="getCompilationsOfUser() !== 0">
-            <button
-              mat-button
-              [matMenuTriggerFor]="menuCompilations"
-              matBadge="{{ getCompilationsOfUser() }}"
-              matBadgePosition="after"
-              matBadgeColor="accent"
-            >
-              Show history
-            </button>
-          </div>
-
-          <mat-menu #menuCompilations="matMenu">
-            <span *ngFor="let compilation of game.compilations">
-              <button
-                mat-menu-item
-                (click)="openCompilationDialog(compilation, null)"
-                *ngIf="compilation.user.id === this.userConnected.id"
+            <div fxFlex="33" fxLayoutAlign="center start">
+              <mat-card
+                *ngIf="isPlaying && !this.game.gameOver"
+                class="simple-card-is-playing"
+                >It is your turn !</mat-card
               >
-                [{{ formatDate(compilation.compiledAt) }} -
-                {{ compilation.user.userName }}] --> {{ compilation.score }}
+              <mat-card
+                *ngIf="!isPlaying && !this.game.gameOver"
+                class="simple-card-is-not-playing"
+                >Not your turn !</mat-card
+              >
+
+              <mat-card
+                *ngIf="this.game.gameOver"
+                class="simple-card-game-is-over"
+                >Game is over !</mat-card
+              >
+            </div>
+
+            <div fxFlex="33" fxLayoutAlign="end start">
+              <mat-form-field appearance="fill">
+                <mat-label>Select a theme</mat-label>
+                <mat-select [(ngModel)]="theme" (ngModelChange)="changeTheme()">
+                  <mat-option
+                    *ngFor="let theme of themes"
+                    [value]="theme.value"
+                  >
+                    {{ theme.viewValue }}
+                  </mat-option>
+                </mat-select>
+              </mat-form-field>
+            </div>
+          </div>
+
+          <ngx-codemirror
+            [options]="options"
+            [ngModel]="content"
+            [disabled]="readOnly"
+            [autoFocus]="true"
+            (ngModelChange)="handleChange($event)"
+            *ngIf="!compileLoading"
+          >
+          </ngx-codemirror>
+
+          <div *ngIf="compileLoading" class="height-100">
+            <div
+              fxLayout="column"
+              fxLayoutAlign="center center"
+              class="height-100"
+            >
+              <h1>Loading...</h1>
+
+              <div class="game-information">
+                <mat-spinner color="accent" [diameter]="150"></mat-spinner>
+              </div>
+            </div>
+          </div>
+
+          <br />
+
+          <div fxLayout="row">
+            <div fxFlex="33" fxLayoutAlign="start center">
+              <button
+                mat-raised-button
+                color="accent"
+                [disabled]="compileDisabled || !isPlaying || this.game.gameOver"
+                (click)="compile()"
+              >
+                Compile
               </button>
-            </span>
-          </mat-menu>
+            </div>
+
+            <div fxFlex="33" fxLayoutAlign="center center">
+              <p style="font-weight: bold">Score : {{ score }}</p>
+            </div>
+
+            <div fxFlex="33" fxLayoutAlign="end center">
+              <div *ngIf="getCompilationsOfUser() === 0">
+                <button
+                  mat-button
+                  [matMenuTriggerFor]="menuCompilations"
+                  matBadge="{{ getCompilationsOfUser() }}"
+                  matBadgePosition="after"
+                  matBadgeColor="accent"
+                  [disabled]="true"
+                >
+                  Show history
+                </button>
+              </div>
+
+              <div *ngIf="getCompilationsOfUser() !== 0">
+                <button
+                  mat-button
+                  [matMenuTriggerFor]="menuCompilations"
+                  matBadge="{{ getCompilationsOfUser() }}"
+                  matBadgePosition="after"
+                  matBadgeColor="accent"
+                >
+                  Show history
+                </button>
+              </div>
+
+              <mat-menu #menuCompilations="matMenu">
+                <span *ngFor="let compilation of game.compilations">
+                  <button
+                    mat-menu-item
+                    (click)="openCompilationDialog(compilation, null)"
+                    *ngIf="compilation.user.id === this.userConnected.id"
+                  >
+                    [{{ formatDate(compilation.compiledAt) }} -
+                    {{ compilation.user.userName }}] --> {{ compilation.score }}
+                  </button>
+                </span>
+              </mat-menu>
+            </div>
+          </div>
         </div>
-
-        <!--        <div fxFlex="33" fxLayoutAlign="end center">
-          <label class="btn btn-light" [class.active]="readOnly">
-            <mat-checkbox class="example-margin" [disabled]="true" [(ngModel)]="readOnly">Read-only (currently {{ readOnly ? 'on' : 'off' }})</mat-checkbox>
-          </label>
-        </div>-->
       </div>
+
+      <br />
     </div>
-  </div>
 
-  <br />
-</div>
+    <div *ngIf="!game" class="height-100">
+      <div fxLayout="column" fxLayoutAlign="center center" class="height-100">
+        <h1>Loading...</h1>
 
-<div *ngIf="!game" class="height-100">
-  <div fxLayout="column" fxLayoutAlign="center center" class="height-100">
-    <h1>Loading...</h1>
-
-    <div class="game-information">
-      <mat-spinner color="accent" [diameter]="150"></mat-spinner>
+        <div class="game-information">
+          <mat-spinner color="accent" [diameter]="150"></mat-spinner>
+        </div>
+      </div>
     </div>
   </div>
 </div>
