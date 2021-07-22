@@ -10,6 +10,7 @@ import {UserInGame} from '../../model/UserInGame';
 import {Utilities} from '../../utils/Utilities';
 import {MatSnackBar, MatSnackBarConfig} from '@angular/material/snack-bar';
 import {SnackBarGameComponent} from '../snack-bar-game/snack-bar-game.component';
+import {Router} from '@angular/router';
 
 @Component({
   selector: 'app-play',
@@ -26,7 +27,7 @@ export class PlayComponent implements OnInit, OnDestroy {
 
   configSnackBar: MatSnackBarConfig = {};
 
-  constructor(private exerciseService: ExerciseService, private userService: UserService, private gameService: GameService, private snackBar: MatSnackBar) {}
+  constructor(private router: Router, private exerciseService: ExerciseService, private userService: UserService, private gameService: GameService, private snackBar: MatSnackBar) {}
 
   ngOnInit(): void {
     this.userService.getCurrentUser().subscribe((user: User) => {
@@ -118,14 +119,12 @@ export class PlayComponent implements OnInit, OnDestroy {
   }
 
   checkGameCreated(gameId: string): void {
-    console.log("CHECK")
     console.log(gameId);
     this.gameService.getGameDtoById(gameId).subscribe((game) => {
-      console.log("CHECK 2")
-      console.log(game)
+      console.log(game);
       game.usersInGame.forEach(usersIg => {
         if (usersIg.user.id === this.currentUserId) {
-          this.openSnackBarGame('Game created !', game.id);
+          this.redirectToGameCreated(game.id);
         }
       });
     });
@@ -140,6 +139,11 @@ export class PlayComponent implements OnInit, OnDestroy {
       data: {message, gameId},
       ...this.configSnackBar
     });
+  }
+
+  redirectToGameCreated(gameId: string): void {
+    const path = '/play/game/' + gameId;
+    this.router.navigateByUrl(path).then();
   }
 
 }

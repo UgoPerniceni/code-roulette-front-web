@@ -19,12 +19,9 @@ export class PlaySocketAPI {
     this.stompClient = Stomp.over(ws);
     this.stompClient.connect({}, frame => {
       this.stompClient.subscribe(this.socket, response => {
-        console.log("***************************")
-        console.log(response.body);
         if (response.body == 0) {
           this.playComponent.refreshQueueCounter();
         } else {
-          console.log("££££££££££££££££££££££££££££")
           this.playComponent.checkGameCreated(response.body);
         }
       });
