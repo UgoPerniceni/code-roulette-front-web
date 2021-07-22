@@ -16,19 +16,22 @@
     color: black;
   }
 }
+.mat-table {
+  width: 100%;
+}
+
+.mat-raised-button {
+  background-color: #1e293b;
+}
 
 .th.mat-sort-header-sorted {
   color: black;
 }
 
-.table {
-  width: 100%;
+.th-center {
+  text-align: center;
 }
 
-// .th-center {
-//   text-align: center;
-// }
-
-// .td-center {
-//   text-align: center;
-// }
+.td-center {
+  text-align: center;
+}

@@ -14,8 +14,21 @@
     margin-top: -2rem;
     background: white;
     color: black;
+    font-size: 2rem;
+    &-data {
+      top: 50%;
+      left: 50%;
+      transform: translate(-50%, -50%);
+    }
   }
 }
-.mat-table{
+// .mat-raised-button{
+//   background-color: #1e293b;
+//   color: #f1f5f9;
+//   margin-right: 1vw;
+//   height: auto;
+// }
+
+.mat-table {
   width: 100%;
 }

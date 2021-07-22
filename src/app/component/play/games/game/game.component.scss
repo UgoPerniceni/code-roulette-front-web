@@ -1,5 +1,11 @@
 @import "~codemirror";
 
+.mat-raised-button {
+  // width:50%;
+  background-color: #1e293b;
+  color: #ffffff;
+}
+
 .simple-card-inverse {
   background-color: #292b2c;
   color: #ffffff;
@@ -37,7 +43,7 @@
 .simple-card-is-playing {
   background-color: #34eb49;
   font-weight: bold;
-  color: white
+  color: white;
 }
 
 .simple-card-is-not-playing {
@@ -50,4 +56,22 @@
   background-color: #f4511e;
   font-weight: bold;
   color: white;
+}
+.page {
+  color: white;
+  padding: 0 1rem;
+  background: #f1f5f9;
+  &__box {
+    min-height: 120px;
+    background: #1e293b;
+    margin: 0 -1rem;
+    font-size: 36px;
+  }
+  &__content {
+    min-height: calc(100vh - 178px);
+    border-radius: 10px;
+    margin-top: -2rem;
+    background: white;
+    color: black;
+  }
 }
