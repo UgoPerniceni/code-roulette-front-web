@@ -30,7 +30,7 @@ export class PlayComponent implements OnInit, OnDestroy {
   ngOnInit(): void {
     this.userService.getCurrentUser().subscribe((user: User) => {
       console.log(user);
-      if (user.isInQueue){
+      if (user.inQueue){
         this.isLookingForGame = true;
       }
     });
@@ -44,7 +44,12 @@ export class PlayComponent implements OnInit, OnDestroy {
   }
 
   ngOnDestroy(): void {
-    this.webSocketAPI._disconnect();
+    if (this.isLookingForGame) {
+      this.userService.leaveQueue().subscribe((data) => {
+        this.webSocketAPI.sendQueueUpdate();
+        this.webSocketAPI._disconnect();
+      });
+    }
   }
 
   onSlideChange(event: Event): void {
