@@ -1,63 +1,149 @@
 <h1>Exercise</h1>
-
-<div *ngIf="exercise">
-  <h2>{{exercise.title | uppercase}}</h2>
-  <div>
-    <p>id: {{exercise.id}}</p>
-    <p>description: {{exercise.description}}</p>
-    <p>language: {{exercise.language}}</p>
-    <p>language CM: {{languageCM}}</p>
+<div fxLayout="row" class="profile">
+  <div fxLayout="column" fxFlex="20" fxLayoutAlign="start center">
+    <div fxLayout="row">
+      <form class="form" [formGroup]="formGroup">
+        <mat-form-field class="full-width" appearance="fill" required>
+          <mat-label>Select a language</mat-label>
+          <mat-select
+            [(value)]="selection"
+            placeholder="Language"
+            formControlName="language"
+          >
+            <mat-option
+              *ngFor="let language of languages"
+              [value]="language"
+              (click)="setLanguage(language)"
+            >
+              {{ language }}
+            </mat-option>
+          </mat-select>
+        </mat-form-field>
+        <mat-form-field class="full-width" appearance="fill">
+          <mat-label>Code Title</mat-label>
+          <input
+            matInput
+            formControlName="title"
+            placeholder="Ex. MySuperTitle"
+            required
+            minlength="2"
+            pattern="[a-zA-Z]*"
+          />
+        </mat-form-field>
+        <mat-error *ngIf="formGroup.controls['title'].hasError('minlength')">
+          Please enter at least a 3 character title
+        </mat-error>
+        <mat-error *ngIf="formGroup.controls['title'].hasError('pattern')">
+          Title must only contain characters
+        </mat-error>
+        <mat-form-field class="full-width" appearance="fill">
+          <mat-label>Describe what the code should do</mat-label>
+          <textarea
+            matInput
+            placeholder="Describing..."
+            formControlName="description"
+          ></textarea>
+        </mat-form-field>
+      </form>
+    </div>
   </div>
+  <div fxFlex="80" fxLayoutAlign="center center">
+    <mat-card>
+      <mat-form-field appearance="fill">
+        <mat-label>Select a theme</mat-label>
+        <mat-select [(ngModel)]="theme" (ngModelChange)="changeTheme()">
+          <mat-option *ngFor="let theme of themes" [value]="theme.value">
+            {{ theme.viewValue }}
+          </mat-option>
+        </mat-select>
+      </mat-form-field>
+      <h2>Code the player see</h2>
+      <ngx-codemirror
+        class="editor"
+        [options]="options"
+        [ngModel]=""
+        [disabled]="readOnly"
+        [autoFocus]="true"
+        (ngModelChange)="handleChange($event)"
+      >
+      </ngx-codemirror>
 
+      <br />
+      <h2>Insert at least one verification test</h2>
+      <div class="container">
+        <div>
+          <form [formGroup]="testForm" (ngSubmit)="submit()" novalidate>
+            <div formArrayName="testsArray">
+              <div
+                class="form-group clearfix"
+                *ngFor="let test of testFormGroup.controls; index as i"
+              >
+                <div class="clearfix" [formGroupName]="i">
+                  <h4>Test {{ i + 1 }}</h4>
+                  <div>
+                    <ngx-codemirror
+                      [options]="options"
+                      [ngModel]=""
+                      [disabled]="readOnly"
+                      [autoFocus]="true"
+                      formControlName="testArea"
+                      (ngModelChange)="handleTestChange($event)"
+                    >
+                    </ngx-codemirror>
+                  </div>
+                  <div>
+                    <button
+                      type="button"
+                      [hidden]="i < 1"
+                      (click)="removeTest(i)"
+                    >
+                      Remove test
+                    </button>
+                  </div>
+                </div>
+                <br />
+              </div>
+            </div>
+            <div>
+              <div>
+                <button type="button" (click)="addTest()">Add Test</button>
+              </div>
+            </div>
+          </form>
+        </div>
+      </div>
+      <mat-card class="simple-card-inverse">
+        <span>Compilation :</span>
+        <hr />
+        <div
+          *ngIf="this.loading === true"
+          fxLayout="row"
+          fxLayoutAlign="center center"
+        >
+          <mat-spinner class="m-10"></mat-spinner>
+        </div>
+        <div *ngIf="this.loading !== true">
+          <p>{{ result }}</p>
+        </div>
+      </mat-card>
+      <br />
 
-  <mat-card>
-
-  <mat-form-field appearance="fill">
-    <mat-label>Select a theme</mat-label>
-    <mat-select [(ngModel)]="theme" (ngModelChange)="changeTheme()">
-      <mat-option *ngFor="let theme of themes" [value]="theme.value">
-        {{theme.viewValue}}
-      </mat-option>
-    </mat-select>
-  </mat-form-field>
-
-  <ngx-codemirror
-    [options]="options"
-    [ngModel]="content"
-    [disabled]="readOnly"
-    [autoFocus]="true"
-    (ngModelChange)="handleChange($event)">
-  </ngx-codemirror>
-
-  <br/>
-
-  <mat-card class="simple-card-inverse">
-    <span>Compilation :</span>
-    <hr>
-    <div *ngIf="this.loading === true" fxLayout="row" fxLayoutAlign="center center">
-      <mat-spinner class="m-10"></mat-spinner>
-    </div>
-    <div *ngIf="this.loading !== true">
-      <p>{{result}}</p>
-    </div>
-  </mat-card>
-
-  <br/>
-
-  <label class="btn btn-light" [class.active]="readOnly">
-    <mat-checkbox class="example-margin" [(ngModel)]="readOnly">Toggle read-only mode (currently {{ readOnly ? 'on' : 'off' }})</mat-checkbox>
-  </label>
-
-  <br/>
-
-  <button mat-raised-button color="warn" (click)="clear()">Clear</button>
-  <button mat-raised-button color="primary" (click)="compile()">Compile</button>
-
-  </mat-card>
+      <button
+        mat-raised-button
+        color="primary"
+        [disabled]="iscompileBtnDisabled"
+        (click)="compile()"
+      >
+        Compile
+      </button>
+      <button
+        mat-raised-button
+        color="primary"
+        [disabled]="isSubmitBtnDisabled"
+        (click)="submit()"
+      >
+        Submit All
+      </button>
+    </mat-card>
+  </div>
 </div>
-
-
-<div *ngIf="!exercise">
-  <h2>Exercise not found</h2>
-</div>
-

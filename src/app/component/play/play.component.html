@@ -27,13 +27,13 @@
           <div class="mb-10">
             <h1>Play online</h1>
             <p>Play versus a person of similar skill</p>
+            <p><i>Format 3 turns / 25 seconds</i></p>
 
             <button
               mat-raised-button
               class="width-100"
               color="primary"
-              (click)="changeQueueStatus()"
-            >
+              (click)="changeQueueStatus()">
               Search for a game
             </button>
             <p>(Users in queue : {{ usersInQueue }})</p>
@@ -78,7 +78,7 @@
               mat-raised-button
               color="primary"
               class="width-100"
-              routerLink="/play/exercises"
+              routerLink="/exercises"
               >Exercises</a
             >
           </div>

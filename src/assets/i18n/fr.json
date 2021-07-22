@@ -4,5 +4,9 @@
     "NEW_GAME": "Nouvelle partie",
     "RANK": "Classement",
     "LOBBY": "Groupe"
+  },
+
+  "LOBBY": {
+    "KEY": "Clé du groupe"
   }
 }

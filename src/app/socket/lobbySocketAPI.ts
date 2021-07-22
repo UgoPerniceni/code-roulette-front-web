@@ -3,6 +3,7 @@ import * as SockJS from 'sockjs-client';
 import {environment} from '../../environments/environment';
 import {GameComponent} from '../component/play/games/game/game.component';
 import {LobbyComponent} from '../component/lobby/lobby.component';
+import {stringify} from 'querystring';
 
 export class LobbySocketAPI {
   webSocketEndPoint = environment.socketUrl;
@@ -27,9 +28,20 @@ export class LobbySocketAPI {
     this.stompClient.connect({}, () => {
       this.sendLobbyUpdate();
 
-      this.stompClient.subscribe(this.socket, () => {
-        this.lobbyComponent.refreshLobby();
+      this.stompClient.subscribe(this.socket, (response) => {
+        console.log(response.body);
+
+        if (response.body == 0) {
+          this.lobbyComponent.refreshLobby();
+        } else {
+          const path = '/play/game/' + response.body;
+
+          console.log(path);
+
+          this.lobbyComponent.redirectToGameCreated(path);
+        }
       });
+
       this.stompClient.reconnect_delay = 2000;
     }, this.errorCallBack);
   }
@@ -57,5 +69,11 @@ export class LobbySocketAPI {
     console.log('Sending updateLobby to API...');
     console.log('/api/socket/updateLobby/' + this.lobbyId);
     this.stompClient.send('/api/socket/updateLobby/' + this.lobbyId, {}, {});
+  }
+
+  sendGameCreated(gameId: string): void {
+    console.log('Sending gameCreated to API...');
+    console.log('/api/socket/gameCreated/' + this.lobbyId);
+    this.stompClient.send('/api/socket/gameCreated/' + this.lobbyId + '/' + gameId, {});
   }
 }

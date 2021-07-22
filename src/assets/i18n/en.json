@@ -4,5 +4,9 @@
     "NEW_GAME": "New game",
     "RANK": "Rank",
     "LOBBY": "Lobby"
+  },
+
+  "LOBBY": {
+    "KEY": "Lobby's key"
   }
 }

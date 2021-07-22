@@ -37,7 +37,7 @@
         <mat-icon>settings</mat-icon>
         <span>Profile</span>
       </button>
-      <button mat-menu-item routerLink="/admin">
+      <button *ngIf="isConnected && isAdmin" mat-menu-item routerLink="/admin">
         <mat-icon>lock</mat-icon>
         <span>Admin</span>
       </button>
@@ -50,15 +50,15 @@
 
     <mat-menu #menuLanguages="matMenu">
       <button mat-menu-item (click)="switchLang('en')">
-        <span class="mat-menu-emoji">🇬🇧</span>
+        <span class="flag-icon flag-icon-gb"></span>
         <span class="mat-menu-text">EN</span>
       </button>
       <button mat-menu-item (click)="switchLang('es')">
-        <span class="mat-menu-emoji">🇪🇸</span>
+        <span class="flag-icon flag-icon-es"></span>
         <span class="mat-menu-text">ES</span>
       </button>
       <button mat-menu-item (click)="switchLang('fr')">
-        <span class="mat-menu-emoji">🇫🇷</span>
+        <span class="flag-icon flag-icon-fr"></span>
         <span class="mat-menu-text">FR</span>
       </button>
     </mat-menu>
@@ -97,8 +97,8 @@
           <mat-icon class="mr-2">videogame_asset</mat-icon> Game(s)
         </button>
 
-        <button *ngIf="isConnected" mat-button routerLink="/play/exercises" routerLinkActive="selected no-border txt-bold" fxLayoutAlign="start" class="py-2 pr-5">
-          <mat-icon class="mr-2">extension</mat-icon> Problems
+        <button *ngIf="isConnected && isAdmin" mat-button routerLink="/exercises" routerLinkActive="selected no-border txt-bold" fxLayoutAlign="start" class="py-2 pr-5">
+          <mat-icon class="mr-2">lock</mat-icon> Exercises
         </button>
 
         <button *ngIf="isConnected" mat-button routerLink="/lobby" routerLinkActive="selected no-border txt-bold" fxLayoutAlign="start" class="py-2 pr-5">

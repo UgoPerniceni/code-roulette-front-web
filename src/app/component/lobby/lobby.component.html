@@ -21,10 +21,35 @@
           <li *ngFor="let user of lobby.users">{{ user.userName }}</li>
         </ul>
         <p>
-          lobby's key : {{lobby?.id}}
+          {{ 'LOBBY.KEY' | translate }} : {{lobby?.id}}
           <button mat-button [cdkCopyToClipboard]="lobby.id">
             <mat-icon matTooltip="Copy the key to clipboard" (click)="keyCopied()">file_copy</mat-icon>
           </button>
+        </p>
+        <p>
+          Game's parameters :
+
+          <br/><br/>
+
+          <mat-form-field appearance="fill">
+            <mat-label>Numbers of turn</mat-label>
+            <mat-select [(value)]="gameTurn" required>
+              <mat-option value="3">3 turns</mat-option>
+              <mat-option value="5">5 turns</mat-option>
+              <mat-option value="7">7 turns</mat-option>
+            </mat-select>
+          </mat-form-field>
+
+          <mat-form-field appearance="fill">
+            <mat-label>Time</mat-label>
+            <mat-select [(value)]="gameTime" required>
+              <mat-option value="15">15 seconds</mat-option>
+              <mat-option value="25">25 seconds</mat-option>
+              <mat-option value="35">35 seconds</mat-option>
+              <mat-option value="45">45 seconds</mat-option>
+            </mat-select>
+          </mat-form-field>
+
         </p>
         <button mat-raised-button color="warn" (click)="leaveLobby()">Leave lobby</button>
         <button mat-raised-button color="primary" (click)="createGame()">Create game with lobby</button>
