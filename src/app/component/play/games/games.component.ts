@@ -13,7 +13,7 @@ import {UserService} from '../../../service/user.service';
 })
 export class GamesComponent implements OnInit, AfterViewInit {
   dataSource = new MatTableDataSource<Game>();
-  displayedColumns: string[] = ['id', 'userPlaying', 'status', 'action'];
+  displayedColumns: string[] = ['id', 'format', 'userPlaying', 'status', 'action'];
 
   games: Game[];
   @ViewChild(MatPaginator) paginator: MatPaginator;

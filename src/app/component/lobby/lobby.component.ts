@@ -26,6 +26,9 @@ export class LobbyComponent implements OnInit, OnDestroy {
   user: User;
   lobby: Lobby;
 
+  gameTime = '25';
+  gameTurn = '3';
+
   lobbyWebSocketAPI: LobbySocketAPI;
 
   configSnackBar: MatSnackBarConfig = {};
@@ -75,7 +78,10 @@ export class LobbyComponent implements OnInit, OnDestroy {
 
           const usersInGame: UserInGame[] = Utilities.usersToUsersInGame(this.lobby.users);
 
-          this.gameService.createGame(new Game(exercise, usersInGame, null, false , '', 25, [])).subscribe((game) => {
+          const timer: number = +this.gameTime;
+          const turns: number = +this.gameTurn;
+
+          this.gameService.createGame(new Game(exercise, usersInGame, null, false , '', timer, turns, [])).subscribe((game) => {
             this.openSnackBarGame('Game created !', game.id);
           });
         });
