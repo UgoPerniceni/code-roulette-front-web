@@ -9,13 +9,13 @@ import {Router} from '@angular/router';
 @Component({
   selector: 'app-root',
   templateUrl: './app.component.html',
-  styleUrls: ['./app.component.css']
+  styleUrls: ['./app.component.scss']
 })
 export class AppComponent {
   isConnected = false;
   isAdmin = false;
   currentLang = 'fr';
-
+  sideBarOpen = true; 
   constructor(private router: Router, private authService: AuthService, private userService: UserService, public translate: TranslateService) {
     translate.addLangs(['en', 'es', 'fr']);
     translate.setDefaultLang('fr');
@@ -51,4 +51,9 @@ export class AppComponent {
     this.translate.use(lang);
     this.currentLang = lang;
   }
+
+  sideBarToggler() {
+    this.sideBarOpen = !this.sideBarOpen;
+  }
+
 }
