@@ -11,7 +11,7 @@ import {UserService} from '../service/user.service';
 export class SidenavComponent {
   isConnected = false;
   isAdmin = false;
-  constructor(private authService: AuthService, private userService: UserService) {
+  constructor(public authService: AuthService, private userService: UserService) {
     authService.currentSession.subscribe(response => {
       if (response.token){
         this.isConnected = true;
@@ -30,5 +30,9 @@ export class SidenavComponent {
 
       console.log('is Connected -> ' + this.isConnected);
     });
+  }
+
+  public logout() {
+    this.isConnected = false;
   }
 }

@@ -12,6 +12,8 @@ import {environment} from '../../environments/environment';
 })
 export class AuthService {
 
+  public isLogin = true;
+
   private url = environment.apiUrl + 'auth/';
 
   private currentSessionSubject: BehaviorSubject<Session>;

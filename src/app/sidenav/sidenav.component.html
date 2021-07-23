@@ -3,27 +3,27 @@
       <h1>CODING ROULETTE</h1>
     </div>
     <mat-divider></mat-divider>
-    <a *ngIf="isConnected" mat-list-item routerLinkActive="list-item-active" routerLink="/home">
+    <a *ngIf="authService.getSessionToken()" mat-list-item routerLinkActive="list-item-active" routerLink="/home">
       <mat-icon>home</mat-icon> {{ 'HOME.WORKS' | translate }}
     </a>
-    <a *ngIf="isConnected" mat-list-item routerLinkActive="list-item-active" routerLink="/play">
+    <a *ngIf="authService.getSessionToken()" mat-list-item routerLinkActive="list-item-active" routerLink="/play">
       <mat-icon>play_arrow</mat-icon> Play
     </a>
-    <a *ngIf="isConnected" mat-list-item routerLinkActive="list-item-active" routerLink="/play/games">
+    <a *ngIf="authService.getSessionToken()" mat-list-item routerLinkActive="list-item-active" routerLink="/play/games">
       <mat-icon>sports_esports</mat-icon> Game(s)
     </a>
-    <a *ngIf="isConnected && isAdmin" mat-list-item routerLinkActive="list-item-active" routerLink="/exercises">
+    <a *ngIf="authService.getSessionToken() && isAdmin" mat-list-item routerLinkActive="list-item-active" routerLink="/exercises">
       <mat-icon>lock</mat-icon> Exercices
     </a>
-    <a *ngIf="isConnected" mat-list-item routerLinkActive="list-item-active" routerLink="/lobby">
+    <a *ngIf="authService.getSessionToken()" mat-list-item routerLinkActive="list-item-active" routerLink="/lobby">
       <mat-icon>groups</mat-icon> Lobby
     </a>
-    <a *ngIf="isConnected" mat-list-item routerLinkActive="list-item-active" routerLink="/rank">
+    <a *ngIf="authService.getSessionToken()" mat-list-item routerLinkActive="list-item-active" routerLink="/rank">
       <mat-icon>emoji_events</mat-icon> Rank
     </a>
   </mat-nav-list>
 
-  <mat-nav-list *ngIf="!isConnected">
+  <mat-nav-list *ngIf="!authService.getSessionToken()">
     <a mat-list-item routerLinkActive="router-link-active" routerLink="/login">
       <mat-icon>vpn_key</mat-icon> Login
     </a>

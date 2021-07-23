@@ -4,6 +4,7 @@ import { TranslateService } from '@ngx-translate/core';
 import {Router} from '@angular/router';
 import {UserService} from '../service/user.service';
 import {Role} from '../enum/Role';
+import {SidenavComponent} from '../sidenav/sidenav.component';
 
 @Component({
   selector: 'app-header',
@@ -48,6 +49,7 @@ export class HeaderComponent {
   logout(): void {
     this.authService.logout();
     this.isConnected = false;
+
     this.router.navigateByUrl('/login')
       .then(() => console.log('Successfully logout.'));
   }
