@@ -12,8 +12,8 @@
     <a *ngIf="isConnected" mat-list-item routerLinkActive="list-item-active" routerLink="/play/games">
       <mat-icon>videogame_asset</mat-icon> Game(s)
     </a>
-    <a *ngIf="isConnected" mat-list-item routerLinkActive="list-item-active" routerLink="/exercises">
-      <mat-icon>extension</mat-icon> Exercices
+    <a *ngIf="isConnected && isAdmin" mat-list-item routerLinkActive="list-item-active" routerLink="/exercises">
+      <mat-icon>lock</mat-icon> Exercices
     </a>
     <a *ngIf="isConnected" mat-list-item routerLinkActive="list-item-active" routerLink="/lobby">
       <mat-icon>group</mat-icon> Lobby
