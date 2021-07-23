@@ -29,19 +29,22 @@
               Logout
             </button>
           </mat-menu>
-          
+
           <mat-menu #menuLanguages="matMenu">
-            <button mat-menu-item (click)="switchLang('en')">
-              <span class="mat-menu-emoji">🇬🇧</span>
-              <span class="mat-menu-text">EN</span>
+            <button mat-menu-item (click)="switchLang('en')" class="flag-menu-button">
+              <span class="flag-icon flag-icon-gb"></span>
+              <span style="padding: 20px">-</span>
+              <span>EN</span>
             </button>
-            <button mat-menu-item (click)="switchLang('es')">
-              <span class="mat-menu-emoji">🇪🇸</span>
-              <span class="mat-menu-text">ES</span>
+            <button mat-menu-item (click)="switchLang('es')" class="flag-menu-button">
+              <span class="flag-icon flag-icon-es"></span>
+              <span style="padding: 20px">-</span>
+              <span>ES</span>
             </button>
-            <button mat-menu-item (click)="switchLang('fr')">
-              <span class="mat-menu-emoji">🇫🇷</span>
-              <span class="mat-menu-text">FR</span>
+            <button mat-menu-item (click)="switchLang('fr')" class="flag-menu-button">
+              <span class="flag-icon flag-icon-fr"></span>
+              <span style="padding: 20px">-</span>
+              <span>FR</span>
             </button>
           </mat-menu>
         </li>
