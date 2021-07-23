@@ -3,27 +3,31 @@
       <h1>CODING ROULETTE</h1>
     </div>
     <mat-divider></mat-divider>
-    <a mat-list-item routerLinkActive="list-item-active" routerLink="/home">
+    <a *ngIf="isConnected" mat-list-item routerLinkActive="list-item-active" routerLink="/home">
       <mat-icon>home</mat-icon> {{ 'HOME.WORKS' | translate }}
     </a>
     <a *ngIf="isConnected" mat-list-item routerLinkActive="list-item-active" routerLink="/play">
       <mat-icon>play_arrow</mat-icon> Play
     </a>
     <a *ngIf="isConnected" mat-list-item routerLinkActive="list-item-active" routerLink="/play/games">
-      <mat-icon>videogame_asset</mat-icon> Game(s)
+      <mat-icon>sports_esports</mat-icon> Game(s)
     </a>
     <a *ngIf="isConnected && isAdmin" mat-list-item routerLinkActive="list-item-active" routerLink="/exercises">
       <mat-icon>lock</mat-icon> Exercices
     </a>
     <a *ngIf="isConnected" mat-list-item routerLinkActive="list-item-active" routerLink="/lobby">
-      <mat-icon>group</mat-icon> Lobby
+      <mat-icon>groups</mat-icon> Lobby
     </a>
     <a *ngIf="isConnected" mat-list-item routerLinkActive="list-item-active" routerLink="/rank">
-      <mat-icon>assessment</mat-icon> Rank
+      <mat-icon>emoji_events</mat-icon> Rank
     </a>
   </mat-nav-list>
 
-  <div *ngIf="!isConnected">
-    <button mat-button routerLink="/login" routerLinkActive="router-link-active no-border">Login</button>
-    <button mat-button routerLink="/signup" routerLinkActive="router-link-active no-border">Sign up</button>
-  </div>
+  <mat-nav-list *ngIf="!isConnected">
+    <a mat-list-item routerLinkActive="router-link-active" routerLink="/login">
+      <mat-icon>vpn_key</mat-icon> Login
+    </a>
+    <a mat-list-item routerLinkActive="router-link-active" routerLink="/signup">
+      <mat-icon>person_add</mat-icon> Sign up
+    </a>
+  </mat-nav-list>
