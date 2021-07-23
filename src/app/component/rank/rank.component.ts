@@ -8,7 +8,7 @@ import {MatPaginator} from '@angular/material/paginator';
 @Component({
   selector: 'app-rank',
   templateUrl: './rank.component.html',
-  styleUrls: ['./rank.component.css']
+  styleUrls: ['./rank.component.scss']
 })
 export class RankComponent implements OnInit, AfterViewInit {
 

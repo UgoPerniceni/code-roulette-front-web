@@ -14,7 +14,7 @@ import {SnackBarGameComponent} from '../snack-bar-game/snack-bar-game.component'
 @Component({
   selector: 'app-play',
   templateUrl: './play.component.html',
-  styleUrls: ['./play.component.css']
+  styleUrls: ['./play.component.scss']
 })
 export class PlayComponent implements OnInit, OnDestroy {
 

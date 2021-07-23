@@ -65,6 +65,8 @@ import { CompilationFailedDialogComponent } from './component/play/exercises/exe
 import { SaveNewcodeSuccessComponent } from './component/play/exercises/exercise/save-newcode-success/save-newcode-success.component';
 
 import { HashLocationStrategy, LocationStrategy  } from '@angular/common';
+import { SidenavComponent } from './sidenav/sidenav.component';
+import { HeaderComponent } from './header/header.component';
 
 @NgModule({
   declarations: [
@@ -89,6 +91,8 @@ import { HashLocationStrategy, LocationStrategy  } from '@angular/common';
     SnackBarGameComponent,
     CompilationFailedDialogComponent,
     SaveNewcodeSuccessComponent,
+    SidenavComponent,
+    HeaderComponent
   ],
   imports: [
     BrowserModule,

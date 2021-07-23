@@ -9,7 +9,7 @@ import {UserService} from '../../../service/user.service';
 @Component({
   selector: 'app-games',
   templateUrl: './games.component.html',
-  styleUrls: ['./games.component.css']
+  styleUrls: ['./games.component.scss']
 })
 export class GamesComponent implements OnInit, AfterViewInit {
   dataSource = new MatTableDataSource<Game>();

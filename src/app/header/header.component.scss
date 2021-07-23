@@ -4,31 +4,34 @@ mat-toolbar {
   z-index: 100;
 }
 
-// ul {
-//   li {
-//     list-style: none;
-//   }
-// }
-// button {
-//   outline: none;
-//   border: 0;
-//   background: transparent;
-// }
-
+ul {
+  li {
+    list-style: none;
+  }
+}
+button {
+  outline: none;
+  border: 0;
+  background: transparent;
+}
+.user {
+  font-size: 14px;
+}
 mat-toolbar {
   background: #f7f7f7;
 }
-
-// ::ng-deep {
-//   .mat-menu-content {
-//     width: 160px;
-//   }
-// }
-// add code
-.hr {
-  width: 100%;
+.user-image {
+  border-radius: 50%;
+  width: 50px;
+  height: 50px;
+  &-icon {
+    height: 18px;
+    font-size: 16px;
+  }
 }
-.mat-toolbar-row,
-.mat-toolbar-single-row {
-  padding: 0;
+
+::ng-deep {
+  .mat-menu-content {
+    width: 160px;
+  }
 }
