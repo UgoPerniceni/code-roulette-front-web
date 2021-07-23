@@ -2,7 +2,7 @@ import { Injectable } from '@angular/core';
 import {environment} from '../../environments/environment';
 import {HttpClient} from '@angular/common/http';
 import {Observable} from 'rxjs';
-import {Game} from '../model/Game';
+import {Game, GameDto} from '../model/Game';
 import {User} from '../model/User';
 
 @Injectable({
@@ -20,6 +20,10 @@ export class GameService {
 
   getGameById(id: string): Observable<Game>{
     return this.http.get<Game>(this.url + id);
+  }
+
+  getGameDtoById(id: string): Observable<GameDto>{
+    return this.http.get<Game>(this.url + 'light/' + id);
   }
 
   getGamesByUserId(userId: string): Observable<Game[]>{

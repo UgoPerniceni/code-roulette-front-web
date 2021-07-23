@@ -34,3 +34,13 @@ export class Game {
     }
   }
 }
+
+export class GameDto {
+  id: string;
+  usersInGame: UserInGame[];
+
+  constructor(usersInGame: UserInGame[]) {
+    this.usersInGame = usersInGame;
+  }
+}
+

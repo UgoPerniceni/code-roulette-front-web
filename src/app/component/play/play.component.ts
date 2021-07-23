@@ -10,6 +10,7 @@ import {UserInGame} from '../../model/UserInGame';
 import {Utilities} from '../../utils/Utilities';
 import {MatSnackBar, MatSnackBarConfig} from '@angular/material/snack-bar';
 import {SnackBarGameComponent} from '../snack-bar-game/snack-bar-game.component';
+import {Router} from '@angular/router';
 
 @Component({
   selector: 'app-play',
@@ -22,15 +23,18 @@ export class PlayComponent implements OnInit, OnDestroy {
 
   isLookingForGame = false;
   usersInQueue = 0;
+  currentUserId: string;
 
   configSnackBar: MatSnackBarConfig = {};
 
-  constructor(private exerciseService: ExerciseService, private userService: UserService, private gameService: GameService, private snackBar: MatSnackBar) {}
+  constructor(private router: Router, private exerciseService: ExerciseService, private userService: UserService, private gameService: GameService, private snackBar: MatSnackBar) {}
 
   ngOnInit(): void {
     this.userService.getCurrentUser().subscribe((user: User) => {
       console.log(user);
-      if (user.isInQueue){
+      this.currentUserId = user.id;
+
+      if (user.inQueue){
         this.isLookingForGame = true;
       }
     });
@@ -44,7 +48,12 @@ export class PlayComponent implements OnInit, OnDestroy {
   }
 
   ngOnDestroy(): void {
-    this.webSocketAPI._disconnect();
+    if (this.isLookingForGame) {
+      this.userService.leaveQueue().subscribe((data) => {
+        this.webSocketAPI.sendQueueUpdate();
+        this.webSocketAPI._disconnect();
+      });
+    }
   }
 
   onSlideChange(event: Event): void {
@@ -68,13 +77,13 @@ export class PlayComponent implements OnInit, OnDestroy {
           this.exerciseService.getRandomExercise().subscribe((exercise) => {
             console.log(exercise);
 
-            this.gameService.createGame(new Game(exercise, usersInGame, null, false,  '', 25, 3,[])).subscribe((game) => {
+            this.gameService.createGame(new Game(exercise, usersInGame, null, false,  '', 25, 3, [])).subscribe((game) => {
               console.log(game);
+
               this.isLookingForGame = false;
 
-              this.openSnackBarGame('Game created !', game.id);
-
               this.webSocketAPI.sendQueueUpdate();
+              this.webSocketAPI.sendGameCreated(game.id);
             });
           });
         } else {
@@ -90,8 +99,34 @@ export class PlayComponent implements OnInit, OnDestroy {
   }
 
   refreshQueueCounter(): void {
-    this.userService.countUsersInQueue().subscribe((numberOfUsersInQueue: number) => {
-      this.usersInQueue = numberOfUsersInQueue;
+    let usersInQueue = 0;
+
+    this.userService.getUsers().subscribe((users) => {
+      users.forEach((user) => {
+        if (user.inQueue) {
+          usersInQueue++;
+        }
+
+        if (user.id === this.currentUserId) {
+          if (this.isLookingForGame !== user.inQueue) {
+            this.isLookingForGame = user.inQueue;
+          }
+        }
+      });
+
+      this.usersInQueue = usersInQueue;
+    });
+  }
+
+  checkGameCreated(gameId: string): void {
+    console.log(gameId);
+    this.gameService.getGameDtoById(gameId).subscribe((game) => {
+      console.log(game);
+      game.usersInGame.forEach(usersIg => {
+        if (usersIg.user.id === this.currentUserId) {
+          this.redirectToGameCreated(game.id);
+        }
+      });
     });
   }
 
@@ -104,6 +139,11 @@ export class PlayComponent implements OnInit, OnDestroy {
       data: {message, gameId},
       ...this.configSnackBar
     });
+  }
+
+  redirectToGameCreated(gameId: string): void {
+    const path = '/play/game/' + gameId;
+    this.router.navigateByUrl(path).then();
   }
 
 }

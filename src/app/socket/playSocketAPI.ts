@@ -5,7 +5,7 @@ import {environment} from '../../environments/environment';
 
 export class PlaySocketAPI {
   webSocketEndPoint = environment.socketUrl;
-  socket = '/socket/updateQueueCounter';
+  socket = '/socket/updateQueue';
   stompClient: any;
   playComponent: PlayComponent;
 
@@ -18,8 +18,12 @@ export class PlaySocketAPI {
     const ws = new SockJS(this.webSocketEndPoint);
     this.stompClient = Stomp.over(ws);
     this.stompClient.connect({}, frame => {
-      this.stompClient.subscribe(this.socket, sdkEvent => {
-        this.playComponent.refreshQueueCounter();
+      this.stompClient.subscribe(this.socket, response => {
+        if (response.body == 0) {
+          this.playComponent.refreshQueueCounter();
+        } else {
+          this.playComponent.checkGameCreated(response.body);
+        }
       });
       this.stompClient.reconnect_delay = 2000;
     }, this.errorCallBack);
@@ -42,6 +46,11 @@ export class PlaySocketAPI {
 
   sendQueueUpdate(): void {
     console.log('Sending sendQueueJoined to API...');
-    this.stompClient.send('/api/socket/updateQueueCounter', {}, {});
+    this.stompClient.send('/api/socket/updateQueue', {}, {});
+  }
+
+  sendGameCreated(gameId: string): void {
+    console.log('Sending sendGameCreated to API...');
+    this.stompClient.send('/api/socket/gameCreated/' + gameId, {}, {});
   }
 }
