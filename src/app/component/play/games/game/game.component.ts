@@ -85,8 +85,8 @@ export class GameComponent implements OnInit, OnDestroy, AfterViewChecked {
   winner: UserInGame;
 
   constructor(private route: ActivatedRoute, private gameService: GameService, private formBuilder: FormBuilder,
-    private userService: UserService, private codeService: CodeService, private snackBar: MatSnackBar,
-    private dialog: MatDialog) {
+              private userService: UserService, private codeService: CodeService, private snackBar: MatSnackBar,
+              private dialog: MatDialog) {
     this.chatForm = this.formBuilder.group({
       message: ['', [Validators.required]],
     });
@@ -96,8 +96,8 @@ export class GameComponent implements OnInit, OnDestroy, AfterViewChecked {
     this.chatWebSocketAPI = new ChatSocketAPI(this);
     this.chatWebSocketAPI._connect();
 
-    this.userService.getCurrentUser().subscribe((data) => {
-      this.userConnected = data;
+    this.userService.getCurrentUser().subscribe((user) => {
+      this.userConnected = user;
 
       this.getGame();
     });
@@ -130,6 +130,7 @@ export class GameComponent implements OnInit, OnDestroy, AfterViewChecked {
 
       this.game = game;
       this.chat = this.game.chat;
+
       this.time = this.game.timer;
 
       this.languageCM = this.getLanguageCM(this.game.exercise.language.toString());
@@ -213,11 +214,16 @@ export class GameComponent implements OnInit, OnDestroy, AfterViewChecked {
         this.game.usersInGame
           .find(userIg => userIg.user.id === this.userConnected.id).score = this.score;
 
+        this.sendNotification('has scored ' + compilation.score + ' pts.');
+
         // Change turn
         this.gameService.endTurn(this.game).subscribe((game) => {
           this.game = game;
-
           this.gameWebSocketAPI.sendGameUpdate(this.game.id);
+
+          if (this.game.gameOver) {
+            this.sendGameResult(this.getWinner().user, ' has won !');
+          }
         });
       });
     }
@@ -229,15 +235,32 @@ export class GameComponent implements OnInit, OnDestroy, AfterViewChecked {
       const textMessage = this.chatForm.get('message').value;
 
       this.userService.getCurrentUser().subscribe((user) => {
-        const message = new Message(textMessage, user);
+        const message = new Message(textMessage, 'input', user);
         console.log('form\'s message');
         console.log(message);
 
-        this.chatWebSocketAPI.sendMessage(this.game.chat.id, textMessage, user.id);
+        this.chatWebSocketAPI.sendMessage(this.game.chat.id, textMessage, 'input', user.id);
 
         this.chatForm.reset();
       });
     }
+  }
+
+  sendNotification(notificationMessage: string): void {
+      this.userService.getCurrentUser().subscribe((user) => {
+        const message = new Message(notificationMessage, 'notification', user);
+        console.log('form\'s notification');
+        console.log(message);
+
+        this.chatWebSocketAPI.sendMessage(this.game.chat.id, notificationMessage, 'notification', user.id);
+      });
+  }
+
+  sendGameResult(winner: User, resultMessage: string): void {
+      const message = new Message(resultMessage, 'result', winner);
+      console.log(message);
+
+      this.chatWebSocketAPI.sendMessage(this.game.chat.id, resultMessage, 'result', winner.id);
   }
 
   receiveMessage(message: Message): void {

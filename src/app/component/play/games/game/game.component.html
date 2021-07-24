@@ -38,9 +38,17 @@
                   [style.height.px]="'280'"
                 >
                   <ul>
-                    <li *ngFor="let message of this.chat.messages">
-                      {{ message.user.userName }} : {{ message.text }}
-                    </li>
+                    <div *ngFor="let message of this.chat.messages">
+                      <li *ngIf="message.type === 'input'">
+                        <span>{{ message.user.userName }} : {{ message.text }}</span>
+                      </li>
+                      <span *ngIf="message.type === 'notification'" style="color: blue">
+                        <i>{{ message.user.userName }} {{ message.text }}</i>
+                      </span>
+                      <span *ngIf="message.type === 'result'" style="color: #ff0000">
+                        <i>{{ message.user.userName }} {{ message.text }}</i>
+                      </span>
+                    </div>
                   </ul>
                 </mat-card-content>
 

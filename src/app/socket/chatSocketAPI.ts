@@ -19,8 +19,13 @@ export class ChatSocketAPI {
     const ws = new SockJS(this.webSocketEndPoint);
     this.stompClient = Stomp.over(ws);
     this.stompClient.connect({}, frame => {
-      this.stompClient.subscribe(this.socket, sdkEvent => {
-        this.onMessageReceived(sdkEvent);
+      this.stompClient.subscribe(this.socket, response => {
+        if (response.body == 0){
+          this.onMessageReceived(response);
+        } else {
+
+          this.onMessageReceived(response);
+        }
       });
       this.stompClient.reconnect_delay = 2000;
     }, this.errorCallBack);
@@ -41,12 +46,13 @@ export class ChatSocketAPI {
     }, 5000);
   }
 
-  sendMessage(chatId: string, message: string, userId: string): void {
+  sendMessage(chatId: string, message: string, type: string, userId: string): void {
     console.log('Sending message to API...');
 
     const body = {
       chatId,
       message,
+      type,
       userId
     };
 
@@ -56,6 +62,7 @@ export class ChatSocketAPI {
   onMessageReceived(response): void {
     const message: Message = JSON.parse(response.body);
     console.log('Message received from Server : ' + message.user.userName + ' : ' + message.text);
+
     this.gameComponent.receiveMessage(message);
   }
 }
