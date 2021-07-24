@@ -30,7 +30,7 @@ const routes: Routes = [
   { path: 'exercises', component: ExercisesComponent, canActivate: [IsAdminGuard] },
   { path: 'exercise/:id', component: ExerciseComponent, canActivate: [IsAdminGuard] },
 
-  { path: 'play/games', component: GamesComponent, canActivate: [IsConnectedGuard] },
+  { path: 'games', component: GamesComponent, canActivate: [IsConnectedGuard] },
   { path: 'play/game/:id', component: GameComponent, canActivate: [IsConnectedGuard] },
 
   { path: 'editor', component: EditorComponent, canActivate: [IsConnectedGuard] },

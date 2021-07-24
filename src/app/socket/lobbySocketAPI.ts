@@ -1,9 +1,7 @@
 import * as Stomp from 'stompjs';
 import * as SockJS from 'sockjs-client';
 import {environment} from '../../environments/environment';
-import {GameComponent} from '../component/play/games/game/game.component';
 import {LobbyComponent} from '../component/lobby/lobby.component';
-import {stringify} from 'querystring';
 
 export class LobbySocketAPI {
   webSocketEndPoint = environment.socketUrl;

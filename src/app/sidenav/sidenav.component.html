@@ -9,7 +9,7 @@
     <a *ngIf="authService.getSessionToken()" mat-list-item routerLinkActive="list-item-active" routerLink="/play">
       <mat-icon>play_arrow</mat-icon> Play
     </a>
-    <a *ngIf="authService.getSessionToken()" mat-list-item routerLinkActive="list-item-active" routerLink="/play/games">
+    <a *ngIf="authService.getSessionToken()" mat-list-item routerLinkActive="list-item-active" routerLink="/games">
       <mat-icon>sports_esports</mat-icon> Game(s)
     </a>
     <a *ngIf="authService.getSessionToken() && isAdmin" mat-list-item routerLinkActive="list-item-active" routerLink="/exercises">
