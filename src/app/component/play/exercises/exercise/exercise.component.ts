@@ -26,7 +26,7 @@ interface Theme {
 })
 export class ExerciseComponent implements OnInit {
 
-  languages: string[] = ['Java', 'Python'];
+  languages: string[] = ['Java', 'Python', 'C'];
   formGroup: FormGroup;
   isSubmitBtnDisabled: boolean = true;
   iscompileBtnDisabled: boolean = true;
