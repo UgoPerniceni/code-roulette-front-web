@@ -1,4 +1,4 @@
-import {Role} from '../enum/Role';
+import { Role } from '../enum/Role';
 
 export class User {
   id: string;
@@ -14,12 +14,12 @@ export class User {
   lobbyId: string;
   gamesPlayed: number;
   gamesWon: number;
-  correctCompilation: number;
+  compilationCompleted: number;
 
   role: Role;
 
   constructor(id: string, firstName: string, lastName: string, email: string, userName: string, password: string, birthDate: Date, elo: number, eloProblems: number, inQueue: boolean, lobbyId: string,
-              gamesPlayed: number, gamesWon: number, correctcompilation: number, role: Role) {
+    gamesPlayed: number, gamesWon: number, compilationCompleted: number, role: Role) {
     this.id = id;
     this.firstName = firstName;
     this.lastName = lastName;
@@ -33,7 +33,7 @@ export class User {
     this.lobbyId = lobbyId;
     this.gamesPlayed = gamesPlayed;
     this.gamesWon = gamesWon;
-    this.correctCompilation = correctcompilation;
+    this.compilationCompleted = compilationCompleted;
 
     this.role = role;
   }

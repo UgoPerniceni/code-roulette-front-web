@@ -2,7 +2,7 @@
   <div class="d-flex page__box p-3 mt-2">PROFILE</div>
   <div class="page__content shadow p-3 position-relative">
     <div fxLayout="row" class="profile" *ngIf="user">
-      <div fxLayout="column"  fxLayoutAlign="start center">
+      <div fxLayout="column" fxLayoutAlign="start center">
         <div>
           <img
             id="profileImage"
@@ -132,7 +132,7 @@
                   <td>{{ user.elo }}</td>
                   <td>{{ user.gamesPlayed }}</td>
                   <td>{{ user.gamesWon }}</td>
-                  <td>{{ user.correctCompilation }}</td>
+                  <td>{{ user.compilationCompleted }}</td>
                 </tr>
               </tbody>
             </table>

@@ -1,10 +1,10 @@
-import {ChartOptions, ChartType} from 'chart.js';
-import {FormBuilder, FormGroup, Validators} from '@angular/forms';
-import {User} from '../../model/User';
-import {AfterViewInit, Component, OnInit} from '@angular/core';
-import {UserService} from '../../service/user.service';
-import {Router} from '@angular/router';
-import {Label} from 'ng2-charts';
+import { ChartOptions, ChartType } from 'chart.js';
+import { FormBuilder, FormGroup, Validators } from '@angular/forms';
+import { User } from '../../model/User';
+import { AfterViewInit, Component, OnInit } from '@angular/core';
+import { UserService } from '../../service/user.service';
+import { Router } from '@angular/router';
+import { Label } from 'ng2-charts';
 
 
 export function MustMatch(controlName: string, matchingControlName: string): any {
@@ -26,7 +26,7 @@ export function MustMatch(controlName: string, matchingControlName: string): any
   templateUrl: './profile.component.html',
   styleUrls: ['./profile.component.scss']
 })
-export class ProfileComponent implements OnInit, AfterViewInit {
+export class ProfileComponent implements OnInit {
 
   step = 0;
   hide = true;
@@ -60,7 +60,7 @@ export class ProfileComponent implements OnInit, AfterViewInit {
   public pieChartLegend: true;
   public pieChartColors;
 
-  constructor(private router: Router, private userService: UserService, private formBuild: FormBuilder) {}
+  constructor(private router: Router, private userService: UserService, private formBuild: FormBuilder) { }
 
   setStep(index: number): void {
     this.step = index;
@@ -91,8 +91,12 @@ export class ProfileComponent implements OnInit, AfterViewInit {
         validator: MustMatch('password', 'confirmPassword')
       });
 
-      this.dataSource = [
-        {elo: user.elo, rank: 1, gamesPlayed: 2, gamesWon: 10, correctCompilations: 1}, ];
+
+      this.pieChartData = [this.user.gamesPlayed - this.user.gamesWon, this.user.gamesWon];
+      this.pieChartLabels = ['Games lost  ', 'Games won  '];
+      this.pieChartColors = [{
+        backgroundColor: ['rgba(200,0,0,0.3)', '#009879']
+      },];
     });
 
   }
@@ -110,16 +114,6 @@ export class ProfileComponent implements OnInit, AfterViewInit {
           // Handler
         }
       );
-    }
-  }
-
-  ngAfterViewInit(): void {
-    if (this.user) {
-      this.pieChartData = [this.user.gamesPlayed - this.user.gamesWon, this.user.gamesWon];
-      this.pieChartLabels = ['Games lost  ', 'Games won  '];
-      this.pieChartColors = [{
-        backgroundColor: ['rgba(200,0,0,0.3)', '#009879']
-      }, ];
     }
   }
 
