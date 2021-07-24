@@ -7,6 +7,21 @@
   },
 
   "LOBBY": {
-    "KEY": "Lobby's key"
-  }
+    "KEY": "Lobby's key",
+    "NEW_LOBBY" : "Create lobby"
+  }, 
+  "PLAY" : {
+    "TITLE": "Play",
+    "PLAY_ONLINE": "Play online",
+    "PLAY_FRIENDS": "Play with friends",
+    "SEARCH" : "Find a game"
+  },
+  "GAMES":{},
+  "EXERCICES":{}, 
+  "LOBBY":{}, 
+  "RANK":{},
+  "PROFILE":{},
+  "ADMIN":{} 
+
 }
+

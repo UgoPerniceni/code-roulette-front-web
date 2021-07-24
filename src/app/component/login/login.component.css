@@ -13,3 +13,8 @@ mat-card {
   margin: 2em auto;
   text-align: center;
 }
+
+.login-button{
+  background-color: #1e293b;
+  color: #f1f5f9;
+}

@@ -1,12 +1,20 @@
 {
   "HOME": {
-    "WORKS": "ACCUEIL",
+    "WORKS": "Accueil",
     "NEW_GAME": "Nouvelle partie",
     "RANK": "Classement",
     "LOBBY": "Groupe"
   },
 
   "LOBBY": {
-    "KEY": "Clé du groupe"
+    "KEY": "Rejoindre le groupe avec une clé",
+    "NEW_LOBBY" : "Nouveau groupe"
+  },
+
+  "PLAY" : {
+    "TITLE": "Jouer",
+    "PLAY_ONLINE": "Jouer en ligne",
+    "PLAY_FRIENDS": "Jouer avec des amis",
+    "SEARCH" : "Trouver une partie"
   }
 }

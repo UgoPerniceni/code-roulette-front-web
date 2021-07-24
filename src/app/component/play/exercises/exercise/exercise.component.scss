@@ -6,8 +6,8 @@
 }
 
 .form {
-  min-width: 150px;
-  max-width: 500px;
+  // min-width: 150px;
+  // max-width: 500px;
   width: 100%;
 }
 
@@ -55,4 +55,26 @@
 .codeTooltipRed {
   background: #b71c1c;
   font-size: large;
+}
+.page {
+  color: white;
+  padding: 0 1rem;
+  background: #f1f5f9;
+  &__box {
+    min-height: 120px;
+    background: #1e293b;
+    margin: 0 -1rem;
+    font-size: 36px;
+  }
+  &__content {
+    min-height: calc(100vh - 178px);
+    border-radius: 10px;
+    margin-top: -2rem;
+    background: white;
+    color: black;
+  }
+}
+.mat-raised-button{
+  background-color: #1e293b;
+  color: #f1f5f9;
 }
