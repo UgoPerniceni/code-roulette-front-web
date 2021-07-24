@@ -64,9 +64,11 @@ import { SnackBarGameComponent } from './component/snack-bar-game/snack-bar-game
 import { CompilationFailedDialogComponent } from './component/play/exercises/exercise/compilation-failed-dialog/compilation-failed-dialog.component';
 import { SaveNewcodeSuccessComponent } from './component/play/exercises/exercise/save-newcode-success/save-newcode-success.component';
 
-import { HashLocationStrategy, LocationStrategy  } from '@angular/common';
+import { HashLocationStrategy, LocationStrategy } from '@angular/common';
 import { SidenavComponent } from './sidenav/sidenav.component';
 import { HeaderComponent } from './header/header.component';
+import { CodeExampleDialogComponent } from './component/play/exercises/exercise/code-example-dialog/code-example-dialog.component';
+import { TestExampleDialogComponent } from './component/play/exercises/exercise/test-example-dialog/test-example-dialog.component';
 
 @NgModule({
   declarations: [
@@ -92,7 +94,9 @@ import { HeaderComponent } from './header/header.component';
     CompilationFailedDialogComponent,
     SaveNewcodeSuccessComponent,
     SidenavComponent,
-    HeaderComponent
+    HeaderComponent,
+    CodeExampleDialogComponent,
+    TestExampleDialogComponent,
   ],
   imports: [
     BrowserModule,
@@ -147,8 +151,8 @@ import { HeaderComponent } from './header/header.component';
     MatNativeDateModule
   ],
   providers: [
-    {provide: HTTP_INTERCEPTORS, useClass: TokenInterceptor, multi: true},
-    {provide : LocationStrategy , useClass: HashLocationStrategy}
+    { provide: HTTP_INTERCEPTORS, useClass: TokenInterceptor, multi: true },
+    { provide: LocationStrategy, useClass: HashLocationStrategy }
   ],
   bootstrap: [AppComponent]
 })

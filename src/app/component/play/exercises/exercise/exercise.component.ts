@@ -1,3 +1,6 @@
+import { TestExampleDialogComponent } from './test-example-dialog/test-example-dialog.component';
+import { CodeExampleDialogComponent } from './code-example-dialog/code-example-dialog.component';
+import { Placeholder } from '@angular/compiler/src/i18n/i18n_ast';
 import { Component, OnInit } from '@angular/core';
 import { FormArray, FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { MatDialog } from '@angular/material/dialog';
@@ -27,6 +30,9 @@ export class ExerciseComponent implements OnInit {
   formGroup: FormGroup;
   isSubmitBtnDisabled: boolean = true;
   iscompileBtnDisabled: boolean = true;
+  isLanguageSet = false;
+  isTitleSet = false;
+  isTestSet = false;
 
   newCode: NewCode;
   selection: any;
@@ -112,6 +118,7 @@ export class ExerciseComponent implements OnInit {
 
     this.languageCM = this.getLanguageCM(this.newCode.language.toString());
     this.changeLanguageCM();
+    this.isLanguageSet = true;
   }
 
   private getLanguageCM(language: string): string {
@@ -147,41 +154,40 @@ export class ExerciseComponent implements OnInit {
 
   handleTestChange($event: Event): void {
     this.testContent = $event as unknown as string;
-  }
-
-  clear(): void {
-    this.content = '';
+    this.isTestSet = true;
   }
 
   compile(): void {
 
-    this.loading = true;
+    if (this.formGroup.value.title != '' && this.isTestSet && this.isLanguageSet) {
+      this.loading = true;
 
-    this.newCode.code = this.content;
-    this.newCode.title = this.formGroup.value.title;
-    this.newCode.description = this.formGroup.value.description;
-    this.newCode.language = this.selection;
-    var counter = 0;
-    this.testList.value.forEach(element => {
-      this.newCode.tests[counter] = element['testArea'];
-      counter++;
-    })
+      this.newCode.code = this.content;
+      this.newCode.title = this.formGroup.value.title;
+      this.newCode.description = this.formGroup.value.description;
+      this.newCode.language = this.selection;
+      var counter = 0;
+      this.testList.value.forEach(element => {
+        this.newCode.tests[counter] = element['testArea'];
+        counter++;
+      })
 
-    console.log('newCode' + this.newCode.code + this.newCode.description + this.newCode.language + this.newCode.tests);
+      console.log('newCode' + this.newCode.code + this.newCode.description + this.newCode.language + this.newCode.tests);
 
-    this.codeService.compileNewCode(this.newCode).subscribe((data: NewCode) => {
-      console.log(data);
-      this.result = data.compilationOutput;
+      this.codeService.compileNewCode(this.newCode).subscribe((data: NewCode) => {
+        console.log(data);
+        this.result = data.compilationOutput;
 
 
-      this.loading = false;
-      if (data.status == "SUCCESS") {
-        this.isSubmitBtnDisabled = false;
-      } else {
-        this.openDialog(new CompilationFailedDialogComponent());
-        this.isSubmitBtnDisabled = true;
-      }
-    });
+        this.loading = false;
+        if (data.status == "SUCCESS") {
+          this.isSubmitBtnDisabled = false;
+        } else {
+          this.openDialog(new CompilationFailedDialogComponent());
+          this.isSubmitBtnDisabled = true;
+        }
+      });
+    }
   }
 
   openDialog(dialogType: Object) {
@@ -194,5 +200,11 @@ export class ExerciseComponent implements OnInit {
     this.exerciseService.saveNewExercise(this.newCode).subscribe((data: NewCode) => {
       this.openDialog(new SaveNewcodeSuccessComponent());
     })
+  }
+  showCodeExample(): void {
+    this.dialog.open(CodeExampleDialogComponent);
+  }
+  showTestExample(): void {
+    this.dialog.open(TestExampleDialogComponent);
   }
 }

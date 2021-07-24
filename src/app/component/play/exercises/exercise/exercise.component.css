@@ -44,3 +44,15 @@
 .text-area {
   width: 95%;
 }
+.material-icons.color_primary {
+  background: #b71c1c;
+}
+.codeTooltip {
+  margin-top: 6px;
+  margin-right: 30px;
+}
+
+.codeTooltipRed {
+  background: #b71c1c;
+  font-size: large;
+}

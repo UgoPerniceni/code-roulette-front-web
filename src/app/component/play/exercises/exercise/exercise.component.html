@@ -57,7 +57,23 @@
           </mat-option>
         </mat-select>
       </mat-form-field>
-      <h2>Code the player see</h2>
+      <div fxLayout="row">
+        <h2>Type the code that the player see</h2>
+        <mat-icon
+          class="material-icons color_green"
+          mat-raised-button
+          matTooltip="Name it challenge() and it should return a value in order to test it"
+          matTooltipClass="code-tooltip-red"
+          aria-label="Button that shows a red tooltip"
+          class="codeTooltip"
+        >
+          info
+        </mat-icon>
+        <button mat-raised-button color="primary" (click)="showCodeExample()">
+          Code example
+        </button>
+      </div>
+
       <ngx-codemirror
         class="editor"
         [options]="options"
@@ -65,11 +81,27 @@
         [disabled]="readOnly"
         [autoFocus]="true"
         (ngModelChange)="handleChange($event)"
+        placeholder="placeholder"
       >
       </ngx-codemirror>
 
       <br />
-      <h2>Insert at least one verification test</h2>
+      <div fxLayout="row">
+        <h2>Insert at least one verification test</h2>
+        <mat-icon
+          class="material-icons color_green"
+          mat-raised-button
+          matTooltip="Implement tests and inject the result in a String named result"
+          matTooltipClass="codeTooltipRed"
+          aria-label="Button that shows a red tooltip"
+          class="codeTooltip"
+        >
+          info
+        </mat-icon>
+        <button mat-raised-button color="primary" (click)="showTestExample()">
+          Test example
+        </button>
+      </div>
       <div class="container">
         <div>
           <form [formGroup]="testForm" (ngSubmit)="submit()" novalidate>
@@ -128,12 +160,7 @@
       </mat-card>
       <br />
 
-      <button
-        mat-raised-button
-        color="primary"
-        [disabled]="iscompileBtnDisabled"
-        (click)="compile()"
-      >
+      <button mat-raised-button color="primary" (click)="compile()">
         Compile
       </button>
       <button
