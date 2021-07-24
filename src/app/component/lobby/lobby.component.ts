@@ -55,7 +55,9 @@ export class LobbyComponent implements OnInit, OnDestroy {
   }
 
   ngOnDestroy(): void {
-    this.lobbyWebSocketAPI._disconnect();
+    if (this.lobbyWebSocketAPI !== undefined) {
+      this.lobbyWebSocketAPI._disconnect();
+    }
   }
 
   leaveLobby(): void {

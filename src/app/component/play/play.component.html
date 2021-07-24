@@ -15,23 +15,23 @@
           </p>
         </div>
       </div>
-    
+
       <div fxFlex="50">
         <mat-card class="height-100">
           <mat-card-header>
             <h1 class="bold">Play Code roulette</h1>
           </mat-card-header>
-    
+
           <mat-card-content>
             <div fxLayout="column">
               <hr style="width: 100%" />
               <br />
-    
+
               <div class="mb-10">
                 <h1>Play online</h1>
                 <p>Play versus a person of similar skill</p>
                 <p><i>Format 3 turns / 25 seconds</i></p>
-    
+
                 <button
                   mat-raised-button
                   class="width-100"
@@ -40,7 +40,7 @@
                   Search for a game
                 </button>
                 <p>(Users in queue : {{ usersInQueue }})</p>
-    
+
                 <div fxLayout="row">
                   <div fxFlex="50" fxLayoutAlign="start center">
                     <mat-slide-toggle
@@ -49,7 +49,7 @@
                       (input)="onSlideChange($event)"
                     ></mat-slide-toggle>
                   </div>
-    
+
                   <div fxFlex="50" fxLayoutAlign="end center">
                     <p *ngIf="isLookingForGame">
                       Looking for a game...
@@ -58,23 +58,14 @@
                   </div>
                 </div>
               </div>
-    
+
               <div class="mb-10">
                 <h1>Play with friends</h1>
                 <p>Create a lobby and play with your friends</p>
-    
+
                 <button mat-raised-button routerLink="/lobby" class="width-100" color="primary">
                   Create a lobby
                 </button>
-              </div>
-    
-              <div class="mb-10">
-                <h1>Exercises</h1>
-                <p>Train yourself with exercises</p>
-    
-                <a mat-raised-button color="primary" class="width-100" routerLink="/exercises">
-                  Exercises
-                </a>
               </div>
             </div>
           </mat-card-content>
