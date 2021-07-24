@@ -48,7 +48,9 @@ export class HeaderComponent {
 
   logout(): void {
     this.authService.logout();
+
     this.isConnected = false;
+    this.isAdmin = false;
 
     this.router.navigateByUrl('/login')
       .then(() => console.log('Successfully logout.'));

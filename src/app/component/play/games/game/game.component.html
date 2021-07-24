@@ -1,32 +1,35 @@
 <div class="container-fluid page">
   <div class="d-flex page__box p-3 mt-2">
-    EXERCISE : {{ game.exercise.title }}
+    <span *ngIf="game && game.exercise">
+      EXERCISE : {{ game.exercise.title }}
+    </span>
   </div>
   <div class="page__content shadow p-3 position-relative">
     <div *ngIf="game" class="height-100">
-      <div fxLayout="row" class="information">
-        <div fxFlex="50" fxLayoutAlign="end center" class="player-information">
-          <span *ngIf="!this.game.gameOver">
-            {{ usernamePlaying }} is playing</span
-          >
-          <span *ngIf="this.game.gameOver && this.winner">
-            Game is over, {{ winner.user.userName }} won !</span
-          >
-        </div>
-      </div>
-
-      <br />
-
       <div class="" fxLayout="row" fxLayoutGap="10px">
         <div fxFlex="30">
           <div fxLayout="column" fxLayoutGap="10px">
-            <div fxFlex="50" style="text-align: center">
+
+            <div fxFlex="33">
+              <div fxLayout="row" class="information">
+
+                <span *ngIf="!this.game.gameOver">{{ usernamePlaying }} is playing !</span>
+                <span *ngIf="this.game.gameOver && this.winner">
+                    Game is over, {{ winner.user.userName }} won !
+                  </span>
+                <mat-icon *ngIf="!this.game.gameOver">sports_esports</mat-icon>
+                <mat-icon *ngIf="this.game.gameOver && this.winner">emoji_events</mat-icon>
+
+              </div>
+            </div>
+
+            <div fxFlex="33" style="text-align: center">
               <h3>Description</h3>
               <hr />
               <p>{{ game.exercise.description }}</p>
             </div>
 
-            <div fxFlex="50">
+            <div fxFlex="33">
               <mat-card>
                 <mat-card-header>Chat</mat-card-header>
                 <hr />
@@ -58,7 +61,7 @@
                         <strong>Don't disclose personal info</strong>
                       </mat-hint>
                       <mat-hint align="end"
-                        >{{ message.value.length }} / 256</mat-hint
+                      >{{ message.value.length }} / 256</mat-hint
                       >
                       <mat-error> Please provide a valid text </mat-error>
                     </mat-form-field>
@@ -71,7 +74,7 @@
                       <a
                         mat-raised-button
                         (click)="sendMessage()"
-                        >Send</a
+                      >Send</a
                       >
                     </div>
                     <div fxFlex="50" fxLayoutAlign="end center">
@@ -86,8 +89,8 @@
                         >
                           {{ userInGame.user.userName
                           }}<span *ngIf="i != game.usersInGame.length - 1"
-                            >,</span
-                          >
+                        >,</span
+                        >
                         </div>
                       </div>
                     </div>
@@ -111,19 +114,17 @@
               <mat-card
                 *ngIf="isPlaying && !this.game.gameOver"
                 class="simple-card-is-playing"
-                >It is your turn !</mat-card
+              >It is your turn !</mat-card
               >
               <mat-card
                 *ngIf="!isPlaying && !this.game.gameOver"
                 class="simple-card-is-not-playing"
-                >Not your turn !</mat-card
+              >Not your turn !</mat-card
               >
 
-              <mat-card
-                *ngIf="this.game.gameOver"
-                class="simple-card-game-is-over"
-                >Game is over !</mat-card
-              >
+              <mat-card *ngIf="this.game.gameOver" class="simple-card-game-is-over">
+                Game is over !
+              </mat-card>
             </div>
 
             <div fxFlex="33" fxLayoutAlign="end start">
