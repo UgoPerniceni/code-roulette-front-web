@@ -29,7 +29,6 @@ export class ExerciseComponent implements OnInit {
   languages: string[] = ['Java', 'Python', 'C'];
   formGroup: FormGroup;
   isSubmitBtnDisabled: boolean = true;
-  iscompileBtnDisabled: boolean = true;
   isLanguageSet = false;
   isTitleSet = false;
   isTestSet = false;
@@ -77,6 +76,10 @@ export class ExerciseComponent implements OnInit {
     return this.testForm.get('testsArray') as FormArray;
   }
 
+  checkCompileEnable(): boolean {
+    return !(this.testFormGroup.dirty && this.formGroup.dirty);
+  }
+
   createForm(): FormGroup {
     return this.formBuilder.group({
       testArea: ['', [Validators.required, Validators.minLength(2), Validators.maxLength(20)]],
@@ -109,7 +112,6 @@ export class ExerciseComponent implements OnInit {
     this.testForm = this.formBuilder.group({
       testsArray: this.formBuilder.array([this.createForm()])
     });
-    // set testList to the form control containing testinfo
     this.testList = this.testForm.get('testsArray') as FormArray;
   }
 

@@ -160,7 +160,12 @@
       </mat-card>
       <br />
 
-      <button mat-raised-button color="primary" (click)="compile()">
+      <button
+        mat-raised-button
+        color="primary"
+        [disabled]="checkCompileEnable()"
+        (click)="compile()"
+      >
         Compile
       </button>
       <button
