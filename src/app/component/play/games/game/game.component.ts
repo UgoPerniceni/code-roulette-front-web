@@ -106,8 +106,13 @@ export class GameComponent implements OnInit, OnDestroy, AfterViewChecked {
   ngAfterViewChecked(): void { }
 
   ngOnDestroy(): void {
-    this.chatWebSocketAPI._disconnect();
-    this.gameWebSocketAPI._disconnect();
+    if (this.chatWebSocketAPI !== undefined) {
+      this.chatWebSocketAPI._disconnect();
+    }
+
+    if (this.chatWebSocketAPI !== undefined) {
+      this.gameWebSocketAPI._disconnect();
+    }
 
     if (this.timerSubscription) {
       this.timerSubscription.unsubscribe();

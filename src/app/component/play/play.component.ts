@@ -50,8 +50,10 @@ export class PlayComponent implements OnInit, OnDestroy {
   ngOnDestroy(): void {
     if (this.isLookingForGame) {
       this.userService.leaveQueue().subscribe((data) => {
-        this.webSocketAPI.sendQueueUpdate();
-        this.webSocketAPI._disconnect();
+        if (this.webSocketAPI !== undefined) {
+          this.webSocketAPI.sendQueueUpdate();
+          this.webSocketAPI._disconnect();
+        }
       });
     }
   }
