@@ -1,12 +1,20 @@
 {
   "HOME": {
-    "WORKS": "El componente home funciona",
+    "WORKS": "Inicio ",
     "NEW_GAME": "Nuevo juego",
     "RANK": "Rango",
     "LOBBY": "Vestíbulo"
   },
 
   "LOBBY": {
-    "KEY": "Clave de grupo"
+    "KEY": "Clave de grupo",
+    "NEW_LOBBY" : "nuevo grupo "
+  },
+
+  "PLAY" : {
+    "TITLE": "Jugar",
+    "PLAY_ONLINE": "Jugar en línea",
+    "PLAY_FRIENDS": "Jugar con amigos",
+    "SEARCH" : "Encontrar un juego "
   }
 }
