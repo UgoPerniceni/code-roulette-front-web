@@ -48,6 +48,9 @@
                       <span *ngIf="message.type === 'result'" style="color: #ff0000">
                         <i>{{ message.user.userName }} {{ message.text }}</i>
                       </span>
+                      <span *ngIf="message.type === 'warning'" style="color: #ff0000">
+                        <i>Warning : {{ message.text }}</i>
+                      </span>
                     </div>
                   </ul>
                 </mat-card-content>
@@ -131,7 +134,7 @@
               >
 
               <mat-card *ngIf="this.game.gameOver" class="simple-card-game-is-over">
-                Game is over !
+                Game is over <span *ngIf="this.game.gameForfeit">(by forfeit) </span>!
               </mat-card>
             </div>
 

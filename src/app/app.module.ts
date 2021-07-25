@@ -69,6 +69,7 @@ import { SidenavComponent } from './sidenav/sidenav.component';
 import { HeaderComponent } from './header/header.component';
 import { CodeExampleDialogComponent } from './component/play/exercises/exercise/code-example-dialog/code-example-dialog.component';
 import { TestExampleDialogComponent } from './component/play/exercises/exercise/test-example-dialog/test-example-dialog.component';
+import {CanLeaveGameGuard} from './guard/can-leave-game.guard';
 
 @NgModule({
   declarations: [
@@ -152,7 +153,8 @@ import { TestExampleDialogComponent } from './component/play/exercises/exercise/
   ],
   providers: [
     { provide: HTTP_INTERCEPTORS, useClass: TokenInterceptor, multi: true },
-    { provide: LocationStrategy, useClass: HashLocationStrategy }
+    { provide: LocationStrategy, useClass: HashLocationStrategy },
+    CanLeaveGameGuard
   ],
   bootstrap: [AppComponent]
 })

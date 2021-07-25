@@ -206,7 +206,7 @@ export class LobbyComponent implements OnInit, OnDestroy {
     const timer: number = +this.gameTime;
     const turns: number = +this.gameTurn;
 
-    this.gameService.createGame(new Game(exercise, usersInGame, null, false , '', timer, turns, [])).subscribe((game) => {
+    this.gameService.createGame(new Game(exercise, usersInGame, null, false, false, '', timer, turns, [])).subscribe((game) => {
       this.lobbyWebSocketAPI.sendGameCreated(game.id);
     });
   }

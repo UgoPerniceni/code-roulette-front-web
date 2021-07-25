@@ -1,4 +1,4 @@
-import { AfterViewChecked, Component, OnDestroy, OnInit } from '@angular/core';
+import {AfterViewChecked, Component, HostListener, OnDestroy, OnInit} from '@angular/core';
 import { Game } from '../../../../model/Game';
 import { ActivatedRoute } from '@angular/router';
 import { GameService } from '../../../../service/game.service';
@@ -9,7 +9,7 @@ import { UserService } from '../../../../service/user.service';
 import { Chat } from '../../../../model/Chat';
 import { Compilation } from '../../../../model/Compilation';
 import { CodeService } from '../../../../service/code.service';
-import { interval } from 'rxjs';
+import {interval, Observable} from 'rxjs';
 import { take } from 'rxjs/operators';
 import { MatSnackBar } from '@angular/material/snack-bar';
 import { MatDialog, MatDialogConfig } from '@angular/material/dialog';
@@ -17,6 +17,7 @@ import { CompilationDialogComponent } from './compilation-dialog/compilation-dia
 import { User } from '../../../../model/User';
 import { UserInGame } from '../../../../model/UserInGame';
 import { GameSocketAPI } from '../../../../socket/gameSocketAPI';
+import {ComponentCanDeactivate} from '../../../../guard/can-leave-game.guard';
 
 interface Theme {
   value: string;
@@ -28,7 +29,7 @@ interface Theme {
   templateUrl: './game.component.html',
   styleUrls: ['./game.component.scss']
 })
-export class GameComponent implements OnInit, OnDestroy, AfterViewChecked {
+export class GameComponent implements OnInit, OnDestroy, AfterViewChecked, ComponentCanDeactivate {
 
   game: Game;
   chatWebSocketAPI: ChatSocketAPI;
@@ -106,16 +107,20 @@ export class GameComponent implements OnInit, OnDestroy, AfterViewChecked {
   ngAfterViewChecked(): void { }
 
   ngOnDestroy(): void {
-    if (this.chatWebSocketAPI !== undefined) {
-      this.chatWebSocketAPI._disconnect();
-    }
+    if (this.game && !this.game.gameOver) {
+      // const userInGameConnected: UserInGame = this.game.usersInGame.find(userInGame => userInGame.user.id === this.userConnected.id);
+      this.game.usersInGame.find(userInGame => userInGame.user.id === this.userConnected.id).forfeit = true;
+      console.log(this.game);
 
-    if (this.chatWebSocketAPI !== undefined) {
-      this.gameWebSocketAPI._disconnect();
-    }
+      this.gameService.forfeit(this.game).subscribe((data) => {
+        this.gameWebSocketAPI.sendGameUpdate(this.game.id);
+        this.chatWebSocketAPI.sendMessage(this.game.chat.id, 'has forfeit the game (game is cancelled).', 'result', this.userConnected.id);
 
-    if (this.timerSubscription) {
-      this.timerSubscription.unsubscribe();
+        this.unsubscribes();
+      });
+
+    } else {
+      this.unsubscribes();
     }
   }
 
@@ -375,5 +380,31 @@ export class GameComponent implements OnInit, OnDestroy, AfterViewChecked {
 
   getWinner(): UserInGame {
     return this.game.usersInGame.find(userIg => userIg.won === true);
+  }
+
+  // @HostListener allows us to also guard against browser refresh, close, etc.
+  @HostListener('window:beforeunload')
+  canDeactivate(): Observable<boolean> | boolean {
+    // returning true will navigate without confirmation
+    // returning false will show a confirm dialog before navigating away
+    if (this.game && !this.game.gameOver) {
+      return false;
+    }
+
+    return true;
+  }
+
+  unsubscribes(): void {
+    if (this.chatWebSocketAPI !== undefined) {
+      this.chatWebSocketAPI._disconnect();
+    }
+
+    if (this.chatWebSocketAPI !== undefined) {
+      this.gameWebSocketAPI._disconnect();
+    }
+
+    if (this.timerSubscription) {
+      this.timerSubscription.unsubscribe();
+    }
   }
 }
