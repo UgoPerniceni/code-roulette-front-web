@@ -2,6 +2,14 @@
   "CLOSE" : "Close", 
   "SAVE" : "Save",
   "JOIN": "Join",
+  "HEADER": "Settings",
+  "ADMIN": {
+    "TITLE": "Admin"
+  },
+  "PROFILE":{
+    "TITLE": "Profile"
+  },
+  "LOGOUT": "Log out",
   "HOME": {
     "WORKS": "Component home works !",
     "NEW_GAME": "New game",

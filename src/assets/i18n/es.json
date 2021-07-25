@@ -2,6 +2,14 @@
   "CLOSE" : "Cerrar", 
   "SAVE" : "Guardar",
   "JOIN": "UNIR",
+  "HEADER": "Configuración",
+  "ADMIN": {
+    "TITLE": "Administrador"
+  },
+  "PROFILE":{
+    "TITLE": "Perfil"
+  },
+  "LOGOUT": "Cerrar",
   "HOME": {
     "WORKS": "Inicio ",
     "NEW_GAME": "Nuevo juego",

@@ -2,6 +2,14 @@
   "CLOSE" : "Fermer", 
   "SAVE" : "Enregistrer",
   "JOIN": "Joindre",
+  "HEADER": "Paramètres",
+  "ADMIN": {
+    "TITLE": "Administrateur"
+  },
+  "PROFILE":{
+    "TITLE": "Profil"
+  },
+  "LOGOUT": "Se déconnecter",
   "HOME": {
     "WORKS": "Accueil",
     "NEW_GAME": "Nouvelle partie",

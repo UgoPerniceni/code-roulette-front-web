@@ -12,18 +12,18 @@
     </button>
 
     <button *ngIf="isConnected" mat-button [matMenuTriggerFor]="menu">
-      Settings
+      {{ 'HEADER' | translate }}
       <mat-icon class="user-image-icon ml-1">keyboard_arrow_down</mat-icon>
     </button>
 
     <mat-menu #menu="matMenu">
       <button mat-menu-item routerLink="/profile">
         <mat-icon>settings</mat-icon>
-        <span>Profile</span>
+        <span>{{ 'PROFILE.TITLE' | translate }}</span>
       </button>
       <button *ngIf="isConnected && isAdmin" mat-menu-item routerLink="/admin">
         <mat-icon>lock</mat-icon>
-        <span>Admin</span>
+        <span>{{ 'ADMIN.TITLE' | translate }}</span>
       </button>
       <button mat-menu-item (click)="logout()">
         <mat-icon>exit_to_app</mat-icon>
