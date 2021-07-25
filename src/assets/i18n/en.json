@@ -28,7 +28,13 @@
   },
   "GAMES":{},
   "EXERCICES":{}, 
-  "RANK":{},
+  "RANK":{
+    "TITLE": "RANK", 
+    "USERNAME" : "Username",
+    "WON": "Games won", 
+    "PLAYED" : "Games played", 
+    "RATE" : "Win rate"
+  },
   "PROFILE":{},
   "ADMIN":{} 
 
