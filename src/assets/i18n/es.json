@@ -26,5 +26,12 @@
     "DESCRIBE_P" : "Crear un grupo y jugar con tus amigos",
     "SEARCH" : "Encontrar un juego ",
     "FORMAT": "Formato 3 turnos / 25 segundos"
+  }, 
+  "RANK":{
+    "TITLE": "RANGO", 
+    "USERNAME" : "Nombre de usuario",
+    "WON": "Partidos ganados", 
+    "PLAYED" : "Partidos jugados", 
+    "RATE" : "Tasa de ganancia"
   }
 }

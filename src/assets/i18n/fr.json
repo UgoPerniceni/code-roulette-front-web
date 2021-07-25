@@ -26,5 +26,12 @@
     "DESCRIBE_P" : "Créer un groupe et jouer avec vos amis",
     "SEARCH" : "Trouver une partie",
     "FORMAT" : "Format 3 tours / 25 secondes"
+  },
+  "RANK" : {
+    "TITLE": "RANG", 
+    "USERNAME" : "Nom d'utilisateur",
+    "WON": "Parties gagnées", 
+    "PLAYED" : "Parties jouées", 
+    "RATE" : "Taux de victoire"
   }
 }
