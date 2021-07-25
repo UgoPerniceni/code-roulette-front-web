@@ -2,6 +2,14 @@
   "CLOSE" : "Cerrar", 
   "SAVE" : "Guardar",
   "JOIN": "UNIR",
+  "HEADER": "Configuración",
+  "ADMIN": {
+    "TITLE": "Administrador"
+  },
+  "PROFILE":{
+    "TITLE": "Perfil"
+  },
+  "LOGOUT": "Cerrar",
   "HOME": {
     "WORKS": "Inicio ",
     "NEW_GAME": "Nuevo juego",
@@ -10,10 +18,11 @@
   },
 
   "LOBBY": {
+    "TITLE": "Grupo",
     "KEY": "Entrar en el grupo con una llave",
     "KEY_LOBBY" : "Clave de grupo",
     "NEW_LOBBY" : "Nuevo grupo ",
-    "CREATE": "Crear un nuevo lobby",
+    "CREATE": "Crear un nuevo grupo",
     "NAME" : "Nombre del grupo", 
     "VALID_KEY" : "Por favor, proporcione una clave de grupo válida"
   },
@@ -28,10 +37,27 @@
     "FORMAT": "Formato 3 turnos / 25 segundos"
   }, 
   "RANK":{
-    "TITLE": "RANGO", 
+    "TITLE": "Rango", 
     "USERNAME" : "Nombre de usuario",
     "WON": "Partidos ganados", 
     "PLAYED" : "Partidos jugados", 
     "RATE" : "Tasa de ganancia"
+  },
+  "GAMES":{
+    "TITLE": "Juego(s)",
+    "NAMEPANEL": "Mis juegos",
+    "TURN": "Giros del usuario ", 
+    "OVER": "¿Se acabó el juego?",
+    "FORMAT": "Formato"
+  },
+  "EXERCICES":{
+    "TITLE": "Ejercicios",
+    "SEARCH": "Buscar", 
+    "SELECTLG": "Seleccionar un idioma",
+    "TITLETAB": "Título", 
+    "DESCRIPTION": "Descripción", 
+    "LANGUAGE": "Idioma", 
+    "CREATE": "Creado en", 
+    "ACTION": "Acción"
   }
 }

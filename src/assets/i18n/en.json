@@ -2,14 +2,23 @@
   "CLOSE" : "Close", 
   "SAVE" : "Save",
   "JOIN": "Join",
+  "HEADER": "Settings",
+  "ADMIN": {
+    "TITLE": "Admin"
+  },
+  "PROFILE":{
+    "TITLE": "Profile"
+  },
+  "LOGOUT": "Log out",
   "HOME": {
-    "WORKS": "Component home works !",
+    "WORKS": "Home",
     "NEW_GAME": "New game",
     "RANK": "Rank",
     "LOBBY": "Lobby"
   },
 
   "LOBBY": {
+    "TITLE": "Lobby",
     "KEY": "Join the group with a key",
     "KEY_LOBBY" : "Lobby's key",
     "NEW_LOBBY" : "Create lobby",
@@ -26,17 +35,29 @@
     "SEARCH" : "Find a game",
     "FORMAT": "Format 3 turns / 25 seconds"
   },
-  "GAMES":{},
-  "EXERCICES":{}, 
   "RANK":{
-    "TITLE": "RANK", 
+    "TITLE": "Rank", 
     "USERNAME" : "Username",
     "WON": "Games won", 
     "PLAYED" : "Games played", 
     "RATE" : "Win rate"
   },
-  "PROFILE":{},
-  "ADMIN":{} 
-
+  "GAMES":{
+    "TITLE": "Game(s)",
+    "NAMEPANEL": "My games",
+    "TURN": "User's turns", 
+    "OVER": "Is game over ?",
+    "FORMAT": "Format"
+  },
+  "EXERCICES":{
+    "TITLE": "Exercices",
+    "SEARCH": "Search", 
+    "SELECTLG": "Select a language",
+    "TITLETAB": "Title", 
+    "DESCRIPTION": "Description", 
+    "LANGUAGE": "Language", 
+    "CREATE": "Created at", 
+    "ACTION": "Action"
+  }
 }
 

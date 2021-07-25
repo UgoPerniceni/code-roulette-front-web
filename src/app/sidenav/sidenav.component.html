@@ -7,19 +7,19 @@
       <mat-icon>home</mat-icon> {{ 'HOME.WORKS' | translate }}
     </a>
     <a *ngIf="authService.getSessionToken()" mat-list-item routerLinkActive="list-item-active" routerLink="/play">
-      <mat-icon>play_arrow</mat-icon> Play
+      <mat-icon>play_arrow</mat-icon> {{ 'PLAY.TITLE' | translate }}
     </a>
     <a *ngIf="authService.getSessionToken()" mat-list-item routerLinkActive="list-item-active" routerLink="/games">
-      <mat-icon>sports_esports</mat-icon> Game(s)
+      <mat-icon>sports_esports</mat-icon> {{ 'GAMES.TITLE' | translate }}
     </a>
     <a *ngIf="authService.getSessionToken() && isAdmin" mat-list-item routerLinkActive="list-item-active" routerLink="/exercises">
-      <mat-icon>lock</mat-icon> Exercices
+      <mat-icon>lock</mat-icon> {{ 'EXERCICES.TITLE' | translate }}
     </a>
     <a *ngIf="authService.getSessionToken()" mat-list-item routerLinkActive="list-item-active" routerLink="/lobby">
-      <mat-icon>groups</mat-icon> Lobby
+      <mat-icon>groups</mat-icon> {{ 'LOBBY.TITLE' | translate }}
     </a>
     <a *ngIf="authService.getSessionToken()" mat-list-item routerLinkActive="list-item-active" routerLink="/rank">
-      <mat-icon>emoji_events</mat-icon> Rank
+      <mat-icon>emoji_events</mat-icon> {{ 'RANK.TITLE' | translate }}
     </a>
   </mat-nav-list>
 
