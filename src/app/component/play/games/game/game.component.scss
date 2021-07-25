@@ -1,8 +1,9 @@
 @import "~codemirror";
+@import '/src/variables.scss';
 
 .mat-raised-button {
   // width:50%;
-  background-color: #1e293b;
+  background-color: $primary-color;
   color: #ffffff;
 }
 
@@ -61,7 +62,7 @@
   background: #f1f5f9;
   &__box {
     min-height: 120px;
-    background: #1e293b;
+    background: $primary-color;
     margin: 0 -1rem;
     font-size: 36px;
   }
