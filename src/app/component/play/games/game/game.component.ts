@@ -94,13 +94,15 @@ export class GameComponent implements OnInit, OnDestroy, AfterViewChecked, Compo
   }
 
   ngOnInit(): void {
-    this.chatWebSocketAPI = new ChatSocketAPI(this);
+    const gameId = String(this.route.snapshot.paramMap.get('id'));
+
+    this.chatWebSocketAPI = new ChatSocketAPI(this, gameId);
     this.chatWebSocketAPI._connect();
 
     this.userService.getCurrentUser().subscribe((user) => {
       this.userConnected = user;
 
-      this.getGame();
+      this.getGame(gameId);
     });
   }
 
@@ -114,7 +116,8 @@ export class GameComponent implements OnInit, OnDestroy, AfterViewChecked, Compo
 
       this.gameService.forfeit(this.game).subscribe((data) => {
         this.gameWebSocketAPI.sendGameUpdate(this.game.id);
-        this.chatWebSocketAPI.sendMessage(this.game.chat.id, 'has forfeit the game (game is cancelled).', 'result', this.userConnected.id);
+        this.chatWebSocketAPI.sendMessage(this.game.chat.id,
+          'has forfeit the game (game is cancelled).', 'result', this.userConnected.id, this.game.id);
 
         this.unsubscribes();
       });
@@ -124,9 +127,7 @@ export class GameComponent implements OnInit, OnDestroy, AfterViewChecked, Compo
     }
   }
 
-  getGame(): void {
-    const gameId = String(this.route.snapshot.paramMap.get('id'));
-
+  getGame(gameId: string): void {
     this.gameService.getGameById(gameId).subscribe((game) => {
 
       console.log('-----------------------');
@@ -244,7 +245,7 @@ export class GameComponent implements OnInit, OnDestroy, AfterViewChecked, Compo
         console.log('form\'s message');
         console.log(message);
 
-        this.chatWebSocketAPI.sendMessage(this.game.chat.id, textMessage, 'input', user.id);
+        this.chatWebSocketAPI.sendMessage(this.game.chat.id, textMessage, 'input', user.id, this.game.id);
 
         this.chatForm.reset();
       });
@@ -257,7 +258,7 @@ export class GameComponent implements OnInit, OnDestroy, AfterViewChecked, Compo
         console.log('form\'s notification');
         console.log(message);
 
-        this.chatWebSocketAPI.sendMessage(this.game.chat.id, notificationMessage, 'notification', user.id);
+        this.chatWebSocketAPI.sendMessage(this.game.chat.id, notificationMessage, 'notification', user.id, this.game.id);
       });
   }
 
@@ -265,7 +266,7 @@ export class GameComponent implements OnInit, OnDestroy, AfterViewChecked, Compo
       const message = new Message(resultMessage, 'result', winner);
       console.log(message);
 
-      this.chatWebSocketAPI.sendMessage(this.game.chat.id, resultMessage, 'result', winner.id);
+      this.chatWebSocketAPI.sendMessage(this.game.chat.id, resultMessage, 'result', winner.id, this.game.id);
   }
 
   receiveMessage(message: Message): void {
@@ -353,8 +354,8 @@ export class GameComponent implements OnInit, OnDestroy, AfterViewChecked, Compo
     this.score = scoreTotal;
   }
 
-  refreshGame(): void {
-    this.getGame();
+  refreshGame(gameId: string): void {
+    this.getGame(this.game.id);
   }
 
   updateGameState(): void {

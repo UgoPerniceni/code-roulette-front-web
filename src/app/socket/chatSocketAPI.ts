@@ -6,12 +6,13 @@ import {environment} from '../../environments/environment';
 
 export class ChatSocketAPI {
   webSocketEndPoint = environment.socketUrl;
-  socket = '/socket/chat';
+  socket = '/socket/chat/';
   stompClient: any;
   gameComponent: GameComponent;
 
-  constructor(gameComponent: GameComponent){
+  constructor(gameComponent: GameComponent, gameId: string){
     this.gameComponent = gameComponent;
+    this.socket = this.socket + gameId;
   }
 
   _connect(): void {
@@ -20,12 +21,7 @@ export class ChatSocketAPI {
     this.stompClient = Stomp.over(ws);
     this.stompClient.connect({}, frame => {
       this.stompClient.subscribe(this.socket, response => {
-        if (response.body == 0){
-          this.onMessageReceived(response);
-        } else {
-
-          this.onMessageReceived(response);
-        }
+        this.onMessageReceived(response);
       });
       this.stompClient.reconnect_delay = 2000;
     }, this.errorCallBack);
@@ -46,7 +42,7 @@ export class ChatSocketAPI {
     }, 5000);
   }
 
-  sendMessage(chatId: string, message: string, type: string, userId: string): void {
+  sendMessage(chatId: string, message: string, type: string, userId: string, gameId: string): void {
     console.log('Sending message to API...');
 
     const body = {
@@ -56,7 +52,7 @@ export class ChatSocketAPI {
       userId
     };
 
-    this.stompClient.send('/api/socket/sendMessage', {}, JSON.stringify(body));
+    this.stompClient.send('/api/socket/sendMessage/' + gameId, {}, JSON.stringify(body));
   }
 
   onMessageReceived(response): void {
