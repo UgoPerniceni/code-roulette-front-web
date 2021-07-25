@@ -18,6 +18,7 @@ import { User } from '../../../../model/User';
 import { UserInGame } from '../../../../model/UserInGame';
 import { GameSocketAPI } from '../../../../socket/gameSocketAPI';
 import {ComponentCanDeactivate} from '../../../../guard/can-leave-game.guard';
+import {Utilities} from '../../../../utils/Utilities';
 
 interface Theme {
   value: string;
@@ -295,15 +296,7 @@ export class GameComponent implements OnInit, OnDestroy, AfterViewChecked, Compo
   }
 
   formatDate(data: any): string {
-    let dateStr = '';
-
-    if (data) {
-      let milliSeconds = data[6];
-      milliSeconds = String(milliSeconds).slice(0, 3);
-      dateStr = `${data[0]}-${data[1]}-${data[2]} ${data[3]}:${data[4]}:${data[5]}:${milliSeconds}`;
-    }
-
-    return dateStr;
+    return Utilities.formatDate(data);
   }
 
   openCompilationDialog(compilation: Compilation, code: string): void {
