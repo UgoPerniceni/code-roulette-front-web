@@ -1,5 +1,5 @@
-import {Exercise} from './Exercise';
-import {User} from './User';
+import { Exercise } from './Exercise';
+import { User } from './User';
 
 export class Compilation {
   id: string;
