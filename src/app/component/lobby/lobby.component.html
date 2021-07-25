@@ -1,5 +1,5 @@
 <div class="container-fluid page">
-  <div class="d-flex page__box p-3 mt-2">LOBBY</div>
+  <div class="d-flex page__box p-3 mt-2">{{ 'LOBBY.NEW_LOBBY' | translate }}</div>
   <div class="page__content shadow p-3 position-relative">
     <div *ngIf="user">
       <mat-card style="height: 100%">
@@ -64,10 +64,10 @@
 
           <div *ngIf="!lobby">
             <button mat-raised-button (click)="openCreateLobbyDialog()" style="text-align: center;">
-              Create lobby
+              {{ 'LOBBY.NEW_LOBBY' | translate }}
             </button>
             <button mat-raised-button color="" (click)="openJoinLobbyDialog()" style="text-align: center;">
-              Join lobby with key
+              {{ 'LOBBY.KEY' | translate }}
             </button>
           </div>
         </mat-card-content>

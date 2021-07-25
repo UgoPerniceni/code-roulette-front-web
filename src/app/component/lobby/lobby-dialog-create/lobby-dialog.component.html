@@ -1,9 +1,9 @@
-<h2 mat-dialog-title>{{title}}</h2>
+<h2 mat-dialog-title>{{ 'LOBBY.CREATE' | translate }}</h2>
 
 <mat-dialog-content [formGroup]="form">
 
   <mat-form-field>
-    <input matInput placeholder="Lobby title" formControlName="title" required>
+    <input matInput placeholder="{{ 'LOBBY.NAME' | translate }}" formControlName="title" required>
     <mat-error>
       Please provide a lobby's title
     </mat-error>
@@ -12,6 +12,6 @@
 </mat-dialog-content>
 
 <mat-dialog-actions>
-  <button class="mat-raised-button" (click)="close()">Close</button>
-  <button class="mat-raised-button mat-primary" (click)="save()">Save</button>
+  <button class="mat-raised-button" (click)="close()">{{ 'CLOSE' | translate }}</button>
+  <button class="mat-raised-button mat-primary" (click)="save()">{{ 'SAVE' | translate }}</button>
 </mat-dialog-actions>

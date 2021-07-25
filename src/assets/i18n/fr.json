@@ -1,4 +1,7 @@
 {
+  "CLOSE" : "Fermer", 
+  "SAVE" : "Enregistrer",
+  "JOIN": "Joindre",
   "HOME": {
     "WORKS": "Accueil",
     "NEW_GAME": "Nouvelle partie",
@@ -8,13 +11,20 @@
 
   "LOBBY": {
     "KEY": "Rejoindre le groupe avec une clé",
-    "NEW_LOBBY" : "Nouveau groupe"
+    "KEY_LOBBY" : "Clé de groupe",
+    "NEW_LOBBY" : "Nouveau groupe",
+    "CREATE": "Créer un nouveau groupe",
+    "NAME" : "Nom du groupe", 
+    "VALID_KEY" : "Veuillez fournir une clé de groupe valide"
   },
 
   "PLAY" : {
     "TITLE": "Jouer",
     "PLAY_ONLINE": "Jouer en ligne",
+    "DESCRIBE_O" : "Jouer contre une personne de même niveau",
     "PLAY_FRIENDS": "Jouer avec des amis",
-    "SEARCH" : "Trouver une partie"
+    "DESCRIBE_P" : "Créer un groupe et jouer avec vos amis",
+    "SEARCH" : "Trouver une partie",
+    "FORMAT" : "Format 3 tours / 25 secondes"
   }
 }
