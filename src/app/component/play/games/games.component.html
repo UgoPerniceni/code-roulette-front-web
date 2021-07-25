@@ -1,6 +1,7 @@
 <div class="container-fluid page">
   <div class="d-flex page__box p-3 mt-2">{{ 'GAMES.TITLE' | translate }}</div>
   <div class="page__content shadow p-3 position-relative">
+
     <div *ngIf="games">
       <div class="mat-elevation-z8">
         <table mat-table [dataSource]="dataSource" class="mat-elevation-z8">
@@ -16,56 +17,56 @@
             </td>
           </ng-container>
 
-        <ng-container matColumnDef="userPlaying">
-          <th class="th-center" mat-header-cell *matHeaderCellDef>
-            {{ 'GAMES.TURN' | translate }}
-          </th>
-          <td class="td-center" mat-cell *matCellDef="let game">
-            <span *ngIf="!game.gameOver">{{ getUserPlaying(game) }} </span>
-            <span *ngIf="game.gameOver"><mat-icon>cancel</mat-icon></span>
-          </td>
-        </ng-container>
+          <ng-container matColumnDef="userPlaying">
+            <th class="th-center" mat-header-cell *matHeaderCellDef>
+              {{ 'GAMES.TURN' | translate }}
+            </th>
+            <td class="td-center" mat-cell *matCellDef="let game">
+              <span *ngIf="!game.gameOver">{{ getUserPlaying(game) }} </span>
+              <span *ngIf="game.gameOver"><mat-icon>cancel</mat-icon></span>
+            </td>
+          </ng-container>
 
-        <ng-container matColumnDef="status">
-          <th class="th-center" mat-header-cell *matHeaderCellDef>
-            {{ 'GAMES.OVER' | translate }}
-          </th>
-          <td class="td-center" mat-cell *matCellDef="let game">
-            {{ game.gameOver ? "Yes" : "No" }}
-          </td>
-        </ng-container>
+          <ng-container matColumnDef="status">
+            <th class="th-center" mat-header-cell *matHeaderCellDef>
+              {{ 'GAMES.OVER' | translate }}
+            </th>
+            <td class="td-center" mat-cell *matCellDef="let game">
+              {{ game.gameOver ? "Yes" : "No" }}
+            </td>
+          </ng-container>
 
-        <ng-container matColumnDef="action">
-          <th class="th-center" mat-header-cell *matHeaderCellDef>{{ 'PLAY.TITLE' | translate }}</th>
-          <td class="td-center" mat-cell *matCellDef="let game">
-            <button
-              mat-raised-button
-              color="primary"
-              [routerLink]="['/play/game/', game.id]"
-            >
-              <mat-icon class="mr-2">arrow_right_alt</mat-icon>
-            </button>
-          </td>
-        </ng-container>
+          <ng-container matColumnDef="action">
+            <th class="th-center" mat-header-cell *matHeaderCellDef>{{ 'PLAY.TITLE' | translate }}</th>
+            <td class="td-center" mat-cell *matCellDef="let game">
+              <button
+                mat-raised-button
+                color="primary"
+                [routerLink]="['/play/game/', game.id]"
+              >
+                <mat-icon class="mr-2">arrow_right_alt</mat-icon>
+              </button>
+            </td>
+          </ng-container>
 
-        <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
-        <tr mat-row *matRowDef="let row; columns: displayedColumns"></tr>
-      </table>
+          <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+          <tr mat-row *matRowDef="let row; columns: displayedColumns"></tr>
+        </table>
 
-      <mat-paginator
-        [pageSizeOptions]="[5, 10, 20]"
-        showFirstLastButtons
-      ></mat-paginator>
-    </div>
-
-    <div *ngIf="!games" class="height-100">
-      <div fxLayout="column" fxLayoutAlign="center center" class="height-100">
-        <h1>Loading...</h1>
-        <div class="game-information">
-          <mat-spinner color="accent" [diameter]="150"></mat-spinner>
-        </div>
+        <mat-paginator
+          [pageSizeOptions]="[5, 10, 20]"
+          showFirstLastButtons
+        ></mat-paginator>
       </div>
     </div>
-  </div>
 
+    <div *ngIf="!games" class="page__content-data position-absolute">
+      <div>
+        <h1>Loading...</h1>
+        <mat-spinner color="accent" [diameter]="150"></mat-spinner>
+      </div>
+    </div>
+
+  </div>
 </div>
+

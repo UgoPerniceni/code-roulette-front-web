@@ -16,6 +16,11 @@
     margin-top: -2rem;
     background: white;
     color: black;
+    &-data {
+      top: 50%;
+      left: 50%;
+      transform: translate(-50%, -50%);
+    }
   }
 }
 .mat-table {
@@ -36,4 +41,8 @@
 
 .td-center {
   text-align: center;
+}
+
+.loader{
+
 }
