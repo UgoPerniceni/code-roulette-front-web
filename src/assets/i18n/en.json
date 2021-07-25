@@ -1,4 +1,7 @@
 {
+  "CLOSE" : "Close", 
+  "SAVE" : "Save",
+  "JOIN": "Join",
   "HOME": {
     "WORKS": "Component home works !",
     "NEW_GAME": "New game",
@@ -7,8 +10,12 @@
   },
 
   "LOBBY": {
-    "KEY": "Lobby's key",
-    "NEW_LOBBY" : "Create lobby"
+    "KEY": "Join the group with a key",
+    "KEY_LOBBY" : "Lobby's key",
+    "NEW_LOBBY" : "Create lobby",
+    "CREATE": "Create a new lobby",
+    "NAME" : "Lobby's name", 
+    "VALID_KEY" : "Please provide a valid lobby's key"
   }, 
   "PLAY" : {
     "TITLE": "Play",

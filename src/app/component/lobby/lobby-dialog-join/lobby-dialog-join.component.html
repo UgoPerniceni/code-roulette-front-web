@@ -1,17 +1,17 @@
-<h2 mat-dialog-title>{{title}}</h2>
+<h2 mat-dialog-title>{{ 'LOBBY.CREATE' | translate }}</h2>
 
 <mat-dialog-content [formGroup]="form">
 
   <mat-form-field>
-    <input matInput placeholder="Lobby's key" formControlName="lobbyId" required>
+    <input matInput placeholder="{{ 'LOBBY.KEY_LOBBY' | translate }}" formControlName="lobbyId" required>
     <mat-error>
-      Please provide a valid lobby's key
+      {{ 'LOBBY.VALID_KEY' | translate }}
     </mat-error>
   </mat-form-field>
 
 </mat-dialog-content>
 
 <mat-dialog-actions>
-  <button class="mat-raised-button" (click)="close()">Close</button>
-  <button class="mat-raised-button mat-primary" (click)="join()">Join</button>
+  <button class="mat-raised-button" (click)="close()">{{ 'CLOSE' | translate }}</button>
+  <button class="mat-raised-button mat-primary" (click)="join()">{{ 'JOIN' | translate }}</button>
 </mat-dialog-actions>

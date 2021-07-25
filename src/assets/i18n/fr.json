@@ -1,4 +1,7 @@
 {
+  "CLOSE" : "Fermer", 
+  "SAVE" : "Enregistrer",
+  "JOIN": "Joindre",
   "HOME": {
     "WORKS": "Accueil",
     "NEW_GAME": "Nouvelle partie",
@@ -8,7 +11,11 @@
 
   "LOBBY": {
     "KEY": "Rejoindre le groupe avec une clé",
-    "NEW_LOBBY" : "Nouveau groupe"
+    "KEY_LOBBY" : "Clé de groupe",
+    "NEW_LOBBY" : "Nouveau groupe",
+    "CREATE": "Créer un nouveau groupe",
+    "NAME" : "Nom du groupe", 
+    "VALID_KEY" : "Veuillez fournir une clé de groupe valide"
   },
 
   "PLAY" : {

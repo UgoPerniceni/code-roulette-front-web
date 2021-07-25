@@ -1,4 +1,7 @@
 {
+  "CLOSE" : "Cerrar", 
+  "SAVE" : "Guardar",
+  "JOIN": "UNIR",
   "HOME": {
     "WORKS": "Inicio ",
     "NEW_GAME": "Nuevo juego",
@@ -7,8 +10,12 @@
   },
 
   "LOBBY": {
-    "KEY": "Clave de grupo",
-    "NEW_LOBBY" : "nuevo grupo "
+    "KEY": "Entrar en el grupo con una llave",
+    "KEY_LOBBY" : "Clave de grupo",
+    "NEW_LOBBY" : "Nuevo grupo ",
+    "CREATE": "Crear un nuevo lobby",
+    "NAME" : "Nombre del grupo", 
+    "VALID_KEY" : "Por favor, proporcione una clave de grupo válida"
   },
 
   "PLAY" : {
