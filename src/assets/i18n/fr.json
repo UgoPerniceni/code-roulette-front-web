@@ -10,6 +10,7 @@
   },
 
   "LOBBY": {
+    "TITLE": "Groupe",
     "KEY": "Rejoindre le groupe avec une clé",
     "KEY_LOBBY" : "Clé de groupe",
     "NEW_LOBBY" : "Nouveau groupe",
@@ -28,10 +29,16 @@
     "FORMAT" : "Format 3 tours / 25 secondes"
   },
   "RANK" : {
-    "TITLE": "RANG", 
+    "TITLE": "Rang", 
     "USERNAME" : "Nom d'utilisateur",
     "WON": "Parties gagnées", 
     "PLAYED" : "Parties jouées", 
     "RATE" : "Taux de victoire"
+  },
+  "GAMES":{
+    "TITLE": "Jeu(x)"
+  },
+  "EXERCICES":{
+    "TITLE": "Exercices"
   }
 }

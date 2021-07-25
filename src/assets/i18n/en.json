@@ -10,6 +10,7 @@
   },
 
   "LOBBY": {
+    "TITLE": "Lobby",
     "KEY": "Join the group with a key",
     "KEY_LOBBY" : "Lobby's key",
     "NEW_LOBBY" : "Create lobby",
@@ -26,15 +27,19 @@
     "SEARCH" : "Find a game",
     "FORMAT": "Format 3 turns / 25 seconds"
   },
-  "GAMES":{},
-  "EXERCICES":{}, 
   "RANK":{
-    "TITLE": "RANK", 
+    "TITLE": "Rank", 
     "USERNAME" : "Username",
     "WON": "Games won", 
     "PLAYED" : "Games played", 
     "RATE" : "Win rate"
   },
+  "GAMES":{
+    "TITLE": "Game(s)"
+  },
+  "EXERCICES":{
+    "TITLE": "Exercices"
+  }, 
   "PROFILE":{},
   "ADMIN":{} 
 
