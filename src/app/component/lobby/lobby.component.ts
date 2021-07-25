@@ -16,6 +16,7 @@ import {MatSnackBar, MatSnackBarConfig} from '@angular/material/snack-bar';
 import {SnackBarGameComponent} from '../snack-bar-game/snack-bar-game.component';
 import {LobbySocketAPI} from '../../socket/lobbySocketAPI';
 import {Router} from '@angular/router';
+import {Language} from '../../enum/Language';
 
 @Component({
   selector: 'app-lobby',
@@ -29,6 +30,9 @@ export class LobbyComponent implements OnInit, OnDestroy {
 
   gameTime = '25';
   gameTurn = '3';
+
+  languageSelected = 'Random';
+  languages: string[] = ['Random', 'Java', 'Python', 'C'];
 
   lobbyWebSocketAPI: LobbySocketAPI;
 
@@ -78,20 +82,15 @@ export class LobbyComponent implements OnInit, OnDestroy {
   createGame(): void {
     if (this.lobby) {
       if (this.lobby.users.length >= 2) {
-        this.exerciseService.getRandomExercise().subscribe((exercise: Exercise) => {
-          console.log(exercise);
-
-          const usersInGame: UserInGame[] = Utilities.usersToUsersInGame(this.lobby.users);
-
-          const timer: number = +this.gameTime;
-          const turns: number = +this.gameTurn;
-
-          this.gameService.createGame(new Game(exercise, usersInGame, null, false , '', timer, turns, [])).subscribe((game) => {
-            this.lobbyWebSocketAPI.sendGameCreated(game.id);
-
-            // this.openSnackBarGame('Game created !', game.id);
+        if (this.languageSelected !== 'Random') {
+          this.exerciseService.getRandomExerciseByLanguage(Language[this.languageSelected]).subscribe(exercise => {
+            this.generateGame(exercise);
           });
-        });
+        } else {
+          this.exerciseService.getRandomExercise().subscribe(exercise => {
+            this.generateGame(exercise);
+          });
+        }
       } else {
         this.openSnackBar('You must have 2 players or more !');
       }
@@ -157,6 +156,7 @@ export class LobbyComponent implements OnInit, OnDestroy {
               this.lobbyWebSocketAPI = new LobbySocketAPI(this, lobby.id);
               this.lobbyWebSocketAPI._connect();
 
+              // TODO check socket
               this.lobbyWebSocketAPI.sendLobbyUpdate();
             });
           });
@@ -196,5 +196,18 @@ export class LobbyComponent implements OnInit, OnDestroy {
   redirectToGameCreated(path: string): void {
     console.log(path);
     this.router.navigateByUrl(path).then();
+  }
+
+  generateGame(exercise: Exercise): void {
+    console.log(exercise);
+
+    const usersInGame: UserInGame[] = Utilities.usersToUsersInGame(this.lobby.users);
+
+    const timer: number = +this.gameTime;
+    const turns: number = +this.gameTurn;
+
+    this.gameService.createGame(new Game(exercise, usersInGame, null, false , '', timer, turns, [])).subscribe((game) => {
+      this.lobbyWebSocketAPI.sendGameCreated(game.id);
+    });
   }
 }

@@ -4,6 +4,7 @@ import { Observable } from 'rxjs';
 import { Exercise } from '../model/Exercise';
 import { environment } from '../../environments/environment';
 import { NewCode } from '../model/NewCode';
+import {Language} from '../enum/Language';
 
 @Injectable({
   providedIn: 'root'
@@ -24,6 +25,10 @@ export class ExerciseService {
 
   getRandomExercise(): Observable<Exercise> {
     return this.http.get<Exercise>(this.url + 'random');
+  }
+
+  getRandomExerciseByLanguage(language: Language): Observable<Exercise> {
+    return this.http.post<Exercise>(this.url + 'language/random', language);
   }
 
   saveNewExercise(newCode: NewCode): Observable<NewCode> {
