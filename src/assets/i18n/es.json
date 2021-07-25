@@ -44,9 +44,20 @@
     "RATE" : "Tasa de ganancia"
   },
   "GAMES":{
-    "TITLE": "Juego(s)"
+    "TITLE": "Juego(s)",
+    "NAMEPANEL": "Mis juegos",
+    "TURN": "Giros del usuario ", 
+    "OVER": "¿Se acabó el juego?",
+    "FORMAT": "Formato"
   },
   "EXERCICES":{
-    "TITLE": "Ejercicios"
+    "TITLE": "Ejercicios",
+    "SEARCH": "Buscar", 
+    "SELECTLG": "Seleccionar un idioma",
+    "TITLETAB": "Título", 
+    "DESCRIPTION": "Descripción", 
+    "LANGUAGE": "Idioma", 
+    "CREATE": "Creado en", 
+    "ACTION": "Acción"
   }
 }

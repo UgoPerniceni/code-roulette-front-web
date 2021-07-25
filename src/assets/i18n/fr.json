@@ -44,9 +44,20 @@
     "RATE" : "Taux de victoire"
   },
   "GAMES":{
-    "TITLE": "Jeu(x)"
+    "TITLE": "Jeu(x)",
+    "NAMEPANEL": "Mes jeux",
+    "TURN": "Tour du joueur", 
+    "OVER": "Partie terminé ?",
+    "FORMAT": "Format"
   },
   "EXERCICES":{
-    "TITLE": "Exercices"
+    "TITLE": "Exercices",
+    "SEARCH": "Recherche", 
+    "SELECTLG": "Selectionner une langue",
+    "TITLETAB": "Titre", 
+    "DESCRIPTION": "Description", 
+    "LANGUAGE": "Language", 
+    "CREATE": "Créer à", 
+    "ACTION": "Action"
   }
 }

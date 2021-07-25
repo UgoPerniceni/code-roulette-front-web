@@ -11,7 +11,7 @@
   },
   "LOGOUT": "Log out",
   "HOME": {
-    "WORKS": "Component home works !",
+    "WORKS": "Home",
     "NEW_GAME": "New game",
     "RANK": "Rank",
     "LOBBY": "Lobby"
@@ -43,13 +43,21 @@
     "RATE" : "Win rate"
   },
   "GAMES":{
-    "TITLE": "Game(s)"
+    "TITLE": "Game(s)",
+    "NAMEPANEL": "My games",
+    "TURN": "User's turns", 
+    "OVER": "Is game over ?",
+    "FORMAT": "Format"
   },
   "EXERCICES":{
-    "TITLE": "Exercices"
-  }, 
-  "PROFILE":{},
-  "ADMIN":{} 
-
+    "TITLE": "Exercices",
+    "SEARCH": "Search", 
+    "SELECTLG": "Select a language",
+    "TITLETAB": "Title", 
+    "DESCRIPTION": "Description", 
+    "LANGUAGE": "Language", 
+    "CREATE": "Created at", 
+    "ACTION": "Action"
+  }
 }
 

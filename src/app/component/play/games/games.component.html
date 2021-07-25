@@ -1,5 +1,5 @@
 <div class="container-fluid page">
-  <div class="d-flex page__box p-3 mt-2">MY GAMES</div>
+  <div class="d-flex page__box p-3 mt-2">{{ 'GAMES.TITLE' | translate }}</div>
   <div class="page__content shadow p-3 position-relative">
     <div *ngIf="games">
       <div class="mat-elevation-z8">
@@ -10,7 +10,7 @@
           </ng-container>
 
           <ng-container matColumnDef="format">
-            <th class="th-center" mat-header-cell *matHeaderCellDef> Format </th>
+            <th class="th-center" mat-header-cell *matHeaderCellDef> {{ 'GAMES.TITLE' | translate }} </th>
             <td class="td-center" mat-cell *matCellDef="let game">
               {{game.numberOfTurn}} turns / {{game.timer}} seconds
             </td>
@@ -18,7 +18,7 @@
 
         <ng-container matColumnDef="userPlaying">
           <th class="th-center" mat-header-cell *matHeaderCellDef>
-            User's turn
+            {{ 'GAMES.TURN' | translate }}
           </th>
           <td class="td-center" mat-cell *matCellDef="let game">
             <span *ngIf="!game.gameOver">{{ getUserPlaying(game) }} </span>
@@ -28,7 +28,7 @@
 
         <ng-container matColumnDef="status">
           <th class="th-center" mat-header-cell *matHeaderCellDef>
-            Is game over ?
+            {{ 'GAMES.OVER' | translate }}
           </th>
           <td class="td-center" mat-cell *matCellDef="let game">
             {{ game.gameOver ? "Yes" : "No" }}
@@ -36,7 +36,7 @@
         </ng-container>
 
         <ng-container matColumnDef="action">
-          <th class="th-center" mat-header-cell *matHeaderCellDef>Play</th>
+          <th class="th-center" mat-header-cell *matHeaderCellDef>{{ 'PLAY.TITLE' | translate }}</th>
           <td class="td-center" mat-cell *matCellDef="let game">
             <button
               mat-raised-button

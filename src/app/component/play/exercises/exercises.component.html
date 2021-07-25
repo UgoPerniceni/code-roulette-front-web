@@ -1,12 +1,12 @@
 <div class="container-fluid page">
-  <div class="d-flex page__box p-3 mt-2">EXERCICES</div>
+  <div class="d-flex page__box p-3 mt-2">{{ 'EXERCICES.TITLE' | translate }}</div>
   <div class="page__content shadow p-3 position-relative">
     <div fxLayout="row">
 
       <div fxFlex="50" fxLayoutAlign="start center">
         <div>
           <mat-form-field>
-            <input matInput [(ngModel)]="search" (keyup)="applyFilter($event)" placeholder="Search">
+            <input matInput [(ngModel)]="search" (keyup)="applyFilter($event)" placeholder="{{ 'EXERCICES.SEARCH' | translate }}">
             <mat-icon matSuffix>search</mat-icon>
           </mat-form-field>
         </div>
@@ -15,7 +15,7 @@
       <div fxFlex="50" fxLayoutAlign="end center">
         <div>
           <mat-form-field appearance="fill">
-            <mat-label>Select a language</mat-label>
+            <mat-label>{{ 'EXERCICES.SELECTLG' | translate }}</mat-label>
             <mat-select [(value)]="selection" placeholder="Language">
               <mat-option *ngFor="let language of languages" [value]="language" (click)="applyFilter(language)">
                 {{language}}
@@ -36,28 +36,28 @@
         </ng-container>
     
         <ng-container matColumnDef="title">
-          <th mat-header-cell *matHeaderCellDef mat-sort-header> Title </th>
+          <th mat-header-cell *matHeaderCellDef mat-sort-header> {{ 'EXERCICES.TITLE' | translate }} </th>
           <td mat-cell *matCellDef="let exercise"> {{exercise.title}} </td>
         </ng-container>
     
         <ng-container matColumnDef="description">
-          <th mat-header-cell *matHeaderCellDef mat-sort-header> Description </th>
+          <th mat-header-cell *matHeaderCellDef mat-sort-header> {{ 'EXERCICES.DESCRIPTION' | translate }} </th>
           <td mat-cell *matCellDef="let exercise"> {{exercise.description}} </td>
         </ng-container>
     
         <ng-container matColumnDef="language">
-          <th mat-header-cell *matHeaderCellDef mat-sort-header> Language </th>
+          <th mat-header-cell *matHeaderCellDef mat-sort-header> {{ 'EXERCICES.LANGUAGE' | translate }} </th>
           <td mat-cell *matCellDef="let exercise"> {{exercise.language}} </td>
         </ng-container>
     
         <ng-container matColumnDef="created_at">
-          <th mat-header-cell *matHeaderCellDef mat-sort-header> Created at</th>
+          <th mat-header-cell *matHeaderCellDef mat-sort-header> {{ 'EXERCICES.CREATE' | translate }} </th>
           <td mat-cell *matCellDef="let exercise"> {{formatDate(exercise.createdAt)}} </td>
         </ng-container>
     
         <!-- Action Column -->
         <ng-container matColumnDef="action">
-          <th mat-header-cell *matHeaderCellDef> Action </th>
+          <th mat-header-cell *matHeaderCellDef> {{ 'EXERCICES.ACTION' | translate }}  </th>
           <td mat-cell *matCellDef="let exercise">
             <button mat-raised-button color="primary" [routerLink]="['/exercise/', exercise.id]">
               <mat-icon class="mr-2">arrow_right_alt</mat-icon>
