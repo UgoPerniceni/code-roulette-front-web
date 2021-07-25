@@ -13,12 +13,14 @@
   "PLAY" : {
     "TITLE": "Play",
     "PLAY_ONLINE": "Play online",
+    "DESCRIBE_O" : "Play versus a person of similar skill",
     "PLAY_FRIENDS": "Play with friends",
-    "SEARCH" : "Find a game"
+    "DESCRIBE_P" : "Create a lobby and play with your friends",
+    "SEARCH" : "Find a game",
+    "FORMAT": "Format 3 turns / 25 seconds"
   },
   "GAMES":{},
   "EXERCICES":{}, 
-  "LOBBY":{}, 
   "RANK":{},
   "PROFILE":{},
   "ADMIN":{} 

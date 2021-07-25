@@ -14,7 +14,10 @@
   "PLAY" : {
     "TITLE": "Jugar",
     "PLAY_ONLINE": "Jugar en línea",
+    "DESCRIBE_O" : "Jugar contra una persona de habilidad similar",
     "PLAY_FRIENDS": "Jugar con amigos",
-    "SEARCH" : "Encontrar un juego "
+    "DESCRIBE_P" : "Crear un grupo y jugar con tus amigos",
+    "SEARCH" : "Encontrar un juego ",
+    "FORMAT": "Formato 3 turnos / 25 segundos"
   }
 }
