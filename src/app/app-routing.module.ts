@@ -16,6 +16,7 @@ import {LobbyComponent} from './component/lobby/lobby.component';
 import {GameComponent} from './component/play/games/game/game.component';
 import {ExercisesComponent} from './component/play/exercises/exercises.component';
 import {GamesComponent} from './component/play/games/games.component';
+import {CanLeaveGameGuard} from './guard/can-leave-game.guard';
 
 const routes: Routes = [
   { path: '',   redirectTo: '/home', pathMatch: 'full' },
@@ -31,7 +32,7 @@ const routes: Routes = [
   { path: 'exercise/:id', component: ExerciseComponent, canActivate: [IsAdminGuard] },
 
   { path: 'games', component: GamesComponent, canActivate: [IsConnectedGuard] },
-  { path: 'play/game/:id', component: GameComponent, canActivate: [IsConnectedGuard] },
+  { path: 'play/game/:id', component: GameComponent, canActivate: [IsConnectedGuard], canDeactivate: [CanLeaveGameGuard]},
 
   { path: 'editor', component: EditorComponent, canActivate: [IsConnectedGuard] },
 

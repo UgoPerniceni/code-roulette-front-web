@@ -1,10 +1,12 @@
+@import '/src/variables.scss';
+
 .page {
   color: white;
   padding: 0 1rem;
   background: #f1f5f9;
   &__box {
     min-height: 120px;
-    background: #1e293b;
+    background: $primary-color;
     margin: 0 -1rem;
     font-size: 36px;
   }
@@ -14,10 +16,15 @@
     margin-top: -2rem;
     background: white;
     color: black;
+    &-data {
+      top: 50%;
+      left: 50%;
+      transform: translate(-50%, -50%);
+    }
   }
 }
 .mat-raised-button {
-  background-color: #1e293b;
+  background-color: $primary-color;
   color: #f1f5f9;
 }
 .table{

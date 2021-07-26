@@ -1,4 +1,5 @@
 export enum Language {
   Java,
-  Python
+  Python,
+  C
 }

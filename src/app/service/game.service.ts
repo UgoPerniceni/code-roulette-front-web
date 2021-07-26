@@ -37,4 +37,8 @@ export class GameService {
   endTurn(game: Game): Observable<Game> {
     return this.http.post<Game>(this.url + 'endTurn/', game);
   }
+
+  forfeit(game: Game): Observable<Game> {
+    return this.http.post<Game>(this.url + 'forfeit/', game);
+  }
 }

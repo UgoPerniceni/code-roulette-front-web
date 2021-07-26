@@ -6,11 +6,13 @@ import {GameComponent} from '../component/play/games/game/game.component';
 export class GameSocketAPI {
   webSocketEndPoint = environment.socketUrl;
   socket = '/socket/game/update/';
+  gameId: string;
   stompClient: any;
   gameComponent: GameComponent;
 
   constructor(gameComponent: GameComponent, gameId: string){
     this.gameComponent = gameComponent;
+    this.gameId = gameId;
     this.socket = this.socket + gameId;
 
     console.log(this.socket);
@@ -22,7 +24,7 @@ export class GameSocketAPI {
     this.stompClient = Stomp.over(ws);
     this.stompClient.connect({}, frame => {
       this.stompClient.subscribe(this.socket, sdkEvent => {
-        this.gameComponent.refreshGame();
+        this.gameComponent.refreshGame(this.gameId);
       });
       this.stompClient.reconnect_delay = 2000;
     }, this.errorCallBack);

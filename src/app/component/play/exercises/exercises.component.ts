@@ -14,6 +14,7 @@ import {Utilities} from '../../../utils/Utilities';
 export class ExercisesComponent implements OnInit, AfterViewInit {
 
   languages: string[] = ['All', 'Java', 'Python'];
+  exercises: Exercise[];
 
   dataSource = new MatTableDataSource<Exercise>();
   displayedColumns: string[] = ['id', 'title', 'description', 'language', 'created_at', 'action'];
@@ -27,9 +28,10 @@ export class ExercisesComponent implements OnInit, AfterViewInit {
   constructor(private exerciseService: ExerciseService) {}
 
   ngOnInit(): void {
-    this.exerciseService.getExercises().subscribe(data => {
-      console.log(data);
-      this.dataSource.data = data;
+    this.exerciseService.getExercises().subscribe((exercises) => {
+      this.exercises = exercises;
+      console.log(exercises);
+      this.dataSource.data = exercises;
     });
   }
 

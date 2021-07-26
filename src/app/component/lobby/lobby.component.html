@@ -21,9 +21,9 @@
             </p>
             <p>
               Game's parameters :
-    
+
               <br/><br/>
-    
+
               <mat-form-field appearance="fill">
                 <mat-label>Numbers of turn</mat-label>
                 <mat-select [(value)]="gameTurn" required>
@@ -32,7 +32,7 @@
                   <mat-option value="7">7 turns</mat-option>
                 </mat-select>
               </mat-form-field>
-    
+
               <mat-form-field appearance="fill">
                 <mat-label>Time</mat-label>
                 <mat-select [(value)]="gameTime" required>
@@ -42,7 +42,15 @@
                   <mat-option value="45">45 seconds</mat-option>
                 </mat-select>
               </mat-form-field>
-    
+
+              <mat-form-field>
+                <mat-select [(value)]="languageSelected" placeholder="Language">
+                  <mat-option *ngFor="let language of languages" [value]="language">
+                    {{language}}
+                  </mat-option>
+                </mat-select>
+              </mat-form-field>
+
             </p>
 
             <button mat-raised-button (click)="leaveLobby()">
