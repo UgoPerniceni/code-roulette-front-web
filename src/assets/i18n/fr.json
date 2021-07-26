@@ -59,5 +59,22 @@
     "LANGUAGE": "Language", 
     "CREATE": "Créer à", 
     "ACTION": "Action"
+  },
+  "EXERCICE":{
+    "TITLE": "Exercice",
+    "DESCRIPTION" : "Description",
+    "TIMER" : "Chrono", 
+    "OVER": "Perdu !", 
+    "THEME": "Sélectionner un thème",
+    "SEND": "Envoyer", 
+    "COMPILE" : "Compiler",
+    "PLAYING": "joue !", 
+    "WON": "a gagné !", 
+    "MESSAGE": "Message", 
+    "DISCLOSE": "Ne pas divulguer d'informations personnelles",
+    "PROVIDE": "Veuillez fournir un texte valide",
+    "CHAT": "En chat : ",
+    "SCORE": "Score :", 
+    "HISTORY": "Afficher l'historique"
   }
 }

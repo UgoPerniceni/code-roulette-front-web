@@ -58,6 +58,23 @@
     "LANGUAGE": "Language", 
     "CREATE": "Created at", 
     "ACTION": "Action"
+  },
+  "EXERCICE":{
+    "TITLE": "Exercise",
+    "DESCRIPTION" : "Description",
+    "TIMER" : "Timer", 
+    "OVER": "Game is over !", 
+    "THEME": "Select a theme",
+    "SEND": "Send", 
+    "COMPILE" : "Compile",
+    "PLAYING": "is playing !", 
+    "WON": "won !", 
+    "MESSAGE": "Message", 
+    "DISCLOSE": "Don't disclose personal info",
+    "PROVIDE": "Please provide a valid text",
+    "CHAT": "In chat : ",
+    "SCORE": "Score :", 
+    "HISTORY": "Show history"
   }
 }
 
