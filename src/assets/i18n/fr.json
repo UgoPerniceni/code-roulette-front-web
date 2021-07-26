@@ -3,9 +3,6 @@
   "SAVE" : "Enregistrer",
   "JOIN": "Joindre",
   "HEADER": "Paramètres",
-  "PROFILE":{
-    "TITLE": "Profil"
-  },
   "LOGOUT": "Se déconnecter",
   "HOME": {
     "WORKS": "Accueil",
@@ -80,5 +77,14 @@
     "FIRSTN": "Prénom", 
     "LASTN": "Nom", 
     "BIRTH": "Date de naissance"
+  },
+  "PROFILE": {
+    "TITLE": "Profil",
+    "CORRECT": "Compilation(s) correcte(s)",
+    "PASSWORD": "Confirmer votre mot de passe", 
+    "SECURITY": "Sécurité",
+    "NEXT": "Suivant", 
+    "PERSONAL": "Informations personnelles", 
+    "DATA": "Pour modifier une donnée, il suffit de cliquer dessus"
   }
 }

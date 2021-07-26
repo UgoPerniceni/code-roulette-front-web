@@ -1,5 +1,5 @@
 <div class="container-fluid page">
-  <div class="d-flex page__box p-3 mt-2">PROFILE</div>
+  <div class="d-flex page__box p-3 mt-2">{{ 'PROFILE.TITLE' | translate }}</div>
   <div class="page__content shadow p-3 position-relative">
     <div fxLayout="row" class="profile" *ngIf="user">
       <div fxLayout="column" fxLayoutAlign="start center">
@@ -19,19 +19,19 @@
                 hideToggle
               >
                 <mat-expansion-panel-header>
-                  <mat-panel-title> Personal data </mat-panel-title>
+                  <mat-panel-title> {{ 'PROFILE.PERSONAL' | translate }} </mat-panel-title>
                 </mat-expansion-panel-header>
                 <mat-panel-description class="titleDescription">
-                  To edit a data, just type on it
+                  {{ 'PROFILE.DATA' | translate }}
                 </mat-panel-description>
 
                 <mat-form-field appearance="fill">
-                  <mat-label>First name</mat-label>
+                  <mat-label>{{ 'ADMIN.FIRSTN' | translate }}</mat-label>
                   <input matInput formControlName="firstName" />
                 </mat-form-field>
                 <br />
                 <mat-form-field appearance="fill">
-                  <mat-label>Last name</mat-label>
+                  <mat-label>{{ 'ADMIN.LASTN' | translate }}</mat-label>
                   <input matInput formControlName="lastName" />
                 </mat-form-field>
                 <br />
@@ -41,7 +41,7 @@
                 </mat-form-field>
                 <br />
                 <mat-form-field appearance="fill">
-                  <mat-label>Username</mat-label>
+                  <mat-label>{{ 'RANK.USERNAME' | translate }}</mat-label>
                   <input matInput formControlName="userName" />
                 </mat-form-field>
                 <br />
@@ -61,7 +61,7 @@
 
                 <mat-action-row>
                   <button mat-button color="primary" (click)="nextStep()">
-                    Next
+                    {{ 'PROFILE.NEXT' | translate }}
                   </button>
                 </mat-action-row>
               </mat-expansion-panel>
@@ -72,9 +72,9 @@
                 hideToggle
               >
                 <mat-expansion-panel-header>
-                  <mat-panel-title> Security </mat-panel-title>
+                  <mat-panel-title> {{ 'PROFILE.SECURITY' | translate }} </mat-panel-title>
                   <mat-panel-description>
-                    Confirm your password
+                    {{ 'PROFILE.PASSWORD' | translate }}
                   </mat-panel-description>
                 </mat-expansion-panel-header>
                 <br />
@@ -120,10 +120,10 @@
               <thead>
                 <tr>
                   <th>Elo</th>
-                  <th>Rank</th>
-                  <th>Games played</th>
-                  <th>Games won</th>
-                  <th>Correct compilations</th>
+                  <th>{{ 'RANK.TITLE' | translate }}</th>
+                  <th>{{ 'RANK.PLAYED' | translate }}</th>
+                  <th>{{ 'RANK.WON' | translate }}</th>
+                  <th>{{ 'PROFILE.TITLE' | translate }}</th>
                 </tr>
               </thead>
               <tbody>

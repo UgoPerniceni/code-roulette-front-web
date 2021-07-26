@@ -3,9 +3,6 @@
   "SAVE" : "Save",
   "JOIN": "Join",
   "HEADER": "Settings",
-  "PROFILE":{
-    "TITLE": "Profile"
-  },
   "LOGOUT": "Log out",
   "HOME": {
     "WORKS": "Home",
@@ -81,6 +78,15 @@
     "FIRSTN": "Firstname", 
     "LASTN": "Lastname", 
     "BIRTH": "Birthdate"
+  },
+  "PROFILE": {
+    "TITLE": "Profile",
+    "CORRECT": "Correct compilations",
+    "PASSWORD": "Confirm your password", 
+    "SECURITY": "Security",
+    "NEXT": "Next", 
+    "PERSONAL": "Personal Data", 
+    "DATA": "To edit a data, just type on it"
   }
 }
 
