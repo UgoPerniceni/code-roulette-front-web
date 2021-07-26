@@ -7,8 +7,8 @@ export const environment = {
 
   // apiUrl: 'http://localhost:8080/api/',
   // socketUrl: 'http://localhost:8080/ws/',
-  apiUrl: 'http://34.253.194.75:80/api/',
-  socketUrl: 'http://34-253-194-75:80/ws/',
+  apiUrl: 'http://34.248.4.98:80/api/',
+  socketUrl: 'http://34.248.4.98:80/ws/',
 };
 
 /*
