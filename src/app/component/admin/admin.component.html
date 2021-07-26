@@ -1,5 +1,5 @@
 <div class="container-fluid page">
-  <div class="d-flex page__box p-3 mt-2">USERS DATA</div>
+  <div class="d-flex page__box p-3 mt-2">{{ 'ADMIN.TITLE' | translate }}</div>
   <div class="page__content shadow p-3 position-relative">
     <table mat-table [dataSource]="dataSource" class="mat-elevation-z8">
       <ng-container matColumnDef="id">
@@ -8,12 +8,12 @@
       </ng-container>
 
       <ng-container matColumnDef="firstName">
-        <th mat-header-cell *matHeaderCellDef>FirstName</th>
+        <th mat-header-cell *matHeaderCellDef>{{ 'ADMIN.FIRSTN' | translate }}</th>
         <td mat-cell *matCellDef="let user">{{ user.firstName }}</td>
       </ng-container>
 
       <ng-container matColumnDef="lastName">
-        <th mat-header-cell *matHeaderCellDef>LastName</th>
+        <th mat-header-cell *matHeaderCellDef>{{ 'ADMIN.LASTN' | translate }}</th>
         <td mat-cell *matCellDef="let user">{{ user.lastName }}</td>
       </ng-container>
 
@@ -23,17 +23,17 @@
       </ng-container>
 
       <ng-container matColumnDef="userName">
-        <th mat-header-cell *matHeaderCellDef>Username</th>
+        <th mat-header-cell *matHeaderCellDef>{{ 'RANK.USERNAME' | translate }}</th>
         <td mat-cell *matCellDef="let user">{{ user.userName }}</td>
       </ng-container>
 
       <ng-container matColumnDef="birthDate">
-        <th mat-header-cell *matHeaderCellDef>BirthDate</th>
+        <th mat-header-cell *matHeaderCellDef>{{ 'ADMIN.BIRTH' | translate }}</th>
         <td mat-cell *matCellDef="let user">{{ user.birthDate }}</td>
       </ng-container>
 
       <ng-container matColumnDef="actions">
-        <th mat-header-cell *matHeaderCellDef>Actions</th>
+        <th mat-header-cell *matHeaderCellDef>{{ 'EXERCICES.ACTION' | translate }}</th>
         <td mat-cell *matCellDef="let user">
           <button
             *ngIf="currentUser && currentUser.id != user.id"

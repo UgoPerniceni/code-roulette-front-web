@@ -3,9 +3,6 @@
   "SAVE" : "Enregistrer",
   "JOIN": "Joindre",
   "HEADER": "Paramètres",
-  "ADMIN": {
-    "TITLE": "Administrateur"
-  },
   "PROFILE":{
     "TITLE": "Profil"
   },
@@ -77,5 +74,11 @@
     "SCORE": "Score :", 
     "HISTORY": "Afficher l'historique",
     "FORFEIT": "(Par forfait)"
+  }, 
+  "ADMIN" :{
+    "TITLE": "Données utilisateurs",
+    "FIRSTN": "Prénom", 
+    "LASTN": "Nom", 
+    "BIRTH": "Date de naissance"
   }
 }

@@ -3,9 +3,6 @@
   "SAVE" : "Guardar",
   "JOIN": "UNIR",
   "HEADER": "Configuración",
-  "ADMIN": {
-    "TITLE": "Administrador"
-  },
   "PROFILE":{
     "TITLE": "Perfil"
   },
@@ -77,5 +74,11 @@
     "SCORE": "Puntuación :", 
     "HISTORY": "Mostrar historial",
     "FORFEIT": "Por pérdida"
+  }, 
+  "ADMIN" :{
+    "TITLE": "Data del usarios",
+    "FIRSTN": "Nombre", 
+    "LASTN": "Apellido", 
+    "BIRTH": "Fecha de nacimiento"
   }
 }

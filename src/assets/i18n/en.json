@@ -3,9 +3,6 @@
   "SAVE" : "Save",
   "JOIN": "Join",
   "HEADER": "Settings",
-  "ADMIN": {
-    "TITLE": "Admin"
-  },
   "PROFILE":{
     "TITLE": "Profile"
   },
@@ -78,6 +75,12 @@
     "FORFEIT": "(By forfeit)", 
     "TURN": "It is your turn !",
     "NTURN": "Not your turn !"
+  }, 
+  "ADMIN" :{
+    "TITLE": "Users data",
+    "FIRSTN": "Firstname", 
+    "LASTN": "Lastname", 
+    "BIRTH": "Birthdate"
   }
 }
 
