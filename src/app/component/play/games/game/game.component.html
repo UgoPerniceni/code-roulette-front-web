@@ -125,19 +125,15 @@
               <mat-card
                 *ngIf="isPlaying && !this.game.gameOver"
                 class="simple-card-is-playing"
-              >It is your turn !</mat-card
+              >{{ 'EXERCICE.TURN' | translate }}</mat-card
               >
               <mat-card
                 *ngIf="!isPlaying && !this.game.gameOver"
                 class="simple-card-is-not-playing"
-              >Not your turn !</mat-card
+              >{{ 'EXERCICE.NTURN' | translate }}</mat-card
               >
-
               <mat-card *ngIf="this.game.gameOver" class="simple-card-game-is-over">
-                {{ 'EXERCICE.OVER' | translate }}
-
-               <span *ngIf="this.game.gameForfeit">(by forfeit) </span>!
-
+                {{ 'EXERCICE.OVER' | translate }} <span *ngIf="this.game.gameForfeit">{{ 'EXERCICE.FORFEIT' | translate }} </span>!
               </mat-card>
             </div>
 

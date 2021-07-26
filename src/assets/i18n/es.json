@@ -75,6 +75,7 @@
     "PROVIDE": "Por favor, proporcione un texto válido",
     "CHAT": "En el chat : ",
     "SCORE": "Puntuación :", 
-    "HISTORY": "Mostrar historial"
+    "HISTORY": "Mostrar historial",
+    "FORFEIT": "Por pérdida"
   }
 }

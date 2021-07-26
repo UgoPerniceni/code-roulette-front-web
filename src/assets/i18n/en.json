@@ -74,7 +74,10 @@
     "PROVIDE": "Please provide a valid text",
     "CHAT": "In chat : ",
     "SCORE": "Score :", 
-    "HISTORY": "Show history"
+    "HISTORY": "Show history",
+    "FORFEIT": "(By forfeit)", 
+    "TURN": "It is your turn !",
+    "NTURN": "Not your turn !"
   }
 }
 

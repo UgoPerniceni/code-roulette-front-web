@@ -75,6 +75,7 @@
     "PROVIDE": "Veuillez fournir un texte valide",
     "CHAT": "En chat : ",
     "SCORE": "Score :", 
-    "HISTORY": "Afficher l'historique"
+    "HISTORY": "Afficher l'historique",
+    "FORFEIT": "(Par forfait)"
   }
 }
