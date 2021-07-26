@@ -18,7 +18,15 @@
     "NEW_LOBBY" : "Nuevo grupo ",
     "CREATE": "Crear un nuevo grupo",
     "NAME" : "Nombre del grupo",
-    "VALID_KEY" : "Por favor, proporcione una clave de grupo válida"
+    "VALID_KEY" : "Por favor, proporcione una clave de grupo válida",
+    "USERS": "Usuarios en el grupo  :", 
+    "PARAM": "Parámetros del juego", 
+    "TURNS": "Números de turno", 
+    "TURN": "turno",
+    "TIME": "Tiempo",
+    "LANGUAGE": "Idioma", 
+    "CREATEL": "Crear juego en el grupo",
+    "LEAVE": "Dejar el grupo"
   },
 
   "PLAY" : {

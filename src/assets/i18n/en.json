@@ -18,7 +18,15 @@
     "NEW_LOBBY" : "Create lobby",
     "CREATE": "Create a new lobby",
     "NAME" : "Lobby's name",
-    "VALID_KEY" : "Please provide a valid lobby's key"
+    "VALID_KEY" : "Please provide a valid lobby's key", 
+    "USERS": "Users in lobby :", 
+    "PARAM": "Game's parameters", 
+    "TURNS": "Numbers of turn", 
+    "TURN": "turn",
+    "TIME": "Time",
+    "LANGUAGE": "Language", 
+    "CREATEL": "Create game with lobby",
+    "LEAVE": "Leave lobby" 
   },
   "PLAY" : {
     "TITLE": "Play",

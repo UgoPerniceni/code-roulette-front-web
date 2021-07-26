@@ -1,13 +1,13 @@
 <div class="container-fluid page">
-  <div class="d-flex page__box p-3 mt-2">{{ 'LOBBY.NEW_LOBBY' | translate }}</div>
+  <div class="d-flex page__box p-3 mt-2">{{ 'LOBBY.NEW_LOBBY' | translate }} : {{ lobby?.title }}</div>
   <div class="page__content shadow p-3 position-relative">
     <div *ngIf="user">
       <mat-card style="height: 100%">
         <mat-card-content>
           <hr class="mb-10" />
           <div *ngIf="lobby">
-            <p>Current lobby : {{ lobby?.title }}</p>
-            <p>Users in lobby :</p>
+            <!-- <img src="../../../assets/gif/lobby.gif" width="480" height="260" alt="gif_404"> <br> -->
+            <p>{{ 'LOBBY.USERS' | translate }} </p>
             <ul>
               <li *ngFor="let user of lobby.users">{{ user.userName }}</li>
             </ul>
@@ -20,21 +20,21 @@
               </button>
             </p>
             <p>
-              Game's parameters :
+              {{ 'LOBBY.PARAM' | translate }}
 
               <br/><br/>
 
               <mat-form-field appearance="fill">
-                <mat-label>Numbers of turn</mat-label>
+                <mat-label>{{ 'LOBBY.TURNS' | translate }}</mat-label>
                 <mat-select [(value)]="gameTurn" required>
-                  <mat-option value="3">3 turns</mat-option>
-                  <mat-option value="5">5 turns</mat-option>
-                  <mat-option value="7">7 turns</mat-option>
+                  <mat-option value="3">3 {{ 'LOBBY.TURN' | translate }}</mat-option>
+                  <mat-option value="5">5 {{ 'LOBBY.TURN' | translate }}</mat-option>
+                  <mat-option value="7">7 {{ 'LOBBY.TURN' | translate }}</mat-option>
                 </mat-select>
               </mat-form-field>
 
               <mat-form-field appearance="fill">
-                <mat-label>Time</mat-label>
+                <mat-label>{{ 'LOBBY.TIME' | translate }}</mat-label>
                 <mat-select [(value)]="gameTime" required>
                   <mat-option value="15">15 seconds</mat-option>
                   <mat-option value="25">25 seconds</mat-option>
@@ -43,7 +43,7 @@
                 </mat-select>
               </mat-form-field>
 
-              <mat-form-field>
+              <mat-form-field appearance="fill">
                 <mat-select [(value)]="languageSelected" placeholder="Language">
                   <mat-option *ngFor="let language of languages" [value]="language">
                     {{language}}
@@ -54,11 +54,11 @@
             </p>
 
             <button mat-raised-button (click)="leaveLobby()">
-              Leave lobby
+              {{ 'LOBBY.LEAVE' | translate }}
             </button>
 
             <button mat-raised-button (click)="createGame()">
-              Create game with lobby
+              {{ 'LOBBY.CREATEL' | translate }}
             </button>
           </div>
 
