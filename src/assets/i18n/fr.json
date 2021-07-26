@@ -39,7 +39,7 @@
     "RATE" : "Taux de victoire"
   },
   "GAMES":{
-    "TITLE": "Jeu(x)",
+    "TITLE": "Partie(s)",
     "NAMEPANEL": "Mes jeux",
     "TURN": "Tour du joueur",
     "OVER": "Partie terminé ?",
