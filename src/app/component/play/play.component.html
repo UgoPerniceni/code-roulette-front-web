@@ -1,21 +1,39 @@
 <div class="container-fluid page">
   <div class="d-flex page__box p-3 mt-2">{{ 'PLAY.TITLE' | translate }}</div>
   <div class="page__content shadow p-3 position-relative">
-    <div fxLayout="row" style="height: 100%">
-      <div fxFlex="50" fxLayoutAlign="start center">
-        <div fxLayout="column" style="margin: 20px">
-          <img mat-card-image src="assets/picture/code.jpg" alt="Code image" />
-        </div>
-      </div>
 
-      <div fxFlex="50">
+    <div fxLayout="row">
+      <div fxFlex="50" fxLayout="" fxLayoutAlign="center center">
         <mat-card class="height-100">
-          <mat-card-header>
-            <h1>{{ 'PLAY.TITLE' | translate }} Coding roulette</h1>
-          </mat-card-header>
 
           <mat-card-content>
             <div fxLayout="column">
+              <img src="../../../assets/gif/minion_play_with_friends.gif" width="480" height="260" alt="gif_404">
+
+              <hr style="width: 100%" />
+              <br />
+
+              <div class="mb-10">
+                <h1>{{ 'PLAY.PLAY_FRIENDS' | translate }}</h1>
+                <p>{{ 'PLAY.DESCRIBE_P' | translate }}</p>
+                <p>{{ 'PLAY.DESCRIBE_FORMAT' | translate }}</p>
+
+                <button mat-raised-button routerLink="/lobby" class="width-100" color="primary">
+                  {{ 'LOBBY.NEW_LOBBY' | translate }}
+                </button>
+              </div>
+            </div>
+          </mat-card-content>
+        </mat-card>
+      </div>
+
+      <div fxFlex="50" fxLayoutAlign="center center">
+        <mat-card class="height-100">
+
+          <mat-card-content>
+            <div fxLayout="column">
+              <img src="../../../assets/gif/minion_play_online.gif" width="480" height="260" alt="gif_404">
+
               <hr style="width: 100%" />
               <br />
 
@@ -51,14 +69,7 @@
                 </div>
               </div>
 
-              <div class="mb-10">
-                <h1>{{ 'PLAY.PLAY_FRIENDS' | translate }}</h1>
-                <p>{{ 'PLAY.DESCRIBE_P' | translate }}</p>
 
-                <button mat-raised-button routerLink="/lobby" class="width-100" color="primary">
-                  {{ 'LOBBY.NEW_LOBBY' | translate }}
-                </button>
-              </div>
             </div>
           </mat-card-content>
         </mat-card>

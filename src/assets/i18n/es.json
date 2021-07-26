@@ -1,5 +1,5 @@
 {
-  "CLOSE" : "Cerrar", 
+  "CLOSE" : "Cerrar",
   "SAVE" : "Guardar",
   "JOIN": "UNIR",
   "HEADER": "Configuración",
@@ -17,7 +17,7 @@
     "KEY_LOBBY" : "Clave de grupo",
     "NEW_LOBBY" : "Nuevo grupo ",
     "CREATE": "Crear un nuevo grupo",
-    "NAME" : "Nombre del grupo", 
+    "NAME" : "Nombre del grupo",
     "VALID_KEY" : "Por favor, proporcione una clave de grupo válida"
   },
 
@@ -25,65 +25,66 @@
     "TITLE": "Jugar",
     "PLAY_ONLINE": "Jugar en línea",
     "DESCRIBE_O" : "Jugar contra una persona de habilidad similar",
+    "DESCRIBE_FORMAT" : "Elige tu formato",
     "PLAY_FRIENDS": "Jugar con amigos",
     "DESCRIBE_P" : "Crear un grupo y jugar con tus amigos",
     "SEARCH" : "Encontrar un juego ",
     "FORMAT": "Formato 3 turnos / 25 segundos"
-  }, 
+  },
   "RANK":{
-    "TITLE": "Rango", 
+    "TITLE": "Rango",
     "USERNAME" : "Nombre de usuario",
-    "WON": "Partidos ganados", 
-    "PLAYED" : "Partidos jugados", 
+    "WON": "Partidos ganados",
+    "PLAYED" : "Partidos jugados",
     "RATE" : "Tasa de ganancia"
   },
   "GAMES":{
     "TITLE": "Juego(s)",
     "NAMEPANEL": "Mis juegos",
-    "TURN": "Giros del usuario ", 
+    "TURN": "Giros del usuario ",
     "OVER": "¿Se acabó el juego?",
     "FORMAT": "Formato"
   },
   "EXERCICES":{
     "TITLE": "Ejercicios",
-    "SEARCH": "Buscar", 
+    "SEARCH": "Buscar",
     "SELECTLG": "Seleccionar un idioma",
-    "TITLETAB": "Título", 
-    "DESCRIPTION": "Descripción", 
-    "LANGUAGE": "Idioma", 
-    "CREATE": "Creado en", 
+    "TITLETAB": "Título",
+    "DESCRIPTION": "Descripción",
+    "LANGUAGE": "Idioma",
+    "CREATE": "Creado en",
     "ACTION": "Acción"
   },
   "EXERCICE":{
     "TITLE": "EJERCICIO",
     "DESCRIPTION" : "Descripción",
-    "TIMER" : "Tempo", 
-    "OVER": "¡El juego ha terminado!", 
+    "TIMER" : "Tempo",
+    "OVER": "¡El juego ha terminado!",
     "THEME": "Selecciona un tema",
-    "SEND": "Enviar", 
+    "SEND": "Enviar",
     "COMPILE" : "Compilar",
-    "PLAYING": "está jugando", 
-    "WON": "¡ganó!", 
-    "MESSAGE": "Mensaje", 
+    "PLAYING": "está jugando",
+    "WON": "¡ganó!",
+    "MESSAGE": "Mensaje",
     "DISCLOSE": "No revelar información personal",
     "PROVIDE": "Por favor, proporcione un texto válido",
     "CHAT": "En el chat : ",
-    "SCORE": "Puntuación :", 
+    "SCORE": "Puntuación :",
     "HISTORY": "Mostrar historial",
     "FORFEIT": "Por pérdida"
-  }, 
+  },
   "ADMIN" :{
     "TITLE": "Data del usarios",
-    "FIRSTN": "Nombre", 
-    "LASTN": "Apellido", 
+    "FIRSTN": "Nombre",
+    "LASTN": "Apellido",
     "BIRTH": "Fecha de nacimiento"
   },
   "PROFILE": {
     "CORRECT": "Compilación correcta",
-    "PASSWORD": "Confirma tu contraseña", 
+    "PASSWORD": "Confirma tu contraseña",
     "SECURITY": "Seguridad",
-    "NEXT": "Siguiente", 
-    "PERSONAL": "Datos personales", 
+    "NEXT": "Siguiente",
+    "PERSONAL": "Datos personales",
     "DATA": "Para editar un dato, basta con escribir sobre él"
   }
 }

@@ -1,5 +1,5 @@
 {
-  "CLOSE" : "Fermer", 
+  "CLOSE" : "Fermer",
   "SAVE" : "Enregistrer",
   "JOIN": "Joindre",
   "HEADER": "Paramètres",
@@ -17,7 +17,7 @@
     "KEY_LOBBY" : "Clé de groupe",
     "NEW_LOBBY" : "Nouveau groupe",
     "CREATE": "Créer un nouveau groupe",
-    "NAME" : "Nom du groupe", 
+    "NAME" : "Nom du groupe",
     "VALID_KEY" : "Veuillez fournir une clé de groupe valide"
   },
 
@@ -25,66 +25,67 @@
     "TITLE": "Jouer",
     "PLAY_ONLINE": "Jouer en ligne",
     "DESCRIBE_O" : "Jouer contre une personne de même niveau",
+    "DESCRIBE_FORMAT" : "Choisir le format",
     "PLAY_FRIENDS": "Jouer avec des amis",
     "DESCRIBE_P" : "Créer un groupe et jouer avec vos amis",
     "SEARCH" : "Trouver une partie",
     "FORMAT" : "Format 3 tours / 25 secondes"
   },
   "RANK" : {
-    "TITLE": "Rang", 
+    "TITLE": "Rang",
     "USERNAME" : "Nom d'utilisateur",
-    "WON": "Parties gagnées", 
-    "PLAYED" : "Parties jouées", 
+    "WON": "Parties gagnées",
+    "PLAYED" : "Parties jouées",
     "RATE" : "Taux de victoire"
   },
   "GAMES":{
     "TITLE": "Jeu(x)",
     "NAMEPANEL": "Mes jeux",
-    "TURN": "Tour du joueur", 
+    "TURN": "Tour du joueur",
     "OVER": "Partie terminé ?",
     "FORMAT": "Format"
   },
   "EXERCICES":{
     "TITLE": "Exercices",
-    "SEARCH": "Recherche", 
+    "SEARCH": "Recherche",
     "SELECTLG": "Selectionner une langue",
-    "TITLETAB": "Titre", 
-    "DESCRIPTION": "Description", 
-    "LANGUAGE": "Language", 
-    "CREATE": "Créer à", 
+    "TITLETAB": "Titre",
+    "DESCRIPTION": "Description",
+    "LANGUAGE": "Language",
+    "CREATE": "Créer à",
     "ACTION": "Action"
   },
   "EXERCICE":{
     "TITLE": "Exercice",
     "DESCRIPTION" : "Description",
-    "TIMER" : "Chrono", 
-    "OVER": "Perdu !", 
+    "TIMER" : "Chrono",
+    "OVER": "Perdu !",
     "THEME": "Sélectionner un thème",
-    "SEND": "Envoyer", 
+    "SEND": "Envoyer",
     "COMPILE" : "Compiler",
-    "PLAYING": "joue !", 
-    "WON": "a gagné !", 
-    "MESSAGE": "Message", 
+    "PLAYING": "joue !",
+    "WON": "a gagné !",
+    "MESSAGE": "Message",
     "DISCLOSE": "Ne pas divulguer d'informations personnelles",
     "PROVIDE": "Veuillez fournir un texte valide",
     "CHAT": "En chat : ",
-    "SCORE": "Score :", 
+    "SCORE": "Score :",
     "HISTORY": "Afficher l'historique",
     "FORFEIT": "(Par forfait)"
-  }, 
+  },
   "ADMIN" :{
     "TITLE": "Données utilisateurs",
-    "FIRSTN": "Prénom", 
-    "LASTN": "Nom", 
+    "FIRSTN": "Prénom",
+    "LASTN": "Nom",
     "BIRTH": "Date de naissance"
   },
   "PROFILE": {
     "TITLE": "Profil",
     "CORRECT": "Compilation(s) correcte(s)",
-    "PASSWORD": "Confirmer votre mot de passe", 
+    "PASSWORD": "Confirmer votre mot de passe",
     "SECURITY": "Sécurité",
-    "NEXT": "Suivant", 
-    "PERSONAL": "Informations personnelles", 
+    "NEXT": "Suivant",
+    "PERSONAL": "Informations personnelles",
     "DATA": "Pour modifier une donnée, il suffit de cliquer dessus"
   }
 }
