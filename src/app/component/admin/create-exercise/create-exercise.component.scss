@@ -82,3 +82,15 @@
 .compilation-result {
   white-space: pre-wrap;
 }
+.example-card {
+  max-width: 400px;
+}
+
+.example-header-image {
+  background-image: url("https://lh3.googleusercontent.com/proxy/MUuNEIU1wFM3aaqboCmZphQRr9_bAhDUTXtpi2uQ0Wp_7lq4NZcONEzhjc9IhxkYYDybjS0k6rw6k6Q9o2dZLaSgKgFqqaVtrA3jisXdAWpbhTM7_FU");
+  background-size: cover;
+}
+
+::ng-deep .CodeMirror {
+  width: 700px;
+}

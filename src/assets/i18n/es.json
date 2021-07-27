@@ -96,6 +96,5 @@
     "DATA": "Para editar un dato, basta con escribir sobre él"
   },
   "CREATE":{
-    "EXPLANATION": "Dans cette section vous pouvez créer un code pour vos joueurs, le but est de rendre le code complexe, incrustez un maximum de code inutile pour rendre le jeu amusant. Après chaque compilation, vous aurez une indication de violation de certaines règles de codage, plus y en a, mieux c'est!. Après une compilation réussie votre code pourra être soumis pour le jeu."
-  }
+    "EXPLANATION": "En esta sección puedes crear código para tus jugadores, el objetivo es hacer el código complejo, incrustar tanto código innecesario como sea posible para hacer el juego divertido. Después de cada compilación obtendrá una indicación de violación de algunas reglas de codificación, ¡cuanto más mejor! Después de una compilación exitosa su código puede ser enviado para el juego."}
 }
