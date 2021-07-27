@@ -1,0 +1,84 @@
+@import "~codemirror";
+@import "/src/variables.scss";
+
+.simple-card-inverse {
+  background-color: #292b2c;
+  color: #ffffff;
+}
+
+.form {
+  min-width: 150px;
+  max-width: 500px;
+  width: 100%;
+}
+
+.full-width {
+  width: 100%;
+}
+.editor {
+  min-width: 80%;
+}
+.sidebar {
+  background-image: url(/assets/images/group_4.png),
+    linear-gradient(
+      -136.82353093203deg,
+      rgba(36, 35, 72, 255) 0%,
+      rgba(90, 85, 170, 255) 100%
+    );
+  background-size: cover;
+  min-height: 100vh;
+}
+
+.tag {
+  color: rgba(90, 85, 170, 255);
+}
+
+.btn-main {
+  background: rgba(36, 35, 72, 255);
+}
+
+.test-section {
+  border: 1px solid rgba(90, 85, 170, 255);
+  width: 100%;
+  margin-bottom: 2%;
+}
+.text-area {
+  width: 95%;
+}
+.material-icons.color_primary {
+  background: #b71c1c;
+}
+.codeTooltip {
+  margin-top: 6px;
+  margin-right: 30px;
+}
+
+.codeTooltipRed {
+  background: #b71c1c;
+  font-size: large;
+}
+.page {
+  color: white;
+  padding: 0 1rem;
+  background: #f1f5f9;
+  &__box {
+    min-height: 120px;
+    background: $primary-color;
+    margin: 0 -1rem;
+    font-size: 36px;
+  }
+  &__content {
+    min-height: calc(100vh - 178px);
+    border-radius: 10px;
+    margin-top: -2rem;
+    background: white;
+    color: black;
+  }
+}
+.mat-raised-button {
+  background-color: $primary-color;
+  color: #f1f5f9;
+}
+.compilation-result {
+  white-space: pre-wrap;
+}

@@ -1,0 +1,201 @@
+<div class="container-fluid page">
+  <div class="d-flex page__box p-3 mt-2">Enter a new code</div>
+  <div class="page__content shadow p-3 position-relative">
+    <div class="page__content-data position-absolute">
+      <div fxLayout="row" class="profile">
+        <div fxLayout="column" fxFlex="20" fxLayoutAlign="start center">
+          <div fxLayout="row">
+            <form class="form" [formGroup]="formGroup">
+              <mat-form-field class="full-width" appearance="fill" required>
+                <mat-label>Select a language</mat-label>
+                <mat-select
+                  [(value)]="selection"
+                  placeholder="Language"
+                  formControlName="language"
+                >
+                  <mat-option
+                    *ngFor="let language of languages"
+                    [value]="language"
+                    (click)="setLanguage(language)"
+                  >
+                    {{ language }}
+                  </mat-option>
+                </mat-select>
+              </mat-form-field>
+              <mat-form-field class="full-width" appearance="fill">
+                <mat-label>Code Title</mat-label>
+                <input
+                  matInput
+                  formControlName="title"
+                  placeholder="Ex. MySuperTitle"
+                  required
+                  minlength="2"
+                  pattern="[a-zA-Z]*"
+                />
+              </mat-form-field>
+              <mat-error
+                *ngIf="formGroup.controls['title'].hasError('minlength')"
+              >
+                Please enter at least a 3 character title
+              </mat-error>
+              <mat-error
+                *ngIf="formGroup.controls['title'].hasError('pattern')"
+              >
+                Title must only contain characters
+              </mat-error>
+              <mat-form-field class="full-width" appearance="fill">
+                <mat-label>Describe what the code should do</mat-label>
+                <textarea
+                  matInput
+                  placeholder="Describing..."
+                  formControlName="description"
+                ></textarea>
+              </mat-form-field>
+            </form>
+          </div>
+        </div>
+        <div fxLayoutAlign="center center">
+          <mat-card>
+            <mat-form-field appearance="fill">
+              <mat-label>Select a theme</mat-label>
+              <mat-select [(ngModel)]="theme" (ngModelChange)="changeTheme()">
+                <mat-option *ngFor="let theme of themes" [value]="theme.value">
+                  {{ theme.viewValue }}
+                </mat-option>
+              </mat-select>
+            </mat-form-field>
+            <div fxLayout="row">
+              <h2>Type the code that the player see</h2>
+              <mat-icon
+                class="material-icons color_green"
+                mat-raised-button
+                matTooltip="Name it challenge() and it should return a value in order to test it"
+                matTooltipClass="code-tooltip-red"
+                aria-label="Button that shows a red tooltip"
+                class="codeTooltip"
+              >
+                info
+              </mat-icon>
+              <button
+                mat-raised-button
+                color="primary"
+                (click)="showCodeExample()"
+              >
+                Code example
+              </button>
+            </div>
+
+            <ngx-codemirror
+              class="editor"
+              [options]="options"
+              [ngModel]=""
+              [disabled]="readOnly"
+              [autoFocus]="true"
+              (ngModelChange)="handleChange($event)"
+              placeholder="placeholder"
+            >
+            </ngx-codemirror>
+
+            <br />
+            <div fxLayout="row">
+              <h2>Insert at least one verification test</h2>
+              <mat-icon
+                class="material-icons color_green"
+                mat-raised-button
+                matTooltip="Implement tests and inject the result in a String named result"
+                matTooltipClass="codeTooltipRed"
+                aria-label="Button that shows a red tooltip"
+                class="codeTooltip"
+              >
+                info
+              </mat-icon>
+              <button
+                mat-raised-button
+                color="primary"
+                (click)="showTestExample()"
+              >
+                Test example
+              </button>
+            </div>
+            <div class="container">
+              <div>
+                <form [formGroup]="testForm" (ngSubmit)="submit()" novalidate>
+                  <div formArrayName="testsArray">
+                    <div
+                      class="form-group clearfix"
+                      *ngFor="let test of testFormGroup.controls; index as i"
+                    >
+                      <div class="clearfix" [formGroupName]="i">
+                        <h4>Test {{ i + 1 }}</h4>
+                        <div>
+                          <ngx-codemirror
+                            [options]="options"
+                            [ngModel]=""
+                            [disabled]="readOnly"
+                            [autoFocus]="true"
+                            formControlName="testArea"
+                            (ngModelChange)="handleTestChange($event)"
+                          >
+                          </ngx-codemirror>
+                        </div>
+                        <div>
+                          <button
+                            type="button"
+                            [hidden]="i < 1"
+                            (click)="removeTest(i)"
+                          >
+                            Remove test
+                          </button>
+                        </div>
+                      </div>
+                      <br />
+                    </div>
+                  </div>
+                  <div>
+                    <div>
+                      <button type="button" (click)="addTest()">
+                        Add Test
+                      </button>
+                    </div>
+                  </div>
+                </form>
+              </div>
+            </div>
+            <mat-card class="simple-card-inverse">
+              <span>Compilation :</span>
+              <hr />
+              <div
+                *ngIf="this.loading === true"
+                fxLayout="row"
+                fxLayoutAlign="center center"
+              >
+                <mat-spinner class="m-10"></mat-spinner>
+              </div>
+              <div *ngIf="this.loading !== true" class="compilation-result">
+                <p>{{ result }}</p>
+              </div>
+            </mat-card>
+            <br />
+
+            <button
+              mat-raised-button
+              color="primary"
+              [disabled]="checkCompileEnable()"
+              (click)="compile()"
+            >
+              Compile
+            </button>
+            <button
+              mat-raised-button
+              color="primary"
+              [disabled]="isSubmitBtnDisabled"
+              (click)="submit()"
+            >
+              Submit All
+            </button>
+          </mat-card>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
