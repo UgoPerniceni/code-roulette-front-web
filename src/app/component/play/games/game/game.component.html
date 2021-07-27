@@ -1,7 +1,7 @@
 <div class="container-fluid page">
   <div class="d-flex page__box p-3 mt-2">
     <span *ngIf="game && game.exercise">
-      {{ 'EXERCICE.TITLE' | translate }} : {{ game.exercise.title }}
+      {{ "EXERCICE.TITLE" | translate }} : {{ game.exercise.title }}
     </span>
   </div>
   <div class="page__content shadow p-3 position-relative">
@@ -9,22 +9,27 @@
       <div class="" fxLayout="row" fxLayoutGap="10px">
         <div fxFlex="30">
           <div fxLayout="column" fxLayoutGap="10px">
-
             <div fxFlex="33">
               <div fxLayout="row" class="information">
-
-                <span *ngIf="!this.game.gameOver">{{ usernamePlaying }} {{ 'EXERCICE.PLAYING' | translate }}</span>
+                <span *ngIf="!this.game.gameOver"
+                  >{{ usernamePlaying }}
+                  {{ "EXERCICE.PLAYING" | translate }}</span
+                >
                 <span *ngIf="this.game.gameOver && this.winner">
-                  {{ 'EXERCICE.OVER' | translate }} , {{ winner.user.userName }} {{ 'EXERCICE.WON' | translate }}
-                  </span>
+                  {{ winner.user.userName }} {{ "EXERCICE.WON" | translate }}
+                </span>
+                <span *ngIf="this.game.gameOver && !this.winner">
+                  {{ "EXERCICE.GAME_IS_OVER" | translate }}
+                </span>
                 <mat-icon *ngIf="!this.game.gameOver">sports_esports</mat-icon>
-                <mat-icon *ngIf="this.game.gameOver && this.winner">emoji_events</mat-icon>
-
+                <mat-icon *ngIf="this.game.gameOver && this.winner"
+                  >emoji_events</mat-icon
+                >
               </div>
             </div>
 
             <div fxFlex="33" style="text-align: center">
-              <h3>{{ 'EXERCICE.DESCRIPTION' | translate }}</h3>
+              <h3>{{ "EXERCICE.DESCRIPTION" | translate }}</h3>
               <hr />
               <p>{{ game.exercise.description }}</p>
             </div>
@@ -40,15 +45,27 @@
                   <ul>
                     <div *ngFor="let message of this.chat.messages">
                       <li *ngIf="message.type === 'input'">
-                        <span>{{ message.user.userName }} : {{ message.text }}</span>
+                        <span
+                          >{{ message.user.userName }} :
+                          {{ message.text }}</span
+                        >
                       </li>
-                      <span *ngIf="message.type === 'notification'" style="color: blue">
+                      <span
+                        *ngIf="message.type === 'notification'"
+                        style="color: blue"
+                      >
                         <i>{{ message.user.userName }} {{ message.text }}</i>
                       </span>
-                      <span *ngIf="message.type === 'result'" style="color: #ff0000">
+                      <span
+                        *ngIf="message.type === 'result'"
+                        style="color: #ff0000"
+                      >
                         <i>{{ message.user.userName }} {{ message.text }}</i>
                       </span>
-                      <span *ngIf="message.type === 'warning'" style="color: #ff0000">
+                      <span
+                        *ngIf="message.type === 'warning'"
+                        style="color: #ff0000"
+                      >
                         <i>Warning : {{ message.text }}</i>
                       </span>
                     </div>
@@ -58,7 +75,9 @@
                 <form [formGroup]="chatForm" (ngSubmit)="sendMessage()">
                   <div>
                     <mat-form-field class="full-width-input" fxFill>
-                      <mat-label>{{ 'EXERCICE.MESSAGE' | translate }}</mat-label>
+                      <mat-label>{{
+                        "EXERCICE.MESSAGE" | translate
+                      }}</mat-label>
                       <textarea
                         matInput
                         #message
@@ -69,12 +88,14 @@
                       >
                       </textarea>
                       <mat-hint align="start">
-                        <strong>{{ 'EXERCICE.DISCLOSE' | translate }}</strong>
+                        <strong>{{ "EXERCICE.DISCLOSE" | translate }}</strong>
                       </mat-hint>
                       <mat-hint align="end"
-                      >{{ message.value.length }} / 256</mat-hint
+                        >{{ message.value.length }} / 256</mat-hint
                       >
-                      <mat-error> {{ 'EXERCICE.PROVIDE' | translate }}</mat-error>
+                      <mat-error>
+                        {{ "EXERCICE.PROVIDE" | translate }}</mat-error
+                      >
                     </mat-form-field>
                   </div>
 
@@ -82,15 +103,13 @@
 
                   <div fxLayout="row">
                     <div fxFlex="50" fxLayoutAlign="start center">
-                      <a
-                        mat-raised-button
-                        (click)="sendMessage()"
-                      >{{ 'EXERCICE.SEND' | translate }}</a
-                      >
+                      <a mat-raised-button (click)="sendMessage()">{{
+                        "EXERCICE.SEND" | translate
+                      }}</a>
                     </div>
                     <div fxFlex="50" fxLayoutAlign="end center">
                       <div class="chat-users-text">
-                        <i>{{ 'EXERCICE.CHAT' | translate }}</i>
+                        <i>{{ "EXERCICE.CHAT" | translate }}</i>
                         <div
                           class="chat-users"
                           *ngFor="
@@ -100,8 +119,8 @@
                         >
                           {{ userInGame.user.userName
                           }}<span *ngIf="i != game.usersInGame.length - 1"
-                        >,</span
-                        >
+                            >,</span
+                          >
                         </div>
                       </div>
                     </div>
@@ -117,7 +136,10 @@
             <div fxFlex="33" fxLayoutAlign="start start">
               <mat-card>
                 <mat-icon>timer</mat-icon>
-                <span> {{ 'EXERCICE.TIMER' | translate }} : {{ timerValue - 1 }}s</span>
+                <span>
+                  {{ "EXERCICE.TIMER" | translate }} :
+                  {{ timerValue - 1 }}s</span
+                >
               </mat-card>
             </div>
 
@@ -125,21 +147,27 @@
               <mat-card
                 *ngIf="isPlaying && !this.game.gameOver"
                 class="simple-card-is-playing"
-              >{{ 'EXERCICE.TURN' | translate }}</mat-card
+                >{{ "EXERCICE.TURN" | translate }}</mat-card
               >
               <mat-card
                 *ngIf="!isPlaying && !this.game.gameOver"
                 class="simple-card-is-not-playing"
-              >{{ 'EXERCICE.NTURN' | translate }}</mat-card
+                >{{ "EXERCICE.NTURN" | translate }}</mat-card
               >
-              <mat-card *ngIf="this.game.gameOver" class="simple-card-game-is-over">
-                {{ 'EXERCICE.OVER' | translate }} <span *ngIf="this.game.gameForfeit">{{ 'EXERCICE.FORFEIT' | translate }} </span>
+              <mat-card
+                *ngIf="this.game.gameOver"
+                class="simple-card-game-is-over"
+              >
+                {{ "EXERCICE.OVER" | translate }}
+                <span *ngIf="this.game.gameForfeit"
+                  >{{ "EXERCICE.FORFEIT" | translate }}
+                </span>
               </mat-card>
             </div>
 
             <div fxFlex="33" fxLayoutAlign="end start">
               <mat-form-field appearance="fill">
-                <mat-label>{{ 'EXERCICE.THEME' | translate }}</mat-label>
+                <mat-label>{{ "EXERCICE.THEME" | translate }}</mat-label>
                 <mat-select [(ngModel)]="theme" (ngModelChange)="changeTheme()">
                   <mat-option
                     *ngFor="let theme of themes"
@@ -186,12 +214,14 @@
                 [disabled]="compileDisabled || !isPlaying || this.game.gameOver"
                 (click)="compile()"
               >
-              {{ 'EXERCICE.COMPILE' | translate }}
+                {{ "EXERCICE.COMPILE" | translate }}
               </button>
             </div>
 
             <div fxFlex="33" fxLayoutAlign="center center">
-              <p style="font-weight: bold">{{ 'EXERCICE.SCORE' | translate }} {{ score }}</p>
+              <p style="font-weight: bold">
+                {{ "EXERCICE.SCORE" | translate }} {{ score }}
+              </p>
             </div>
 
             <div fxFlex="33" fxLayoutAlign="end center">
@@ -204,7 +234,7 @@
                   matBadgeColor="accent"
                   [disabled]="true"
                 >
-                {{ 'EXERCICE.HISTORY' | translate }}
+                  {{ "EXERCICE.HISTORY" | translate }}
                 </button>
               </div>
 
@@ -216,7 +246,7 @@
                   matBadgePosition="after"
                   matBadgeColor="accent"
                 >
-                {{ 'EXERCICE.HISTORY' | translate }}
+                  {{ "EXERCICE.HISTORY" | translate }}
                 </button>
               </div>
 

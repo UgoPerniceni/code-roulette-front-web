@@ -68,6 +68,7 @@
     "DESCRIPTION" : "Description",
     "TIMER" : "Chrono",
     "OVER": "Perdu !",
+    "GAME_IS_OVER" : "Jeu terminé",
     "THEME": "Sélectionner un thème",
     "SEND": "Envoyer",
     "COMPILE" : "Compiler",
