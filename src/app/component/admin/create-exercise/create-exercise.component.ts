@@ -176,6 +176,7 @@ export class CreateExerciseComponent implements OnInit {
       this.codeService.compileNewCode(this.newCode).subscribe((data: NewCode) => {
         console.log(data);
         this.result = data.compilationOutput;
+        this.newCode.compilationScore = data.compilationScore
 
 
         this.loading = false;
