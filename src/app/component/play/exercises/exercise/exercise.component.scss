@@ -1,5 +1,5 @@
 @import "~codemirror";
-@import '/src/variables.scss';
+@import "/src/variables.scss";
 
 .simple-card-inverse {
   background-color: #292b2c;
@@ -75,7 +75,10 @@
     color: black;
   }
 }
-.mat-raised-button{
+.mat-raised-button {
   background-color: $primary-color;
   color: #f1f5f9;
+}
+.compilation-result {
+  white-space: pre-wrap;
 }

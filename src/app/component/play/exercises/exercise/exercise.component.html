@@ -33,10 +33,14 @@
                   pattern="[a-zA-Z]*"
                 />
               </mat-form-field>
-              <mat-error *ngIf="formGroup.controls['title'].hasError('minlength')">
+              <mat-error
+                *ngIf="formGroup.controls['title'].hasError('minlength')"
+              >
                 Please enter at least a 3 character title
               </mat-error>
-              <mat-error *ngIf="formGroup.controls['title'].hasError('pattern')">
+              <mat-error
+                *ngIf="formGroup.controls['title'].hasError('pattern')"
+              >
                 Title must only contain characters
               </mat-error>
               <mat-form-field class="full-width" appearance="fill">
@@ -72,11 +76,15 @@
               >
                 info
               </mat-icon>
-              <button mat-raised-button color="primary" (click)="showCodeExample()">
+              <button
+                mat-raised-button
+                color="primary"
+                (click)="showCodeExample()"
+              >
                 Code example
               </button>
             </div>
-      
+
             <ngx-codemirror
               class="editor"
               [options]="options"
@@ -87,7 +95,7 @@
               placeholder="placeholder"
             >
             </ngx-codemirror>
-      
+
             <br />
             <div fxLayout="row">
               <h2>Insert at least one verification test</h2>
@@ -101,7 +109,11 @@
               >
                 info
               </mat-icon>
-              <button mat-raised-button color="primary" (click)="showTestExample()">
+              <button
+                mat-raised-button
+                color="primary"
+                (click)="showTestExample()"
+              >
                 Test example
               </button>
             </div>
@@ -141,7 +153,9 @@
                   </div>
                   <div>
                     <div>
-                      <button type="button" (click)="addTest()">Add Test</button>
+                      <button type="button" (click)="addTest()">
+                        Add Test
+                      </button>
                     </div>
                   </div>
                 </form>
@@ -157,12 +171,12 @@
               >
                 <mat-spinner class="m-10"></mat-spinner>
               </div>
-              <div *ngIf="this.loading !== true">
+              <div *ngIf="this.loading !== true" class="compilation-result">
                 <p>{{ result }}</p>
               </div>
             </mat-card>
             <br />
-      
+
             <button
               mat-raised-button
               color="primary"
@@ -182,7 +196,6 @@
           </mat-card>
         </div>
       </div>
-      
     </div>
   </div>
 </div>

@@ -1,4 +1,4 @@
-@import '/src/variables.scss';
+@import "/src/variables.scss";
 
 .page {
   color: white;
@@ -23,12 +23,12 @@
     }
   }
 }
-.mat-raised-button{
-  width:50%;
+.mat-raised-button {
+  width: 50%;
   background-color: $primary-color;
   color: #f1f5f9;
 }
-.main-div{
+.main-div {
   height: 100vh;
   display: flex;
   justify-content: center;
