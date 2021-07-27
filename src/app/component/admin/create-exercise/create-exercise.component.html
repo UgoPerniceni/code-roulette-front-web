@@ -156,6 +156,8 @@
                         </div>
                         <div>
                           <button
+                            mat-raised-button
+                            color="primary"
                             type="button"
                             [hidden]="i < 1"
                             (click)="removeTest(i)"
@@ -169,7 +171,13 @@
                   </div>
                   <div>
                     <div>
-                      <button type="button" (click)="addTest()">
+                      <button
+                        mat-raised-button
+                        color="primary"
+                        type="button"
+                        (click)="addTest()"
+                        style="margin-bottom: 10px"
+                      >
                         Add Test
                       </button>
                     </div>
