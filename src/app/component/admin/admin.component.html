@@ -1,7 +1,7 @@
 <div class="container-fluid page">
   <div class="d-flex page__box p-3 mt-2">{{ 'ADMIN.TITLE' | translate }}</div>
   <div class="page__content shadow p-3 position-relative">
-    <table mat-table [dataSource]="dataSource" class="mat-elevation-z8">
+    <table *ngIf="currentUser" mat-table [dataSource]="dataSource" class="mat-elevation-z8">
       <ng-container matColumnDef="id">
         <th mat-header-cell *matHeaderCellDef>#</th>
         <td mat-cell *matCellDef="let user">{{ user.id }}</td>
@@ -53,5 +53,13 @@
         <td class="mat-cell" colspan="4">No data</td>
       </tr>
     </table>
+
+    <div *ngIf="!currentUser" class="page__content-data position-absolute">
+      <div>
+        <h1>Loading...</h1>
+        <mat-spinner color="accent" [diameter]="150"></mat-spinner>
+      </div>
+    </div>
+
   </div>
 </div>

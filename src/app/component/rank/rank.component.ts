@@ -15,6 +15,8 @@ export class RankComponent implements OnInit, AfterViewInit {
   dataSource = new MatTableDataSource<User>();
   displayedColumns: string[] = ['index', 'elo', 'email', 'userName', 'gamesWon', 'gamesPlayed', 'winRate'];
 
+  users: User[];
+
   @ViewChild(MatPaginator) paginator!: MatPaginator;
   @ViewChild(MatSort) sort!: MatSort;
 
@@ -29,8 +31,10 @@ export class RankComponent implements OnInit, AfterViewInit {
   }
 
   refreshDataSource(): void {
-    this.userService.getUsers().subscribe(data => {
+    this.userService.getUsers().subscribe((data) => {
       console.log(data);
+
+      this.users = data;
       this.dataSource.data = data;
     });
   }
