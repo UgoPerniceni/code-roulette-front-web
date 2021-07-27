@@ -1,5 +1,7 @@
 <div class="container-fluid page">
-  <div class="d-flex page__box p-3 mt-2">{{ 'LOBBY.NEW_LOBBY' | translate }} : {{ lobby?.title }}</div>
+  <div class="d-flex page__box p-3 mt-2">
+    {{ "LOBBY.NEW_LOBBY" | translate }} : {{ lobby?.title }}
+  </div>
   <div class="page__content shadow p-3 position-relative">
     <div *ngIf="user">
       <mat-card style="height: 100%">
@@ -7,80 +9,119 @@
           <hr class="mb-10" />
           <div *ngIf="lobby">
             <div class="main-div">
-            <mat-card>
-              <mat-card-content>
-                <div fxLayout="column">
-                  <img src="../../../assets/gif/lobby.gif" width="100%" height="300" alt="gif_404">
-    
-                  <hr style="width: 100%" />
-                  <br />
-    
-                  <div class="mb-10">
-                    <p><b>{{ 'LOBBY.USERS' | translate }} </b></p>
-                    <ul>
-                      <li *ngFor="let user of lobby.users">{{ user.userName }}</li>
-                    </ul>
-                    <p>
-                      <b>{{ 'LOBBY.KEY' | translate }} : {{lobby?.id}}</b>
-                      <button mat-button [cdkCopyToClipboard]="lobby.id">
-                        <mat-icon
-                          matTooltip="Copy the key to clipboard"
-                          (click)="keyCopied()">file_copy</mat-icon>
-                      </button>
-                    </p>
-                    <p>
-                      <b>{{ 'LOBBY.PARAM' | translate }} :</b>
-        
-                      <br/><br/>
-        
-                      <mat-form-field appearance="fill">
-                        <mat-label>{{ 'LOBBY.TURNS' | translate }}</mat-label>
-                        <mat-select [(value)]="gameTurn" required>
-                          <mat-option value="3">3 {{ 'LOBBY.TURN' | translate }}</mat-option>
-                          <mat-option value="5">5 {{ 'LOBBY.TURN' | translate }}</mat-option>
-                          <mat-option value="7">7 {{ 'LOBBY.TURN' | translate }}</mat-option>
-                        </mat-select>
-                      </mat-form-field>
-        
-                      <mat-form-field appearance="fill">
-                        <mat-label>{{ 'LOBBY.TIME' | translate }}</mat-label>
-                        <mat-select [(value)]="gameTime" required>
-                          <mat-option value="15">15 seconds</mat-option>
-                          <mat-option value="25">25 seconds</mat-option>
-                          <mat-option value="35">35 seconds</mat-option>
-                          <mat-option value="45">45 seconds</mat-option>
-                        </mat-select>
-                      </mat-form-field>
-        
-                      <mat-form-field appearance="fill">
-                        <mat-select [(value)]="languageSelected" placeholder="Language">
-                          <mat-option *ngFor="let language of languages" [value]="language">
-                            {{language}}
-                          </mat-option>
-                        </mat-select>
-                      </mat-form-field>
-        
-                    </p>
+              <mat-card>
+                <mat-card-content>
+                  <div fxLayout="column">
+                    <img
+                      src="../../../assets/gif/lobby.gif"
+                      width="100%"
+                      height="300"
+                      alt="gif_404"
+                    />
+
+                    <hr style="width: 100%" />
+                    <br />
+
+                    <div class="mb-10">
+                      <p>
+                        <b>{{ "LOBBY.USERS" | translate }} </b>
+                      </p>
+                      <ul style="list-style-type: none">
+                        <li *ngFor="let user of lobby.users">
+                          <button mat-raised-button>
+                            {{ user.userName }}
+                          </button>
+                        </li>
+                      </ul>
+                      <p>
+                        <b>{{ "LOBBY.KEY" | translate }} : {{ lobby?.id }}</b>
+                        <button mat-button [cdkCopyToClipboard]="lobby.id">
+                          <mat-icon
+                            matTooltip="Copy the key to clipboard"
+                            (click)="keyCopied()"
+                            >file_copy</mat-icon
+                          >
+                        </button>
+                      </p>
+                      <p>
+                        <b>{{ "LOBBY.PARAM" | translate }} :</b>
+
+                        <br /><br />
+
+                        <mat-form-field
+                          appearance="fill"
+                          style="margin-right: 10px"
+                        >
+                          <mat-label>{{ "LOBBY.TURNS" | translate }}</mat-label>
+                          <mat-select [(value)]="gameTurn" required>
+                            <mat-option value="3"
+                              >3 {{ "LOBBY.TURN" | translate }}</mat-option
+                            >
+                            <mat-option value="5"
+                              >5 {{ "LOBBY.TURN" | translate }}</mat-option
+                            >
+                            <mat-option value="7"
+                              >7 {{ "LOBBY.TURN" | translate }}</mat-option
+                            >
+                          </mat-select>
+                        </mat-form-field>
+
+                        <mat-form-field
+                          appearance="fill"
+                          style="margin-right: 10px"
+                        >
+                          <mat-label>{{ "LOBBY.TIME" | translate }}</mat-label>
+                          <mat-select [(value)]="gameTime" required>
+                            <mat-option value="15">15 seconds</mat-option>
+                            <mat-option value="25">25 seconds</mat-option>
+                            <mat-option value="35">35 seconds</mat-option>
+                            <mat-option value="45">45 seconds</mat-option>
+                          </mat-select>
+                        </mat-form-field>
+
+                        <mat-form-field appearance="fill">
+                          <mat-select
+                            [(value)]="languageSelected"
+                            placeholder="Language"
+                          >
+                            <mat-option
+                              *ngFor="let language of languages"
+                              [value]="language"
+                            >
+                              {{ language }}
+                            </mat-option>
+                          </mat-select>
+                        </mat-form-field>
+                      </p>
+                    </div>
                   </div>
-                </div>
-              </mat-card-content>
-            </mat-card>
-          </div>
+                </mat-card-content>
+              </mat-card>
+            </div>
             <button mat-raised-button (click)="leaveLobby()">
-              {{ 'LOBBY.LEAVE' | translate }}
+              {{ "LOBBY.LEAVE" | translate }}
             </button>
 
             <button mat-raised-button (click)="createGame()">
-              {{ 'LOBBY.CREATEL' | translate }}
+              {{ "LOBBY.CREATEL" | translate }}
             </button>
           </div>
 
           <div *ngIf="!lobby">
-            <button mat-raised-button (click)="openCreateLobbyDialog()" style="text-align: center;">
-              {{ 'LOBBY.NEW_LOBBY' | translate }}
+            <button
+              mat-raised-button
+              (click)="openCreateLobbyDialog()"
+              style="text-align: center"
+            >
+              {{ "LOBBY.NEW_LOBBY" | translate }}
             </button>
-            <button mat-raised-button color="" (click)="openJoinLobbyDialog()" style="text-align: center;">
-              {{ 'LOBBY.KEY' | translate }}
+            <button
+              mat-raised-button
+              color=""
+              (click)="openJoinLobbyDialog()"
+              style="text-align: center"
+            >
+              {{ "LOBBY.KEY" | translate }}
             </button>
           </div>
         </mat-card-content>
