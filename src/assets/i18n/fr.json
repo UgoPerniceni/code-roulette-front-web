@@ -19,12 +19,12 @@
     "CREATE": "Créer un nouveau groupe",
     "NAME" : "Nom du groupe",
     "VALID_KEY" : "Veuillez fournir une clé de groupe valide",
-    "USERS": "Utilisateurs dans le groupe :", 
-    "PARAM": "Configuration de la partie", 
-    "TURNS": "Nombre de tours", 
+    "USERS": "Utilisateurs dans le groupe :",
+    "PARAM": "Configuration de la partie",
+    "TURNS": "Nombre de tours",
     "TURN": "tours",
     "TIME": "Chrono",
-    "LANGUAGE": "Language", 
+    "LANGUAGE": "Language",
     "CREATEL": "Créer une partie en groupe",
     "LEAVE": "Quitter le groupe"
   },
@@ -95,5 +95,8 @@
     "NEXT": "Suivant",
     "PERSONAL": "Informations personnelles",
     "DATA": "Pour modifier une donnée, il suffit de cliquer dessus"
+  },
+  "CREATE":{
+    "EXPLANATION": "Dans cette section vous pouvez créer un code pour vos joueurs, le but est de rendre le code complexe, incrustez un maximum de code inutile pour rendre le jeu amusant. Après chaque compilation, vous aurez une indication de violation de certaines règles de codage, plus y en a, mieux c'est!. Après une compilation réussie votre code pourra être soumis pour le jeu."
   }
 }

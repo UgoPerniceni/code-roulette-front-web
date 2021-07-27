@@ -19,12 +19,12 @@
     "CREATE": "Crear un nuevo grupo",
     "NAME" : "Nombre del grupo",
     "VALID_KEY" : "Por favor, proporcione una clave de grupo válida",
-    "USERS": "Usuarios en el grupo  :", 
-    "PARAM": "Parámetros del juego", 
-    "TURNS": "Números de turno", 
+    "USERS": "Usuarios en el grupo  :",
+    "PARAM": "Parámetros del juego",
+    "TURNS": "Números de turno",
     "TURN": "turno",
     "TIME": "Tiempo",
-    "LANGUAGE": "Idioma", 
+    "LANGUAGE": "Idioma",
     "CREATEL": "Crear juego en el grupo",
     "LEAVE": "Dejar el grupo"
   },
@@ -94,5 +94,8 @@
     "NEXT": "Siguiente",
     "PERSONAL": "Datos personales",
     "DATA": "Para editar un dato, basta con escribir sobre él"
+  },
+  "CREATE":{
+    "EXPLANATION": "Dans cette section vous pouvez créer un code pour vos joueurs, le but est de rendre le code complexe, incrustez un maximum de code inutile pour rendre le jeu amusant. Après chaque compilation, vous aurez une indication de violation de certaines règles de codage, plus y en a, mieux c'est!. Après une compilation réussie votre code pourra être soumis pour le jeu."
   }
 }

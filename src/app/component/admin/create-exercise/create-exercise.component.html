@@ -4,6 +4,11 @@
     <div class="page__content-data position-absolute">
       <div fxLayout="row" class="profile">
         <div fxLayout="column" fxFlex="20" fxLayoutAlign="start center">
+          <div>
+            <p style="text-align: justify">
+              {{ "CREATE.EXPLANATION" | translate }}
+            </p>
+          </div>
           <div fxLayout="row">
             <form class="form" [formGroup]="formGroup">
               <mat-form-field class="full-width" appearance="fill" required>
@@ -12,6 +17,7 @@
                   [(value)]="selection"
                   placeholder="Language"
                   formControlName="language"
+                  required
                 >
                   <mat-option
                     *ngFor="let language of languages"
@@ -49,6 +55,7 @@
                   matInput
                   placeholder="Describing..."
                   formControlName="description"
+                  required
                 ></textarea>
               </mat-form-field>
             </form>
