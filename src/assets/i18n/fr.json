@@ -68,7 +68,7 @@
     "DESCRIPTION" : "Description",
     "TIMER" : "Chrono",
     "OVER": "Perdu !",
-    "GAME_IS_OVER" : "Jeu terminé",
+    "GAME_IS_OVER" : "Partie terminée",
     "THEME": "Sélectionner un thème",
     "SEND": "Envoyer",
     "COMPILE" : "Compiler",
@@ -101,5 +101,6 @@
   },
   "CREATE":{
     "EXPLANATION": "Dans cette section vous pouvez créer un code pour vos joueurs, le but est de rendre le code complexe, incrustez un maximum de code inutile pour rendre le jeu amusant. Après chaque compilation, vous aurez une indication de violation de certaines règles de codage, plus y en a, mieux c'est!. Après une compilation réussie votre code pourra être soumis pour le jeu."
-  }
+  },
+  "LOADING": "Chargement"
 }

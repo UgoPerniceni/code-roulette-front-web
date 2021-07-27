@@ -110,16 +110,13 @@
           <tr mat-row *matRowDef="let row; columns: displayedColumns"></tr>
         </table>
 
-        <mat-paginator
-          [pageSizeOptions]="[5, 10, 20]"
-          showFirstLastButtons
-        ></mat-paginator>
+        <mat-paginator [pageSizeOptions]="[5, 10, 20]" showFirstLastButtons></mat-paginator>
       </div>
     </div>
 
     <div *ngIf="!exercises" class="page__content-data position-absolute">
       <div>
-        <h1>Loading...</h1>
+        <h1>{{'LOADING' | translate}}...</h1>
         <mat-spinner color="accent" [diameter]="150"></mat-spinner>
       </div>
     </div>

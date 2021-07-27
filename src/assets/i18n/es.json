@@ -67,7 +67,8 @@
     "TITLE": "EJERCICIO",
     "DESCRIPTION" : "Descripción",
     "TIMER" : "Tempo",
-    "OVER": "¡El juego ha terminado!",
+    "OVER": "Perdió !",
+    "GAME_IS_OVER" : "El juego ha terminado",
     "THEME": "Selecciona un tema",
     "SEND": "Enviar",
     "COMPILE" : "Compilar",
@@ -98,5 +99,7 @@
     "DATA": "Para editar un dato, basta con escribir sobre él"
   },
   "CREATE":{
-    "EXPLANATION": "En esta sección puedes crear código para tus jugadores, el objetivo es hacer el código complejo, incrustar tanto código innecesario como sea posible para hacer el juego divertido. Después de cada compilación obtendrá una indicación de violación de algunas reglas de codificación, ¡cuanto más mejor! Después de una compilación exitosa su código puede ser enviado para el juego."}
+    "EXPLANATION": "En esta sección puedes crear código para tus jugadores, el objetivo es hacer el código complejo, incrustar tanto código innecesario como sea posible para hacer el juego divertido. Después de cada compilación obtendrá una indicación de violación de algunas reglas de codificación, ¡cuanto más mejor! Después de una compilación exitosa su código puede ser enviado para el juego."
+  },
+  "LOADING": "Cargando"
 }

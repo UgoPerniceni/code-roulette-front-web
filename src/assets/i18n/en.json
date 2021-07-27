@@ -66,7 +66,8 @@
     "TITLE": "Exercise",
     "DESCRIPTION" : "Description",
     "TIMER" : "Timer",
-    "OVER": "Game is over !",
+    "OVER": "You lost !",
+    "GAME_IS_OVER" : "Game is over",
     "THEME": "Select a theme",
     "SEND": "Send",
     "COMPILE" : "Compile",
@@ -98,6 +99,9 @@
     "DATA": "To edit a data, just type on it"
   },
   "CREATE":{
-    "EXPLANATION": "In this section you can create code for your players, the goal is to make the code complex, embed as much unnecessary code as possible to make the game fun. After each compilation you will get an indication of violation of some coding rules, the more the better! After a successful compilation your code can be submitted for the game."}
+    "EXPLANATION": "In this section you can create code for your players, the goal is to make the code complex, embed as much unnecessary code as possible to make the game fun. After each compilation you will get an indication of violation of some coding rules, the more the better! After a successful compilation your code can be submitted for the game."
+  },
+  "LOADING": "Loading"
+
 }
 

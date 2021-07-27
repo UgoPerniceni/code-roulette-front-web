@@ -11,20 +11,21 @@
           <div fxLayout="column" fxLayoutGap="10px">
             <div fxFlex="33">
               <div fxLayout="row" class="information">
-                <span *ngIf="!this.game.gameOver"
-                  >{{ usernamePlaying }}
-                  {{ "EXERCICE.PLAYING" | translate }}</span
-                >
+
+                <span *ngIf="!this.game.gameOver">
+                  {{ usernamePlaying }} {{ "EXERCICE.PLAYING" | translate }}
+                </span>
+
                 <span *ngIf="this.game.gameOver && this.winner">
                   {{ winner.user.userName }} {{ "EXERCICE.WON" | translate }}
                 </span>
+
                 <span *ngIf="this.game.gameOver && !this.winner">
                   {{ "EXERCICE.GAME_IS_OVER" | translate }}
                 </span>
+
                 <mat-icon *ngIf="!this.game.gameOver">sports_esports</mat-icon>
-                <mat-icon *ngIf="this.game.gameOver && this.winner"
-                  >emoji_events</mat-icon
-                >
+                <mat-icon *ngIf="this.game.gameOver && this.winner">emoji_events</mat-icon>
               </div>
             </div>
 
@@ -154,13 +155,10 @@
                 class="simple-card-is-not-playing"
                 >{{ "EXERCICE.NTURN" | translate }}</mat-card
               >
-              <mat-card
-                *ngIf="this.game.gameOver"
-                class="simple-card-game-is-over"
-              >
-                {{ "EXERCICE.OVER" | translate }}
-                <span *ngIf="this.game.gameForfeit"
-                  >{{ "EXERCICE.FORFEIT" | translate }}
+              <mat-card *ngIf="this.game.gameOver" class="simple-card-game-is-over">
+                {{ "EXERCICE.GAME_IS_OVER" | translate }}
+                <span *ngIf="this.game.gameForfeit">
+                  {{ "EXERCICE.FORFEIT" | translate }}
                 </span>
               </mat-card>
             </div>
@@ -196,7 +194,7 @@
               fxLayoutAlign="center center"
               class="height-100"
             >
-              <h1>Loading...</h1>
+              <h1>{{'LOADING' | translate}}...</h1>
 
               <div class="game-information">
                 <mat-spinner color="accent" [diameter]="150"></mat-spinner>
@@ -272,7 +270,7 @@
 
     <div *ngIf="!game" class="page__content-data position-absolute">
       <div>
-        <h1>Loading...</h1>
+        <h1>{{'LOADING' | translate}}...</h1>
         <mat-spinner color="accent" [diameter]="150"></mat-spinner>
       </div>
     </div>
