@@ -3,8 +3,8 @@
     {{ "EXERCICES.TITLE" | translate }}
   </div>
   <div class="page__content shadow p-3 position-relative">
-    <div *ngIf="exercises">
-      <div fxLayout="row">
+    <div>
+      <div *ngIf="exercises" fxLayout="row">
         <div fxFlex="33" fxLayoutAlign="start center">
           <div>
             <mat-form-field>
@@ -27,7 +27,6 @@
             Create new challenge
           </button>
         </div>
-
         <div fxFlex="33" fxLayoutAlign="end center">
           <div>
             <mat-form-field appearance="fill">
@@ -52,6 +51,7 @@
           [dataSource]="dataSource"
           matSort
           class="mat-elevation-z8"
+          *ngIf="exercises"
         >
           <ng-container matColumnDef="id">
             <th mat-header-cell *matHeaderCellDef mat-sort-header>#</th>
@@ -110,14 +110,14 @@
           <tr mat-row *matRowDef="let row; columns: displayedColumns"></tr>
         </table>
 
-        <mat-paginator [pageSizeOptions]="[5, 10, 20]" showFirstLastButtons></mat-paginator>
+        <mat-paginator [pageSizeOptions]="[5, 10, 20]" showFirstLastButtons [hidden]="!exercises"></mat-paginator>
       </div>
     </div>
 
     <div *ngIf="!exercises" class="page__content-data position-absolute">
       <div>
         <h1>{{'LOADING' | translate}}...</h1>
-        <mat-spinner color="accent" [diameter]="150"></mat-spinner>
+        <mat-spinner color="accent" [diameter]="150" style="margin: 0 auto;"></mat-spinner>
       </div>
     </div>
   </div>
