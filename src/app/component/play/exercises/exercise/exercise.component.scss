@@ -1,23 +1,6 @@
 @import "~codemirror";
 @import "/src/variables.scss";
 
-.simple-card-inverse {
-  background-color: #292b2c;
-  color: #ffffff;
-}
-
-.form {
-  min-width: 150px;
-  max-width: 500px;
-  width: 100%;
-}
-
-.full-width {
-  width: 100%;
-}
-.editor {
-  min-width: 80%;
-}
 .sidebar {
   background-image: url(/assets/images/group_4.png),
     linear-gradient(
@@ -73,6 +56,11 @@
     margin-top: -2rem;
     background: white;
     color: black;
+    &-data {
+      top: 50%;
+      left: 50%;
+      transform: translate(-50%, -50%);
+    }
   }
 }
 .mat-raised-button {

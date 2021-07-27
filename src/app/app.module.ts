@@ -61,16 +61,16 @@ import { MatDatepickerModule } from '@angular/material/datepicker';
 import { MatNativeDateModule } from '@angular/material/core';
 import { ChartsModule } from 'ng2-charts';
 import { SnackBarGameComponent } from './component/snack-bar-game/snack-bar-game.component';
-import { CompilationFailedDialogComponent } from './component/play/exercises/exercise/compilation-failed-dialog/compilation-failed-dialog.component';
-import { SaveNewcodeSuccessComponent } from './component/play/exercises/exercise/save-newcode-success/save-newcode-success.component';
 
 import { HashLocationStrategy, LocationStrategy } from '@angular/common';
 import { SidenavComponent } from './sidenav/sidenav.component';
 import { HeaderComponent } from './header/header.component';
-import { CodeExampleDialogComponent } from './component/play/exercises/exercise/code-example-dialog/code-example-dialog.component';
-import { TestExampleDialogComponent } from './component/play/exercises/exercise/test-example-dialog/test-example-dialog.component';
 import {CanLeaveGameGuard} from './guard/can-leave-game.guard';
 import { CreateExerciseComponent } from './component/admin/create-exercise/create-exercise.component';
+import {CompilationFailedDialogComponent} from './component/admin/create-exercise/compilation-failed-dialog/compilation-failed-dialog.component';
+import {SaveNewcodeSuccessComponent} from './component/admin/create-exercise/save-newcode-success/save-newcode-success.component';
+import {CodeExampleDialogComponent} from './component/admin/create-exercise/code-example-dialog/code-example-dialog.component';
+import {TestExampleDialogComponent} from './component/admin/create-exercise/test-example-dialog/test-example-dialog.component';
 
 @NgModule({
   declarations: [
