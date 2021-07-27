@@ -26,11 +26,9 @@
                       <p>
                         <b>{{ "LOBBY.USERS" | translate }} </b>
                       </p>
-                      <ul style="list-style-type: none">
-                        <li *ngFor="let user of lobby.users">
-                          <button mat-raised-button>
-                            {{ user.userName }}
-                          </button>
+                      <ul>
+                        <li *ngFor="let user of lobby.users; let i = index">
+                          <span> {{user.userName}} </span>
                         </li>
                       </ul>
                       <p>
