@@ -4,17 +4,16 @@
   </div>
   <div class="page__content shadow p-3 position-relative">
     <div *ngIf="user">
-      <mat-card style="height: 100%">
+      <mat-card>
         <mat-card-content>
           <hr class="mb-10" />
           <div *ngIf="lobby">
-            <div class="main-div">
+            <div fxLayout="column">
               <mat-card>
                 <mat-card-content>
-                  <div fxLayout="column">
+                  <div fxLayout="column" fxLayoutAlign="center center">
                     <img
                       src="../../../assets/gif/lobby.gif"
-                      width="100%"
                       height="300"
                       alt="gif_404"
                     />
@@ -28,7 +27,7 @@
                       </p>
                       <ul>
                         <li *ngFor="let user of lobby.users; let i = index">
-                          <span> {{user.userName}} </span>
+                          <span> {{ user.userName }} </span>
                         </li>
                       </ul>
                       <p>

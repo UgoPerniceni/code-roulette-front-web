@@ -79,7 +79,9 @@
     "CHAT": "En chat : ",
     "SCORE": "Score :",
     "HISTORY": "Afficher l'historique",
-    "FORFEIT": "(Par forfait)"
+    "FORFEIT": "(Par forfait)",
+    "TURN": "C'est ton tour !",
+    "NTURN": "Attends ton tour !"
   },
   "ADMIN" :{
     "TITLE": "Données utilisateurs",

@@ -79,7 +79,9 @@
     "CHAT": "En el chat : ",
     "SCORE": "Puntuación :",
     "HISTORY": "Mostrar historial",
-    "FORFEIT": "Por pérdida"
+    "FORFEIT": "Por pérdida",
+    "TURN": "Es tu turno!",
+    "NTURN": "Espera para tu turno !"
   },
   "ADMIN" :{
     "TITLE": "Data del usarios",
