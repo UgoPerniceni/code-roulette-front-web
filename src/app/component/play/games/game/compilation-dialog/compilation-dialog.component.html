@@ -21,42 +21,11 @@
 <div mat-dialog-content>
   <hr />
   <br />
-
-<!--  <mat-accordion *ngIf="this.code !== null">
-    <mat-expansion-panel
-      [expanded]="panelOpenState"
-      (opened)="panelOpenState = true"
-      (closed)="panelOpenState = false"
-    >
-      <mat-expansion-panel-header>
-        <mat-panel-title> See the code sent </mat-panel-title>
-        <mat-panel-description>
-          Currently I am {{ panelOpenState ? "open" : "closed" }}
-        </mat-panel-description>
-      </mat-expansion-panel-header>
-
-      <ngx-codemirror
-        [options]="options"
-        [ngModel]="code"
-        [disabled]="true"
-        [autoFocus]="true"
-      >
-      </ngx-codemirror>
-    </mat-expansion-panel>
-  </mat-accordion>-->
-
   <br />
   <mat-card class="simple-card-inverse">
     <span>Result</span>
     <hr />
-    <div fxLayout="row" fxLayoutAlign="center center">
-      <!--*ngIf="this.loading === true" fxLayout="row" fxLayoutAlign="center center">-->
-      <!--      <div class="white-spinner">
-        <mat-spinner class="m-10" color=""></mat-spinner>
-      </div>-->
-    </div>
     <div>
-      <!--*ngIf="this.loading !== true">-->
       <p style="white-space: pre-line">{{ compilation.output }}</p>
     </div>
   </mat-card>

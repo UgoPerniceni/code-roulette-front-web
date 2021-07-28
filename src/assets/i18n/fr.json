@@ -61,7 +61,8 @@
     "DESCRIPTION": "Description",
     "LANGUAGE": "Language",
     "CREATE": "Créer à",
-    "ACTION": "Action"
+    "ACTION": "Action",
+    "CHALLENGE": "Créer un nouveau défi"
   },
   "EXERCICE":{
     "TITLE": "Exercice",
@@ -102,5 +103,23 @@
   "CREATE":{
     "EXPLANATION": "Dans cette section vous pouvez créer un code pour vos joueurs, le but est de rendre le code complexe, incrustez un maximum de code inutile pour rendre le jeu amusant. Après chaque compilation, vous aurez une indication de violation de certaines règles de codage, plus y en a, mieux c'est!. Après une compilation réussie votre code pourra être soumis pour le jeu."
   },
-  "LOADING": "Chargement"
+  "LOADING": "Chargement",
+  "CODE" : {
+    "TITLE" : "Entrez un nouveau code", 
+    "CREATE": "Comment créer un code roulette ?",
+    "READ": "Lisez-le",
+    "MATLABEL":"Titre du code",
+    "WARNCHARAC":"Veuillez entrer un titre d'au moins 3 caractères",
+    "WARNTITLE": "Le titre ne doit contenir que des caractères",
+    "DESCRIBE":"Décrire ce que le code doit faire",
+    "THEME": "Sélectionnez un thème",
+    "TYPE": "Tapez le code que le joueur verra", 
+    "EXAMPLE": "Exemple de code",
+    "INSERT": "Insérer au moins un test de vérification", 
+    "TEXAMPLE": "Exemple de test",
+    "ADD": "Ajouter un test",
+    "COMPILATION": "Compilation :", 
+    "COMPILE": "Compiler", 
+    "SUBMITE": "Tout soumettre"
+  }
 }
