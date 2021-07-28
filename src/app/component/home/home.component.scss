@@ -16,17 +16,9 @@
       margin-top: -2rem;
       background: white;
       color: black;
-      font-size: 2rem;
-      &-data {
-        top: 50%;
-        left: 50%;
-        transform: translate(-50%, -50%);
-      }
     }
   }
-  .mat-raised-button{
-    background-color: $primary-color;
-    color: #f1f5f9;
-    margin-right: 1vw;
-    height: auto;
-  }
+.image{
+  width: 70%;
+  height: 70%;
+}
