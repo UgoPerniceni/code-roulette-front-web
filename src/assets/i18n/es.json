@@ -101,5 +101,6 @@
   "CREATE":{
     "EXPLANATION": "En esta sección puedes crear código para tus jugadores, el objetivo es hacer el código complejo, incrustar tanto código innecesario como sea posible para hacer el juego divertido. Después de cada compilación obtendrá una indicación de violación de algunas reglas de codificación, ¡cuanto más mejor! Después de una compilación exitosa su código puede ser enviado para el juego."
   },
-  "LOADING": "Cargando"
+  "LOADING": "Cargando",
+  "USER_IN_QUEUE": "Usuarios en cola"
 }
