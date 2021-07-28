@@ -60,7 +60,8 @@
     "DESCRIPTION": "Description",
     "LANGUAGE": "Language",
     "CREATE": "Created at",
-    "ACTION": "Action"
+    "ACTION": "Action",
+    "CHALLENGE": "Create new challenge"
   },
   "EXERCICE":{
     "TITLE": "Exercise",
@@ -102,6 +103,24 @@
     "EXPLANATION": "In this section you can create code for your players, the goal is to make the code complex, embed as much unnecessary code as possible to make the game fun. After each compilation you will get an indication of violation of some coding rules, the more the better! After a successful compilation your code can be submitted for the game."
   },
   "LOADING": "Loading",
-  "USER_IN_QUEUE": "Users in queue"
+  "USER_IN_QUEUE": "Users in queue",
+  "CODE" : {
+    "TITLE" : "Enter a new code",
+    "CREATE": "How to create a roulette code ?",
+    "READ": "Read it",
+    "MATLABEL":"Code title",
+    "WARNCHARAC":"Please enter at least a 3 character title",
+    "WARNTITLE": "Title must only contain characters",
+    "DESCRIBE":"Describe what the code should do",
+    "THEME": "Select a theme",
+    "TYPE": "Type the code that the player see",
+    "EXAMPLE": "Code example",
+    "INSERT": "Insert at least one verification test",
+    "TEXAMPLE": "Test example",
+    "ADD": "Add test",
+    "COMPILATION": "Compilation :",
+    "COMPILE": "Compile",
+    "SUBMITE": "Submite All"
+  }
 }
 

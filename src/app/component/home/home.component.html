@@ -1,10 +1,28 @@
 <div class="container-fluid page">
   <div class="d-flex page__box p-3 mt-2">{{ 'HOME.WORKS' | translate }}</div>
   <div class="page__content shadow p-3 position-relative">
-    <div class="page__content-data position-absolute">
-      <button mat-raised-button routerLink="/exercises">{{ 'HOME.NEW_GAME' | translate }}</button>
-      <button mat-raised-button routerLink="/lobby">{{ 'HOME.LOBBY' | translate }}</button>
-      <button mat-raised-button routerLink="/rank">{{ 'HOME.RANK' | translate }}</button>
+    <div fxLayout="column">
+      <mat-card>
+        <mat-card-content>
+          <div fxLayout="column" fxLayoutAlign="center center">
+            <img
+              src="../../../assets/gif/code.jpg"
+              height="300"
+              alt="gif_404"
+              class="image"
+            />
+
+            <hr style="width: 100%" />
+            <br />
+
+            <div class="mb-10">
+              <p>
+                <b>Apprenez à coder avec nos exercices ! Tout en vous amusant en ligne ou avec vos amis !</b>
+              </p>
+            </div>
+          </div>
+        </mat-card-content>
+      </mat-card>
     </div>
   </div>
 </div>

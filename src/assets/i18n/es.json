@@ -61,7 +61,8 @@
     "DESCRIPTION": "Descripción",
     "LANGUAGE": "Idioma",
     "CREATE": "Creado en",
-    "ACTION": "Acción"
+    "ACTION": "Acción",
+    "CHALLENGE": "Crear un nuevo reto"
   },
   "EXERCICE":{
     "TITLE": "EJERCICIO",
@@ -102,5 +103,23 @@
     "EXPLANATION": "En esta sección puedes crear código para tus jugadores, el objetivo es hacer el código complejo, incrustar tanto código innecesario como sea posible para hacer el juego divertido. Después de cada compilación obtendrá una indicación de violación de algunas reglas de codificación, ¡cuanto más mejor! Después de una compilación exitosa su código puede ser enviado para el juego."
   },
   "LOADING": "Cargando",
-  "USER_IN_QUEUE": "Usuarios en cola"
+  "USER_IN_QUEUE": "Usuarios en cola",
+  "CODE" : {
+    "TITLE" : "Introduzca un nuevo código",
+    "CREATE": "Cómo crear un código de ruleta",
+    "READ": "Leer",
+    "MATLABEL":"Título del código",
+    "WARNCHARAC":"Por favor, introduzca un título de al menos 3 caracteres",
+    "WARNTITLE": "El título debe contener sólo caracteres",
+    "DESCRIBE":"Describe lo que debe hacer el código",
+    "THEME": "Seleccione un tema",
+    "TYPE": "Escribe el código que el jugador ve",
+    "EXAMPLE": "Ejemplo de código",
+    "INSERT": "Insertar al menos una prueba de verificación",
+    "TEXAMPLE": "Ejemplo de prueba",
+    "ADD": "Añadir prueba",
+    "COMPILATION": "Compilación :",
+    "COMPILE": "Compilar",
+    "SUBMITE": "Submitir todo"
+  }
 }

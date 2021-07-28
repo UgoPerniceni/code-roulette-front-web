@@ -1,15 +1,15 @@
 <div class="container-fluid page">
-  <div class="d-flex page__box p-3 mt-2">Enter a new code</div>
+  <div class="d-flex page__box p-3 mt-2">{{ "CODE.TITLE" | translate }}</div>
   <div class="page__content shadow p-3 position-relative">
     <div class="page__content-data position-relative">
       <div fxLayout="row" class="profile">
-        <div fxLayout="column" fxFlex="20" fxLayoutAlign="start center">
+        <div fxLayout="column" fxFlex="20" fxLayoutAlign="center center">
           <div fxLayout="column" fxFlex="30" fxLayoutAlign="start center">
             <mat-card class="example-card">
               <mat-card-header>
                 <div mat-card-avatar class="example-header-image"></div>
-                <mat-card-title>How to create a roulette code</mat-card-title>
-                <mat-card-subtitle>Read it</mat-card-subtitle>
+                <mat-card-title>{{ "CODE.CREATE" | translate }}</mat-card-title>
+                <mat-card-subtitle>{{ "CODE.READ" | translate }}</mat-card-subtitle>
               </mat-card-header>
               <mat-card-content>
                 <p style="text-align: justify">
@@ -18,10 +18,10 @@
               </mat-card-content>
             </mat-card>
           </div>
-          <div fxLayout="row" fxLayoutAlign="center end">
+          <div fxLayout="row" fxFlex="60" fxLayoutAlign="end center">
             <form class="form" [formGroup]="formGroup">
               <mat-form-field class="full-width" appearance="fill" required>
-                <mat-label>Select a language</mat-label>
+                <mat-label>{{ "EXERCICES.SELECTLG" | translate }}</mat-label>
                 <mat-select
                   [(value)]="selection"
                   placeholder="Language"
@@ -38,7 +38,7 @@
                 </mat-select>
               </mat-form-field>
               <mat-form-field class="full-width" appearance="fill">
-                <mat-label>Code Title</mat-label>
+                <mat-label>{{ "CODE.MATLABEL" | translate }}</mat-label>
                 <input
                   matInput
                   formControlName="title"
@@ -51,15 +51,15 @@
               <mat-error
                 *ngIf="formGroup.controls['title'].hasError('minlength')"
               >
-                Please enter at least a 3 character title
+              {{ "CODE.WARNCHARAC" | translate }}
               </mat-error>
               <mat-error
                 *ngIf="formGroup.controls['title'].hasError('pattern')"
               >
-                Title must only contain characters
+              {{ "CODE.WARNTITLR" | translate }}
               </mat-error>
               <mat-form-field class="full-width" appearance="fill">
-                <mat-label>Describe what the code should do</mat-label>
+                <mat-label>{{ "CODE.DESCRIBE" | translate }}</mat-label>
                 <textarea
                   matInput
                   placeholder="Describing..."
@@ -73,7 +73,7 @@
         <div fxFlex="80" fxLayoutAlign="center center">
           <mat-card>
             <mat-form-field appearance="fill">
-              <mat-label>Select a theme</mat-label>
+              <mat-label>{{ "CODE.THEME" | translate }}</mat-label>
               <mat-select [(ngModel)]="theme" (ngModelChange)="changeTheme()">
                 <mat-option *ngFor="let theme of themes" [value]="theme.value">
                   {{ theme.viewValue }}
@@ -81,7 +81,7 @@
               </mat-select>
             </mat-form-field>
             <div fxLayout="row">
-              <h2>Type the code that the player see</h2>
+              <h2>{{ "CODE.TYPE" | translate }}</h2>
               <mat-icon
                 class="material-icons color_green"
                 mat-raised-button
@@ -97,7 +97,7 @@
                 color="primary"
                 (click)="showCodeExample()"
               >
-                Code example
+              {{ "CODE.EXAMPLE" | translate }}
               </button>
             </div>
 
@@ -114,7 +114,7 @@
 
             <br />
             <div fxLayout="row">
-              <h2>Insert at least one verification test</h2>
+              <h2>{{ "CODE.INSERT" | translate }}</h2>
               <mat-icon
                 class="material-icons color_green"
                 mat-raised-button
@@ -130,7 +130,7 @@
                 color="primary"
                 (click)="showTestExample()"
               >
-                Test example
+              {{ "CODE.TEXAMPLE" | translate }}
               </button>
             </div>
             <div class="container">
@@ -178,7 +178,7 @@
                         (click)="addTest()"
                         style="margin-bottom: 10px"
                       >
-                        Add Test
+                      {{ "CODE.ADD" | translate }}
                       </button>
                     </div>
                   </div>
@@ -186,7 +186,7 @@
               </div>
             </div>
             <mat-card class="simple-card-inverse">
-              <span>Compilation :</span>
+              <span>{{ "CODE.COMPILATION" | translate }}</span>
               <hr />
               <div
                 *ngIf="this.loading === true"
@@ -207,7 +207,7 @@
               [disabled]="checkCompileEnable()"
               (click)="compile()"
             >
-              Compile
+            {{ "CODE.COMPILE" | translate }}
             </button>
             <button
               mat-raised-button
@@ -215,7 +215,7 @@
               [disabled]="isSubmitBtnDisabled"
               (click)="submit()"
             >
-              Submit All
+            {{ "CODE.SUBMITE" | translate }}
             </button>
           </mat-card>
         </div>
